@@ -35,7 +35,7 @@ public class SceneCatalogue : MonoBehaviour {
 	}
     
 	public string getCurrentSceneName(){
-		return sceneNames[mySceneNumber % sceneNames.Length];
+		return sceneNames[mySceneNumber];
 	}
 
 	public void goToPreviousScene()
