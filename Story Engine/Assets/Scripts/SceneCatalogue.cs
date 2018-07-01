@@ -14,7 +14,7 @@ public class SceneCatalogue : MonoBehaviour {
    // Use this for initialization
 	void Start () {
 		mySceneNumber = 0;
-		isInDateScene = true;
+		isInDateScene = true; // Start Player out in apartment
 	}
 	
 	// Update is called once per frame
@@ -31,17 +31,32 @@ public class SceneCatalogue : MonoBehaviour {
 	}
 
 	public int getCurrentSceneNumberModulus(){
-		return mySceneNumber % sceneNames.Length;
+		return mySceneNumber;
 	}
-
+    
 	public string getCurrentSceneName(){
 		return sceneNames[mySceneNumber % sceneNames.Length];
 	}
 
+	public void goToPreviousScene()
+    {
+        GameObject.FindObjectOfType<DialogueManager>().selectedPartner = -1;
+        mySceneNumber--;
+		if(mySceneNumber < 0){
+			mySceneNumber = sceneNames.Length -1;
+		}
+    }
+
 	public void goToNextScene(){
 		GameObject.FindObjectOfType<DialogueManager>().selectedPartner = -1;
         mySceneNumber++;
+
+		if (mySceneNumber == sceneNames.Length){
+			mySceneNumber = 0;
+		}
 	}
+
+
 
 	public string neutralResultForCurrentLocationDescription(){
 		return neutralResultDescriptions[getCurrentSceneNumberModulus()];

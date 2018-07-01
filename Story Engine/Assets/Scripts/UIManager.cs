@@ -10,9 +10,12 @@ public class UIManager : MonoBehaviour {
 	GameObject contextualActionButtonObject;
 	Button byeButton;
     GameObject askOnDateButton;
-	GameObject changeLocationButton;
+    GameObject mapButton;
+    GameObject previousLocationButton;
+	GameObject nextLocationButton;
 	public GameObject dialoguePanel;
-	public GameObject mainPanel;
+    public GameObject mainPanel;
+	public GameObject mapPanel;
 	private DialogueManager dialogueManager;
 	private ConversationTracker conversationTracker;
 	private SceneCatalogue mySceneCatalogue;
@@ -27,13 +30,17 @@ public class UIManager : MonoBehaviour {
 	private CommandProcessor myCommandProcessor;
 	private Text sceneDescriptionText;
 
+	bool mapEnabled;
+
 	// Use this for initialization
 	void Start () {
         talkButtonObject = GameObject.Find("TalkButton");
 		contextualActionButtonObject = GameObject.Find("ContextActionButton");
 		byeButton = GameObject.Find("Depart").GetComponent<Button>();
         askOnDateButton = GameObject.Find("AskOut");
-		changeLocationButton = GameObject.Find("LocationButton");
+        previousLocationButton = GameObject.Find("PreviousLocationButton");
+        nextLocationButton = GameObject.Find("NextLocationButton");
+		mapButton = GameObject.Find("MapButton");
 
         dialogueManager = GameObject.FindObjectOfType<DialogueManager>();
 		conversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
@@ -52,16 +59,33 @@ public class UIManager : MonoBehaviour {
 
 		dateLocationButtonPanel.SetActive(false);
 		clearPotentialPartners();
+
+		mapEnabled = false;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		if(this.mapEnabled){
+			disableAllPanels();
+            enableMapPanel();
+			return;
+		}
+
+		if( !dialogueManager.getIsInConversationMode()){
+			disableAllPanels();
+			enableMainPanel();
+			dialogueManager.updateCharacterUI();
+			dialogueManager.updateSelectedPartnerUI();
+		}
+
 		dialoguePanel.SetActive(dialogueManager.getIsInConversationMode());
 		mainPanel.SetActive(!dialogueManager.getIsInConversationMode());
 
 		askOnDateButton.SetActive(conversationTracker.canAskOnDateEnabled());
-		changeLocationButton.SetActive(!mySceneCatalogue.getIsInDateScene());
+        previousLocationButton.SetActive(!mySceneCatalogue.getIsInDateScene());
+        nextLocationButton.SetActive(!mySceneCatalogue.getIsInDateScene());
+		mapButton.SetActive(!mySceneCatalogue.getIsInDateScene());
 
 		toggleButtons();
 
@@ -199,5 +223,37 @@ public class UIManager : MonoBehaviour {
 
 	public void gameWon(){
 		Debug.Log("game won!!");
+	}
+
+	public void toggleMap(){
+		this.mapEnabled = !this.mapEnabled;
+	}
+
+	private void enableMapPanel()
+	{
+        mapPanel.SetActive(true);
+    }
+
+    private void enableMainPanel()
+    {
+		mainPanel.SetActive(true);
+    }
+
+	private void disableAllPanels()
+	{
+        mapPanel.SetActive(false);
+        mainPanel.SetActive(false);
+		dialoguePanel.SetActive(false);
+	}
+
+	private void enableAllPanels()
+    {
+        mapPanel.SetActive(true);
+        mainPanel.SetActive(true);
+        dialoguePanel.SetActive(true);
+    }
+
+	public bool getMapEnabled(){
+		return this.mapEnabled;
 	}
 }

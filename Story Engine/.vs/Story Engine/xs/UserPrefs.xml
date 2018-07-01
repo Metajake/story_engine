@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{422F30A1-E294-E6A2-6AF7-517360E93351}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CommandProcessor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LocationNode.cs">
     <Files>
-      <File FileName="Assets/Scripts/BackgroundSwapper.cs" Line="21" Column="68" />
-      <File FileName="Assets/Scripts/SceneCatalogue.cs" Line="8" Column="1" />
+      <File FileName="Assets/Scripts/BackgroundSwapper.cs" Line="32" Column="50" />
+      <File FileName="Assets/Scripts/SceneCatalogue.cs" Line="12" Column="41" />
       <File FileName="Assets/Scripts/Character.cs" Line="147" Column="41" />
-      <File FileName="Assets/Scripts/UIManager.cs" Line="64" Column="52" />
-      <File FileName="Assets/Scripts/DialogueManager.cs" Line="72" Column="41" />
+      <File FileName="Assets/Scripts/UIManager.cs" Line="79" Column="46" />
+      <File FileName="Assets/Scripts/DialogueManager.cs" Line="48" Column="24" />
       <File FileName="Assets/Scripts/RelationshipCounselor.cs" Line="28" Column="19" />
       <File FileName="Assets/Scripts/VictoryCoach.cs" Line="29" Column="25" />
       <File FileName="Assets/Scripts/ConversationTracker.cs" Line="238" Column="31" />
@@ -13,7 +13,8 @@
       <File FileName="Assets/Scripts/DialoguePiece.cs" Line="6" Column="14" />
       <File FileName="Assets/Scripts/AbstractCommand.cs" Line="8" Column="2" />
       <File FileName="Assets/Scripts/ChangeDialogueCommand.cs" Line="11" Column="47" />
-      <File FileName="Assets/Scripts/CommandProcessor.cs" Line="11" Column="1" />
+      <File FileName="Assets/Scripts/CommandProcessor.cs" Line="15" Column="1" />
+      <File FileName="Assets/Scripts/LocationNode.cs" Line="6" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

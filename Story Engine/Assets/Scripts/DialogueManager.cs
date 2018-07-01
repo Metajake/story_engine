@@ -43,19 +43,15 @@ public class DialogueManager : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
-		if(!conversationMode){
-    		updateCharacterUI();
-    		updateSelectedPartnerUI();
-        }
 	}
-
-	private void updateCharacterUI()
+    
+	public void updateCharacterUI()
 	{
 		potentialPartners = findConversationPartners();
 		myUIManager.placePotentialPartners(potentialPartners);
 	}
     
-	private void updateSelectedPartnerUI(){
+	public void updateSelectedPartnerUI(){
 		bool partners = potentialPartners.Count > 0;
 		myUIManager.partnersPresent(partners);
 

@@ -4,30 +4,45 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class BackgroundSwapper : MonoBehaviour {
+public class BackgroundSwapper : MonoBehaviour
+{
 
 	public Texture2D[] backgrounds;
 	public Texture2D[] dateBackgrounds;
-    private Image myImage;
+	public Texture2D mapBackground;
+	private Image myImage;
 	private RelationshipCounselor myRelationshipCounselor;
 	private Timelord myTimeLord;
 	private SceneCatalogue mySceneCatalogue;
+	private UIManager myUIManager;
 
 	// Use this for initialization
-	void Start () {
+	void Start()
+	{
 		myImage = GetComponent<Image>();
 		myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
 		myTimeLord = GameObject.FindObjectOfType<Timelord>();
 		mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
+		myUIManager = GameObject.FindObjectOfType<UIManager>();
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-		Texture2D nextBackground = backgroundsForThisScene()[myTimeLord.timeStep % backgroundsForThisScene().Length];
-		if (mySceneCatalogue.getIsInDateScene() == true){
-			nextBackground = dateBackgroundsForThisScene()[0];
-		}
+	void Update()
+	{
+		Texture2D nextBackground = getNextBackground();
 		myImage.sprite = createSpriteFromTex2D(nextBackground);
+	}
+
+	private Texture2D getNextBackground(){
+		if (myUIManager.getMapEnabled())
+        {
+			return mapBackground;
+        }
+        if (mySceneCatalogue.getIsInDateScene() == true)
+        {
+            return dateBackgroundsForThisScene()[0];
+        }
+		return backgroundsForThisScene()[myTimeLord.timeStep % backgroundsForThisScene().Length];
 	}
 
 	public static Sprite createSpriteFromTex2D(Texture2D from){
