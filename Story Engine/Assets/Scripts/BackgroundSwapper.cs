@@ -38,7 +38,7 @@ public class BackgroundSwapper : MonoBehaviour
         {
 			return mapBackground;
         }
-        if (mySceneCatalogue.getIsInDateScene() == true)
+        if (mySceneCatalogue.getIsInInteriorScene() == true)
         {
             return dateBackgroundsForThisScene()[0];
         }
@@ -50,22 +50,24 @@ public class BackgroundSwapper : MonoBehaviour
 	}
 
 	Texture2D[] backgroundsForThisScene(){
-		string sceneName = this.mySceneCatalogue.getCurrentSceneName();
-		List<Texture2D> workingListOfBackgrounds = new List<Texture2D>();
-		foreach (Texture2D background in backgrounds) { 
-			if(background.name.ToLower().Contains(sceneName.ToLower())){
-				workingListOfBackgrounds.Add(background);
-			}
-		}
-        return workingListOfBackgrounds.ToArray();
+		return backgroundsMatchingSceneName(backgrounds);
 	}
 
 	Texture2D[] dateBackgroundsForThisScene()
     {
-		int sceneNumber = this.mySceneCatalogue.getCurrentSceneNumberModulus();
-
-        List<Texture2D> workingListOfBackgrounds = new List<Texture2D>();
-        workingListOfBackgrounds.Add(dateBackgrounds[sceneNumber]);
-        return workingListOfBackgrounds.ToArray();
+		return backgroundsMatchingSceneName(dateBackgrounds);
     }
+
+	Texture2D[] backgroundsMatchingSceneName(Texture2D[] backgroundsToCheck){
+		string sceneName = this.mySceneCatalogue.getCurrentSceneName();
+        List<Texture2D> workingListOfBackgrounds = new List<Texture2D>();
+        foreach (Texture2D background in backgroundsToCheck)
+        {
+            if (background.name.ToLower().Contains(sceneName.ToLower().Replace(' ', '_')))
+            {
+                workingListOfBackgrounds.Add(background);
+            }
+        }
+        return workingListOfBackgrounds.ToArray();
+	}
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
@@ -83,9 +84,9 @@ public class UIManager : MonoBehaviour {
 		mainPanel.SetActive(!dialogueManager.getIsInConversationMode());
 
 		askOnDateButton.SetActive(conversationTracker.canAskOnDateEnabled());
-        previousLocationButton.SetActive(!mySceneCatalogue.getIsInDateScene());
-        nextLocationButton.SetActive(!mySceneCatalogue.getIsInDateScene());
-		mapButton.SetActive(!mySceneCatalogue.getIsInDateScene());
+        previousLocationButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
+        nextLocationButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
+		mapButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
 
 		toggleButtons();
 
@@ -196,17 +197,28 @@ public class UIManager : MonoBehaviour {
 	}
 
 	private void updateLocationButtons(){
-		for (int i = 0; i < mySceneCatalogue.dateSceneNames.Length; i++){
+
+        Dictionary<string, int> dateScenes = mySceneCatalogue.getDateScenes();
+		List<string> dateSceneNames = new List<string>(dateScenes.Keys);
+
+		for (int i = 0; i < dateScenes.Count; i++){
+			
 			Button sceneButton = GameObject.Find("Location" + (i + 1) + "Button").GetComponent<Button>();
 			sceneButton.interactable = true;
-			sceneButton.GetComponentInChildren<Text>().text = mySceneCatalogue.dateSceneNames[i];
+			sceneButton.GetComponentInChildren<Text>().text = dateSceneNames[i];
+
+			int j = i;
+			UnityAction buttonAction = () => scheduleDateForLocation(j);
+            sceneButton.onClick.AddListener(buttonAction);
 		}
-		int numberOfLocationButtons = GameObject.Find("LocationButtonPanel").transform.childCount;
-		for (int j = mySceneCatalogue.dateSceneNames.Length; j < numberOfLocationButtons; j++ ){
-			Button sceneButton = GameObject.Find("Location" + (j + 1) + "Button").GetComponent<Button>();
-			sceneButton.interactable = false;
-            sceneButton.GetComponentInChildren<Text>().text = "---";
-		}
+	}
+
+	public void scheduleDateForLocation(int dateLocationIndex){
+		Dictionary<string, int> dateScenes = mySceneCatalogue.getDateScenes();
+		List<string> dateSceneNames = new List<string>(dateScenes.Keys);
+
+		conversationTracker.scheduleDate(dateScenes[dateSceneNames[dateLocationIndex]]);
+
 	}
 
 	public void showLocationOptions(){
@@ -256,4 +268,5 @@ public class UIManager : MonoBehaviour {
 	public bool getMapEnabled(){
 		return this.mapEnabled;
 	}
+ 
 }

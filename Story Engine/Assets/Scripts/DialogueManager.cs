@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour {
     private Timelord myTimeLord;
     private SceneCatalogue mySceneCatalogue;
     private RelationshipCounselor myRelationshipCounselor;
-    private CommandProcessor myCommandProcessor;
+    //private CommandProcessor myCommandProcessor;
 	private UIManager myUIManager;
 
 	public void registerDialogue(DialoguePiece piece){
@@ -35,7 +35,7 @@ public class DialogueManager : MonoBehaviour {
 		myTimeLord = GameObject.FindObjectOfType<Timelord>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
-        myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
+        //myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
 		myUIManager = GameObject.FindObjectOfType<UIManager>();
 
 		findConversationPartners();
@@ -65,7 +65,7 @@ public class DialogueManager : MonoBehaviour {
 
 		List<Character> toReturn = new List<Character>();
         
-		if(mySceneCatalogue.getIsInDateScene()){
+		if(mySceneCatalogue.getIsInInteriorScene()){
             if(myRelationshipCounselor.isInDateMode()){
 				toReturn.Add( 
     	            myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentSceneNumberModulus(), myTimeLord.getCurrentTimestep())

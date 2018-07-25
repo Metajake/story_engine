@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MapPanelUI : MonoBehaviour {
 
+	public void enableAdjacentLocations(){
+		
+	}
+
 	// Use this for initialization
 	void Start () {
 		

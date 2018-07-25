@@ -5,16 +5,17 @@ using UnityEngine;
 public class SceneCatalogue : MonoBehaviour {
 
     public string[] sceneNames;
-	public string[] dateSceneNames;
+	public string[] dateSceneNames; // CHANGE THIS TO INTERNIOR SCENE NEANMES
 	private int mySceneNumber;
-	private bool isInDateScene;
+	private bool isInInteriorScene;
 	public string[] neutralResultDescriptions;
 	public string[] experienceDescriptions;
+	public bool[] isDateScene;
 
    // Use this for initialization
 	void Start () {
-		mySceneNumber = 0;
-		isInDateScene = true; // Start Player out in apartment
+		mySceneNumber = 6;
+		isInInteriorScene = true; // Start Player out in apartment
 	}
 	
 	// Update is called once per frame
@@ -22,12 +23,12 @@ public class SceneCatalogue : MonoBehaviour {
 		
 	}
 
-	public void toggleDateScene(){
-		isInDateScene = !isInDateScene;
+	public void toggleInteriorScene(){
+		isInInteriorScene = !isInInteriorScene;
 	}
 
-	public bool getIsInDateScene(){
-		return isInDateScene;
+	public bool getIsInInteriorScene(){
+		return isInInteriorScene;
 	}
 
 	public int getCurrentSceneNumberModulus(){
@@ -36,6 +37,10 @@ public class SceneCatalogue : MonoBehaviour {
     
 	public string getCurrentSceneName(){
 		return sceneNames[mySceneNumber];
+	}
+
+	public void setCurrentSceneNumber(int newSceneNumber){
+		mySceneNumber = newSceneNumber;
 	}
 
 	public void goToPreviousScene()
@@ -56,8 +61,6 @@ public class SceneCatalogue : MonoBehaviour {
 		}
 	}
 
-
-
 	public string neutralResultForCurrentLocationDescription(){
 		return neutralResultDescriptions[getCurrentSceneNumberModulus()];
 	}
@@ -66,5 +69,17 @@ public class SceneCatalogue : MonoBehaviour {
     {
         return experienceDescriptions[getCurrentSceneNumberModulus()];
     }
+
+	public Dictionary<string,int> getDateScenes(){
+
+		Dictionary<string, int> dateScenes = new Dictionary<string, int>();
+
+		for (int i = 0; i < dateSceneNames.Length; i++){
+			if(isDateScene[i]){
+				dateScenes.Add(dateSceneNames[i], i);
+			}
+		}
+		return dateScenes;
+	}
 
 }

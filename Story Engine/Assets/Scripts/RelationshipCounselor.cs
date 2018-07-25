@@ -60,7 +60,7 @@ public class RelationshipCounselor : MonoBehaviour {
 
 	public void leaveDate(){
 		isAtDate = false;
-		mySceneCatalogue.toggleDateScene();
+		mySceneCatalogue.toggleInteriorScene();
 		uiManager.resetDateButtons();
 	}
 
