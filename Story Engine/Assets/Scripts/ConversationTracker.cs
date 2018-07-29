@@ -11,7 +11,7 @@ public class ConversationTracker : MonoBehaviour {
 	private Text dialogueText;
     private DialogueManager dialogueManager;
     private UIManager uiManager;
-    //private SceneCatalogue sceneCatalogue;
+	private SceneCatalogue mySceneCatalogue;
     private Timelord timeLord;
     private RelationshipCounselor relationshipCounselor;
 
@@ -20,7 +20,7 @@ public class ConversationTracker : MonoBehaviour {
 		dialogueText = GameObject.Find("DialogueText").GetComponent<Text>();
         dialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         uiManager = GameObject.FindObjectOfType<UIManager>();
-        //sceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
+        mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         timeLord = GameObject.FindObjectOfType<Timelord>();
         relationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
 	}
@@ -227,10 +227,27 @@ public class ConversationTracker : MonoBehaviour {
 
     public void successfullyAskOnDate()
     {
+        //int random = new System.Random().Next(0,2);
+		int random = 1;
+		if(random > 0 && mySceneCatalogue.someLocationsObscured()){
+            dialogueText.text = "I hear that the "+ mySceneCatalogue.sceneNames[revealLocation()] + " is beautiful this time of year! Where would you like to go?";
+        }else{
+			dialogueText.text = "Where would you like to go for our date?";
+		}
+
         uiManager.showLocationOptions();
-        dialogueText.text = "Where would you like to go for our date?";
         this.currentConversation.lastChosenOption = Conversation.SpeechOption.ASK_ON_DATE;
     }
+
+	public int revealLocation(){
+		for (int i = 0; i < mySceneCatalogue.knownLocations.Length; i++){
+			if(mySceneCatalogue.knownLocations[i] == false){
+				mySceneCatalogue.learnLocation(i);
+				return i;
+			}
+        }
+		return -1;
+	}
 
     public void scheduleDate(int location)
     {

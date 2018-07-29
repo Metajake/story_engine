@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour {
     public GameObject mainPanel;
 	public GameObject mapPanel;
 	private DialogueManager dialogueManager;
+	private MapCartographer myMapCartographer;
 	private ConversationTracker conversationTracker;
 	private SceneCatalogue mySceneCatalogue;
     private GameObject dialogueButtonPanel;
@@ -44,6 +45,7 @@ public class UIManager : MonoBehaviour {
 		mapButton = GameObject.Find("MapButton");
 
         dialogueManager = GameObject.FindObjectOfType<DialogueManager>();
+        myMapCartographer = GameObject.FindObjectOfType<MapCartographer>();
 		conversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
 		mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 		myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
@@ -244,6 +246,7 @@ public class UIManager : MonoBehaviour {
 	private void enableMapPanel()
 	{
         mapPanel.SetActive(true);
+		//myMapCartographer.createLocationButtons();
     }
 
     private void enableMainPanel()

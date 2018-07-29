@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneCatalogue : MonoBehaviour {
+public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 
     public string[] sceneNames;
 	public string[] dateSceneNames; // CHANGE THIS TO INTERNIOR SCENE NEANMES
@@ -10,7 +11,14 @@ public class SceneCatalogue : MonoBehaviour {
 	private bool isInInteriorScene;
 	public string[] neutralResultDescriptions;
 	public string[] experienceDescriptions;
-	public bool[] isDateScene;
+    public bool[] isDateScene;
+    public bool[] knownLocations;
+
+    private List<IKnownLocationsChangedObserver> currentObservers;
+
+    void Awake() {
+        currentObservers = new List<IKnownLocationsChangedObserver>();
+    }
 
    // Use this for initialization
 	void Start () {
@@ -82,4 +90,36 @@ public class SceneCatalogue : MonoBehaviour {
 		return dateScenes;
 	}
 
+	public void learnLocation(int locationToLearn){
+		this.knownLocations[locationToLearn] = true;
+        Notify();
+	}
+
+	internal bool someLocationsObscured()
+	{
+		bool toReturn = false;
+		for (int i = 0; i < this.knownLocations.Length; i++){
+			if(!this.knownLocations[i]){
+				toReturn = true;
+			}
+		}
+		return toReturn;
+	}
+
+    public void Subscribe(IKnownLocationsChangedObserver observer)
+    {
+        this.currentObservers.Add(observer);
+    }
+
+    public void Notify()
+    {
+        foreach (IKnownLocationsChangedObserver observer in currentObservers){
+            observer.BeNotifiedOfLocationChange();
+        }
+    }
+
+    public void Unsubscribe(IKnownLocationsChangedObserver observer)
+    {
+        throw new NotImplementedException();
+    }
 }

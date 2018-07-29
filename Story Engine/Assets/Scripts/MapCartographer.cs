@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 // variable based dialogue
-public class MapCartographer : MonoBehaviour {
+public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 	private const int numberOfRows = 3;
 	private const int numberOfColumns = 4;
 	public GameObject mapLocationButtonPrefab;
@@ -25,28 +25,46 @@ public class MapCartographer : MonoBehaviour {
 
         createLocationButtons();
 
+        mySceneCatalogue.Subscribe(this);
+
 	}
 
-	private void createLocationButtons()
+	public void createLocationButtons()
 	{
-		
-        for (int j = 0; j < numberOfRows; j++){
-            
-			for (int k = 0; k < numberOfColumns; k++){
 
-                int i = j * numberOfColumns + k;
+		Button[] allButtons = myMapPanel.GetComponentsInChildren<Button>();
 
-				if(i >= allLocationNames.Count ){
-					return;
-				}
-				
-				GameObject buttonObject = GameObject.Instantiate(mapLocationButtonPrefab, myMapPanel.transform);
-                
-				buttonObject.transform.Translate(new Vector3( -400 + k * 200, 200 - j * 200));
+		foreach(Button b in allButtons){
+            if(!(b.gameObject.name.ToLower()=="closemapbutton")){
+				Destroy(b.gameObject);
+            }
+		}
 
-                buttonObject.GetComponentInChildren<Text>().text = allLocationNames[i];
+        for (int j = 0; j < numberOfRows; j++)
+        {
 
-				UnityAction buttonAction = ()=> onLocationClick(i);
+            for (int k = 0; k < numberOfColumns; k++)
+            {
+
+                int mapButtonIndex = j * numberOfColumns + k;
+
+                if (mapButtonIndex >= allLocationNames.Count)
+                {
+                    return;
+                }
+
+                if (!mySceneCatalogue.knownLocations[mapButtonIndex])
+                {
+                    continue;
+                }
+
+                GameObject buttonObject = GameObject.Instantiate(mapLocationButtonPrefab, myMapPanel.transform);
+
+                buttonObject.transform.Translate(new Vector3(-400 + k * 200, 200 - j * 200));
+
+                buttonObject.GetComponentInChildren<Text>().text = allLocationNames[mapButtonIndex];
+
+                UnityAction buttonAction = () => onLocationClick(mapButtonIndex);
                 buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);
                 
 			}		
@@ -61,8 +79,12 @@ public class MapCartographer : MonoBehaviour {
 		
 	}
     
-	void onLocationClick(int sceneNumber){
+	public void onLocationClick(int sceneNumber){
 		mySceneCatalogue.setCurrentSceneNumber(sceneNumber);
 	}
 
+    public void BeNotifiedOfLocationChange()
+    {
+        createLocationButtons();
+    }
 }

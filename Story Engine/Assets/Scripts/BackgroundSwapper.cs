@@ -11,7 +11,6 @@ public class BackgroundSwapper : MonoBehaviour
 	public Texture2D[] dateBackgrounds;
 	public Texture2D mapBackground;
 	private Image myImage;
-	private RelationshipCounselor myRelationshipCounselor;
 	private Timelord myTimeLord;
 	private SceneCatalogue mySceneCatalogue;
 	private UIManager myUIManager;
@@ -20,7 +19,6 @@ public class BackgroundSwapper : MonoBehaviour
 	void Start()
 	{
 		myImage = GetComponent<Image>();
-		myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
 		myTimeLord = GameObject.FindObjectOfType<Timelord>();
 		mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 		myUIManager = GameObject.FindObjectOfType<UIManager>();
