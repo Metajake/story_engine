@@ -51,7 +51,7 @@ public class RelationshipCounselor : MonoBehaviour {
 	public bool isInDateMode(){
 		bool toReturn = false;
         foreach (Date date in this.scheduledDates){
-			if(date.dateTime == myTimeLord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentSceneNumberModulus()){
+			if(date.dateTime == myTimeLord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentSceneNumber()){
                 toReturn = true;
             }
         }
@@ -75,11 +75,11 @@ public class RelationshipCounselor : MonoBehaviour {
 			uiManager.showNeutralDescriptionText();
 		}else{
 			uiManager.experienceDescription();
-			myVictoryCoach.achievedExperience(mySceneCatalogue.getCurrentSceneNumberModulus());
+			myVictoryCoach.achievedExperience(mySceneCatalogue.getCurrentSceneNumber());
             
 			foreach (Date date in this.scheduledDates)
             {
-				if (date.dateTime == myTimeLord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentSceneNumberModulus())
+				if (date.dateTime == myTimeLord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentSceneNumber())
                 {
 					//date.character.activeTimes = date.character.savedTimes;
 					date.character.savedTimes.CopyTo(date.character.activeTimes, 0);

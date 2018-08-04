@@ -206,7 +206,8 @@ public class UIManager : MonoBehaviour {
 			sceneButton.GetComponentInChildren<Text>().text = dateSceneNames[i];
 
 			int j = i;
-			UnityAction buttonAction = () => scheduleDateForLocation(j);
+            UnityAction buttonAction = () => scheduleDateForLocation(j);
+            sceneButton.onClick.RemoveAllListeners();
             sceneButton.onClick.AddListener(buttonAction);
 		}
 	}

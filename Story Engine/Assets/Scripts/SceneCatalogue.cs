@@ -39,7 +39,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 		return isInInteriorScene;
 	}
 
-	public int getCurrentSceneNumberModulus(){
+	public int getCurrentSceneNumber(){
 		return mySceneNumber;
 	}
     
@@ -70,12 +70,12 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 	}
 
 	public string neutralResultForCurrentLocationDescription(){
-		return neutralResultDescriptions[getCurrentSceneNumberModulus()];
+		return neutralResultDescriptions[getCurrentSceneNumber()];
 	}
 
 	public string currentExperienceDescription()
     {
-        return experienceDescriptions[getCurrentSceneNumberModulus()];
+        return experienceDescriptions[getCurrentSceneNumber()];
     }
 
 	public Dictionary<string,int> getDateScenes(){

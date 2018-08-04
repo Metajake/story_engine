@@ -68,7 +68,7 @@ public class DialogueManager : MonoBehaviour {
 		if(mySceneCatalogue.getIsInInteriorScene()){
             if(myRelationshipCounselor.isInDateMode()){
 				toReturn.Add( 
-    	            myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentSceneNumberModulus(), myTimeLord.getCurrentTimestep())
+    	            myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentSceneNumber(), myTimeLord.getCurrentTimestep())
 				);
 				myRelationshipCounselor.isAtDate = true;
             }

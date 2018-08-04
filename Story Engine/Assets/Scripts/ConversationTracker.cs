@@ -250,11 +250,12 @@ public class ConversationTracker : MonoBehaviour {
 
     public void scheduleDate(int location)
     {
-        int randomDateTime = timeLord.getCurrentTimestep() + new System.Random().Next(0, 19);
+        int randomTimestepFromPresent = new System.Random().Next(0, 19);
+        int randomDateTime = timeLord.getCurrentTimestep() + randomTimestepFromPresent;
         relationshipCounselor.createDate(location, randomDateTime, this.currentConversation.speaker);
         uiManager.hideLocationOptions();
         endConversation("Sounds good. see you " + timeLord.getDayOfWeekForTimeStep(randomDateTime) + " in the " + timeLord.getTimeNameForTimeStep(randomDateTime) + "!");
-
+        Debug.Log("current timestep: "+timeLord.getCurrentTimestep()+" Random Timestep from present: "+ randomTimestepFromPresent);
     }
 
     private void endConversation(string farewell = "")
