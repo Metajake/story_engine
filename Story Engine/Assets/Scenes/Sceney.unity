@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 37357102}
   - component: {fileID: 37357101}
   m_Layer: 5
-  m_Name: SceneDescriptionPanel
+  m_Name: TextPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1173,7 +1173,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.000061035156, y: -0.000030517578}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0.00012207, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &176462121
 MonoBehaviour:
@@ -2713,8 +2713,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 188.2, y: -155.7}
-  m_SizeDelta: {x: 605.3, y: 206.1}
+  m_AnchoredPosition: {x: 188.21, y: -298}
+  m_SizeDelta: {x: 605.3, y: 172}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &665576482
 MonoBehaviour:
@@ -7111,8 +7111,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -313.22, y: -298}
-  m_SizeDelta: {x: -626.45, y: -596}
+  m_AnchoredPosition: {x: -326.2, y: -298}
+  m_SizeDelta: {x: -652.41, y: -596}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1996684468
 MonoBehaviour:

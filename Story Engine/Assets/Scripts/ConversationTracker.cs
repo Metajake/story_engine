@@ -227,7 +227,6 @@ public class ConversationTracker : MonoBehaviour {
 
     public void successfullyAskOnDate()
     {
-        //int random = new System.Random().Next(0,2);
 		int random = 1;
 		if(random > 0 && mySceneCatalogue.someLocationsObscured()){
             dialogueText.text = "I hear that the "+ mySceneCatalogue.sceneNames[revealLocation()] + " is beautiful this time of year! Where would you like to go?";

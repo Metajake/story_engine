@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour {
     private RelationshipCounselor myRelationshipCounselor;
     private VictoryCoach myVictoryCoach;
 	private CommandProcessor myCommandProcessor;
-	private Text sceneDescriptionText;
+	private Text textPanel;
 
 	bool mapEnabled;
 
@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour {
         mainPanelButtonsPanel = GameObject.Find("MainPanelButtonsPanel");
         dateButtonsPanel = GameObject.Find("DateButtonsPanel");
 		sequenceButtonsPanel = GameObject.Find("SequenceButtonsPanel");
-		sceneDescriptionText = GameObject.Find("SceneDescriptionPanel").GetComponentInChildren<Text>();
+        textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
 
 		dateLocationButtonPanel.SetActive(false);
 		clearPotentialPartners();
@@ -92,14 +92,10 @@ public class UIManager : MonoBehaviour {
 
 		toggleButtons();
 
-		if (myVictoryCoach.hasAchievedAllExperiences())
-		{
-			gameWon();
-		}
 	}
 
 	public void setDescriptionText(string toWrite){
-		sceneDescriptionText.text = toWrite;
+		textPanel.text = toWrite;
 	}
 
 
@@ -235,8 +231,12 @@ public class UIManager : MonoBehaviour {
         this.dateLocationButtonPanel.SetActive(false);
     }
 
-	public void gameWon(){
-		Debug.Log("game won!!");
+	public void goalAchieved(DifficultyLevel levelAchieved){
+        if(levelAchieved == DifficultyLevel.HARD){
+            Debug.Log("You have ascended to the ultimate form of human being. You can date and love as you wish. You are one with everyone.");
+        }else{
+			Debug.Log("Goal " + levelAchieved + " Attained!! ... But there are more experiences to be had!");
+        }
 	}
 
 	public void toggleMap(){
