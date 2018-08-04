@@ -13,13 +13,15 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 	public List<string> allLocationNames;
 	private SceneCatalogue mySceneCatalogue;
 	private GameObject myMapPanel;
+    private UIManager myUIManager;
 
 	// Use this for initialization
 	void Start ()
 	{
 		myMapPanel = GameObject.Find("MapPanel");
 
-		mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
+        mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
+		myUIManager = GameObject.FindObjectOfType<UIManager>();
 
 		allLocationNames = new List<string>(mySceneCatalogue.sceneNames);
 
@@ -81,6 +83,7 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
     
 	public void onLocationClick(int sceneNumber){
 		mySceneCatalogue.setCurrentSceneNumber(sceneNumber);
+        myUIManager.toggleMap();
 	}
 
     public void BeNotifiedOfLocationChange()
