@@ -8,10 +8,12 @@ public class Timelord : MonoBehaviour {
 	public string[] timeNames;
 	public int timeStep;
 	public Text dayText;
+    private DialogueManager myDialogueManager;
 
 	// Use this for initialization
 	void Start () {
 		timeStep = 0;	
+        myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
 	}
 	
 	// Update is called once per frame
@@ -23,6 +25,9 @@ public class Timelord : MonoBehaviour {
 	public void advanceTimestep(){
 		GameObject.FindObjectOfType<DialogueManager>().selectedPartner = -1;
         timeStep++;
+        if(timeStep % 21 == 0){ //if it's a multiple of 21
+            myDialogueManager.ninjaVanish(); 
+        }
 	}
 
 	public int getCurrentModulusTimestep()
@@ -67,4 +72,8 @@ public class Timelord : MonoBehaviour {
 	public string getTimeNameForTimeStep(int timeStep){
 		return timeNames[timeStep % timeNames.Length];
 	}
+
+    public int getWeek(){
+        return this.timeStep / 21;
+    }
 }

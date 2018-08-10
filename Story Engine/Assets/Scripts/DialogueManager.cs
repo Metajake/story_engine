@@ -137,4 +137,12 @@ public class DialogueManager : MonoBehaviour {
 		return null;
 	}
 
+    public void ninjaVanish(){
+		System.Random random = new System.Random();
+        foreach(Character chara in allCharacters){
+            chara.currentSceneName = mySceneCatalogue.sceneNames[random.Next(12)];
+            chara.isInside = random.Next(2) == 0 ? false : true;
+
+        }
+    }
 }
