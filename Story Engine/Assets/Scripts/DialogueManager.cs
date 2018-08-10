@@ -71,8 +71,8 @@ public class DialogueManager : MonoBehaviour {
     	            myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentSceneNumber(), myTimeLord.getCurrentTimestep())
 				);
 				myRelationshipCounselor.isAtDate = true;
+				return toReturn;
             }
-			return toReturn;
         }
 
 		foreach(Character character in this.allCharacters){
@@ -88,7 +88,7 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	private bool isCharacterPresentAtCurrentLocation(Character character){
-		if(character.currentSceneName.ToLower().Equals(mySceneCatalogue.getCurrentSceneName().ToLower())){
+        if (character.currentSceneName.ToLower().Equals(mySceneCatalogue.getCurrentSceneName().ToLower()) && character.isInside.Equals(mySceneCatalogue.getIsInInteriorScene())){
 			return true;
 		}
 		return false;

@@ -5312,6 +5312,7 @@ MonoBehaviour:
   surname: B
   image: {fileID: 2800000, guid: 5d3701bfdd1ba4e4daa57abf09dc1068, type: 3}
   currentSceneName: City
+  isInside: 0
   activeTimes: 000100
   savedTimes: 
   isSubordinate: 0
@@ -5335,6 +5336,7 @@ MonoBehaviour:
   surname: N
   image: {fileID: 2800000, guid: 05b0db60a8cb744d189efa1be924e5bd, type: 3}
   currentSceneName: Field
+  isInside: 0
   activeTimes: 000100
   savedTimes: 
   isSubordinate: 0
@@ -5358,6 +5360,7 @@ MonoBehaviour:
   surname: S
   image: {fileID: 2800000, guid: dc9867ba9efc244f89ec752c313b417e, type: 3}
   currentSceneName: Field
+  isInside: 1
   activeTimes: 000100
   savedTimes: 
   isSubordinate: 1
@@ -5381,6 +5384,7 @@ MonoBehaviour:
   surname: N
   image: {fileID: 2800000, guid: 6792cb03d38b142f4b0b13eb6d978ee6, type: 3}
   currentSceneName: Field
+  isInside: 0
   activeTimes: 010000
   savedTimes: 
   isSubordinate: 1

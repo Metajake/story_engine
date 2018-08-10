@@ -8,6 +8,7 @@ public class Character : MonoBehaviour {
 	public string surname;
 	public Texture2D image;
 	public string currentSceneName;
+    public bool isInside;
     public bool[] activeTimes;
     public bool[] savedTimes;
 	public bool isSubordinate;

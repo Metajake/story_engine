@@ -255,7 +255,6 @@ public class ConversationTracker : MonoBehaviour {
         relationshipCounselor.createDate(location, randomDateTime, this.currentConversation.speaker);
         uiManager.hideLocationOptions();
         endConversation("Sounds good. see you " + timeLord.getDayOfWeekForTimeStep(randomDateTime) + " in the " + timeLord.getTimeNameForTimeStep(randomDateTime) + "!");
-        Debug.Log("current timestep: "+timeLord.getCurrentTimestep()+" Random Timestep from present: "+ randomTimestepFromPresent);
     }
 
     private void endConversation(string farewell = "")
