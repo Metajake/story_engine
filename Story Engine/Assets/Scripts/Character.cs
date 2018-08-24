@@ -18,6 +18,7 @@ public class Character : MonoBehaviour {
 	public bool isInLoveWithYou;
 	public bool knowsYou;
 	public int experienceCount;
+    public int[] locationPreferences;
 
 	// Use this for initialization
 	void Start () {

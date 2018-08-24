@@ -158,6 +158,12 @@ public class UIManager : MonoBehaviour {
 		contextualActionButtonObject.SetActive(false);
 	}
 
+    internal void abandonDateDescription()
+    {
+        setDescriptionText("Bye, lame.");
+        contextualActionButtonObject.SetActive(false);
+    }
+
 	public void onPortraitClicked(int portraitNumber){
 		Character clickedCharacter = dialogueManager.getPartnerAt(portraitNumber);
 		if(clickedCharacter != null ){

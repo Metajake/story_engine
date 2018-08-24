@@ -1963,7 +1963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3313,7 +3313,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c5c8f1b975b3647789ad2f59769df5c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b069bcbb7625c40c38d512e28d15ad8c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3425,40 +3425,40 @@ MonoBehaviour:
   - Mountains
   - Village
   - River
-  - Night Life District
+  - West Side
   - City
   - Residential District
-  - Beach
-  - University
-  - Field
+  - Sea Side
   - Woods
-  - Old Town
+  - Field
+  - University
+  - Beach
   dateSceneNames:
   - Track and Field
   - Hotsprings
-  - Market
-  - Canoe Rental
+  - Theater
+  - River Bend
   - Club
   - Office
   - Apartment
-  - Sand Dunes
-  - Study Center
+  - Arcade
+  - Grove
   - Picnic Bench
-  - Hiking Trail
-  - Art Museum
+  - Study Center
+  - Sand Dunes
   neutralResultDescriptions:
-  - Neutral Apartment Description
-  - Neutral Field Description
-  - Neutral City Description
-  - These books sure are interesting.
-  - These books sure are interesting.
-  - These books sure are interesting.
-  - These books sure are interesting.
-  - These books sure are interesting.
-  - These books sure are interesting.
-  - These books sure are interesting.
-  - These books sure are interesting.
-  - These books sure are interesting.
+  - Track & Field
+  - The steam relaxes everything.
+  - The sites and sounds are a cultural marvel.
+  - The water splashes and everything glistens.
+  - The bass is bumping so hard.
+  - Office
+  - Home
+  - All of the graphics are so enticing and fun.
+  - The sun sun dances across all of the beautiful surfaces
+  - The breeze feels great and the food is delicious.
+  - These books sure are interesting!
+  - You feel like Aladdin and Princess Jasmine on a date in your own private desert.
   experienceDescriptions:
   - Apartment Experience achieved! More Man!
   - You brought the best picnic food. You have experienced the need to provide. You
@@ -5321,6 +5321,7 @@ MonoBehaviour:
   isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
+  locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &1360229236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5345,6 +5346,7 @@ MonoBehaviour:
   isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
+  locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &1360229237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5369,6 +5371,7 @@ MonoBehaviour:
   isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
+  locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &1360229238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5393,6 +5396,7 @@ MonoBehaviour:
   isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
+  locationPreferences: 00000000010000000000000001000000ffffffff0000000000000000fffffffffeffffff020000000000000000000000
 --- !u!114 &1360229239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6516,43 +6520,43 @@ MonoBehaviour:
   - {fileID: 2800000, guid: faa182e3c6ea74681899f3cbd69f8fa7, type: 3}
   - {fileID: 2800000, guid: add036eca78f5409c8f87abcd99959ce, type: 3}
   - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
-  - {fileID: 2800000, guid: 7aa012f4a28f14ee29105673dee7e2ed, type: 3}
-  - {fileID: 2800000, guid: a76decae1af33423d80618be460cc606, type: 3}
-  - {fileID: 2800000, guid: 08ca0e624e593475ab869b9fd1e902db, type: 3}
-  - {fileID: 2800000, guid: 8cf6d32a27fa442778699406002482df, type: 3}
-  - {fileID: 2800000, guid: d86c9709228ad4977aa03ec63ad06c6b, type: 3}
-  - {fileID: 2800000, guid: ee68c79dc011742d6b5dcaa842a5ffc8, type: 3}
-  - {fileID: 2800000, guid: 2757ef09a10a146258f3094c8f37cec4, type: 3}
-  - {fileID: 2800000, guid: 87f4dd412eecd428fa7f2aa8ee2090e0, type: 3}
-  - {fileID: 2800000, guid: 0c8c57bdffa1a419a84c3e2aee010025, type: 3}
-  - {fileID: 2800000, guid: a193397cf004b49cab73e80f9fdfb0e4, type: 3}
-  - {fileID: 2800000, guid: 98287c26fb7d94625bf7ff018f007331, type: 3}
-  - {fileID: 2800000, guid: 65e271877838d4a7398a8ce6c7b9e5e2, type: 3}
+  - {fileID: 2800000, guid: 50f126f08c04740769bb98bc65e5a65a, type: 3}
+  - {fileID: 2800000, guid: 38768251232e14b3eac3aa4c77ac3aa1, type: 3}
+  - {fileID: 2800000, guid: 48a5e82036d894b90ae7bd0544585488, type: 3}
+  - {fileID: 2800000, guid: 29c2c4556703b43568fc73df683d7c36, type: 3}
+  - {fileID: 2800000, guid: 64bea06a4cd7041a89f5268423759487, type: 3}
+  - {fileID: 2800000, guid: c2e94a88648504bb2aac5304f20cee1e, type: 3}
+  - {fileID: 2800000, guid: 85ec133f1776c4d738145660cc40302c, type: 3}
+  - {fileID: 2800000, guid: df2e8c3faee2d4379a5aaa72858bb742, type: 3}
+  - {fileID: 2800000, guid: 53188ff91ec9a4c7d93ffe5267d7a3d3, type: 3}
+  - {fileID: 2800000, guid: 8793bf3c1c0d14c629655612efcd24a2, type: 3}
+  - {fileID: 2800000, guid: 713f989b2a8bb4d7bb1f72b4b055e7d1, type: 3}
+  - {fileID: 2800000, guid: de00723e9305a480891e42ef01b239c2, type: 3}
   - {fileID: 2800000, guid: c5115a5d7f5a049d9983984632b8a75f, type: 3}
   - {fileID: 2800000, guid: 15b320a30d7904950a267f1003fa0705, type: 3}
   - {fileID: 2800000, guid: 577cb6781c02846f790f5b24af347bdc, type: 3}
-  - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
-  - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
-  - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
-  - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
-  - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
-  - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
-  - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
-  - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
-  - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
+  - {fileID: 2800000, guid: 1f7ac50398c9f4a5b88c7d77d9804afb, type: 3}
+  - {fileID: 2800000, guid: a5370ab14514a4650bb67ae45867fcfd, type: 3}
+  - {fileID: 2800000, guid: a20214dce531548128e2b832eb3d67a4, type: 3}
+  - {fileID: 2800000, guid: 3ea819f7873b34b058ed52cc24dcc6c4, type: 3}
+  - {fileID: 2800000, guid: a76ed670ffbb04e0cad8d9a299d0e6ef, type: 3}
+  - {fileID: 2800000, guid: e397d76806ee6443b8a757b5b24eee20, type: 3}
+  - {fileID: 2800000, guid: 607c9ffda336646cfae3e1200cb18d5d, type: 3}
+  - {fileID: 2800000, guid: 25846606de16b412e9db8c76bfc7e5f0, type: 3}
+  - {fileID: 2800000, guid: 4175d2a6549d54e599667d055d3138fe, type: 3}
   dateBackgrounds:
   - {fileID: 2800000, guid: 0de9c3a8620da46eab13df1e0168ac63, type: 3}
   - {fileID: 2800000, guid: 1177ba9b80f924475a0ee1cf548fcb05, type: 3}
   - {fileID: 2800000, guid: e1057b2e424c94515bcaebea5dc5a33b, type: 3}
   - {fileID: 2800000, guid: 14b35f01c5b5c40b9934b6a56a79e848, type: 3}
-  - {fileID: 2800000, guid: 784e5c76b21634c6eb306512b9e202ea, type: 3}
+  - {fileID: 2800000, guid: 31b921df78baf4e25a936afae1481e89, type: 3}
   - {fileID: 2800000, guid: 82cf5c9d70b16486a9ed4f2562814074, type: 3}
   - {fileID: 2800000, guid: f9eed7d0079904a04b1f459542e10b13, type: 3}
   - {fileID: 2800000, guid: b251bf453cfc648339092de73695660c, type: 3}
   - {fileID: 2800000, guid: 5aff4a88ce87e4cd1b37da8b3fb75ad4, type: 3}
-  - {fileID: 2800000, guid: 0de9c3a8620da46eab13df1e0168ac63, type: 3}
-  - {fileID: 2800000, guid: 5aff4a88ce87e4cd1b37da8b3fb75ad4, type: 3}
-  - {fileID: 2800000, guid: 5aff4a88ce87e4cd1b37da8b3fb75ad4, type: 3}
+  - {fileID: 2800000, guid: ff9e03749350f42e090423090e786199, type: 3}
+  - {fileID: 2800000, guid: 97669bee936c34a0da72ce4824f7afe8, type: 3}
+  - {fileID: 2800000, guid: ab2c2aaa6198d44be9ebe55717114610, type: 3}
   mapBackground: {fileID: 2800000, guid: c5c8f1b975b3647789ad2f59769df5c6, type: 3}
 --- !u!114 &1801641754
 MonoBehaviour:
@@ -6566,7 +6570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6544118, g: 0.7997971, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
