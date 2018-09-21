@@ -5,7 +5,7 @@ using UnityEngine;
 public class Date : MonoBehaviour {
 
 	public int dateScene;
-	public Character character;
+	public DateableCharacter character;
 	public int dateTime;
        
 }

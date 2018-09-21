@@ -6,9 +6,11 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour {
 
-	public List<Character> allCharacters;
+    public List<DateableCharacter> allCharacters;
+	public List<MinorCharacter> allMinorCharacters;
 	public List<DialoguePiece> pieces;
-	public List<Character> potentialPartners;
+	public List<DateableCharacter> potentialPartners;
+    private List<MinorCharacter> minorPartners;
 	public int selectedPartner;
 	private bool conversationMode;
 
@@ -26,12 +28,13 @@ public class DialogueManager : MonoBehaviour {
 	{
 		this.selectedPartner = -1;
 		this.pieces = new List<DialoguePiece>();
-		this.potentialPartners = new List<Character>();
+		this.potentialPartners = new List<DateableCharacter>();
 	}
 
 	// Use this for initialization
 	void Start () {
-		this.allCharacters = new List<Character>(this.GetComponents<Character>());
+        this.allCharacters = new List<DateableCharacter>(this.GetComponents<DateableCharacter>());
+		this.allMinorCharacters = new List<MinorCharacter>(this.GetComponents<MinorCharacter>());
 		myTimeLord = GameObject.FindObjectOfType<Timelord>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
@@ -47,8 +50,9 @@ public class DialogueManager : MonoBehaviour {
     
 	public void updateCharacterUI()
 	{
-		potentialPartners = findConversationPartners();
-		myUIManager.placePotentialPartners(potentialPartners);
+        potentialPartners = findConversationPartners();
+		minorPartners = findMinorConversationPartners();
+		myUIManager.placePotentialPartners(potentialPartners, minorPartners);
 	}
     
 	public void updateSelectedPartnerUI(){
@@ -61,9 +65,9 @@ public class DialogueManager : MonoBehaviour {
         }
 	}
 
-	private List<Character> findConversationPartners(){
+	private List<DateableCharacter> findConversationPartners(){
 
-		List<Character> toReturn = new List<Character>();
+		List<DateableCharacter> toReturn = new List<DateableCharacter>();
         
 		if(mySceneCatalogue.getIsInInteriorScene()){
             if(myRelationshipCounselor.isInDateMode()){
@@ -75,7 +79,7 @@ public class DialogueManager : MonoBehaviour {
             }
         }
 
-		foreach(Character character in this.allCharacters){
+		foreach(DateableCharacter character in this.allCharacters){
 			if(isCharacterInTimeOfDay(character) && isCharacterPresentAtCurrentLocation(character)){
 				toReturn.Add(character);
 			}
@@ -83,18 +87,43 @@ public class DialogueManager : MonoBehaviour {
 		return toReturn;
 	}
 
-	private bool isCharacterInTimeOfDay(Character character){
+    private List<MinorCharacter> findMinorConversationPartners()
+    {
+
+        List<MinorCharacter> toReturn = new List<MinorCharacter>();
+
+        foreach (MinorCharacter character in this.allMinorCharacters){
+            if(isCharacterInTimeOfDay(character) && isCharacterPresentAtCurrentLocation(character)){
+                toReturn.Add(character);
+            }
+        }
+        return toReturn;
+    }
+
+	private bool isCharacterInTimeOfDay(DateableCharacter character){
 		return character.activeTimes[myTimeLord.getCurrentModulusTimestep()];
 	}
+    private bool isCharacterInTimeOfDay(MinorCharacter character)
+    {
+        return character.activeTimes[myTimeLord.getCurrentModulusTimestep()];
+    }
 
-	private bool isCharacterPresentAtCurrentLocation(Character character){
+	private bool isCharacterPresentAtCurrentLocation(DateableCharacter character){
         if (character.currentSceneName.ToLower().Equals(mySceneCatalogue.getCurrentSceneName().ToLower()) && character.isInside.Equals(mySceneCatalogue.getIsInInteriorScene())){
 			return true;
 		}
 		return false;
     }
+    private bool isCharacterPresentAtCurrentLocation(MinorCharacter character)
+    {
+        if (character.currentSceneName.ToLower().Equals(mySceneCatalogue.getCurrentSceneName().ToLower()) && character.isInside.Equals(mySceneCatalogue.getIsInInteriorScene()))
+        {
+            return true;
+        }
+        return false;
+    }
 
-	public Character getPartnerAt(int partnerNumber){
+	public DateableCharacter getPartnerAt(int partnerNumber){
 		return this.potentialPartners.Count >= partnerNumber ? this.potentialPartners[partnerNumber - 1] : null;
 	}
 
@@ -128,8 +157,8 @@ public class DialogueManager : MonoBehaviour {
         return bestMatch;
 	}
 
-	public Character getCharacterForName(string name){
-		foreach (Character chara in allCharacters){
+	public DateableCharacter getCharacterForName(string name){
+		foreach (DateableCharacter chara in allCharacters){
 			if (chara.givenName.ToLower() == name.ToLower()){
 				return chara;
 			}
@@ -139,7 +168,7 @@ public class DialogueManager : MonoBehaviour {
 
     public void ninjaVanish(){
 		System.Random random = new System.Random();
-        foreach(Character chara in allCharacters){
+        foreach(DateableCharacter chara in allCharacters){
             chara.currentSceneName = mySceneCatalogue.sceneNames[random.Next(12)];
             chara.isInside = random.Next(2) == 0 ? false : true;
 

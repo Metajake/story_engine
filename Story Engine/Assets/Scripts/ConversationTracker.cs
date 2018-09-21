@@ -25,7 +25,7 @@ public class ConversationTracker : MonoBehaviour {
         relationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
 	}
 
-	public void beginConversation(Character speaker)
+	public void beginConversation(DateableCharacter speaker)
     {
         uiManager.enableAllButtons();
         List<string> greetingTags = new List<string>();

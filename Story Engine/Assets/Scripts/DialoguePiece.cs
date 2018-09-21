@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class DialoguePiece {
 
-	public Character speaker;
+	public DateableCharacter speaker;
     public string dialogueContent;
     List<string> tags;
     List<DialoguePiece> responses;
 
-	public DialoguePiece(string content, Character character){
+	public DialoguePiece(string content, DateableCharacter character){
 		this.dialogueContent = content;
 		this.speaker = character;
 		this.tags = new List<string>();

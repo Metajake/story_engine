@@ -57,7 +57,7 @@ public class RelationshipCounselor : MonoBehaviour {
 	void Update () {
 	}
 
-	internal void createDate(int dateLocation, int dateTime, Character speaker)
+	internal void createDate(int dateLocation, int dateTime, DateableCharacter speaker)
 	{
 		GameObject dateObject = new GameObject();
 		Date date = dateObject.AddComponent<Date>();
@@ -68,8 +68,8 @@ public class RelationshipCounselor : MonoBehaviour {
 		speaker.noLocation();
 	}
        
-	public Character datePartner(int dateLocation, int dateTime){
-		Character toReturn = null;
+	public DateableCharacter datePartner(int dateLocation, int dateTime){
+		DateableCharacter toReturn = null;
         foreach (Date date in this.scheduledDates)
         {
             if (date.dateTime == dateTime && date.dateScene == dateLocation)
@@ -101,7 +101,7 @@ public class RelationshipCounselor : MonoBehaviour {
 		var roller = new System.Random();
 		var roll = roller.Next(0, 100);
 
-        Character she = datePartner(mySceneCatalogue.getCurrentSceneNumber(), myTimeLord.getCurrentTimestep());
+        DateableCharacter she = datePartner(mySceneCatalogue.getCurrentSceneNumber(), myTimeLord.getCurrentTimestep());
 
         if(roller.Next(0, 20) == 0){ //5% chance to fall in love
     		uiManager.gameOver();

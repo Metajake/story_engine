@@ -180,7 +180,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: loc 2
+  m_Text: 'loc 5
+
+'
 --- !u!222 &1914732
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1394,7 +1396,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: loc 1
+  m_Text: 'loc 4
+
+'
 --- !u!222 &239440656
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2174,7 +2178,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: loc 3
+  m_Text: 'loc 6
+
+'
 --- !u!222 &478304920
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2326,7 +2332,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: loc 3
+  m_Text: loc 7
 --- !u!222 &548462951
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5272,11 +5278,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1360229234}
-  - component: {fileID: 1360229238}
-  - component: {fileID: 1360229237}
+  - component: {fileID: 1360229239}
   - component: {fileID: 1360229236}
   - component: {fileID: 1360229235}
-  - component: {fileID: 1360229239}
+  - component: {fileID: 1360229237}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -5305,15 +5310,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1360229233}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dfcfe569896f4fd0a46271af6dd42b4, type: 3}
+  m_Script: {fileID: 11500000, guid: b51511b26b2d946b1841b601c3df4bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  givenName: Amy
-  surname: B
-  image: {fileID: 2800000, guid: 5d3701bfdd1ba4e4daa57abf09dc1068, type: 3}
+  givenName: Kristie
+  surname: Tomagachi
+  image: {fileID: 2800000, guid: 6792cb03d38b142f4b0b13eb6d978ee6, type: 3}
   currentSceneName: City
-  isInside: 0
-  activeTimes: 000100
+  isInside: 1
+  activeTimes: 010000
   savedTimes: 
   isSubordinate: 0
   permanentOpinion: 0
@@ -5321,7 +5326,7 @@ MonoBehaviour:
   isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
-  locationPreferences: 000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000
+  locationPreferences: 00000000feffffff00000000ffffffff000000000100000000000000010000000000000002000000ffffffff00000000
 --- !u!114 &1360229236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5330,23 +5335,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1360229233}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dfcfe569896f4fd0a46271af6dd42b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c89a1443646f497ba0447bdfe3669b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  givenName: Jill
-  surname: N
-  image: {fileID: 2800000, guid: 05b0db60a8cb744d189efa1be924e5bd, type: 3}
-  currentSceneName: Field
-  isInside: 0
-  activeTimes: 000100
-  savedTimes: 
-  isSubordinate: 0
-  permanentOpinion: 0
-  inLoveAmount: 0
-  isInLoveWithYou: 0
-  knowsYou: 0
-  experienceCount: 0
-  locationPreferences: 000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000
+  image: {fileID: 2800000, guid: 52e905c9930dd4903b65ab8e5bb9e5db, type: 3}
+  givenName: Evin
+  surname: Clyde
+  currentSceneName: City
+  isInside: 1
+  activeTimes: 010100
 --- !u!114 &1360229237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5355,14 +5352,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1360229233}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dfcfe569896f4fd0a46271af6dd42b4, type: 3}
+  m_Script: {fileID: 11500000, guid: b51511b26b2d946b1841b601c3df4bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   givenName: Tammy
-  surname: S
-  image: {fileID: 2800000, guid: dc9867ba9efc244f89ec752c313b417e, type: 3}
+  surname: Chan
+  image: {fileID: 2800000, guid: 98fdac68e47be4a6aa9757d2eedbaf45, type: 3}
   currentSceneName: Field
-  isInside: 1
+  isInside: 0
   activeTimes: 000100
   savedTimes: 
   isSubordinate: 1
@@ -5371,32 +5368,7 @@ MonoBehaviour:
   isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
-  locationPreferences: 000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000
---- !u!114 &1360229238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1360229233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dfcfe569896f4fd0a46271af6dd42b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  givenName: Kristie
-  surname: N
-  image: {fileID: 2800000, guid: 6792cb03d38b142f4b0b13eb6d978ee6, type: 3}
-  currentSceneName: Field
-  isInside: 0
-  activeTimes: 010000
-  savedTimes: 
-  isSubordinate: 1
-  permanentOpinion: 0
-  inLoveAmount: 0
-  isInLoveWithYou: 0
-  knowsYou: 0
-  experienceCount: 0
-  locationPreferences: 00000000010000000000000001000000ffffffff0000000000000000fffffffffeffffff020000000000000000000000
+  locationPreferences: 0200000001000000010000000000000000000000fffffffffffffffffeffffff01000000ffffffff0000000000000000
 --- !u!114 &1360229239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5413,6 +5385,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  allMinorCharacters: []
   potentialPartners: []
   selectedPartner: 0
 --- !u!1 &1380053496
@@ -5482,7 +5455,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: loc 1
+  m_Text: loc 8
 --- !u!222 &1380053499
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6097,7 +6070,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: loc 2
+  m_Text: loc 9
 --- !u!222 &1592272323
 CanvasRenderer:
   m_ObjectHideFlags: 0

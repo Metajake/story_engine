@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour {
+public class DateableCharacter : MonoBehaviour {
 
 	public string givenName;
 	public string surname;
@@ -12,7 +12,6 @@ public class Character : MonoBehaviour {
     public bool[] activeTimes;
     public bool[] savedTimes;
 	public bool isSubordinate;
-	//public string favoredSceneName;
 	public int permanentOpinion;
     public int inLoveAmount;
 	public bool isInLoveWithYou;

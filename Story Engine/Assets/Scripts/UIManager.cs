@@ -111,7 +111,7 @@ public class UIManager : MonoBehaviour {
 		setDescriptionText("She fell in love with you. As a result, you fell in love with her. She then dumped you, and you were left heartbroken. Game Over.");
 	}
 
-	public void placePotentialPartners(List<Character> potentialPartners)
+    public void placePotentialPartners(List<DateableCharacter> potentialPartners, List<MinorCharacter> minorCharacters)
     {
 		if(myCommandProcessor.isInSequence()){
 			return;
@@ -126,6 +126,11 @@ public class UIManager : MonoBehaviour {
                 partnerPortrait.color = new Color(partnerPortrait.color.r, partnerPortrait.color.g, partnerPortrait.color.b, 1);
                 partnerNameplate.text = potentialPartners[i].givenName + " " + potentialPartners[i].surname;
 
+            }
+            else if(i < potentialPartners.Count + minorCharacters.Count){
+                partnerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(minorCharacters[i-potentialPartners.Count].image);
+                partnerPortrait.color = new Color(partnerPortrait.color.r, partnerPortrait.color.g, partnerPortrait.color.b, 1);
+                partnerNameplate.text = minorCharacters[i-potentialPartners.Count].givenName + " " + minorCharacters[i-potentialPartners.Count].surname;
             }
             else
 			{
@@ -165,7 +170,7 @@ public class UIManager : MonoBehaviour {
     }
 
 	public void onPortraitClicked(int portraitNumber){
-		Character clickedCharacter = dialogueManager.getPartnerAt(portraitNumber);
+		DateableCharacter clickedCharacter = dialogueManager.getPartnerAt(portraitNumber);
 		if(clickedCharacter != null ){
 			dialogueManager.selectedPartner = portraitNumber - 1;
 			talkButtonObject.GetComponentInChildren<Text>().text ="Talk to " + clickedCharacter.givenName;
@@ -210,11 +215,12 @@ public class UIManager : MonoBehaviour {
 			Button sceneButton = GameObject.Find("Location" + (i + 1) + "Button").GetComponent<Button>();
 
             //if(!mySceneCatalogue.knownLocations[i]){
-            //    sceneButton.GetComponent<CanvasRenderer>().SetAlpha(0);
+            //    sceneButton.interactable = false;
+            //    //sceneButton.GetComponent<Renderer>().material.
             //    continue;
             //}
 
-			sceneButton.interactable = true;
+			//sceneButton.interactable = true;
 			sceneButton.GetComponentInChildren<Text>().text = dateSceneNames[i];
 
 			int j = i;

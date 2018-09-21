@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Conversation : MonoBehaviour {
 
-	public Character speaker;
+	public DateableCharacter speaker;
 	public SpeechOption lastChosenOption;
 	public bool greetedSoFar;
 	public bool complimentedSoFar;
