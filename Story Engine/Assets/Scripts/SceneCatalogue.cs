@@ -83,7 +83,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 		Dictionary<string, int> dateScenes = new Dictionary<string, int>();
 
 		for (int i = 0; i < dateSceneNames.Length; i++){
-			if(isDateScene[i]){
+			if(isDateScene[i] && knownLocations[i]){
 				dateScenes.Add(dateSceneNames[i], i);
 			}
 		}

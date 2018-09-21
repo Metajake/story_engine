@@ -107,8 +107,6 @@ public class RelationshipCounselor : MonoBehaviour {
     		uiManager.gameOver();
         }
 
-        Debug.Log(roll);
-
         int leavePercentageForLocation = actionLikelihoodMatrix["leave"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]];
 
         if(roll <= leavePercentageForLocation){
@@ -117,7 +115,6 @@ public class RelationshipCounselor : MonoBehaviour {
         }else if (roll <= leavePercentageForLocation + actionLikelihoodMatrix["neutral"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]]){
             uiManager.showNeutralDescriptionText();
             Debug.Log("Contextual pre-programmed neutral location description (which we will eventually do).");
-
         }else{
             uiManager.experienceDescription();
             myVictoryCoach.achievedExperience(mySceneCatalogue.getCurrentSceneNumber());

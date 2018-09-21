@@ -198,4 +198,14 @@ public class Character : MonoBehaviour {
 			this.activeTimes[i] = false;
 		}
 	}
+
+    public int getPreferredLocation(){
+        int preferredLocation = 0;
+        for (int i = 0; i < locationPreferences.Length; i ++){
+            if ( locationPreferences[i] == 2){
+                preferredLocation = i;
+            }
+        }
+        return preferredLocation;
+    }
 }

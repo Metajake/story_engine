@@ -229,7 +229,8 @@ public class ConversationTracker : MonoBehaviour {
     {
 		int random = 1;
 		if(random > 0 && mySceneCatalogue.someLocationsObscured()){
-            dialogueText.text = "I hear that the "+ mySceneCatalogue.sceneNames[revealLocation()] + " is beautiful this time of year! Where would you like to go?";
+            dialogueText.text = "I hear that the " + mySceneCatalogue.sceneNames[revealLocation(this.currentConversation.speaker.getPreferredLocation())] + " is beautiful this time of year! Where would you like to go?";
+
         }else{
 			dialogueText.text = "Where would you like to go for our date?";
 		}
@@ -238,14 +239,9 @@ public class ConversationTracker : MonoBehaviour {
         this.currentConversation.lastChosenOption = Conversation.SpeechOption.ASK_ON_DATE;
     }
 
-	public int revealLocation(){
-		for (int i = 0; i < mySceneCatalogue.knownLocations.Length; i++){
-			if(mySceneCatalogue.knownLocations[i] == false){
-				mySceneCatalogue.learnLocation(i);
-				return i;
-			}
-        }
-		return -1;
+	public int revealLocation(int i){
+		mySceneCatalogue.learnLocation(i);
+    	return i;
 	}
 
     public void scheduleDate(int location)

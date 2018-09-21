@@ -206,8 +206,14 @@ public class UIManager : MonoBehaviour {
 		List<string> dateSceneNames = new List<string>(dateScenes.Keys);
 
 		for (int i = 0; i < dateScenes.Count; i++){
-			
+            
 			Button sceneButton = GameObject.Find("Location" + (i + 1) + "Button").GetComponent<Button>();
+
+            //if(!mySceneCatalogue.knownLocations[i]){
+            //    sceneButton.GetComponent<CanvasRenderer>().SetAlpha(0);
+            //    continue;
+            //}
+
 			sceneButton.interactable = true;
 			sceneButton.GetComponentInChildren<Text>().text = dateSceneNames[i];
 
