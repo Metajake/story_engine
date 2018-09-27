@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DateableCharacter : MonoBehaviour {
+public class DateableCharacter : Character {
 
-	public string givenName;
-	public string surname;
-	public Texture2D image;
-	public string currentSceneName;
-    public bool isInside;
-    public bool[] activeTimes;
     public bool[] savedTimes;
 	public bool isSubordinate;
 	public int permanentOpinion;
