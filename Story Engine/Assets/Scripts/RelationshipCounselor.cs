@@ -63,7 +63,8 @@ public class RelationshipCounselor : MonoBehaviour {
 		Date date = dateObject.AddComponent<Date>();
         date.dateScene = dateLocation;
         date.dateTime = dateTime;
-		date.character = speaker;
+        date.character = speaker;
+        date.isOver = false;
 		this.scheduledDates.Add(date);
 		speaker.noLocation();
 	}
@@ -81,19 +82,24 @@ public class RelationshipCounselor : MonoBehaviour {
 	}
 
 	public bool isInDateMode(){
-		bool toReturn = false;
+        return getCurrentDate() != null;
+	}
+
+    public Date getCurrentDate(){
         foreach (Date date in this.scheduledDates){
-			if(date.dateTime == myTimeLord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentSceneNumber()){
-                toReturn = true;
+            if (date.dateTime == myTimeLord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentSceneNumber() && !date.isOver)
+            {
+                return date;
             }
         }
-        return toReturn;
-	}
+        return null;
+    }
 
 	public void leaveDate(){
 		isAtDate = false;
 		mySceneCatalogue.toggleInteriorScene();
 		uiManager.resetDateButtons();
+        getCurrentDate().isOver = true;
 	}
 
 	public void act(){
