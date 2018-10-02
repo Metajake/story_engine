@@ -83,7 +83,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 		Dictionary<string, int> dateScenes = new Dictionary<string, int>();
 
 		for (int i = 0; i < dateSceneNames.Length; i++){
-			if(isDateScene[i] && knownLocations[i]){
+			if(isDateScene[i]){
 				dateScenes.Add(dateSceneNames[i], i);
 			}
 		}
@@ -121,5 +121,25 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     public void Unsubscribe(IKnownLocationsChangedObserver observer)
     {
         throw new NotImplementedException();
+    }
+
+    public List<string> getKnownDateSceneNames(){
+        List<string> toReturn = new List<string>();
+        for (int i = 0; i < this.sceneNames.Length; i++){
+            if (this.knownLocations[i] == true){
+                toReturn.Add(this.dateSceneNames[i]);
+            }
+        }
+        return toReturn;
+    }
+
+    public Boolean isKnownDateLocation(string locationName){
+        
+        foreach(string sName in this.getKnownDateSceneNames()){
+            if(sName == locationName){
+                return true;
+            }
+        }
+        return false;
     }
 }

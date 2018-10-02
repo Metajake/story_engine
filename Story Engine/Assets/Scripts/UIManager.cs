@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour {
     private VictoryCoach myVictoryCoach;
 	private CommandProcessor myCommandProcessor;
 	private Text textPanel;
+    public GameObject dateLocationButtonPrefab;
 
 	bool mapEnabled;
 
@@ -205,29 +206,48 @@ public class UIManager : MonoBehaviour {
 		contextualActionButtonObject.SetActive(true);
 	}
 
-	private void updateLocationButtons(){
+    private void createDateLocationButtons(){
 
         Dictionary<string, int> dateScenes = mySceneCatalogue.getDateScenes();
 		List<string> dateSceneNames = new List<string>(dateScenes.Keys);
 
-		for (int i = 0; i < dateScenes.Count; i++){
-            
-			Button sceneButton = GameObject.Find("Location" + (i + 1) + "Button").GetComponent<Button>();
+        Button[] allButtons = dateLocationButtonPanel.GetComponentsInChildren<Button>();
 
-            //if(!mySceneCatalogue.knownLocations[i]){
-            //    sceneButton.interactable = false;
-            //    //sceneButton.GetComponent<Renderer>().material.
-            //    continue;
-            //}
+        foreach (Button b in allButtons)
+        {
+            Destroy(b.gameObject);
+        }
 
-			//sceneButton.interactable = true;
-			sceneButton.GetComponentInChildren<Text>().text = dateSceneNames[i];
+        for (int j = 0; j < 3; j++)
+        {
 
-			int j = i;
-            UnityAction buttonAction = () => scheduleDateForLocation(j);
-            sceneButton.onClick.RemoveAllListeners();
-            sceneButton.onClick.AddListener(buttonAction);
-		}
+            for (int k = 0; k < 3; k++)
+            {
+
+                int dateButtonIndex = j * 3 + k;
+
+                //if (dateButtonIndex >= dateSceneNames.Count)
+                //{
+                //    return;
+                //}
+
+                if (!mySceneCatalogue.isKnownDateLocation(dateSceneNames[dateButtonIndex]))
+                {
+                    continue;
+                }
+
+                GameObject buttonObject = GameObject.Instantiate(dateLocationButtonPrefab, dateLocationButtonPanel.transform);
+
+                buttonObject.transform.Translate(new Vector3(k * 140, j * 50));
+
+                buttonObject.GetComponentInChildren<Text>().text = dateSceneNames[dateButtonIndex];
+
+                UnityAction buttonAction = () => scheduleDateForLocation(dateButtonIndex);
+                buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);
+
+            }
+
+        }
 	}
 
 	public void scheduleDateForLocation(int dateLocationIndex){
@@ -241,7 +261,7 @@ public class UIManager : MonoBehaviour {
 	public void showLocationOptions(){
         this.dialogueButtonPanel.SetActive(false);
 		this.dateLocationButtonPanel.SetActive(true);
-		updateLocationButtons();
+		createDateLocationButtons();
 	}
 
 	internal void hideLocationOptions()

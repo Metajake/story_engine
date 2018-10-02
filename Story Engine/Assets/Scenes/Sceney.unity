@@ -1007,6 +1007,8 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1226579501}
   mainPanel: {fileID: 457801087}
   mapPanel: {fileID: 865104627}
+  dateLocationButtonPrefab: {fileID: 1069225531541500, guid: 9f093dce7c64345f1bdafc0a590f6850,
+    type: 2}
 --- !u!4 &112322380
 Transform:
   m_ObjectHideFlags: 0
@@ -1234,7 +1236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &181467987
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1819,7 +1821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &441065379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3723,7 +3725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1063847277
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3835,7 +3837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1087416177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3947,7 +3949,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1091677567
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4134,7 +4136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1149544581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4736,7 +4738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1286277600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5313,9 +5315,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51511b26b2d946b1841b601c3df4bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  givenName: Kristie
-  surname: Tomagachi
   image: {fileID: 2800000, guid: 6792cb03d38b142f4b0b13eb6d978ee6, type: 3}
+  givenName: Kristie
+  surname: Yamaguchi
   currentSceneName: City
   isInside: 1
   activeTimes: 010000
@@ -5339,7 +5341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 52e905c9930dd4903b65ab8e5bb9e5db, type: 3}
-  givenName: Evin
+  givenName: Evan
   surname: Clyde
   currentSceneName: City
   isInside: 1
@@ -5355,9 +5357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51511b26b2d946b1841b601c3df4bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 2800000, guid: 98fdac68e47be4a6aa9757d2eedbaf45, type: 3}
   givenName: Tammy
   surname: Chan
-  image: {fileID: 2800000, guid: 98fdac68e47be4a6aa9757d2eedbaf45, type: 3}
   currentSceneName: Field
   isInside: 0
   activeTimes: 000100
@@ -5368,7 +5370,7 @@ MonoBehaviour:
   isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
-  locationPreferences: 0200000001000000010000000000000000000000fffffffffffffffffeffffff01000000ffffffff0000000000000000
+  locationPreferences: 0100000002000000010000000000000000000000fffffffffffffffffeffffff01000000ffffffff0000000000000000
 --- !u!114 &1360229239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5908,7 +5910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1590873048
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6582,7 +6584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1807187469
 RectTransform:
   m_ObjectHideFlags: 0

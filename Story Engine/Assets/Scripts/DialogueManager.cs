@@ -166,7 +166,7 @@ public class DialogueManager : MonoBehaviour {
 		return null;
 	}
 
-    public void ninjaVanish(){
+    public void scatterCharacters(){
 		System.Random random = new System.Random();
         foreach(DateableCharacter chara in allCharacters){
             chara.currentSceneName = mySceneCatalogue.sceneNames[random.Next(12)];
