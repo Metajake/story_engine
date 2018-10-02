@@ -12,16 +12,19 @@ public class DateableCharacter : Character {
 	public bool knowsYou;
 	public int experienceCount;
     public int[] locationPreferences;
+    public int tier;
+    private VictoryCoach myVictoryCoach;
 
 	// Use this for initialization
 	void Start () {
 
         DialogueManager dm = GameObject.FindObjectOfType<DialogueManager>();
-
+        myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 		isInLoveWithYou = false;
 		experienceCount = 0;
 		savedTimes = new bool[activeTimes.Length];
 		activeTimes.CopyTo(savedTimes, 0);
+
 
 		if(givenName.ToLower() == "kristie"){
             dm.registerDialogue(new DialoguePiece("Hi.",this).addTag("greeting"));
@@ -100,7 +103,7 @@ public class DateableCharacter : Character {
 
             dm.registerDialogue(new DialoguePiece("Um.. I have to go over there now.", this).addTag("departure").addTag("deflection"));
             dm.registerDialogue(new DialoguePiece("Um.. I have to be somewhere.", this).addTag("departure").addTag("time"));
-		}else if (givenName.ToLower() == "amy")
+		}else if (givenName.ToLower() == "rebecca")
         {
             dm.registerDialogue(new DialoguePiece("HELLO.", this).addTag("greeting"));
             dm.registerDialogue(new DialoguePiece("Fuck off!", this).addTag("greeting").addTag("annoyed"));
@@ -201,4 +204,9 @@ public class DateableCharacter : Character {
         }
         return preferredLocation;
     }
+
+	public override bool checkIsPresent()
+	{
+		return isPresent && this.tier <= myVictoryCoach.getNumberOfAchievedExperiences();
+	}
 }

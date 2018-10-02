@@ -39,14 +39,19 @@ public class VictoryCoach : MonoBehaviour {
 	}
 
     public bool hasAchievedSomeExperiences(){
-		int numberOfExperiences = 0;
-
-		foreach(bool b in hasAchievedExperience){
-			if (b){
-                numberOfExperiences++;
-			}
-		}
-
-        return numberOfExperiences >= (int) nextGoal;
+        return getNumberOfAchievedExperiences() >= (int) nextGoal;
 	}
+
+    public int getNumberOfAchievedExperiences(){
+        int numberOfExperiences = 0;
+
+        foreach (bool b in hasAchievedExperience)
+        {
+            if (b)
+            {
+                numberOfExperiences++;
+            }
+        }
+        return numberOfExperiences;
+    }
 }
