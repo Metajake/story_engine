@@ -10,5 +10,6 @@ public class Character : MonoBehaviour {
     public string currentSceneName;
     public bool isInside;
     public bool[] activeTimes;
+    public bool isPresent;
 
 }

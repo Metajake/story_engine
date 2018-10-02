@@ -226,11 +226,6 @@ public class UIManager : MonoBehaviour {
 
                 int dateButtonIndex = j * 3 + k;
 
-                //if (dateButtonIndex >= dateSceneNames.Count)
-                //{
-                //    return;
-                //}
-
                 if (!mySceneCatalogue.isKnownDateLocation(dateSceneNames[dateButtonIndex]))
                 {
                     continue;

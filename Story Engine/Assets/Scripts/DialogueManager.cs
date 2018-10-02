@@ -80,7 +80,7 @@ public class DialogueManager : MonoBehaviour {
         }
 
 		foreach(DateableCharacter character in this.allCharacters){
-			if(isCharacterInTimeOfDay(character) && isCharacterPresentAtCurrentLocation(character)){
+			if(isCharacterInTimeOfDay(character) && isCharacterPresentAtCurrentLocation(character) && character.isPresent){
 				toReturn.Add(character);
 			}
 		}
