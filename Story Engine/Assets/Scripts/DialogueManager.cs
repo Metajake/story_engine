@@ -167,11 +167,40 @@ public class DialogueManager : MonoBehaviour {
 	}
 
     public void scatterCharacters(){
-		System.Random random = new System.Random();
-        foreach(DateableCharacter chara in allCharacters){
-            chara.currentSceneName = mySceneCatalogue.getLocationNames()[random.Next(12)];
-            chara.isInside = random.Next(2) == 0 ? false : true;
+        List<Location> allLocations = mySceneCatalogue.getLocations();
+        List<Location> allKnownLocations = mySceneCatalogue.getKnownLocations();
+        Predicate < Location > unknownLocationPredicate = allKnownLocations.Contains;
+        allLocations.RemoveAll(unknownLocationPredicate);
 
+		System.Random random = new System.Random();
+
+        int knownGroupSize = random.Next(3,6);
+
+        List<DateableCharacter> remainingCharacters = new List<DateableCharacter>(allCharacters);
+
+        for (int i = 0; i < knownGroupSize; i++){
+            DateableCharacter choice = remainingCharacters[random.Next(remainingCharacters.Count)];
+            remainingCharacters.Remove(choice);
+            choice.currentSceneName = mySceneCatalogue.getKnownLocationNames()[random.Next(allKnownLocations.Count)];
+            choice.isInside = random.Next(2) == 0 ? false : true;
         }
+
+        for (int i = 0; i < 9-knownGroupSize; i++)
+        {
+            DateableCharacter choice = remainingCharacters[random.Next(remainingCharacters.Count)];
+            remainingCharacters.Remove(choice);
+            choice.currentSceneName = getLocationNames(allLocations)[random.Next(allLocations.Count)];
+            choice.isInside = random.Next(2) == 0 ? false : true;
+        }
+    }
+
+    public List<string> getLocationNames(List<Location> locals)
+    {
+        List<string> knownLocationNames = new List<string>();
+        foreach (Location local in locals)
+        {
+            knownLocationNames.Add(local.locationName);
+        }
+        return knownLocationNames;
     }
 }

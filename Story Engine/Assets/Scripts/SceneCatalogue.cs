@@ -26,6 +26,10 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 		
 	}
 
+    public List<Location> getLocations(){
+        return this.locations;  
+    }
+
     public int getLocationCount(){
         return this.locations.Count;
     }
@@ -170,5 +174,18 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
             }
         }
         return false;
+    }
+
+    public List<string> getKnownLocationNames()
+    {
+        List<string> knownLocationNames = new List<string>();
+        foreach (Location local in this.locations)
+        {
+            if (local.isKnown)
+            {
+                knownLocationNames.Add(local.locationName);
+            }
+        }
+        return knownLocationNames;
     }
 }
