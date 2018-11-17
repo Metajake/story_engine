@@ -23,7 +23,7 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 		myUIManager = GameObject.FindObjectOfType<UIManager>();
 
-		allLocationNames = new List<string>(mySceneCatalogue.sceneNames);
+        allLocationNames = mySceneCatalogue.getLocationNames();
 
         createLocationButtons();
 

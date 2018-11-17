@@ -57,7 +57,7 @@ public class RelationshipCounselor : MonoBehaviour {
 	void Update () {
 	}
 
-	internal void createDate(int dateLocation, int dateTime, DateableCharacter speaker)
+	internal void createDate(Location dateLocation, int dateTime, DateableCharacter speaker)
 	{
 		GameObject dateObject = new GameObject();
 		Date date = dateObject.AddComponent<Date>();
@@ -69,7 +69,7 @@ public class RelationshipCounselor : MonoBehaviour {
 		speaker.noLocation();
 	}
        
-	public DateableCharacter datePartner(int dateLocation, int dateTime){
+	public DateableCharacter datePartner(Location dateLocation, int dateTime){
 		DateableCharacter toReturn = null;
         foreach (Date date in this.scheduledDates)
         {
@@ -87,7 +87,7 @@ public class RelationshipCounselor : MonoBehaviour {
 
     public Date getCurrentDate(){
         foreach (Date date in this.scheduledDates){
-            if (date.dateTime == myTimeLord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentSceneNumber() && !date.isOver)
+            if (date.dateTime == myTimeLord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentLocation() && !date.isOver)
             {
                 return date;
             }
@@ -107,7 +107,7 @@ public class RelationshipCounselor : MonoBehaviour {
 		var roller = new System.Random();
 		var roll = roller.Next(0, 100);
 
-        DateableCharacter she = datePartner(mySceneCatalogue.getCurrentSceneNumber(), myTimeLord.getCurrentTimestep());
+        DateableCharacter she = datePartner(mySceneCatalogue.getCurrentLocation(), myTimeLord.getCurrentTimestep());
 
         if(roller.Next(0, 20) == 0){ //5% chance to fall in love
     		uiManager.gameOver();
@@ -127,7 +127,7 @@ public class RelationshipCounselor : MonoBehaviour {
         }
 
         foreach (Date date in this.scheduledDates){
-			if (date.dateTime == myTimeLord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentSceneNumber())
+			if (date.dateTime == myTimeLord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentLocation())
 			{
 				date.character.savedTimes.CopyTo(date.character.activeTimes, 0);
 				date.character.experienceCount++; // WE"RE NOT USING THIS YET :))

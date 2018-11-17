@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 
-    public string[] sceneNames;
-	public string[] dateSceneNames; // CHANGE THIS TO INTERNIOR SCENE NEANMES
+    public List<Location> locations;
+
 	private int mySceneNumber;
 	private bool isInInteriorScene;
 	public string[] neutralResultDescriptions;
@@ -18,18 +18,29 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 
     void Awake() {
         currentObservers = new List<IKnownLocationsChangedObserver>();
+		locations = new List<Location>(this.gameObject.GetComponents<Location>());
     }
 
-   // Use this for initialization
-	void Start () {
-		mySceneNumber = 6;
-		isInInteriorScene = true; // Start Player out in apartment
+    void Start () {
+        mySceneNumber = 6;
+        isInInteriorScene = true; // Start Player out in apartment
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public int getLocationCount(){
+        return this.locations.Count;
+    }
+
+    public List<string> getLocationNames(){
+        List<string> result = new List<string>();
+        foreach(Location local in this.locations){
+            result.Add(local.locationName);
+        }
+        return result;
+    }
 
 	public void toggleInteriorScene(){
 		isInInteriorScene = !isInInteriorScene;
@@ -39,12 +50,16 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 		return isInInteriorScene;
 	}
 
+    public Location getCurrentLocation(){
+        return this.locations[mySceneNumber];
+    }
+
 	public int getCurrentSceneNumber(){
 		return mySceneNumber;
 	}
     
 	public string getCurrentSceneName(){
-		return sceneNames[mySceneNumber];
+        return locations[mySceneNumber].locationName;
 	}
 
 	public void setCurrentSceneNumber(int newSceneNumber){
@@ -56,7 +71,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         GameObject.FindObjectOfType<DialogueManager>().selectedPartner = -1;
         mySceneNumber--;
 		if(mySceneNumber < 0){
-			mySceneNumber = sceneNames.Length -1;
+			mySceneNumber = locations.Count -1;
 		}
     }
 
@@ -64,7 +79,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 		GameObject.FindObjectOfType<DialogueManager>().selectedPartner = -1;
         mySceneNumber++;
 
-		if (mySceneNumber == sceneNames.Length){
+		if (mySceneNumber == locations.Count){
 			mySceneNumber = 0;
 		}
 	}
@@ -78,17 +93,27 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         return experienceDescriptions[getCurrentSceneNumber()];
     }
 
-	public Dictionary<string,int> getDateScenes(){
+	public List<Location> getDateScenes(){
 
-		Dictionary<string, int> dateScenes = new Dictionary<string, int>();
+        List<Location> dateScenes = new List<Location>();
 
-		for (int i = 0; i < dateSceneNames.Length; i++){
-			if(isDateScene[i]){
-				dateScenes.Add(dateSceneNames[i], i);
+		foreach (Location local in this.locations){
+			if(local.isDateScene){
+				dateScenes.Add(local);
 			}
 		}
 		return dateScenes;
 	}
+
+    public List<string> getDateSceneNames(){
+        List<string> dateLocationNames = new List<string>();
+        foreach(Location local in this.locations){
+            if(local.isDateScene){
+                dateLocationNames.Add(local.interiorName);
+            }
+        }
+        return dateLocationNames;
+    }
 
 	public void learnLocation(int locationToLearn){
 		this.knownLocations[locationToLearn] = true;
@@ -124,17 +149,16 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     }
 
     public List<string> getKnownDateSceneNames(){
-        List<string> toReturn = new List<string>();
-        for (int i = 0; i < this.sceneNames.Length; i++){
-            if (this.knownLocations[i] == true){
-                toReturn.Add(this.dateSceneNames[i]);
+        List<string> knownDateSceneNames = new List<string>();
+        foreach (Location local in this.locations){
+            if (local.isDateScene && local.isKnown){
+                knownDateSceneNames.Add(local.interiorName);
             }
         }
-        return toReturn;
+        return knownDateSceneNames;
     }
 
     public Boolean isKnownDateLocation(string locationName){
-        
         foreach(string sName in this.getKnownDateSceneNames()){
             if(sName == locationName){
                 return true;

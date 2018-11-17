@@ -209,8 +209,9 @@ public class UIManager : MonoBehaviour {
 
     private void createDateLocationButtons(){
 
-        Dictionary<string, int> dateScenes = mySceneCatalogue.getDateScenes();
-		List<string> dateSceneNames = new List<string>(dateScenes.Keys);
+        List<string> dateSceneNames = mySceneCatalogue.getDateSceneNames();
+
+        List<Location> dateScenes = mySceneCatalogue.getDateScenes();
 
         Button[] allButtons = dateLocationButtonPanel.GetComponentsInChildren<Button>();
 
@@ -238,7 +239,7 @@ public class UIManager : MonoBehaviour {
 
                 buttonObject.GetComponentInChildren<Text>().text = dateSceneNames[dateButtonIndex];
 
-                UnityAction buttonAction = () => scheduleDateForLocation(dateButtonIndex);
+                UnityAction buttonAction = () => scheduleDateForLocation(dateScenes[dateButtonIndex]);
                 buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);
 
             }
@@ -246,11 +247,8 @@ public class UIManager : MonoBehaviour {
         }
 	}
 
-	public void scheduleDateForLocation(int dateLocationIndex){
-		Dictionary<string, int> dateScenes = mySceneCatalogue.getDateScenes();
-		List<string> dateSceneNames = new List<string>(dateScenes.Keys);
-
-		conversationTracker.scheduleDate(dateScenes[dateSceneNames[dateLocationIndex]]);
+	public void scheduleDateForLocation(Location dateLocation){
+		conversationTracker.scheduleDate(dateLocation);
 
 	}
 
@@ -268,7 +266,7 @@ public class UIManager : MonoBehaviour {
 
 	public void goalAchieved(DifficultyLevel levelAchieved){
         if(levelAchieved == DifficultyLevel.HARD){
-            Debug.Log("You have ascended to the ultimate form of human being. You can date and love as you wish. You are one with everyone.");
+            Debug.Log("You have ascended to the ultimate form of human being. Your love is free. You are at one with everyone.");
         }else{
 			Debug.Log("Goal " + levelAchieved + " Attained!! ... But there are more experiences to be had!");
         }

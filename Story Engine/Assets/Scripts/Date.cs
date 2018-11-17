@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Date : MonoBehaviour {
 
-	public int dateScene;
+	public Location dateScene;
 	public DateableCharacter character;
 	public int dateTime;
     public bool isOver;

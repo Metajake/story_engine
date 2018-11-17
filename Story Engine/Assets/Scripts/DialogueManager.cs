@@ -72,7 +72,7 @@ public class DialogueManager : MonoBehaviour {
 		if(mySceneCatalogue.getIsInInteriorScene()){
             if(myRelationshipCounselor.isInDateMode()){
 				toReturn.Add( 
-    	            myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentSceneNumber(), myTimeLord.getCurrentTimestep())
+    	            myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentLocation(), myTimeLord.getCurrentTimestep())
 				);
 				myRelationshipCounselor.isAtDate = true;
 				return toReturn;
@@ -169,7 +169,7 @@ public class DialogueManager : MonoBehaviour {
     public void scatterCharacters(){
 		System.Random random = new System.Random();
         foreach(DateableCharacter chara in allCharacters){
-            chara.currentSceneName = mySceneCatalogue.sceneNames[random.Next(12)];
+            chara.currentSceneName = mySceneCatalogue.getLocationNames()[random.Next(12)];
             chara.isInside = random.Next(2) == 0 ? false : true;
 
         }

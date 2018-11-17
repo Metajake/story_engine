@@ -17,6 +17,7 @@ public class VictoryCoach : MonoBehaviour {
         hasAchievedExperience = new List<bool>();
 
         initializeExperienceList();
+
 	}
 	
 	// Update is called once per frame
@@ -29,7 +30,7 @@ public class VictoryCoach : MonoBehaviour {
     }
 
 	private void initializeExperienceList(){
-		for (int i = 0; i < mySceneCatalogue.sceneNames.Length; i ++){
+        for (int i = 0; i < mySceneCatalogue.getLocationCount(); i ++){
 			hasAchievedExperience.Add(false);
 		}
 	}

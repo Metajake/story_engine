@@ -229,7 +229,7 @@ public class ConversationTracker : MonoBehaviour {
     {
 		int random = 1;
 		if(random > 0 && mySceneCatalogue.someLocationsObscured()){
-            dialogueText.text = "I hear that the " + mySceneCatalogue.sceneNames[revealLocation(this.currentConversation.speaker.getPreferredLocation())] + " is beautiful this time of year! Where would you like to go?";
+            dialogueText.text = "I hear that the " + mySceneCatalogue.getLocationNames()[revealLocation(this.currentConversation.speaker.getPreferredLocation())] + " is beautiful this time of year! Where would you like to go?";
 
         }else{
 			dialogueText.text = "Where would you like to go for our date?";
@@ -244,7 +244,7 @@ public class ConversationTracker : MonoBehaviour {
     	return i;
 	}
 
-    public void scheduleDate(int location)
+    public void scheduleDate(Location location)
     {
         int randomTimestepFromPresent = new System.Random().Next(0, 19);
         int randomDateTime = timeLord.getCurrentTimestep() + randomTimestepFromPresent;
