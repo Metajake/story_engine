@@ -10,7 +10,6 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 	private const int numberOfRows = 3;
 	private const int numberOfColumns = 4;
 	public GameObject mapLocationButtonPrefab;
-	public List<string> allLocationNames;
 	private SceneCatalogue mySceneCatalogue;
 	private GameObject myMapPanel;
     private UIManager myUIManager;
@@ -22,8 +21,6 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 		myUIManager = GameObject.FindObjectOfType<UIManager>();
-
-        allLocationNames = mySceneCatalogue.getLocationNames();
 
         createLocationButtons();
 
@@ -50,12 +47,12 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 
                 int mapButtonIndex = j * numberOfColumns + k;
 
-                if (mapButtonIndex >= allLocationNames.Count)
+                if (mapButtonIndex >= mySceneCatalogue.getLocationCount())
                 {
                     return;
                 }
 
-                if (!mySceneCatalogue.knownLocations[mapButtonIndex])
+                if (!mySceneCatalogue.locations[mapButtonIndex].isKnown)
                 {
                     continue;
                 }
@@ -64,7 +61,7 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 
                 buttonObject.transform.Translate(new Vector3(-400 + k * 200, 200 - j * 200));
 
-                buttonObject.GetComponentInChildren<Text>().text = allLocationNames[mapButtonIndex];
+                buttonObject.GetComponentInChildren<Text>().text = mySceneCatalogue.getLocationNames()[mapButtonIndex];
 
                 UnityAction buttonAction = () => onLocationClick(mapButtonIndex);
                 buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);

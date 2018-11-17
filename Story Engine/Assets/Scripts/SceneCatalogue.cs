@@ -9,10 +9,6 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 
 	private int mySceneNumber;
 	private bool isInInteriorScene;
-	public string[] neutralResultDescriptions;
-	public string[] experienceDescriptions;
-    public bool[] isDateScene;
-    public bool[] knownLocations;
 
     private List<IKnownLocationsChangedObserver> currentObservers;
 
@@ -85,12 +81,12 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 	}
 
 	public string neutralResultForCurrentLocationDescription(){
-		return neutralResultDescriptions[getCurrentSceneNumber()];
+        return getCurrentLocation().neutralDateResultDescription;
 	}
 
 	public string currentExperienceDescription()
     {
-        return experienceDescriptions[getCurrentSceneNumber()];
+        return getCurrentLocation().experienceDescription;
     }
 
 	public List<Location> getDateScenes(){
@@ -116,19 +112,18 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     }
 
 	public void learnLocation(int locationToLearn){
-		this.knownLocations[locationToLearn] = true;
+		this.locations[locationToLearn].isKnown = true;
         Notify();
 	}
 
 	internal bool someLocationsObscured()
 	{
-		bool toReturn = false;
-		for (int i = 0; i < this.knownLocations.Length; i++){
-			if(!this.knownLocations[i]){
-				toReturn = true;
+		for (int i = 0; i < this.locations.Count; i++){
+            if(!this.locations[i].isKnown){
+				return true;
 			}
 		}
-		return toReturn;
+        return false;
 	}
 
     public void Subscribe(IKnownLocationsChangedObserver observer)
@@ -146,6 +141,16 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     public void Unsubscribe(IKnownLocationsChangedObserver observer)
     {
         throw new NotImplementedException();
+    }
+
+    public List<Location> getKnownLocations(){
+        List<Location> knownLocations = new List<Location>();
+        foreach(Location local in this.locations){
+            if(local.isKnown){
+                knownLocations.Add(local);
+            }
+        }
+        return knownLocations;
     }
 
     public List<string> getKnownDateSceneNames(){

@@ -227,8 +227,7 @@ public class ConversationTracker : MonoBehaviour {
 
     public void successfullyAskOnDate()
     {
-		int random = 1;
-		if(random > 0 && mySceneCatalogue.someLocationsObscured()){
+		if(mySceneCatalogue.someLocationsObscured()){
             dialogueText.text = "I hear that the " + mySceneCatalogue.getLocationNames()[revealLocation(this.currentConversation.speaker.getPreferredLocation())] + " is beautiful this time of year! Where would you like to go?";
 
         }else{
