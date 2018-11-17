@@ -87,8 +87,9 @@ public class UIManager : MonoBehaviour {
 		mainPanel.SetActive(!dialogueManager.getIsInConversationMode());
 
 		askOnDateButton.SetActive(conversationTracker.canAskOnDateEnabled());
-        previousLocationButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
-        nextLocationButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
+        //Commented out 10/21 because I disabled the buttons in Unity
+        //previousLocationButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
+        //nextLocationButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
 		mapButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
 
 		toggleButtons();
