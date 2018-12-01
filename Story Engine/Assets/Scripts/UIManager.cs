@@ -113,7 +113,7 @@ public class UIManager : MonoBehaviour {
 		setDescriptionText("She fell in love with you. As a result, you fell in love with her. She then dumped you, and you were left heartbroken. Game Over.");
 	}
 
-    public void placePotentialPartners(List<DateableCharacter> potentialPartners, List<MinorCharacter> minorCharacters)
+    public void placePotentialPartners(List<Character> potentialConversationPartners)
     {
 		if(myCommandProcessor.isInSequence()){
 			return;
@@ -122,17 +122,12 @@ public class UIManager : MonoBehaviour {
         {
             Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
             Text partnerNameplate = GameObject.Find("Character " + (i + 1) + " NamePlate").GetComponent<Text>();
-            if (i < potentialPartners.Count)
+            if (i < potentialConversationPartners.Count)
             {
-                partnerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(potentialPartners[i].image);
+                partnerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(potentialConversationPartners[i].image);
                 partnerPortrait.color = new Color(partnerPortrait.color.r, partnerPortrait.color.g, partnerPortrait.color.b, 1);
-                partnerNameplate.text = potentialPartners[i].givenName + " " + potentialPartners[i].surname;
+                partnerNameplate.text = potentialConversationPartners[i].givenName + " " + potentialConversationPartners[i].surname;
 
-            }
-            else if(i < potentialPartners.Count + minorCharacters.Count){
-                partnerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(minorCharacters[i-potentialPartners.Count].image);
-                partnerPortrait.color = new Color(partnerPortrait.color.r, partnerPortrait.color.g, partnerPortrait.color.b, 1);
-                partnerNameplate.text = minorCharacters[i-potentialPartners.Count].givenName + " " + minorCharacters[i-potentialPartners.Count].surname;
             }
             else
 			{
@@ -172,7 +167,7 @@ public class UIManager : MonoBehaviour {
     }
 
 	public void onPortraitClicked(int portraitNumber){
-		DateableCharacter clickedCharacter = dialogueManager.getPartnerAt(portraitNumber);
+		Character clickedCharacter = dialogueManager.getPartnerAt(portraitNumber);
 		if(clickedCharacter != null ){
 			dialogueManager.selectedPartner = portraitNumber - 1;
 			talkButtonObject.GetComponentInChildren<Text>().text ="Talk to " + clickedCharacter.givenName;
@@ -189,8 +184,12 @@ public class UIManager : MonoBehaviour {
 
 	public void switchDialogueWindow(bool isOn){
 		dialogueManager.setConversationMode(isOn);
-		GameObject.FindObjectOfType<ConversationTracker>().beginConversation(dialogueManager.getPartnerAt(dialogueManager.selectedPartner + 1));
-	}
+        Character selectedCharacter = dialogueManager.getPartnerAt(dialogueManager.selectedPartner + 1);
+        if(selectedCharacter is DateableCharacter)
+        {
+            GameObject.FindObjectOfType<ConversationTracker>().beginConversation((DateableCharacter)selectedCharacter);
+        }
+    }
 
 	public void enableAllButtons()
     {
