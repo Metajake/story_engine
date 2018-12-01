@@ -15,7 +15,6 @@ public class DateableCharacter : Character {
     public int tier;
     private VictoryCoach myVictoryCoach;
 
-	// Use this for initialization
 	void Start () {
 
         DialogueManager dm = GameObject.FindObjectOfType<DialogueManager>();
@@ -24,7 +23,6 @@ public class DateableCharacter : Character {
 		experienceCount = 0;
 		savedTimes = new bool[activeTimes.Length];
 		activeTimes.CopyTo(savedTimes, 0);
-
 
 		if(givenName.ToLower() == "kristie"){
             dm.registerDialogue(new DialoguePiece("Hi.",this).addTag("greeting"));
@@ -184,7 +182,6 @@ public class DateableCharacter : Character {
         }
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}
