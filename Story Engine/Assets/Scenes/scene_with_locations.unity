@@ -2975,7 +2975,7 @@ MonoBehaviour:
   interiorName: Apartment
   neutralDateResultDescription: Res Neut
   experienceDescription: Res Exp
-  isDateScene: 1
+  isDateScene: 0
   isKnown: 1
 --- !u!114 &927541671
 MonoBehaviour:
@@ -4244,6 +4244,7 @@ GameObject:
   - component: {fileID: 1360229235}
   - component: {fileID: 1360229237}
   - component: {fileID: 1360229238}
+  - component: {fileID: 1360229240}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -4383,6 +4384,33 @@ MonoBehaviour:
   - {fileID: 0}
   charactersPresent: []
   selectedPartner: 0
+--- !u!114 &1360229240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1360229233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51511b26b2d946b1841b601c3df4bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 2800000, guid: 05b0db60a8cb744d189efa1be924e5bd, type: 3}
+  givenName: Donna
+  surname: Campbell
+  currentSceneName: Beach
+  isInside: 1
+  activeTimes: 000100
+  isPresent: 1
+  savedTimes: 
+  isSubordinate: 0
+  permanentOpinion: 0
+  inLoveAmount: 0
+  isInLoveWithYou: 0
+  knowsYou: 0
+  experienceCount: 0
+  locationPreferences: 000000000200000000000000020000000000000000000000020000000200000002000000020000000200000002000000
+  tier: 1
 --- !u!1 &1381096642
 GameObject:
   m_ObjectHideFlags: 0
