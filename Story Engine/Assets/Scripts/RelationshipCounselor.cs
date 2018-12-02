@@ -113,9 +113,10 @@ public class RelationshipCounselor : MonoBehaviour {
     		uiManager.gameOver();
         }
 
-        int leavePercentageForLocation = actionLikelihoodMatrix["leave"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]];
+        //int leavePercentageForLocation = actionLikelihoodMatrix["leave"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]];
+        int leavePercentageForLocation = 0; //FOR DEBUGGING
 
-        if(roll <= leavePercentageForLocation){
+        if (roll <= leavePercentageForLocation){
             uiManager.abandonDateDescription();
             Debug.Log("You got ditched, you lame. Enjoy watching porn at home, alone.");
         }else if (roll <= leavePercentageForLocation + actionLikelihoodMatrix["neutral"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]]){
