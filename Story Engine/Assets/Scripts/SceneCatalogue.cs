@@ -111,9 +111,34 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         return dateLocationNames;
     }
 
-	public void learnLocation(int locationToLearn){
+
+    public Location revealRandomUnknownLocation()
+    {
+        List<Location> unknownLocations = new List<Location>();
+
+        foreach(Location local in this.locations)
+        {
+            if (!local.isKnown)
+            {
+                unknownLocations.Add(local);
+            }
+        }
+        int randomUnknownLocationIndex = new System.Random().Next(0, unknownLocations.Count);
+
+        return learnLocation(unknownLocations[randomUnknownLocationIndex]);
+    }
+
+    public Location learnLocation(Location location)
+    {
+        location.isKnown = true;
+        Notify();
+        return location;
+    }
+
+    public Location learnLocation(int locationToLearn){
 		this.locations[locationToLearn].isKnown = true;
         Notify();
+        return locations[locationToLearn];
 	}
 
 	internal bool someLocationsObscured()

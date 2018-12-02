@@ -2234,6 +2234,46 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 665576480}
   m_CullTransparentMesh: 0
+--- !u!1 &676023468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 676023470}
+  - component: {fileID: 676023469}
+  m_Layer: 0
+  m_Name: TipManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &676023469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 676023468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d090c26f3016e42bdbfc22d381ffad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &676023470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 676023468}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &679222673
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,7 +2474,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 112322379}
-        m_MethodName: switchDialogueWindow
+        m_MethodName: toggleDialogueWindow
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2646,7 +2686,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapLocationButtonPrefab: {fileID: 1069225531541500, guid: 94d0730e6b94241928aef9671da4f4f0,
     type: 2}
-  allLocationNames: []
 --- !u!4 &852092999
 Transform:
   m_ObjectHideFlags: 0
@@ -2835,63 +2874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709408e86b374482e8f88d47cb369527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneNames:
-  - Military Academy
-  - Mountains
-  - Village
-  - River
-  - West Side
-  - City
-  - Residential District
-  - Sea Side
-  - Woods
-  - Field
-  - University
-  - Beach
-  dateSceneNames:
-  - Track and Field
-  - Hotsprings
-  - Theater
-  - River Bend
-  - Club
-  - Office
-  - Apartment
-  - Arcade
-  - Grove
-  - Picnic Bench
-  - Study Center
-  - Sand Dunes
-  neutralResultDescriptions:
-  - Track & Field
-  - The steam relaxes everything.
-  - The sites and sounds are a cultural marvel.
-  - The water splashes and everything glistens.
-  - The bass is bumping so hard.
-  - Office
-  - Home
-  - All of the graphics are so enticing and fun.
-  - The sun sun dances across all of the beautiful surfaces
-  - The breeze feels great and the food is delicious.
-  - These books sure are interesting!
-  - You feel like Aladdin and Princess Jasmine on a date in your own private desert.
-  experienceDescriptions:
-  - Apartment Experience achieved! More Man!
-  - You brought the best picnic food. You have experienced the need to provide. You
-    have grown as a man.
-  - A bully walks up and tries to get rough with your girl. You smack the shit out
-    of him and leave together. You have experienced the need to protect. You have
-    grown as a man.
-  - For once, I won't acquiece! Not this time!!
-  - For once, I won't acquiece! Not this time!!
-  - For once, I won't acquiece! Not this time!!
-  - For once, I won't acquiece! Not this time!!
-  - For once, I won't acquiece! Not this time!!
-  - For once, I won't acquiece! Not this time!!
-  - For once, I won't acquiece! Not this time!!
-  - For once, I won't acquiece! Not this time!!
-  - For once, I won't acquiece! Not this time!!
-  isDateScene: 000101010100000101010101
-  knownLocations: 000000000001010001010000
+  locations: []
 --- !u!114 &927541665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4127,7 +4110,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 112322379}
-        m_MethodName: switchDialogueWindow
+        m_MethodName: toggleDialogueWindow
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4325,7 +4308,7 @@ MonoBehaviour:
   currentSceneName: City
   isInside: 1
   activeTimes: 010100
-  isPresent: 0
+  isPresent: 1
 --- !u!114 &1360229237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4391,13 +4374,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4c2c4f57439496f89fd4092be8e2d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allDateableCharacters: []
+  allMinorCharacters: []
   allCharacters:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  allMinorCharacters: []
-  potentialPartners: []
+  charactersPresent: []
   selectedPartner: 0
 --- !u!1 &1381096642
 GameObject:

@@ -227,21 +227,11 @@ public class ConversationTracker : MonoBehaviour {
 
     public void successfullyAskOnDate()
     {
-		if(mySceneCatalogue.someLocationsObscured()){
-            dialogueText.text = "I hear that the " + mySceneCatalogue.getLocationNames()[revealLocation(this.currentConversation.speaker.getPreferredLocation())] + " is beautiful this time of year! Where would you like to go?";
-
-        }else{
-			dialogueText.text = "Where would you like to go for our date?";
-		}
+        dialogueText.text = "Where would you like to go for our date?";
 
         uiManager.showLocationOptions();
         this.currentConversation.lastChosenOption = Conversation.SpeechOption.ASK_ON_DATE;
     }
-
-	public int revealLocation(int i){
-		mySceneCatalogue.learnLocation(i);
-    	return i;
-	}
 
     public void scheduleDate(Location location)
     {

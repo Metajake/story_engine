@@ -10,14 +10,5 @@ public class ChangeDialogueCommand : AbstractCommand {
 	{
     	GameObject.FindObjectOfType<UIManager>().setDescriptionText(textToWrite);
 	}
-    
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+   
 }

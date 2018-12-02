@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour {
 	private MapCartographer myMapCartographer;
 	private ConversationTracker conversationTracker;
 	private SceneCatalogue mySceneCatalogue;
+    private TipManager myTipManager;
     private GameObject dialogueButtonPanel;
 	private GameObject dialogueOptionsButtonPanel;
 	private GameObject dateLocationButtonPanel;
@@ -52,6 +53,7 @@ public class UIManager : MonoBehaviour {
 		myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 		myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
+        myTipManager = GameObject.FindObjectOfType<TipManager>();
 
         dialogueButtonPanel = GameObject.Find("DialogueButtonPanel");
         dialogueOptionsButtonPanel = GameObject.Find("DialogueOptionsButtonPanel");
@@ -87,9 +89,6 @@ public class UIManager : MonoBehaviour {
 		mainPanel.SetActive(!dialogueManager.getIsInConversationMode());
 
 		askOnDateButton.SetActive(conversationTracker.canAskOnDateEnabled());
-        //Commented out 10/21 because I disabled the buttons in Unity
-        //previousLocationButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
-        //nextLocationButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
 		mapButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
 
 		toggleButtons();
@@ -182,12 +181,19 @@ public class UIManager : MonoBehaviour {
 		talkButtonObject.SetActive(partners);
 	}
 
-	public void switchDialogueWindow(bool isOn){
-		dialogueManager.setConversationMode(isOn);
+	public void toggleDialogueWindow(bool isOn){
+        
         Character selectedCharacter = dialogueManager.getPartnerAt(dialogueManager.selectedPartner + 1);
         if(selectedCharacter is DateableCharacter)
         {
+            dialogueManager.setConversationMode(isOn);
             GameObject.FindObjectOfType<ConversationTracker>().beginConversation((DateableCharacter)selectedCharacter);
+        }
+        else
+        {
+            //construct command
+            string dialogueString = myTipManager.getTip();
+            myCommandProcessor.createAndExecuteChangeDialogueSequence(new List<string>() { dialogueString });
         }
     }
 
