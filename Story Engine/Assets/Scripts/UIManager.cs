@@ -228,7 +228,7 @@ public class UIManager : MonoBehaviour {
         for (int j = 0; j < 3; j++)
         {
 
-            for (int k = 0; k < 3; k++)
+            for (int k = 0; k < 4; k++)
             {
 
                 int dateButtonIndex = j * 3 + k;

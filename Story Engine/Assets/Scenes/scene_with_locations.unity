@@ -2891,7 +2891,7 @@ MonoBehaviour:
   neutralDateResultDescription: Beach Neut
   experienceDescription: Beach Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
 --- !u!114 &927541666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2942,7 +2942,7 @@ MonoBehaviour:
   neutralDateResultDescription: Woods Neut
   experienceDescription: Woods Exp
   isDateScene: 1
-  isKnown: 1
+  isKnown: 0
 --- !u!114 &927541669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4361,7 +4361,7 @@ MonoBehaviour:
   isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
-  locationPreferences: 000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000
   tier: 1
 --- !u!114 &1360229239
 MonoBehaviour:
