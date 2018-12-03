@@ -178,6 +178,19 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         return knownLocations;
     }
 
+    public List<string> getKnownLocationNames()
+    {
+        List<string> results = new List<string>();
+        foreach (Location local in this.locations)
+        {
+            if (local.isKnown)
+            {
+                results.Add(local.locationName);
+            }
+        }
+        return results;
+    }
+
     public List<string> getKnownDateSceneNames(){
         List<string> knownDateSceneNames = new List<string>();
         foreach (Location local in this.locations){

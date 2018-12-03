@@ -4356,7 +4356,7 @@ MonoBehaviour:
   image: {fileID: 2800000, guid: dc9867ba9efc244f89ec752c313b417e, type: 3}
   givenName: Rebecca
   surname: Moore
-  currentSceneName: Woods
+  currentSceneName: Beach
   isInside: 0
   activeTimes: 010000
   isPresent: 1
@@ -4368,7 +4368,7 @@ MonoBehaviour:
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000
-  tier: 1
+  tier: 0
 --- !u!114 &1360229239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4442,7 +4442,7 @@ MonoBehaviour:
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000
-  tier: 0
+  tier: 3
 --- !u!114 &1360229242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4469,7 +4469,7 @@ MonoBehaviour:
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000
-  tier: 0
+  tier: 5
 --- !u!114 &1360229243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4496,7 +4496,7 @@ MonoBehaviour:
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000
-  tier: 0
+  tier: 6
 --- !u!114 &1360229244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4523,7 +4523,7 @@ MonoBehaviour:
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000
-  tier: 0
+  tier: 10
 --- !u!114 &1360229245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4550,7 +4550,7 @@ MonoBehaviour:
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000
-  tier: 0
+  tier: 10
 --- !u!1 &1381096642
 GameObject:
   m_ObjectHideFlags: 0
