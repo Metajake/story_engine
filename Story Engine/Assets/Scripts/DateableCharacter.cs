@@ -8,7 +8,6 @@ public class DateableCharacter : Character {
 	public bool isSubordinate;
 	public int permanentOpinion;
     public int inLoveAmount;
-	public bool isInLoveWithYou;
 	public bool knowsYou;
 	public int experienceCount;
     public int[] locationPreferences;
@@ -19,10 +18,10 @@ public class DateableCharacter : Character {
 
         DialogueManager dm = GameObject.FindObjectOfType<DialogueManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
-		isInLoveWithYou = false;
 		experienceCount = 0;
 		savedTimes = new bool[activeTimes.Length];
 		activeTimes.CopyTo(savedTimes, 0);
+        inLoveAmount = 0;
 
 		if(givenName.ToLower() == "kristie"){
             dm.registerDialogue(new DialoguePiece("Hi.",this).addTag("greeting"));

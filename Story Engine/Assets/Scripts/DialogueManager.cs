@@ -162,7 +162,7 @@ public class DialogueManager : MonoBehaviour {
         foreach (DateableCharacter chara in allDateableCharacters){
             string destination = knownLocations[random.Next(knownLocations.Count)].locationName;
             bool indoorDestination = random.Next(2) == 0 ? false : true;
-            if (! (destination == "residentialdistrict" && indoorDestination == true)){
+            if (! (destination == "Residential District" && indoorDestination == true)){
                 chara.currentSceneName = destination;
                 chara.isInside = indoorDestination;
             }

@@ -109,7 +109,7 @@ public class UIManager : MonoBehaviour {
 
 	internal void gameOver()
 	{
-		setDescriptionText("She fell in love with you. As a result, you fell in love with her. She then dumped you, and you were left heartbroken. Game Over.");
+        Application.LoadLevel("splash_game_over");
 	}
 
     public void placePotentialPartners(List<Character> potentialConversationPartners)

@@ -4292,7 +4292,6 @@ MonoBehaviour:
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
-  isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 00000000feffffff00000000ffffffff000000000100000000000000010000000000000002000000ffffffff00000000
@@ -4337,7 +4336,6 @@ MonoBehaviour:
   isSubordinate: 1
   permanentOpinion: 0
   inLoveAmount: 0
-  isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 0100000002000000010000000000000000000000fffffffffffffffffeffffff01000000ffffffff0000000000000000
@@ -4364,7 +4362,6 @@ MonoBehaviour:
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
-  isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000
@@ -4411,7 +4408,6 @@ MonoBehaviour:
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
-  isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000200000000000000020000000000000000000000020000000200000002000000020000000200000002000000
@@ -4438,7 +4434,6 @@ MonoBehaviour:
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
-  isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000
@@ -4456,7 +4451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 5d3701bfdd1ba4e4daa57abf09dc1068, type: 3}
   givenName: Sarah
-  surname: Tan
+  surname: Dieleman
   currentSceneName: Beach
   isInside: 0
   activeTimes: 000100
@@ -4465,11 +4460,10 @@ MonoBehaviour:
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
-  isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000
-  tier: 5
+  tier: 4
 --- !u!114 &1360229243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4492,11 +4486,10 @@ MonoBehaviour:
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
-  isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000
-  tier: 6
+  tier: 5
 --- !u!114 &1360229244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4510,7 +4503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 1576a28538d37d14394d02c9c00da9b8, type: 3}
   givenName: Eli
-  surname: Chan
+  surname: Tan
   currentSceneName: Field
   isInside: 0
   activeTimes: 010000
@@ -4519,11 +4512,10 @@ MonoBehaviour:
   isSubordinate: 1
   permanentOpinion: 0
   inLoveAmount: 0
-  isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000
-  tier: 10
+  tier: 6
 --- !u!114 &1360229245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4546,7 +4538,6 @@ MonoBehaviour:
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
-  isInLoveWithYou: 0
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000
@@ -5048,6 +5039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAtDate: 0
   myVictoryCoach: {fileID: 0}
+  loveChanceIncrement: 75
 --- !u!4 &1650917027
 Transform:
   m_ObjectHideFlags: 0

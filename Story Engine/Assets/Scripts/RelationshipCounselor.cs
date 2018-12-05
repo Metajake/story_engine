@@ -11,10 +11,10 @@ public class RelationshipCounselor : MonoBehaviour {
 	private UIManager uiManager;
 	public bool isAtDate;
 	public VictoryCoach myVictoryCoach;
+    public int loveChanceIncrement;
 
     private Dictionary<String, Dictionary<int, int>> actionLikelihoodMatrix;
-
-	// Use this for initialization
+    
 	void Start ()
     {
 		scheduledDates = new List<Date>();
@@ -53,9 +53,15 @@ public class RelationshipCounselor : MonoBehaviour {
         actionLikelihoodMatrix.Add("experience", expReactions);
     }
 
-	// Update is called once per frame
 	void Update () {
-	}
+        foreach (Date date in this.scheduledDates)
+        {
+            if (date.dateTime < myTimeLord.getCurrentTimestep())
+            {
+                date.character.savedTimes.CopyTo(date.character.activeTimes, 0);
+            }
+        }
+    }
 
 	internal void createDate(Location dateLocation, int dateTime, DateableCharacter speaker)
 	{
@@ -103,15 +109,18 @@ public class RelationshipCounselor : MonoBehaviour {
 	}
 
 	public void act(){
-		//Roll Dice
 		var roller = new System.Random();
 		var roll = roller.Next(0, 100);
 
         DateableCharacter she = datePartner(mySceneCatalogue.getCurrentLocation(), myTimeLord.getCurrentTimestep());
 
-        if(roller.Next(0, 20) == 0){ //5% chance to fall in love
+        Debug.Log("Roll: " + roll);
+        Debug.Log("In love amount: " + she.inLoveAmount*this.loveChanceIncrement);
+        if (roll < she.inLoveAmount*this.loveChanceIncrement) {
     		uiManager.gameOver();
         }
+
+        she.inLoveAmount ++;
 
         //int leavePercentageForLocation = actionLikelihoodMatrix["leave"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]];
         int leavePercentageForLocation = 0; //FOR DEBUGGING
@@ -126,14 +135,7 @@ public class RelationshipCounselor : MonoBehaviour {
             uiManager.experienceDescription();
             myVictoryCoach.achievedExperience(mySceneCatalogue.getCurrentSceneNumber());
         }
-
-        foreach (Date date in this.scheduledDates){
-			if (date.dateTime == myTimeLord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentLocation())
-			{
-				date.character.savedTimes.CopyTo(date.character.activeTimes, 0);
-				date.character.experienceCount++; // WE"RE NOT USING THIS YET :))
-			}
-		}
+        
 	}
 
 }
