@@ -12,7 +12,7 @@ public class ConversationTracker : MonoBehaviour {
     private DialogueManager dialogueManager;
     private UIManager uiManager;
 	private SceneCatalogue mySceneCatalogue;
-    private Timelord timeLord;
+    private Timelord myTimelord;
     private RelationshipCounselor relationshipCounselor;
 
 	public void Start()
@@ -21,7 +21,7 @@ public class ConversationTracker : MonoBehaviour {
         dialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         uiManager = GameObject.FindObjectOfType<UIManager>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
-        timeLord = GameObject.FindObjectOfType<Timelord>();
+        myTimelord = GameObject.FindObjectOfType<Timelord>();
         relationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
 	}
 
@@ -236,10 +236,10 @@ public class ConversationTracker : MonoBehaviour {
     public void scheduleDate(Location location)
     {
         int randomTimestepFromPresent = new System.Random().Next(0, 19);
-        int randomDateTime = timeLord.getCurrentTimestep() + randomTimestepFromPresent;
+        int randomDateTime = myTimelord.getCurrentTimestep() + randomTimestepFromPresent;
         relationshipCounselor.createDate(location, randomDateTime, this.currentConversation.speaker);
         uiManager.hideLocationOptions();
-        endConversation("Sounds good. see you " + timeLord.getDayOfWeekForTimeStep(randomDateTime) + " in the " + timeLord.getTimeNameForTimeStep(randomDateTime) + "!");
+        endConversation("Sounds good. see you " + myTimelord.getTimeString(randomDateTime) + "!");
     }
 
     private void endConversation(string farewell = "")

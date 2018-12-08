@@ -76,4 +76,9 @@ public class Timelord : MonoBehaviour {
     public int getWeek(){
         return this.timeStep / 21;
     }
+
+    public string getTimeString(int timeStep)
+    {
+        return this.getDayOfWeekForTimeStep(timeStep) + " in the " + this.getTimeNameForTimeStep(timeStep);
+    }
 }

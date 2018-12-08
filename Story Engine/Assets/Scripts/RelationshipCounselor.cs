@@ -101,6 +101,11 @@ public class RelationshipCounselor : MonoBehaviour {
         return null;
     }
 
+    public List<Date> getAllDates()
+    {
+        return new List<Date>(this.scheduledDates);
+    }
+
 	public void leaveDate(){
 		isAtDate = false;
 		mySceneCatalogue.toggleInteriorScene();

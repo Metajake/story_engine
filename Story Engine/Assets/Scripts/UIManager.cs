@@ -12,12 +12,14 @@ public class UIManager : MonoBehaviour {
 	Button byeButton;
     GameObject askOnDateButton;
     GameObject mapButton;
+    GameObject journalButton;
     GameObject previousLocationButton;
 	GameObject nextLocationButton;
 	public GameObject dialoguePanel;
     public GameObject mainPanel;
 	public GameObject mapPanel;
-	private DialogueManager dialogueManager;
+    public GameObject journalPanel;
+    private DialogueManager dialogueManager;
 	private MapCartographer myMapCartographer;
 	private ConversationTracker conversationTracker;
 	private SceneCatalogue mySceneCatalogue;
@@ -31,13 +33,17 @@ public class UIManager : MonoBehaviour {
     private RelationshipCounselor myRelationshipCounselor;
     private VictoryCoach myVictoryCoach;
 	private CommandProcessor myCommandProcessor;
-	private Text textPanel;
+    private Timelord myTimelord;
+    private Text textPanel;
+    private Text pastDatesText;
+    private Text upcomingDatesText;
     public GameObject dateLocationButtonPrefab;
 
 	bool mapEnabled;
+    bool journalEnabled;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         talkButtonObject = GameObject.Find("TalkButton");
 		contextualActionButtonObject = GameObject.Find("ContextActionButton");
 		byeButton = GameObject.Find("Depart").GetComponent<Button>();
@@ -45,10 +51,12 @@ public class UIManager : MonoBehaviour {
         previousLocationButton = GameObject.Find("PreviousLocationButton");
         nextLocationButton = GameObject.Find("NextLocationButton");
 		mapButton = GameObject.Find("MapButton");
+        journalButton = GameObject.Find("JournalButton");
 
         dialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         myMapCartographer = GameObject.FindObjectOfType<MapCartographer>();
-		conversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
+        myTimelord = GameObject.FindObjectOfType<Timelord>();
+        conversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
 		mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 		myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
@@ -62,12 +70,15 @@ public class UIManager : MonoBehaviour {
         dateButtonsPanel = GameObject.Find("DateButtonsPanel");
 		sequenceButtonsPanel = GameObject.Find("SequenceButtonsPanel");
         textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
+        pastDatesText = GameObject.Find("PastDates").GetComponentInChildren<Text>();
+        upcomingDatesText = GameObject.Find("UpcomingDates").GetComponentInChildren<Text>();
 
-		dateLocationButtonPanel.SetActive(false);
+        dateLocationButtonPanel.SetActive(false);
 		clearPotentialPartners();
 
 		mapEnabled = false;
-	}
+        journalEnabled = false;
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -78,7 +89,14 @@ public class UIManager : MonoBehaviour {
 			return;
 		}
 
-		if( !dialogueManager.getIsInConversationMode()){
+        if (this.journalEnabled)
+        {
+            disableAllPanels();
+            enableJournalPanel();
+            return;
+        }
+
+        if ( !dialogueManager.getIsInConversationMode()){
 			disableAllPanels();
 			enableMainPanel();
 			dialogueManager.updateCharacterUI();
@@ -93,9 +111,49 @@ public class UIManager : MonoBehaviour {
 
 		toggleButtons();
 
-	}
+    }
 
-	public void setDescriptionText(string toWrite){
+    private string convertPastDatesToDateInfo(List<Date> allDates)
+    {
+        List<Date> pastDates = new List<Date>();
+        foreach(Date d in allDates)
+        {
+            if(d.dateTime < myTimelord.getCurrentTimestep())
+            {
+                pastDates.Add(d);
+            }
+        }
+        string allDatesInfo = stringifyAndSortDates(pastDates);
+        return allDatesInfo;
+    }
+
+    private string convertUpcomingDatesToDateInfo(List<Date> allDates)
+    {
+        List<Date> upcomingDates = new List<Date>();
+        foreach (Date d in allDates)
+        {
+            if (d.dateTime >= myTimelord.getCurrentTimestep())
+            {
+                upcomingDates.Add(d);
+            }
+        }
+        string allDatesInfo = stringifyAndSortDates(upcomingDates);
+        return allDatesInfo;
+    }
+
+    private string stringifyAndSortDates(List<Date> allDates)
+    {
+        allDates.Sort((x, y) => x.dateTime.CompareTo(y.dateTime));
+        string allDatesInfo = "";
+        foreach (Date d in allDates)
+        {
+            allDatesInfo += d.dateScene.locationName + " " +  myTimelord.getTimeString(d.dateTime) + " " + d.character.givenName + "\n";
+        }
+
+        return allDatesInfo;
+    }
+
+    public void setDescriptionText(string toWrite){
 		textPanel.text = toWrite;
 	}
 
@@ -281,10 +339,21 @@ public class UIManager : MonoBehaviour {
 		this.mapEnabled = !this.mapEnabled;
 	}
 
-	private void enableMapPanel()
+    public void toggleJournal()
+    {
+        pastDatesText.text = convertPastDatesToDateInfo(myRelationshipCounselor.getAllDates());
+        upcomingDatesText.text = convertUpcomingDatesToDateInfo(myRelationshipCounselor.getAllDates());
+        this.journalEnabled = !this.journalEnabled;
+    }
+
+    private void enableMapPanel()
 	{
         mapPanel.SetActive(true);
-		//myMapCartographer.createLocationButtons();
+    }
+
+    private void enableJournalPanel()
+    {
+        journalPanel.SetActive(true);
     }
 
     private void enableMainPanel()
@@ -295,6 +364,7 @@ public class UIManager : MonoBehaviour {
 	private void disableAllPanels()
 	{
         mapPanel.SetActive(false);
+        journalPanel.SetActive(false);
         mainPanel.SetActive(false);
 		dialoguePanel.SetActive(false);
 	}
@@ -302,6 +372,7 @@ public class UIManager : MonoBehaviour {
 	private void enableAllPanels()
     {
         mapPanel.SetActive(true);
+        journalPanel.SetActive(true);
         mainPanel.SetActive(true);
         dialoguePanel.SetActive(true);
     }
