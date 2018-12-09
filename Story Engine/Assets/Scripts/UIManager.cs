@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour {
     public GameObject mainPanel;
 	public GameObject mapPanel;
     public GameObject journalPanel;
-    private DialogueManager dialogueManager;
+    private DialogueManager myDialogueManager;
 	private MapCartographer myMapCartographer;
 	private ConversationTracker conversationTracker;
 	private SceneCatalogue mySceneCatalogue;
@@ -53,7 +53,7 @@ public class UIManager : MonoBehaviour {
 		mapButton = GameObject.Find("MapButton");
         journalButton = GameObject.Find("JournalButton");
 
-        dialogueManager = GameObject.FindObjectOfType<DialogueManager>();
+        myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         myMapCartographer = GameObject.FindObjectOfType<MapCartographer>();
         myTimelord = GameObject.FindObjectOfType<Timelord>();
         conversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
@@ -96,15 +96,15 @@ public class UIManager : MonoBehaviour {
             return;
         }
 
-        if ( !dialogueManager.getIsInConversationMode()){
+        if ( !myDialogueManager.getIsInConversationMode()){
 			disableAllPanels();
 			enableMainPanel();
-			dialogueManager.updateCharacterUI();
-			dialogueManager.updateSelectedPartnerUI();
+			myDialogueManager.updateCharacterUI();
+			myDialogueManager.updateSelectedPartnerUI();
 		}
 
-		dialoguePanel.SetActive(dialogueManager.getIsInConversationMode());
-		mainPanel.SetActive(!dialogueManager.getIsInConversationMode());
+		dialoguePanel.SetActive(myDialogueManager.getIsInConversationMode());
+		mainPanel.SetActive(!myDialogueManager.getIsInConversationMode());
 
 		askOnDateButton.SetActive(conversationTracker.canAskOnDateEnabled());
 		mapButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
@@ -224,9 +224,9 @@ public class UIManager : MonoBehaviour {
     }
 
 	public void onPortraitClicked(int portraitNumber){
-		Character clickedCharacter = dialogueManager.getPartnerAt(portraitNumber);
+		Character clickedCharacter = myDialogueManager.getPartnerAt(portraitNumber);
 		if(clickedCharacter != null ){
-			dialogueManager.selectedPartner = portraitNumber - 1;
+			myDialogueManager.selectedPartner = portraitNumber - 1;
 			talkButtonObject.GetComponentInChildren<Text>().text ="Talk to " + clickedCharacter.givenName;
 		}
 	}
@@ -241,10 +241,10 @@ public class UIManager : MonoBehaviour {
 
 	public void toggleDialogueWindow(bool isOn){
         
-        Character selectedCharacter = dialogueManager.getPartnerAt(dialogueManager.selectedPartner + 1);
+        Character selectedCharacter = myDialogueManager.getPartnerAt(myDialogueManager.selectedPartner + 1);
         if(selectedCharacter is DateableCharacter)
         {
-            dialogueManager.setConversationMode(isOn);
+            myDialogueManager.setConversationMode(isOn);
             GameObject.FindObjectOfType<ConversationTracker>().beginConversation((DateableCharacter)selectedCharacter);
         }
         else
@@ -336,6 +336,7 @@ public class UIManager : MonoBehaviour {
 	}
 
 	public void toggleMap(){
+        myMapCartographer.highlightCurrentLocation();
 		this.mapEnabled = !this.mapEnabled;
 	}
 

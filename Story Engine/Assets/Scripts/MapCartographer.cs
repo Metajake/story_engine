@@ -72,6 +72,21 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
         
 	}
 
+    public void highlightCurrentLocation()
+    {
+        Button[] allButtons = myMapPanel.GetComponentsInChildren<Button>();
+
+        foreach (Button b in allButtons)
+        {
+            b.GetComponent<Image>().color = Color.white;
+
+            if(mySceneCatalogue.getCurrentSceneName() == b.GetComponentInChildren<Text>().text)
+            {
+                b.GetComponent<Image>().color = Color.cyan; 
+            }
+        }
+    }
+
 
 	// Update is called once per frame
 	void Update () {
