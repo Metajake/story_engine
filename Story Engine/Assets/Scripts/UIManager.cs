@@ -147,7 +147,7 @@ public class UIManager : MonoBehaviour {
         string allDatesInfo = "";
         foreach (Date d in allDates)
         {
-            allDatesInfo += d.dateScene.locationName + " " +  myTimelord.getTimeString(d.dateTime) + " " + d.character.givenName + "\n";
+            allDatesInfo += d.dateScene.interiorName + " " +  myTimelord.getTimeString(d.dateTime) + " " + d.character.givenName + "\n";
         }
 
         return allDatesInfo;
