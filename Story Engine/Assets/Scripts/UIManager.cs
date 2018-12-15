@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour, IEventSubscriber {
 
     GameObject talkButtonObject;
 	GameObject contextualActionButtonObject;
@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour {
     private VictoryCoach myVictoryCoach;
 	private CommandProcessor myCommandProcessor;
     private Timelord myTimelord;
+    private EventQueue myEventQueue;
     private Text textPanel;
     private Text pastDatesText;
     private Text upcomingDatesText;
@@ -62,6 +63,7 @@ public class UIManager : MonoBehaviour {
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 		myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
         myTipManager = GameObject.FindObjectOfType<TipManager>();
+        myEventQueue = GameObject.FindObjectOfType<EventQueue>();
 
         dialogueButtonPanel = GameObject.Find("DialogueButtonPanel");
         dialogueOptionsButtonPanel = GameObject.Find("DialogueOptionsButtonPanel");
@@ -72,6 +74,8 @@ public class UIManager : MonoBehaviour {
         textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
         pastDatesText = GameObject.Find("PastDates").GetComponentInChildren<Text>();
         upcomingDatesText = GameObject.Find("UpcomingDates").GetComponentInChildren<Text>();
+
+        myEventQueue.subscribe(this);
 
         dateLocationButtonPanel.SetActive(false);
 		clearPotentialPartners();
@@ -381,5 +385,10 @@ public class UIManager : MonoBehaviour {
 	public bool getMapEnabled(){
 		return this.mapEnabled;
 	}
- 
+
+    public void eventOccured(IGameEvent occurringEvent)
+    {
+        Debug.Log("Event Occurred");
+        myDialogueManager.selectedPartner = -1;
+    }
 }

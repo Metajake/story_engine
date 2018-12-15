@@ -9,6 +9,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 
 	private int mySceneNumber;
 	private bool isInInteriorScene;
+    private EventQueue myEventQueue;
 
     private List<IKnownLocationsChangedObserver> currentObservers;
 
@@ -20,6 +21,8 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     void Start () {
         mySceneNumber = 6;
         isInInteriorScene = true; // Start Player out in apartment
+
+        myEventQueue = GameObject.FindObjectOfType<EventQueue>();
 	}
 	
 	void Update () {
@@ -40,6 +43,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 
 	public void toggleInteriorScene(){
 		isInInteriorScene = !isInInteriorScene;
+        myEventQueue.queueEvent(new SceneChangeEvent());
 	}
 
 	public bool getIsInInteriorScene(){
@@ -60,24 +64,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 
 	public void setCurrentSceneNumber(int newSceneNumber){
 		mySceneNumber = newSceneNumber;
-	}
-
-	public void goToPreviousScene()
-    {
-        GameObject.FindObjectOfType<DialogueManager>().selectedPartner = -1;
-        mySceneNumber--;
-		if(mySceneNumber < 0){
-			mySceneNumber = locations.Count -1;
-		}
-    }
-
-	public void goToNextScene(){
-		GameObject.FindObjectOfType<DialogueManager>().selectedPartner = -1;
-        mySceneNumber++;
-
-		if (mySceneNumber == locations.Count){
-			mySceneNumber = 0;
-		}
+        //CHANGE LOCATION EVENT
 	}
 
 	public string neutralResultForCurrentLocationDescription(){

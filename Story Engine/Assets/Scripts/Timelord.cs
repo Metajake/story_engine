@@ -23,7 +23,7 @@ public class Timelord : MonoBehaviour {
     }
 
 	public void advanceTimestep(){
-		GameObject.FindObjectOfType<DialogueManager>().selectedPartner = -1;
+		myDialogueManager.selectedPartner = -1;
         timeStep++;
         if(timeStep % 21 == 0){ //if it's a multiple of 21
             myDialogueManager.scatterCharacters(); 
