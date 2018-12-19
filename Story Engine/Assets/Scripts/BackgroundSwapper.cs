@@ -9,7 +9,6 @@ public class BackgroundSwapper : MonoBehaviour
 
 	public Texture2D[] backgrounds;
 	public Texture2D[] dateBackgrounds;
-	public Texture2D mapBackground;
 	private Image myImage;
 	private Timelord myTimeLord;
 	private SceneCatalogue mySceneCatalogue;
@@ -32,10 +31,6 @@ public class BackgroundSwapper : MonoBehaviour
 	}
 
 	private Texture2D getNextBackground(){
-		if (myUIManager.getMapEnabled())
-        {
-			return mapBackground;
-        }
         if (mySceneCatalogue.getIsInInteriorScene() == true)
         {
             return dateBackgroundsForThisScene()[0];

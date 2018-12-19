@@ -63,24 +63,8 @@ public class DialogueManager : MonoBehaviour {
 
     void Update () {
 	}
-    
-	public void updateCharacterUI()
-	{
-        charactersPresent = findConversationPartners();
-		myUIManager.placePotentialPartners(charactersPresent);
-	}
-    
-	public void updateSelectedPartnerUI(){
-		bool partners = charactersPresent.Count > 0;
-		myUIManager.partnersPresent(partners);
 
-        if (partners && this.selectedPartner < 0)
-        {
-			myUIManager.onPortraitClicked(new System.Random().Next(1, charactersPresent.Count + 1));
-        }
-	}
-
-	private List<Character> findConversationPartners(){
+	public List<Character> findConversationPartners(){
 
 		List<Character> toReturn = new List<Character>();
         

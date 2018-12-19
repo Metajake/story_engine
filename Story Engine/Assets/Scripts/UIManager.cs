@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     public GameObject mainPanel;
 	public GameObject mapPanel;
     public GameObject journalPanel;
+    private GameState myGameState;
     private DialogueManager myDialogueManager;
 	private MapCartographer myMapCartographer;
 	private ConversationTracker conversationTracker;
@@ -54,6 +55,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 		mapButton = GameObject.Find("MapButton");
         journalButton = GameObject.Find("JournalButton");
 
+        myGameState = GameObject.FindObjectOfType<GameState>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         myMapCartographer = GameObject.FindObjectOfType<MapCartographer>();
         myTimelord = GameObject.FindObjectOfType<Timelord>();
@@ -71,6 +73,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         mainPanelButtonsPanel = GameObject.Find("MainPanelButtonsPanel");
         dateButtonsPanel = GameObject.Find("DateButtonsPanel");
 		sequenceButtonsPanel = GameObject.Find("SequenceButtonsPanel");
+
         textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
         pastDatesText = GameObject.Find("PastDates").GetComponentInChildren<Text>();
         upcomingDatesText = GameObject.Find("UpcomingDates").GetComponentInChildren<Text>();
@@ -87,7 +90,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 	// Update is called once per frame
 	void Update ()
 	{
-		if(this.mapEnabled){
+
+        /*if(this.mapEnabled){
 			disableAllPanels();
             enableMapPanel();
 			return;
@@ -102,7 +106,9 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
         if ( !myDialogueManager.getIsInConversationMode()){
 			disableAllPanels();
+
 			enableMainPanel();
+
 			myDialogueManager.updateCharacterUI();
 			myDialogueManager.updateSelectedPartnerUI();
 		}
@@ -113,8 +119,66 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 		askOnDateButton.SetActive(conversationTracker.canAskOnDateEnabled());
 		mapButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
 
-		toggleButtons();
+		toggleButtons();*/
 
+        enableComponentsForState(myGameState.currentGameState);
+        populateComponentsForState(myGameState.currentGameState);
+    }
+
+    private void enableComponentsForState(GameState.gameStates currentState)
+    {
+        deactivateUIComponents();
+
+        if(currentState == GameState.gameStates.COMMANDSEQUENCE)
+        {
+            mainPanel.SetActive(true);
+            sequenceButtonsPanel.SetActive(true);
+        }
+        else if(currentState == GameState.gameStates.PROWL)
+        {
+            mainPanel.SetActive(true);
+            mainPanelButtonsPanel.SetActive(true);
+            mapButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
+        }
+    }
+
+    private void populateComponentsForState(GameState.gameStates currentState)
+    {
+        if (currentState == GameState.gameStates.COMMANDSEQUENCE)
+        {
+            if (!myGameState.hasGameBegun)
+            {
+                myCommandProcessor.createAndExecuteChangeDialogueSequence(myTipManager.introText);
+                myGameState.hasGameBegun = true;
+            }
+        }
+        else if (currentState == GameState.gameStates.PROWL)
+        {
+            placePotentialPartners(myDialogueManager.findConversationPartners());
+            updateSelectedPartnerUI();
+        }
+    }
+
+    private void deactivateUIComponents()
+    {
+        dialoguePanel.SetActive(false);
+        journalPanel.SetActive(false);
+        mapPanel.SetActive(false);
+        mainPanel.SetActive(false);
+        dateButtonsPanel.SetActive(false);
+        mainPanelButtonsPanel.SetActive(false);
+        sequenceButtonsPanel.SetActive(false);
+    }
+
+    private void updateSelectedPartnerUI()
+    {
+        bool partners = myDialogueManager.charactersPresent.Count > 0;
+        partnersPresent(partners);
+
+        if (partners && myDialogueManager.selectedPartner < 0)
+        {
+            onPortraitClicked(new System.Random().Next(1, myDialogueManager.charactersPresent.Count + 1));
+        }
     }
 
     private string convertPastDatesToDateInfo(List<Date> allDates)
