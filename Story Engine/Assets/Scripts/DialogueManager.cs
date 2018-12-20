@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour {
     private Timelord myTimeLord;
     private SceneCatalogue mySceneCatalogue;
     private RelationshipCounselor myRelationshipCounselor;
-    //private CommandProcessor myCommandProcessor;
+    private GameState myGameState;
 	private UIManager myUIManager;
 
 	public void registerDialogue(DialoguePiece piece){
@@ -44,6 +44,7 @@ public class DialogueManager : MonoBehaviour {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myUIManager = GameObject.FindObjectOfType<UIManager>();
+        myGameState = GameObject.FindObjectOfType<GameState>();
 
         findConversationPartners();
     }
@@ -74,6 +75,7 @@ public class DialogueManager : MonoBehaviour {
     	            myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentLocation(), myTimeLord.getCurrentTimestep())
 				);
 				myRelationshipCounselor.isAtDate = true;
+                myGameState.currentGameState = GameState.gameStates.DATE;
                 charactersPresent = toReturn;
 				return toReturn;
             }

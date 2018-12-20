@@ -18,6 +18,14 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
 		
 	}
 
+    public void executeAllCommands()
+    {
+        while(commandList.Count > 0)
+        {
+            commandList.Dequeue().execute();
+        }
+    }
+
 	void Awake ()
 	{
 		commandList = new Queue<ICommand>();
@@ -45,12 +53,13 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
         return command;
     }
 
-    public void createAndEnqueueListOfChangeDialogueCommands(List<string> dialogues)
+    public void createAndEnqueueChangeDialogueSequence(List<string> dialogues)
     {
         foreach(string dialogue in dialogues)
         {
             createAndEnqueueChangeDialogueCommand(dialogue);
         }
+        this.commandList.Enqueue(new SequenceEndCommand());
     }
 
     public void doSequence(List<ICommand> commandSequence)
@@ -59,7 +68,7 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
         {
             commandList.Enqueue(command);
         }
-        executeNextCommand();
+        executeAllCommands();
     }
 
     public void createAndExecuteChangeDialogueSequence(List<string> sequence)

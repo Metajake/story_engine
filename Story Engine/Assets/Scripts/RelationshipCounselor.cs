@@ -11,6 +11,7 @@ public class RelationshipCounselor : MonoBehaviour {
 	private UIManager uiManager;
 	public bool isAtDate;
 	public VictoryCoach myVictoryCoach;
+    private GameState myGameState;
     public int loveChanceIncrement;
 
     private Dictionary<String, Dictionary<int, int>> actionLikelihoodMatrix;
@@ -22,6 +23,7 @@ public class RelationshipCounselor : MonoBehaviour {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         uiManager = GameObject.FindObjectOfType<UIManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
+        myGameState = GameObject.FindObjectOfType<GameState>();
 
         ConstructDateLikelihoods();
     }
@@ -108,6 +110,7 @@ public class RelationshipCounselor : MonoBehaviour {
 
 	public void leaveDate(){
 		isAtDate = false;
+        myGameState.currentGameState = GameState.gameStates.PROWL;
 		mySceneCatalogue.toggleInteriorScene();
 		uiManager.resetDateButtons();
         getCurrentDate().isOver = true;

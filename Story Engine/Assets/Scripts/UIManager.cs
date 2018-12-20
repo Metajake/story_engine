@@ -154,6 +154,10 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             dialoguePanel.SetActive(true);
             askOnDateButton.SetActive(conversationTracker.canAskOnDateEnabled());
+        }else if (currentState == GameState.gameStates.DATE)
+        {
+            mainPanel.SetActive(true);
+            dateButtonsPanel.SetActive(myRelationshipCounselor.isAtDate);
         }
     }
 
@@ -163,7 +167,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             if (!myGameState.hasGameBegun)
             {
-                myCommandProcessor.createAndExecuteChangeDialogueSequence(myTipManager.introText);
+                myCommandProcessor.createAndEnqueueChangeDialogueSequence(myTipManager.introText);
                 myGameState.hasGameBegun = true;
             }
         }
@@ -178,6 +182,10 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         else if (currentState == GameState.gameStates.CONVERSATION)
         {
             
+        }
+        else if(currentState == GameState.gameStates.DATE)
+        {
+            placePotentialPartners( myDialogueManager.findConversationPartners() );
         }
     }
 
@@ -247,14 +255,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
     public void setDescriptionText(string toWrite){
 		textPanel.text = toWrite;
-	}
-
-
-	private void toggleButtons()
-	{
-		sequenceButtonsPanel.SetActive(myCommandProcessor.isInSequence());
-		mainPanelButtonsPanel.SetActive(!myRelationshipCounselor.isAtDate && !myCommandProcessor.isInSequence());
-		dateButtonsPanel.SetActive(myRelationshipCounselor.isAtDate && !myCommandProcessor.isInSequence());
 	}
 
 	internal void gameOver()
