@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private GameObject mainPanelButtonsPanel;
     private GameObject dateButtonsPanel;
 	private GameObject sequenceButtonsPanel;
+    private GameObject characterPanel;
     private RelationshipCounselor myRelationshipCounselor;
     private VictoryCoach myVictoryCoach;
 	private CommandProcessor myCommandProcessor;
@@ -73,6 +74,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         mainPanelButtonsPanel = GameObject.Find("MainPanelButtonsPanel");
         dateButtonsPanel = GameObject.Find("DateButtonsPanel");
 		sequenceButtonsPanel = GameObject.Find("SequenceButtonsPanel");
+        characterPanel = GameObject.Find("CharacterPanel");
 
         textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
         pastDatesText = GameObject.Find("PastDates").GetComponentInChildren<Text>();
@@ -148,6 +150,10 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
                 mainPanel.SetActive(false);
                 journalPanel.SetActive(true);
             }
+        }else if (currentState == GameState.gameStates.CONVERSATION)
+        {
+            dialoguePanel.SetActive(true);
+            askOnDateButton.SetActive(conversationTracker.canAskOnDateEnabled());
         }
     }
 
@@ -169,6 +175,10 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
                 updateSelectedPartnerUI();
             }
         }
+        else if (currentState == GameState.gameStates.CONVERSATION)
+        {
+            
+        }
     }
 
     private void deactivateUIComponents()
@@ -177,6 +187,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         journalPanel.SetActive(false);
         mapPanel.SetActive(false);
         mainPanel.SetActive(false);
+        
         dateButtonsPanel.SetActive(false);
         mainPanelButtonsPanel.SetActive(false);
         sequenceButtonsPanel.SetActive(false);
@@ -313,18 +324,24 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 	}
 
 	public void toggleDialogueWindow(bool isOn){
-        
-        Character selectedCharacter = myDialogueManager.getPartnerAt(myDialogueManager.selectedPartner + 1);
-        if(selectedCharacter is DateableCharacter)
-        {
+        if (!isOn) {
+            myGameState.currentGameState = GameState.gameStates.PROWL;
             myDialogueManager.setConversationMode(isOn);
-            GameObject.FindObjectOfType<ConversationTracker>().beginConversation((DateableCharacter)selectedCharacter);
         }
         else
         {
-            //construct command
-            string dialogueString = myTipManager.getTip();
-            myCommandProcessor.createAndExecuteChangeDialogueSequence(new List<string>() { dialogueString });
+            Character selectedCharacter = myDialogueManager.getPartnerAt(myDialogueManager.selectedPartner + 1);
+            if (selectedCharacter is DateableCharacter)
+            {
+                myDialogueManager.setConversationMode(isOn);
+                GameObject.FindObjectOfType<ConversationTracker>().beginConversation((DateableCharacter)selectedCharacter);
+                myGameState.currentGameState = GameState.gameStates.CONVERSATION;
+            }
+            else
+            {
+                string dialogueString = myTipManager.getTip();
+                myCommandProcessor.createAndExecuteChangeDialogueSequence(new List<string>() { dialogueString });
+            }
         }
     }
 
