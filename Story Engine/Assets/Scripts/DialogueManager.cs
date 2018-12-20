@@ -64,7 +64,7 @@ public class DialogueManager : MonoBehaviour {
     void Update () {
 	}
 
-	public List<Character> findConversationPartners(){
+    public List<Character> findConversationPartners(){
 
 		List<Character> toReturn = new List<Character>();
         
@@ -74,6 +74,7 @@ public class DialogueManager : MonoBehaviour {
     	            myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentLocation(), myTimeLord.getCurrentTimestep())
 				);
 				myRelationshipCounselor.isAtDate = true;
+                charactersPresent = toReturn;
 				return toReturn;
             }
         }
@@ -83,6 +84,7 @@ public class DialogueManager : MonoBehaviour {
 				toReturn.Add(character);
 			}
 		}
+        charactersPresent = toReturn;
 		return toReturn;
 	}
 

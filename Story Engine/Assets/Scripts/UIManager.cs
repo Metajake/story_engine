@@ -165,7 +165,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             if (!mapEnabled && !journalEnabled)
             {
-                placePotentialPartners(myDialogueManager.findConversationPartners());
+                placePotentialPartners( myDialogueManager.findConversationPartners() );
                 updateSelectedPartnerUI();
             }
         }
@@ -185,7 +185,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private void updateSelectedPartnerUI()
     {
         bool partners = myDialogueManager.charactersPresent.Count > 0;
-        partnersPresent(partners);
+
+        talkButtonObject.SetActive(partners);
 
         if (partners && myDialogueManager.selectedPartner < 0)
         {
@@ -309,14 +310,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 			myDialogueManager.selectedPartner = portraitNumber - 1;
 			talkButtonObject.GetComponentInChildren<Text>().text ="Talk to " + clickedCharacter.givenName;
 		}
-	}
-
-	public void partnersPresent(bool partners){
-		if (myCommandProcessor.isInSequence())
-        {
-            return;
-        }
-		talkButtonObject.SetActive(partners);
 	}
 
 	public void toggleDialogueWindow(bool isOn){
