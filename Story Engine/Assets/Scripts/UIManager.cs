@@ -139,6 +139,11 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             mainPanel.SetActive(true);
             mainPanelButtonsPanel.SetActive(true);
             mapButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
+            if (this.mapEnabled)
+            {
+                mainPanel.SetActive(false);
+                mapPanel.SetActive(true);
+            }
         }
     }
 
@@ -154,8 +159,11 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
         else if (currentState == GameState.gameStates.PROWL)
         {
-            placePotentialPartners(myDialogueManager.findConversationPartners());
-            updateSelectedPartnerUI();
+            if (!mapEnabled && !journalEnabled)
+            {
+                placePotentialPartners(myDialogueManager.findConversationPartners());
+                updateSelectedPartnerUI();
+            }
         }
     }
 
@@ -413,11 +421,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         pastDatesText.text = convertPastDatesToDateInfo(myRelationshipCounselor.getAllDates());
         upcomingDatesText.text = convertUpcomingDatesToDateInfo(myRelationshipCounselor.getAllDates());
         this.journalEnabled = !this.journalEnabled;
-    }
-
-    private void enableMapPanel()
-	{
-        mapPanel.SetActive(true);
     }
 
     private void enableJournalPanel()
