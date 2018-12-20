@@ -143,6 +143,10 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             {
                 mainPanel.SetActive(false);
                 mapPanel.SetActive(true);
+            }else if (this.journalEnabled)
+            {
+                mainPanel.SetActive(false);
+                journalPanel.SetActive(true);
             }
         }
     }
