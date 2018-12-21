@@ -185,7 +185,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         List<Date> pastDates = new List<Date>();
         foreach(Date d in allDates)
         {
-            if(d.dateTime < myTimelord.getCurrentTimestep())
+            if(d.isOver)
             {
                 pastDates.Add(d);
             }
@@ -199,7 +199,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         List<Date> upcomingDates = new List<Date>();
         foreach (Date d in allDates)
         {
-            if (d.dateTime >= myTimelord.getCurrentTimestep())
+            if (!d.isOver)
             {
                 upcomingDates.Add(d);
             }

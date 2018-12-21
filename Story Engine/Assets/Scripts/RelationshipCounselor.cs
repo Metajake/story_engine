@@ -56,7 +56,13 @@ public class RelationshipCounselor : MonoBehaviour {
     }
 
 	void Update () {
-        
+        foreach(Date d in getAllDates())
+        {
+            if(d.dateTime < myTimeLord.getCurrentTimestep())
+            {
+                d.isOver = true;
+            }
+        }
     }
 
 	internal void createDate(Location dateLocation, int dateTime, DateableCharacter speaker)
