@@ -44,8 +44,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
 	bool mapEnabled;
     bool journalEnabled;
-
-    // Use this for initialization
+    
     void Start () {
         talkButtonObject = GameObject.Find("TalkButton");
 		contextualActionButtonObject = GameObject.Find("ContextActionButton");
@@ -89,40 +88,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         journalEnabled = false;
     }
 	
-	// Update is called once per frame
 	void Update ()
 	{
-
-        /*if(this.mapEnabled){
-			disableAllPanels();
-            enableMapPanel();
-			return;
-		}
-
-        if (this.journalEnabled)
-        {
-            disableAllPanels();
-            enableJournalPanel();
-            return;
-        }
-
-        if ( !myDialogueManager.getIsInConversationMode()){
-			disableAllPanels();
-
-			enableMainPanel();
-
-			myDialogueManager.updateCharacterUI();
-			myDialogueManager.updateSelectedPartnerUI();
-		}
-
-		dialoguePanel.SetActive(myDialogueManager.getIsInConversationMode());
-		mainPanel.SetActive(!myDialogueManager.getIsInConversationMode());
-
-		askOnDateButton.SetActive(conversationTracker.canAskOnDateEnabled());
-		mapButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
-
-		toggleButtons();*/
-
         enableComponentsForState(myGameState.currentGameState);
         populateComponentsForState(myGameState.currentGameState);
     }
@@ -392,7 +359,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
                 buttonObject.GetComponentInChildren<Text>().text = dateSceneNames[dateButtonIndex];
 
-                UnityAction buttonAction = () => scheduleDateForLocation(dateScenes[dateButtonIndex]);
+                UnityAction buttonAction = () => BTN_scheduleDateForLocation(dateScenes[dateButtonIndex]);
                 buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);
 
             }
@@ -400,9 +367,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
 	}
 
-	public void scheduleDateForLocation(Location dateLocation){
+	public void BTN_scheduleDateForLocation(Location dateLocation){
 		conversationTracker.scheduleDate(dateLocation);
-
 	}
 
 	public void showLocationOptions(){
@@ -417,55 +383,17 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         this.dateLocationButtonPanel.SetActive(false);
     }
 
-	public void goalAchieved(DifficultyLevel levelAchieved){
-        if(levelAchieved == DifficultyLevel.HARD){
-            Debug.Log("You have ascended to the ultimate form of human being. Your love is free. You are at one with everyone.");
-        }else{
-			Debug.Log("Goal " + levelAchieved + " Attained!! ... But there are more experiences to be had!");
-        }
-	}
-
-	public void toggleMap(){
+	public void BTN_toggleMap(){
         myMapCartographer.highlightCurrentLocation();
 		this.mapEnabled = !this.mapEnabled;
 	}
 
-    public void toggleJournal()
+    public void BTN_toggleJournal()
     {
         pastDatesText.text = convertPastDatesToDateInfo(myRelationshipCounselor.getAllDates());
         upcomingDatesText.text = convertUpcomingDatesToDateInfo(myRelationshipCounselor.getAllDates());
         this.journalEnabled = !this.journalEnabled;
     }
-
-    private void enableJournalPanel()
-    {
-        journalPanel.SetActive(true);
-    }
-
-    private void enableMainPanel()
-    {
-		mainPanel.SetActive(true);
-    }
-
-	private void disableAllPanels()
-	{
-        mapPanel.SetActive(false);
-        journalPanel.SetActive(false);
-        mainPanel.SetActive(false);
-		dialoguePanel.SetActive(false);
-	}
-
-	private void enableAllPanels()
-    {
-        mapPanel.SetActive(true);
-        journalPanel.SetActive(true);
-        mainPanel.SetActive(true);
-        dialoguePanel.SetActive(true);
-    }
-
-	public bool getMapEnabled(){
-		return this.mapEnabled;
-	}
 
     public void eventOccured(IGameEvent occurringEvent)
     {

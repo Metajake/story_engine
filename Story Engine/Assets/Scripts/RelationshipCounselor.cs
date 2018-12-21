@@ -8,7 +8,7 @@ public class RelationshipCounselor : MonoBehaviour {
 	private List<Date> scheduledDates;
 	private Timelord myTimeLord;
     private SceneCatalogue mySceneCatalogue;
-	private UIManager uiManager;
+	private UIManager myUIManager;
 	public bool isAtDate;
 	public VictoryCoach myVictoryCoach;
     private GameState myGameState;
@@ -21,7 +21,7 @@ public class RelationshipCounselor : MonoBehaviour {
 		scheduledDates = new List<Date>();
 		myTimeLord = GameObject.FindObjectOfType<Timelord>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
-        uiManager = GameObject.FindObjectOfType<UIManager>();
+        myUIManager = GameObject.FindObjectOfType<UIManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
         myGameState = GameObject.FindObjectOfType<GameState>();
 
@@ -115,7 +115,7 @@ public class RelationshipCounselor : MonoBehaviour {
 		isAtDate = false;
         myGameState.currentGameState = GameState.gameStates.PROWL;
 		mySceneCatalogue.toggleInteriorScene();
-		uiManager.resetDateButtons();
+        myUIManager.resetDateButtons();
         getCurrentDate().isOver = true;
 	}
 
@@ -128,7 +128,7 @@ public class RelationshipCounselor : MonoBehaviour {
         Debug.Log("Roll: " + roll);
         Debug.Log("In love amount: " + she.inLoveAmount*this.loveChanceIncrement);
         if (roll < she.inLoveAmount*this.loveChanceIncrement) {
-    		uiManager.gameOver();
+    		myUIManager.gameOver();
         }
 
         she.inLoveAmount ++;
@@ -137,13 +137,13 @@ public class RelationshipCounselor : MonoBehaviour {
         int leavePercentageForLocation = 0; //FOR DEBUGGING
 
         if (roll <= leavePercentageForLocation){
-            uiManager.abandonDateDescription();
+            myUIManager.abandonDateDescription();
             Debug.Log("You got ditched, you lame. Enjoy watching porn at home, alone.");
         }else if (roll <= leavePercentageForLocation + actionLikelihoodMatrix["neutral"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]]){
-            uiManager.showNeutralDescriptionText();
+            myUIManager.showNeutralDescriptionText();
             Debug.Log("Contextual pre-programmed neutral location description (which we will eventually do).");
         }else{
-            uiManager.experienceDescription();
+            myUIManager.experienceDescription();
             myVictoryCoach.achievedExperience(mySceneCatalogue.getCurrentSceneNumber());
         }
         

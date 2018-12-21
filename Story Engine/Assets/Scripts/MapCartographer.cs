@@ -104,7 +104,7 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
     private void changeScene(int sceneNumber)
     {
         mySceneCatalogue.setCurrentSceneNumber(sceneNumber);
-        myUIManager.toggleMap();
+        myUIManager.BTN_toggleMap();
     }
 
     public void BeNotifiedOfLocationChange()

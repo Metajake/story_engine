@@ -806,7 +806,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 112322379}
-        m_MethodName: toggleMap
+        m_MethodName: BTN_toggleMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3403,7 +3403,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 112322379}
-        m_MethodName: toggleJournal
+        m_MethodName: BTN_toggleJournal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4734,7 +4734,6 @@ MonoBehaviour:
   isInside: 1
   activeTimes: 010000
   isPresent: 1
-  savedTimes: 
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
@@ -4778,7 +4777,6 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 000100
   isPresent: 1
-  savedTimes: 
   isSubordinate: 1
   permanentOpinion: 0
   inLoveAmount: 0
@@ -4804,7 +4802,6 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 010000
   isPresent: 1
-  savedTimes: 
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
@@ -4850,7 +4847,6 @@ MonoBehaviour:
   isInside: 1
   activeTimes: 000100
   isPresent: 1
-  savedTimes: 
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
@@ -4876,7 +4872,6 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 010000
   isPresent: 1
-  savedTimes: 
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
@@ -4902,7 +4897,6 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 000100
   isPresent: 1
-  savedTimes: 
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
@@ -4928,7 +4922,6 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 000001
   isPresent: 1
-  savedTimes: 
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
@@ -4954,7 +4947,6 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 010000
   isPresent: 1
-  savedTimes: 
   isSubordinate: 1
   permanentOpinion: 0
   inLoveAmount: 0
@@ -4980,7 +4972,6 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 000100
   isPresent: 1
-  savedTimes: 
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
@@ -5486,7 +5477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAtDate: 0
   myVictoryCoach: {fileID: 0}
-  loveChanceIncrement: 75
+  loveChanceIncrement: 1
 --- !u!4 &1650917027
 Transform:
   m_ObjectHideFlags: 0
@@ -6586,7 +6577,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 112322379}
-        m_MethodName: toggleMap
+        m_MethodName: BTN_toggleMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7026,7 +7017,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 112322379}
-        m_MethodName: toggleJournal
+        m_MethodName: BTN_toggleJournal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
