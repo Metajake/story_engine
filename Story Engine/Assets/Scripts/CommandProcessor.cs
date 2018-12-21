@@ -33,7 +33,7 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
 
     void Start()
     {
-        executeNextCommand();
+        
     }
 
     void Update () {
@@ -60,6 +60,7 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
             createAndEnqueueChangeDialogueCommand(dialogue);
         }
         this.commandList.Enqueue(new SequenceEndCommand());
+        executeNextCommand();
     }
 
     public void doSequence(List<ICommand> commandSequence)
