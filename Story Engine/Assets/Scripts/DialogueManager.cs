@@ -91,7 +91,7 @@ public class DialogueManager : MonoBehaviour {
 	}
 
 	private bool isCharacterInTimeOfDay(Character character){
-		return character.activeTimes[myTimeLord.getCurrentModulusTimestep()];
+		return character.activeTimes[myTimeLord.getCurrentModulusTimestep()] && !myRelationshipCounselor.hasDateInFuture(character);
 	}
 
 	private bool isCharacterPresentAtCurrentLocation(Character character){

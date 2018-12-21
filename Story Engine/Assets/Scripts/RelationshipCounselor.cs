@@ -56,13 +56,7 @@ public class RelationshipCounselor : MonoBehaviour {
     }
 
 	void Update () {
-        foreach (Date date in this.scheduledDates)
-        {
-            if (date.dateTime < myTimeLord.getCurrentTimestep())
-            {
-                date.character.savedTimes.CopyTo(date.character.activeTimes, 0);
-            }
-        }
+        
     }
 
 	internal void createDate(Location dateLocation, int dateTime, DateableCharacter speaker)
@@ -74,7 +68,6 @@ public class RelationshipCounselor : MonoBehaviour {
         date.character = speaker;
         date.isOver = false;
 		this.scheduledDates.Add(date);
-		speaker.noLocation();
 	}
        
 	public DateableCharacter datePartner(Location dateLocation, int dateTime){
@@ -106,6 +99,16 @@ public class RelationshipCounselor : MonoBehaviour {
     public List<Date> getAllDates()
     {
         return new List<Date>(this.scheduledDates);
+    }
+
+    public bool hasDateInFuture(Character character) {
+        foreach (Date date in getAllDates()){
+            if(date.dateTime >= myTimeLord.getCurrentTimestep() && (date.character.givenName == character.givenName))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 	public void leaveDate(){

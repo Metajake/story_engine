@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DateableCharacter : Character {
 
-    public bool[] savedTimes;
 	public bool isSubordinate;
 	public int permanentOpinion;
     public int inLoveAmount;
@@ -19,8 +18,6 @@ public class DateableCharacter : Character {
         DialogueManager dm = GameObject.FindObjectOfType<DialogueManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 		experienceCount = 0;
-		savedTimes = new bool[activeTimes.Length];
-		activeTimes.CopyTo(savedTimes, 0);
         inLoveAmount = 0;
 
 		if(givenName.ToLower() == "kristie"){
@@ -424,12 +421,6 @@ public class DateableCharacter : Character {
 	
 	void Update () {
 		
-	}
-
-	public void noLocation(){
-		for (int i = 0; i < this.activeTimes.Length; i++){
-			this.activeTimes[i] = false;
-		}
 	}
 
     public int getPreferredLocation(){
