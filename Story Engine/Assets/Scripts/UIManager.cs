@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour, IEventSubscriber {
 
@@ -12,9 +13,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 	Button byeButton;
     GameObject askOnDateButton;
     GameObject mapButton;
-    GameObject journalButton;
-    GameObject previousLocationButton;
-	GameObject nextLocationButton;
 	public GameObject dialoguePanel;
     public GameObject mainPanel;
 	public GameObject mapPanel;
@@ -31,9 +29,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private GameObject mainPanelButtonsPanel;
     private GameObject dateButtonsPanel;
 	private GameObject sequenceButtonsPanel;
-    private GameObject characterPanel;
     private RelationshipCounselor myRelationshipCounselor;
-    private VictoryCoach myVictoryCoach;
 	private CommandProcessor myCommandProcessor;
     private Timelord myTimelord;
     private EventQueue myEventQueue;
@@ -50,10 +46,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 		contextualActionButtonObject = GameObject.Find("ContextActionButton");
 		byeButton = GameObject.Find("Depart").GetComponent<Button>();
         askOnDateButton = GameObject.Find("AskOut");
-        previousLocationButton = GameObject.Find("PreviousLocationButton");
-        nextLocationButton = GameObject.Find("NextLocationButton");
 		mapButton = GameObject.Find("MapButton");
-        journalButton = GameObject.Find("JournalButton");
 
         myGameState = GameObject.FindObjectOfType<GameState>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
@@ -62,7 +55,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         conversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
 		mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 		myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
-        myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 		myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
         myTipManager = GameObject.FindObjectOfType<TipManager>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
@@ -73,7 +65,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         mainPanelButtonsPanel = GameObject.Find("MainPanelButtonsPanel");
         dateButtonsPanel = GameObject.Find("DateButtonsPanel");
 		sequenceButtonsPanel = GameObject.Find("SequenceButtonsPanel");
-        characterPanel = GameObject.Find("CharacterPanel");
 
         textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
         pastDatesText = GameObject.Find("PastDates").GetComponentInChildren<Text>();
@@ -226,7 +217,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
 	internal void gameOver()
 	{
-        Application.LoadLevel("splash_game_over");
+        SceneManager.LoadScene("splash_game_over");
 	}
 
     public void placePotentialPartners(List<Character> potentialConversationPartners)

@@ -12,7 +12,6 @@ public class BackgroundSwapper : MonoBehaviour
 	private Image myImage;
 	private Timelord myTimeLord;
 	private SceneCatalogue mySceneCatalogue;
-	private UIManager myUIManager;
 
 	// Use this for initialization
 	void Start()
@@ -20,7 +19,6 @@ public class BackgroundSwapper : MonoBehaviour
 		myImage = GetComponent<Image>();
 		myTimeLord = GameObject.FindObjectOfType<Timelord>();
 		mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
-		myUIManager = GameObject.FindObjectOfType<UIManager>();
 	}
 
 	// Update is called once per frame

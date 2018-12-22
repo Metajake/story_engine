@@ -7,12 +7,10 @@ public class VictoryCoach : MonoBehaviour {
 	public List<bool> hasAchievedExperience;
     private SceneCatalogue mySceneCatalogue;
     private DifficultyLevel nextGoal;
-    private UIManager myUIManager;
 
 	// Use this for initialization
 	void Start () {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
-        myUIManager = GameObject.FindObjectOfType<UIManager>();
 		nextGoal = DifficultyLevel.EASY;
         hasAchievedExperience = new List<bool>();
 

@@ -5,8 +5,6 @@ using UnityEngine;
 public class TipManager : MonoBehaviour {
     VictoryCoach myVictoryCoach;
     SceneCatalogue mySceneCatalogue;
-    UIManager myUIManager;
-    CommandProcessor myCommandProcessor;
     List<string> tips;
     List<string> locationReveals;
 
@@ -24,8 +22,6 @@ public class TipManager : MonoBehaviour {
     void Start () {
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
-        myUIManager = GameObject.FindObjectOfType<UIManager>();
-        myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
 
         tips = new List<string>();
         tips.Add("Keep trying.");

@@ -11,7 +11,6 @@ public class ConversationTracker : MonoBehaviour {
 	private Text dialogueText;
     private DialogueManager dialogueManager;
     private UIManager uiManager;
-	private SceneCatalogue mySceneCatalogue;
     private Timelord myTimelord;
     private RelationshipCounselor relationshipCounselor;
 
@@ -20,7 +19,6 @@ public class ConversationTracker : MonoBehaviour {
 		dialogueText = GameObject.Find("DialogueText").GetComponent<Text>();
         dialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         uiManager = GameObject.FindObjectOfType<UIManager>();
-        mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myTimelord = GameObject.FindObjectOfType<Timelord>();
         relationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
 	}

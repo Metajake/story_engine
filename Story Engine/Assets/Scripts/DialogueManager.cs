@@ -20,7 +20,6 @@ public class DialogueManager : MonoBehaviour {
     private SceneCatalogue mySceneCatalogue;
     private RelationshipCounselor myRelationshipCounselor;
     private GameState myGameState;
-	private UIManager myUIManager;
 
 	public void registerDialogue(DialoguePiece piece){
 		this.pieces.Add(piece);
@@ -43,7 +42,6 @@ public class DialogueManager : MonoBehaviour {
         myTimeLord = GameObject.FindObjectOfType<Timelord>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
-        myUIManager = GameObject.FindObjectOfType<UIManager>();
         myGameState = GameObject.FindObjectOfType<GameState>();
 
         findConversationPartners();
