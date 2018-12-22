@@ -41,6 +41,18 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         return result;
     }
 
+    public string getLocationDescription()
+    {
+        if (getIsInInteriorScene())
+        {
+            return getCurrentLocation().descriptionInterior;
+        }
+        else
+        {
+            return getCurrentLocation().descriptionExterior;
+        }
+    }
+
 	public void toggleInteriorScene(){
 		isInInteriorScene = !isInInteriorScene;
         myEventQueue.queueEvent(new SceneChangeEvent());

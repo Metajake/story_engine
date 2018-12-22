@@ -3062,6 +3062,8 @@ MonoBehaviour:
   experienceDescription: Beach Exp
   isDateScene: 1
   isKnown: 1
+  descriptionInterior: 
+  descriptionExterior: 
 --- !u!114 &927541666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3079,6 +3081,8 @@ MonoBehaviour:
   experienceDescription: Uni Exp
   isDateScene: 1
   isKnown: 0
+  descriptionInterior: 
+  descriptionExterior: 
 --- !u!114 &927541667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3096,6 +3100,8 @@ MonoBehaviour:
   experienceDescription: Field Exp
   isDateScene: 1
   isKnown: 1
+  descriptionInterior: 
+  descriptionExterior: 
 --- !u!114 &927541668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3113,6 +3119,8 @@ MonoBehaviour:
   experienceDescription: Woods Exp
   isDateScene: 1
   isKnown: 0
+  descriptionInterior: The sun glimmers through the rich green leaves.
+  descriptionExterior: The woods bring out my primal nature.
 --- !u!114 &927541669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3130,6 +3138,9 @@ MonoBehaviour:
   experienceDescription: Sea Exp
   isDateScene: 1
   isKnown: 0
+  descriptionInterior: The ocean breeze smells so fresh. This is the way to live.
+  descriptionExterior: The arcade is my home away from home. Keep on the lookout for
+    any worthy Street Fighter opponents.
 --- !u!114 &927541670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3147,6 +3158,10 @@ MonoBehaviour:
   experienceDescription: Res Exp
   isDateScene: 0
   isKnown: 1
+  descriptionInterior: The laundry is piling up, and I'm out of clean dishes. At least
+    the humming computer and dim monitor is comforting.
+  descriptionExterior: I hope that I don't run into any neighbors. I really hate meaningless
+    relationships with people that you have to see everyday.
 --- !u!114 &927541671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3164,6 +3179,10 @@ MonoBehaviour:
   experienceDescription: City Exp
   isDateScene: 0
   isKnown: 1
+  descriptionInterior: I'm lucky that I don't have to punch in for work. Being a sub-contractor
+    is the perfect life for a lazy bachelor like myself.
+  descriptionExterior: The city is full of life and action. There's something for
+    everyone here (except peace and quiet).
 --- !u!114 &927541672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3181,6 +3200,10 @@ MonoBehaviour:
   experienceDescription: West Exp
   isDateScene: 1
   isKnown: 0
+  descriptionInterior: The club is really bumping. The rythmic bass is hypnotizing,
+    and it's hard not to move your body to the beat.
+  descriptionExterior: This part of town is known for it's impurity. But everyone
+    needs a place to express their wild side.
 --- !u!114 &927541673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3198,6 +3221,11 @@ MonoBehaviour:
   experienceDescription: Riv Exp
   isDateScene: 1
   isKnown: 0
+  descriptionInterior: This secluded beach on the edge of the water is a great place
+    for a bonfire, or some fishing.
+  descriptionExterior: The river always reminds me of life itself. Always from beginning
+    to end. You can paddle with the current, against the current, or just go with
+    the flow.
 --- !u!114 &927541674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3215,6 +3243,10 @@ MonoBehaviour:
   experienceDescription: Vill Exp
   isDateScene: 1
   isKnown: 0
+  descriptionInterior: The local residents have their own unique culture and economy.
+    You can find things here that you can't find anywhere else.
+  descriptionExterior: It's nice to get outside the big city. This village is the
+    definition of 'cozy'.
 --- !u!114 &927541675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3232,6 +3264,8 @@ MonoBehaviour:
   experienceDescription: Mount Exp
   isDateScene: 1
   isKnown: 0
+  descriptionInterior: 
+  descriptionExterior: 
 --- !u!114 &927541676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3249,6 +3283,8 @@ MonoBehaviour:
   experienceDescription: Mil Exp
   isDateScene: 0
   isKnown: 0
+  descriptionInterior: 
+  descriptionExterior: 
 --- !u!1 &962587461
 GameObject:
   m_ObjectHideFlags: 0

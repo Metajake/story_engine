@@ -133,6 +133,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             if (!mapEnabled && !journalEnabled)
             {
+                describeLocation();
                 placePotentialPartners( myDialogueManager.findConversationPartners() );
                 updateSelectedPartnerUI();
             }
@@ -169,6 +170,11 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             onPortraitClicked(new System.Random().Next(1, myDialogueManager.charactersPresent.Count + 1));
         }
+    }
+
+    private void describeLocation()
+    {
+        setDescriptionText(mySceneCatalogue.getLocationDescription());
     }
 
     private string convertPastDatesToDateInfo(List<Date> allDates)
@@ -281,24 +287,25 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 		}
 	}
 
-	public void toggleDialogueWindow(bool isOn){
-        if (!isOn) {
+	public void toggleDialogueWindow(bool isDialoguing){
+        if (!isDialoguing) {
             myGameState.currentGameState = GameState.gameStates.PROWL;
-            myDialogueManager.setConversationMode(isOn);
+            myDialogueManager.setConversationMode(isDialoguing);
         }
         else
         {
             Character selectedCharacter = myDialogueManager.getPartnerAt(myDialogueManager.selectedPartner + 1);
             if (selectedCharacter is DateableCharacter)
             {
-                myDialogueManager.setConversationMode(isOn);
+                myDialogueManager.setConversationMode(isDialoguing);
                 GameObject.FindObjectOfType<ConversationTracker>().beginConversation((DateableCharacter)selectedCharacter);
                 myGameState.currentGameState = GameState.gameStates.CONVERSATION;
             }
             else
             {
+                myGameState.currentGameState = GameState.gameStates.COMMANDSEQUENCE;
                 string dialogueString = myTipManager.getTip();
-                myCommandProcessor.createAndExecuteChangeDialogueSequence(new List<string>() { dialogueString });
+                myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { dialogueString });
             }
         }
     }

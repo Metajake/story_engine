@@ -10,9 +10,11 @@ public class Location : MonoBehaviour {
     public string experienceDescription;
     public bool isDateScene;
     public bool isKnown;
+    public string descriptionInterior;
+    public string descriptionExterior;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
