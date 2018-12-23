@@ -9,11 +9,16 @@ public class Timelord : MonoBehaviour {
 	public int timeStep;
 	public Text dayText;
     private DialogueManager myDialogueManager;
+    private SceneCatalogue mySceneCatalogue;
+    private int creepAmount;
+    private Location pastLocation;
+    private bool pastInteriorStatus;
 
 	// Use this for initialization
 	void Start () {
 		timeStep = 0;	
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
+        mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 	}
 	
 	// Update is called once per frame
@@ -28,7 +33,36 @@ public class Timelord : MonoBehaviour {
         if(timeStep % 21 == 0){ //if it's a multiple of 21
             myDialogueManager.scatterCharacters(); 
         }
+        if (checkIfCreep()) {
+            mySceneCatalogue.setRandomKnownScene();
+
+        }
 	}
+
+    private bool checkIfCreep()
+    {
+        Location currentLocation = mySceneCatalogue.getCurrentLocation();
+        if (pastLocation != null && (currentLocation.interiorName != "Apartment" || !mySceneCatalogue.getIsInInteriorScene())){
+            if (currentLocation.locationName == pastLocation.locationName && mySceneCatalogue.getIsInInteriorScene() == pastInteriorStatus)
+            {
+                creepAmount++;
+            }
+            else
+            {
+                creepAmount = 0;
+            }
+        }
+
+        if (creepAmount >= 3)
+        {
+            creepAmount = 0;
+            return true;
+        }
+
+        pastLocation = currentLocation;
+        pastInteriorStatus = mySceneCatalogue.getIsInInteriorScene();
+        return false;
+    }
 
 	public int getCurrentModulusTimestep()
     {

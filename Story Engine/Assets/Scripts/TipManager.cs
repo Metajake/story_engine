@@ -27,6 +27,7 @@ public class TipManager : MonoBehaviour {
         tips.Add("Keep trying.");
         tips.Add("Learn about a girl's preferred location before asking them out. The chances of you getting laid will increase.");
         tips.Add("I'll reveal more locations on the map, the more experiences you have, so visit often!");
+        tips.Add("Make sure not to linger in one location for too long. Eventually \"the locals\" will ask you to leave, and you might even miss a date!");
 
         locationReveals = new List<string>();
         locationReveals.Add("Have you visited the %location% yet?");

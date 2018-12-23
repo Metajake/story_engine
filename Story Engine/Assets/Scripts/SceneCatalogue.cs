@@ -79,6 +79,19 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         //CHANGE LOCATION EVENT
 	}
 
+    public void setRandomKnownScene()
+    {
+        System.Random randomNumber = new System.Random();
+        var randomLocationNumber = randomNumber.Next(getLocationCount());
+        while (!locations[randomLocationNumber].isKnown || randomLocationNumber == getCurrentSceneNumber())
+        {
+            randomLocationNumber = randomNumber.Next(getLocationCount());
+        }
+        isInInteriorScene = false;
+        setCurrentSceneNumber(randomLocationNumber);
+        myEventQueue.queueEvent(new SceneChangeEvent());
+    }
+
 	public string neutralResultForCurrentLocationDescription(){
         return getCurrentLocation().neutralDateResultDescription;
 	}

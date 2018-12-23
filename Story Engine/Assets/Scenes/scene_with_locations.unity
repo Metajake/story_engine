@@ -3284,16 +3284,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f0f3c3a1d7f4d12b41f5550cd0f361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locationName: Military Academy
-  interiorName: Track & Field
-  neutralDateResultDescription: Mil Neut
-  experienceDescription: Mil Exp
+  locationName: Church
+  interiorName: Chapel
+  neutralDateResultDescription: Church Neut
+  experienceDescription: Church Exp
   isDateScene: 0
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: I probably shouldn't be snooping around here. But there might
     be people like me, hidden within the ranks.
-  descriptionExterior: This military academy is mysteriously tucked away. I wonder
-    what goes on inside.
+  descriptionExterior: This church is mysteriously tucked away. I wonder what goes
+    on inside.
 --- !u!1 &962587461
 GameObject:
   m_ObjectHideFlags: 0
@@ -6031,9 +6031,9 @@ MonoBehaviour:
   - {fileID: 2800000, guid: faa182e3c6ea74681899f3cbd69f8fa7, type: 3}
   - {fileID: 2800000, guid: add036eca78f5409c8f87abcd99959ce, type: 3}
   - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
-  - {fileID: 2800000, guid: 50f126f08c04740769bb98bc65e5a65a, type: 3}
-  - {fileID: 2800000, guid: 38768251232e14b3eac3aa4c77ac3aa1, type: 3}
-  - {fileID: 2800000, guid: 48a5e82036d894b90ae7bd0544585488, type: 3}
+  - {fileID: 2800000, guid: 102cabf201e70644887a4c8bff421240, type: 3}
+  - {fileID: 2800000, guid: 79ad5e1d67f5d5044b0ef4c10428bd0b, type: 3}
+  - {fileID: 2800000, guid: 265a9000ef195cb4cb3976c659da6dd3, type: 3}
   - {fileID: 2800000, guid: 29c2c4556703b43568fc73df683d7c36, type: 3}
   - {fileID: 2800000, guid: 64bea06a4cd7041a89f5268423759487, type: 3}
   - {fileID: 2800000, guid: c2e94a88648504bb2aac5304f20cee1e, type: 3}
@@ -6057,7 +6057,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 13c17850b64c64157998a611ff2874e7, type: 3}
   dateBackgrounds:
   - {fileID: 2800000, guid: 0de9c3a8620da46eab13df1e0168ac63, type: 3}
-  - {fileID: 2800000, guid: 38a764f949c7648378971c1fdf3e53fa, type: 3}
+  - {fileID: 2800000, guid: afc2039122659084fb3c00c84efcf8d7, type: 3}
   - {fileID: 2800000, guid: bca59e675b9754c0c93d890d0b937ac6, type: 3}
   - {fileID: 2800000, guid: 75dc1ac919d7c4cbba8d7890a8804af7, type: 3}
   - {fileID: 2800000, guid: d550123b88b2543c3a768088cc4f75c2, type: 3}
