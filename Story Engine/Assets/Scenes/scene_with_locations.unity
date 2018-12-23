@@ -1172,6 +1172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGameState: 0
   hasGameBegun: 0
+  hasLearnedHowToDate: 0
 --- !u!4 &171240412
 Transform:
   m_ObjectHideFlags: 0
@@ -2478,7 +2479,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 101.9, y: -71.2}
+  m_AnchoredPosition: {x: 65, y: -15}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &679222675
@@ -3061,9 +3062,12 @@ MonoBehaviour:
   neutralDateResultDescription: Beach Neut
   experienceDescription: Beach Exp
   isDateScene: 1
-  isKnown: 1
-  descriptionInterior: 
-  descriptionExterior: 
+  isKnown: 0
+  descriptionInterior: These dunes remind me of the animated film, "Aladin". Taking
+    a date here would be like Aladin and Jasmine together in their sand castle palace.
+  descriptionExterior: This used to be a nude beach. But the local church blackmailed
+    our governer with those reciepts from the Old West Side, and now the dress code
+    is highly regulated.
 --- !u!114 &927541666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3081,8 +3085,9 @@ MonoBehaviour:
   experienceDescription: Uni Exp
   isDateScene: 1
   isKnown: 0
-  descriptionInterior: 
-  descriptionExterior: 
+  descriptionInterior: I can read and work on projects here without being bothered.
+    Let's just hope no one checks my expired Student Identification card.
+  descriptionExterior: A typical college campus. The students look busy.
 --- !u!114 &927541667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3099,9 +3104,10 @@ MonoBehaviour:
   neutralDateResultDescription: Field Neut
   experienceDescription: Field Exp
   isDateScene: 1
-  isKnown: 1
-  descriptionInterior: 
-  descriptionExterior: 
+  isKnown: 0
+  descriptionInterior: I feel like I've seen a lot of this picnic bench...
+  descriptionExterior: The breeze combes through the tall grass, stirring up a fresh
+    grassy aroma.
 --- !u!114 &927541668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3264,8 +3270,9 @@ MonoBehaviour:
   experienceDescription: Mount Exp
   isDateScene: 1
   isKnown: 0
-  descriptionInterior: 
-  descriptionExterior: 
+  descriptionInterior: Talk about a hidden gem. This water is so revitalizing.
+  descriptionExterior: Traversing the mountainside is a fun, challenging adventure.
+    Stay on the lookout for cougers!
 --- !u!114 &927541676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3283,8 +3290,10 @@ MonoBehaviour:
   experienceDescription: Mil Exp
   isDateScene: 0
   isKnown: 0
-  descriptionInterior: 
-  descriptionExterior: 
+  descriptionInterior: I probably shouldn't be snooping around here. But there might
+    be people like me, hidden within the ranks.
+  descriptionExterior: This military academy is mysteriously tucked away. I wonder
+    what goes on inside.
 --- !u!1 &962587461
 GameObject:
   m_ObjectHideFlags: 0
@@ -6378,7 +6387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 63.799988, y: -58.749878}
+  m_AnchoredPosition: {x: 63.799988, y: -46.75}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1991727378

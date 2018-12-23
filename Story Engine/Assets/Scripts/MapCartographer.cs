@@ -30,7 +30,13 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 
 	}
 
-	public void createLocationButtons()
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void createLocationButtons()
 	{
 
 		Button[] allButtons = myMapPanel.GetComponentsInChildren<Button>();
@@ -59,20 +65,25 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
                     continue;
                 }
 
-                GameObject buttonObject = GameObject.Instantiate(mapLocationButtonPrefab, myMapPanel.transform);
+                createLocationButton(j, k, mapButtonIndex);
 
-                buttonObject.transform.Translate(new Vector3(-400 + k * 200, 200 - j * 200));
+            }
 
-                buttonObject.GetComponentInChildren<Text>().text = mySceneCatalogue.getLocationNames()[mapButtonIndex];
-
-                UnityAction buttonAction = () => onLocationClick(mapButtonIndex);
-                buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);
-                
-			}		
-
-		}
+        }
         
 	}
+
+    private void createLocationButton(int j, int k, int mapButtonIndex)
+    {
+        GameObject buttonObject = GameObject.Instantiate(mapLocationButtonPrefab, myMapPanel.transform);
+
+        buttonObject.transform.Translate(new Vector3(-400 + k * 200, 200 - j * 200));
+
+        buttonObject.GetComponentInChildren<Text>().text = mySceneCatalogue.getLocationNames()[mapButtonIndex];
+
+        UnityAction buttonAction = () => onLocationClick(mapButtonIndex);
+        buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);
+    }
 
     public void highlightCurrentLocation()
     {
@@ -88,12 +99,6 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
             }
         }
     }
-
-
-	// Update is called once per frame
-	void Update () {
-		
-	}
     
 	public void onLocationClick(int sceneNumber)
     {

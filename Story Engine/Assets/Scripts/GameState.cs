@@ -6,6 +6,7 @@ public class GameState : MonoBehaviour {
     public enum gameStates { PROWL, DATE, CUTSCENE, COMMANDSEQUENCE, TIPCONVERSATION, CONVERSATION };
     public gameStates currentGameState;
     public bool hasGameBegun;
+    public bool hasLearnedHowToDate;
 
 	// Use this for initialization
 	void Start () {

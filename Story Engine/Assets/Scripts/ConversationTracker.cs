@@ -9,19 +9,19 @@ public class ConversationTracker : MonoBehaviour {
 	private List<Conversation> pastConversations;
 
 	private Text dialogueText;
-    private DialogueManager dialogueManager;
+    private DialogueManager myDialogueManager;
     private UIManager uiManager;
     private Timelord myTimelord;
-    private RelationshipCounselor relationshipCounselor;
+    private RelationshipCounselor myRelationshipCounselor;
 
-	public void Start()
+    public void Start()
 	{
 		dialogueText = GameObject.Find("DialogueText").GetComponent<Text>();
-        dialogueManager = GameObject.FindObjectOfType<DialogueManager>();
+        myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         uiManager = GameObject.FindObjectOfType<UIManager>();
         myTimelord = GameObject.FindObjectOfType<Timelord>();
-        relationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
-	}
+        myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
+    }
 
 	public void beginConversation(DateableCharacter speaker)
     {
@@ -32,7 +32,7 @@ public class ConversationTracker : MonoBehaviour {
         {
             greetingTags.Add("annoyed");
         }
-        dialogueText.text = dialogueManager.getDialogueForTags(greetingTags).dialogueContent;
+        dialogueText.text = myDialogueManager.getDialogueForTags(greetingTags).dialogueContent;
 		this.currentConversation = this.gameObject.AddComponent<Conversation>();
 		this.currentConversation.speaker = speaker;
     }
@@ -63,7 +63,7 @@ public class ConversationTracker : MonoBehaviour {
 			currentConversation.opinion += 1;
         }
 
-        dialogueText.text = dialogueManager.getDialogueForTags(tags).dialogueContent;
+        dialogueText.text = myDialogueManager.getDialogueForTags(tags).dialogueContent;
 		currentConversation.lastChosenOption = Conversation.SpeechOption.INTRODUCTION;
 		currentConversation.speaker.knowsYou = true;
 		currentConversation.greetedSoFar = true;
@@ -115,7 +115,7 @@ public class ConversationTracker : MonoBehaviour {
             tags.Add("willing");
         }
 
-        dialogueText.text = dialogueManager.getDialogueForTags(tags).dialogueContent;
+        dialogueText.text = myDialogueManager.getDialogueForTags(tags).dialogueContent;
         currentConversation.lastChosenOption = Conversation.SpeechOption.QUESTION;
         this.currentConversation.questionedSoFar = true;
         this.currentConversation.questionCount++;
@@ -160,7 +160,7 @@ public class ConversationTracker : MonoBehaviour {
             tags.Add("embarrassed");
         }
 
-        dialogueText.text = dialogueManager.getDialogueForTags(tags).dialogueContent;
+        dialogueText.text = myDialogueManager.getDialogueForTags(tags).dialogueContent;
         currentConversation.lastChosenOption = Conversation.SpeechOption.COMPLIMENT;
 		this.currentConversation.complimentedSoFar = true;
 		this.currentConversation.complimentCount++;
@@ -211,7 +211,7 @@ public class ConversationTracker : MonoBehaviour {
         currentConversation.lastChosenOption = Conversation.SpeechOption.DEMAND;
         //this.thingsSaid.push("demand");
         this.currentConversation.demandCount++;
-        dialogueText.text = dialogueManager.getDialogueForTags(tags).dialogueContent;
+        dialogueText.text = myDialogueManager.getDialogueForTags(tags).dialogueContent;
     }
 
     public bool canAskOnDateEnabled()
@@ -235,7 +235,7 @@ public class ConversationTracker : MonoBehaviour {
     {
         int randomTimestepFromPresent = new System.Random().Next(0, 19);
         int randomDateTime = myTimelord.getCurrentTimestep() + randomTimestepFromPresent;
-        relationshipCounselor.createDate(location, randomDateTime, this.currentConversation.speaker);
+        myRelationshipCounselor.createDate(location, randomDateTime, this.currentConversation.speaker);
         uiManager.hideLocationOptions();
         endConversation("Sounds good. see you " + myTimelord.getTimeString(randomDateTime) + "!");
     }
@@ -244,7 +244,7 @@ public class ConversationTracker : MonoBehaviour {
     {
         List<string> tags = new List<string>();
         tags.AddRange(new List<string>() { "departure", "deflection" });
-        dialogueText.text = farewell == "" ? dialogueManager.getDialogueForTags(tags).dialogueContent : farewell;
+        dialogueText.text = farewell == "" ? myDialogueManager.getDialogueForTags(tags).dialogueContent : farewell;
 
         uiManager.enableOnlyBye();
         this.currentConversation.opinion = 0;

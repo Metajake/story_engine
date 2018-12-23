@@ -111,6 +111,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }else if (currentState == GameState.gameStates.CONVERSATION)
         {
             dialoguePanel.SetActive(true);
+
             askOnDateButton.SetActive(conversationTracker.canAskOnDateEnabled());
         }else if (currentState == GameState.gameStates.DATE)
         {
