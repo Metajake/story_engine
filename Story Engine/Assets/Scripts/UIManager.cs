@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private GameObject mainPanelButtonsPanel;
     private GameObject dateButtonsPanel;
 	private GameObject sequenceButtonsPanel;
+    private GameObject dateLocationButton;
     private RelationshipCounselor myRelationshipCounselor;
 	private CommandProcessor myCommandProcessor;
     private Timelord myTimelord;
@@ -65,6 +66,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         mainPanelButtonsPanel = GameObject.Find("MainPanelButtonsPanel");
         dateButtonsPanel = GameObject.Find("DateButtonsPanel");
 		sequenceButtonsPanel = GameObject.Find("SequenceButtonsPanel");
+        dateLocationButton = GameObject.Find("DateLocationButton");
 
         textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
         pastDatesText = GameObject.Find("PastDates").GetComponentInChildren<Text>();
@@ -127,6 +129,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             if (!myGameState.hasGameBegun)
             {
                 myCommandProcessor.createAndEnqueueChangeDialogueSequence(myTipManager.introText);
+                dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
                 myGameState.hasGameBegun = true;
             }
         }
@@ -399,5 +402,13 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     {
         Debug.Log("Event Occurred");
         myDialogueManager.selectedPartner = -1;
+        if (!mySceneCatalogue.getIsInInteriorScene()) {
+            dateLocationButton.GetComponentInChildren<Text>().text = "Enter " + mySceneCatalogue.getCurrentLocation().interiorName;
+        }
+        else
+        {
+            dateLocationButton.GetComponentInChildren<Text>().text = "Back to " + mySceneCatalogue.getCurrentLocation().locationName;
+        }
+        
     }
 }
