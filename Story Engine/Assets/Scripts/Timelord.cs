@@ -35,7 +35,6 @@ public class Timelord : MonoBehaviour {
         }
         if (checkIfCreep()) {
             mySceneCatalogue.setRandomKnownScene();
-
         }
 	}
 
