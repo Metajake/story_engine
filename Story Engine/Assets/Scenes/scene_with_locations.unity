@@ -2645,7 +2645,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 112322379}
-        m_MethodName: toggleDialogueWindow
+        m_MethodName: BTN_toggleDialogueWindow
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3084,7 +3084,7 @@ MonoBehaviour:
   neutralDateResultDescription: Uni Neut
   experienceDescription: Uni Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: I can read and work on projects here without being bothered.
     Let's just hope no one checks my expired Student Identification card.
   descriptionExterior: A typical college campus. The students look busy.
@@ -3104,7 +3104,7 @@ MonoBehaviour:
   neutralDateResultDescription: Field Neut
   experienceDescription: Field Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: I feel like I've seen a lot of this picnic bench...
   descriptionExterior: The breeze combes through the tall grass, stirring up a fresh
     grassy aroma.
@@ -4601,7 +4601,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 112322379}
-        m_MethodName: toggleDialogueWindow
+        m_MethodName: BTN_toggleDialogueWindow
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

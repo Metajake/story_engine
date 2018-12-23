@@ -288,10 +288,11 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 		}
 	}
 
-	public void toggleDialogueWindow(bool isDialoguing){
+	public void BTN_toggleDialogueWindow(bool isDialoguing){
         if (!isDialoguing) {
             myGameState.currentGameState = GameState.gameStates.PROWL;
             myDialogueManager.setConversationMode(isDialoguing);
+            myDialogueManager.selectedPartner = -1;
         }
         else
         {

@@ -71,15 +71,4 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
         }
         executeAllCommands();
     }
-
-    public void createAndExecuteChangeDialogueSequence(List<string> sequence)
-    {
-        List<ICommand> commands = new List<ICommand>();
-
-        foreach (string item in sequence) {
-            commands.Add(createChangeDialogueCommand(item));
-        }
-        commands.Add(new SequenceEndCommand());
-        this.doSequence(commands);
-    }
 }
