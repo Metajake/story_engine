@@ -1,22 +1,34 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class VictoryCoach : MonoBehaviour {
 
-    public List<Experience> experiences;
+    public Dictionary<string, Experience> experiences;
     public List<bool> hasAchievedExperience;
     private SceneCatalogue mySceneCatalogue;
     private DifficultyLevel nextGoal;
+    private bool isNEET;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        experiences = new Dictionary<string, Experience>();
+    }
+
+    // Use this for initialization
+    void Start () {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 
-        experiences = new List<Experience>(this.GetComponents<Experience>());
+        foreach (Experience exp in this.GetComponents<Experience>())
+        {
+            experiences.Add(exp.experienceName, exp);
+        }
+
+        hasAchievedExperience = new List<bool>();
 
         nextGoal = DifficultyLevel.EASY;
-        hasAchievedExperience = new List<bool>();
+        isNEET = true;
 
         initializeLocationExperienceChecklist();
 
@@ -67,6 +79,26 @@ public class VictoryCoach : MonoBehaviour {
         else
         {
             Debug.Log("Goal " + levelAchieved + " Attained!! ... But there are more experiences to be had!");
+        }
+    }
+
+    public Experience getNextExperience()
+    {
+        System.Random random = new System.Random();
+        Experience toReturn;
+        if (isNEET)
+        {
+            toReturn = experiences["responsibility"];
+            experiences.Remove("responsibility");
+            isNEET = false;
+            return toReturn;
+        }
+        else
+        {
+            List<Experience> expList = new List<Experience>(experiences.Values);
+            Experience toRemoveAndReturn = expList[random.Next(expList.Count)];
+            experiences.Remove(toRemoveAndReturn.experienceName);
+            return toRemoveAndReturn;
         }
     }
 }

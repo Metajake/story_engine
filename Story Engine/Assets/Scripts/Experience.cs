@@ -5,6 +5,5 @@ using UnityEngine;
 public class Experience : MonoBehaviour {
     public string experienceName;
     public string[] experienceCutSceneTexts;
-
 	
 }

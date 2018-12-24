@@ -155,11 +155,8 @@ public class RelationshipCounselor : MonoBehaviour {
         }else{
             getCurrentDate().experienceAchieved = true;
             myVictoryCoach.achievedExperience(mySceneCatalogue.getCurrentSceneNumber());
-            myCommandProcessor.createAndEnqueueCutSceneSequence(new List<string>() {
-                "You have achieved the experience at " + mySceneCatalogue.getCurrentLocation().locationName,
-                "The day is long and the work is hard. But something good will come of all this.",
-                "I think that I'll go date that other chick now..."
-            });
+            Experience currentExp = myVictoryCoach.getNextExperience();
+            myCommandProcessor.createAndEnqueueCutSceneSequence(new List<string>(currentExp.experienceCutSceneTexts));
         }
         myEventQueue.queueEvent(new DateActionEvent());
 	}
