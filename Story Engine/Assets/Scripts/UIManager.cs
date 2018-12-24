@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     public GameObject mainPanel;
 	public GameObject mapPanel;
     public GameObject journalPanel;
+    private GameObject menuPanel;
     private GameState myGameState;
     private DialogueManager myDialogueManager;
 	private MapCartographer myMapCartographer;
@@ -67,6 +68,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         dateButtonsPanel = GameObject.Find("DateButtonsPanel");
 		sequenceButtonsPanel = GameObject.Find("SequenceButtonsPanel");
         dateLocationButton = GameObject.Find("DateLocationButton");
+        menuPanel = GameObject.Find("MenuPanel");
 
         textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
         pastDatesText = GameObject.Find("PastDates").GetComponentInChildren<Text>();
@@ -79,13 +81,15 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
 		mapEnabled = false;
         journalEnabled = false;
+        menuPanel.gameObject.SetActive(false);
     }
 	
 	void Update ()
 	{
         enableComponentsForState(myGameState.currentGameState);
         populateComponentsForState(myGameState.currentGameState);
-    }
+        BTN_toggleMenuPanel();
+    }   
 
     private void enableComponentsForState(GameState.gameStates currentState)
     {
@@ -291,6 +295,14 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 		}
 	}
 
+    private void BTN_toggleMenuPanel()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            menuPanel.gameObject.SetActive(!menuPanel.gameObject.activeSelf);
+        }
+    }
+
 	public void BTN_toggleDialogueWindow(bool isDialoguing){
         if (!isDialoguing) {
             myGameState.currentGameState = GameState.gameStates.PROWL;
@@ -396,6 +408,17 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         pastDatesText.text = convertPastDatesToDateInfo(myRelationshipCounselor.getAllDates());
         upcomingDatesText.text = convertUpcomingDatesToDateInfo(myRelationshipCounselor.getAllDates());
         this.journalEnabled = !this.journalEnabled;
+    }
+
+    public void BTN_exitApplication()
+    {
+        if (Application.isEditor) {
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+        else
+        {
+            Application.Quit();
+        }
     }
 
     public void eventOccured(IGameEvent occurringEvent)
