@@ -98,7 +98,7 @@ public class DateableCharacter : Character {
 
             dm.registerDialogue(new DialoguePiece("Um.. I have to go over there now.", this).addTag("departure").addTag("deflection"));
             dm.registerDialogue(new DialoguePiece("Um.. I have to be somewhere.", this).addTag("departure").addTag("time"));
-		}else if (givenName.ToLower() == "rebecca")
+		}else if (givenName.ToLower() == "becky")
         {
             dm.registerDialogue(new DialoguePiece("HELLO.", this).addTag("greeting"));
             dm.registerDialogue(new DialoguePiece("Fuck off!", this).addTag("greeting").addTag("annoyed"));

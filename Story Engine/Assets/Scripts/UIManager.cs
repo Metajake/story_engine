@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour, IEventSubscriber {
 
     GameObject talkButtonObject;
-	GameObject contextualActionButtonObject;
+	GameObject dateActionButton;
 	Button departConversationButton;
     GameObject askOnDateButton;
     GameObject mapButton;
@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     
     void Start () {
         talkButtonObject = GameObject.Find("TalkButton");
-		contextualActionButtonObject = GameObject.Find("ContextActionButton");
+		dateActionButton = GameObject.Find("DateActionButton");
 		departConversationButton = GameObject.Find("Depart").GetComponent<Button>();
         askOnDateButton = GameObject.Find("AskOut");
 		mapButton = GameObject.Find("MapButton");
@@ -153,6 +153,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         else if(currentState == GameState.gameStates.DATE)
         {
             placePotentialPartners( myDialogueManager.findConversationPartners() );
+            dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
         }
     }
 
@@ -278,13 +279,13 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
 	internal void experienceDescription(){
 		setDescriptionText(mySceneCatalogue.currentExperienceDescription());
-		contextualActionButtonObject.SetActive(false);
+		dateActionButton.SetActive(false);
 	}
 
     internal void abandonDateDescription()
     {
         setDescriptionText("Bye, lame.");
-        contextualActionButtonObject.SetActive(false);
+        dateActionButton.SetActive(false);
     }
 
 	public void onPortraitClicked(int portraitNumber){
@@ -341,7 +342,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 	}   
 
 	public void resetDateButtons(){
-		contextualActionButtonObject.SetActive(true);
+		dateActionButton.SetActive(true);
 	}
 
     private void createDateLocationButtons(){
@@ -444,6 +445,9 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             {
                 dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
             }
+        }else if(occurringEvent.getEventType() == "DATEACTIONEVENT")
+        {
+            mySceneCatalogue.getCurrentLocation().setRandomDateAction();
         }
         
         

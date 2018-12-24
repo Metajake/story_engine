@@ -9,6 +9,7 @@ public class RelationshipCounselor : MonoBehaviour {
 	private Timelord myTimeLord;
     private SceneCatalogue mySceneCatalogue;
 	private UIManager myUIManager;
+    private EventQueue myEventQueue;
 	public bool isAtDate;
 	public VictoryCoach myVictoryCoach;
     private GameState myGameState;
@@ -24,6 +25,7 @@ public class RelationshipCounselor : MonoBehaviour {
         myUIManager = GameObject.FindObjectOfType<UIManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
         myGameState = GameObject.FindObjectOfType<GameState>();
+        myEventQueue = GameObject.FindObjectOfType<EventQueue>();
 
         ConstructDateLikelihoods();
     }
@@ -152,7 +154,7 @@ public class RelationshipCounselor : MonoBehaviour {
             myUIManager.experienceDescription();
             myVictoryCoach.achievedExperience(mySceneCatalogue.getCurrentSceneNumber());
         }
-        
+        myEventQueue.queueEvent(new DateActionEvent());
 	}
 
 }

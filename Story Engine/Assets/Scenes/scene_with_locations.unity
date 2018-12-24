@@ -1546,7 +1546,7 @@ GameObject:
   - component: {fileID: 312772840}
   - component: {fileID: 312772839}
   m_Layer: 5
-  m_Name: ContextActionButton
+  m_Name: DateActionButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3260,12 +3260,16 @@ MonoBehaviour:
   neutralDateResultDescription: Beach Neut
   experienceDescription: Beach Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: These dunes remind me of the animated film, "Aladin". Taking
     a date here would be like Aladin and Jasmine together in their sand castle palace.
   descriptionExterior: This used to be a nude beach. But the local church blackmailed
     our governer with those reciepts from the Old West Side, and now the dress code
     is highly regulated.
+  dateActions:
+  - Sun Bathe
+  - Go Swimming
+  - Light Joint
 --- !u!114 &927541666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3282,10 +3286,12 @@ MonoBehaviour:
   neutralDateResultDescription: Uni Neut
   experienceDescription: Uni Exp
   isDateScene: 1
-  isKnown: 1
+  isKnown: 0
   descriptionInterior: I can read and work on projects here without being bothered.
     Let's just hope no one checks my expired Student Identification card.
   descriptionExterior: A typical college campus. The students look busy.
+  dateActions:
+  - Study
 --- !u!114 &927541667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3306,6 +3312,10 @@ MonoBehaviour:
   descriptionInterior: I feel like I've seen a lot of this picnic bench...
   descriptionExterior: The breeze combes through the tall grass, stirring up a fresh
     grassy aroma.
+  dateActions:
+  - Slice Watermelon
+  - Recite Poetry
+  - Pick Flower
 --- !u!114 &927541668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3325,6 +3335,8 @@ MonoBehaviour:
   isKnown: 0
   descriptionInterior: The sun glimmers through the rich green leaves.
   descriptionExterior: The woods bring out my primal nature.
+  dateActions:
+  - Tell Joke
 --- !u!114 &927541669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3345,6 +3357,8 @@ MonoBehaviour:
   descriptionInterior: The ocean breeze smells so fresh. This is the way to live.
   descriptionExterior: The arcade is my home away from home. Keep on the lookout for
     any worthy Street Fighter opponents.
+  dateActions:
+  - Challenge to Game
 --- !u!114 &927541670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3366,6 +3380,8 @@ MonoBehaviour:
     the humming computer and dim monitor is comforting.
   descriptionExterior: I hope that I don't run into any neighbors. I really hate meaningless
     relationships with people that you have to see everyday.
+  dateActions:
+  - Kiss
 --- !u!114 &927541671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3387,6 +3403,8 @@ MonoBehaviour:
     is the perfect life for a lazy bachelor like myself.
   descriptionExterior: The city is full of life and action. There's something for
     everyone here (except peace and quiet).
+  dateActions:
+  - Work
 --- !u!114 &927541672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3408,6 +3426,10 @@ MonoBehaviour:
     and it's hard not to move your body to the beat.
   descriptionExterior: This part of town is known for it's impurity. But everyone
     needs a place to express their wild side.
+  dateActions:
+  - Dance
+  - Get Drink
+  - Tell a Joke
 --- !u!114 &927541673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3430,6 +3452,9 @@ MonoBehaviour:
   descriptionExterior: The river always reminds me of life itself. Always from beginning
     to end. You can paddle with the current, against the current, or just go with
     the flow.
+  dateActions:
+  - Stoke Bonfire
+  - Paddle Canoe
 --- !u!114 &927541674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3451,6 +3476,9 @@ MonoBehaviour:
     You can find things here that you can't find anywhere else.
   descriptionExterior: It's nice to get outside the big city. This village is the
     definition of 'cozy'.
+  dateActions:
+  - Buy Gift
+  - Small Talk
 --- !u!114 &927541675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3471,6 +3499,8 @@ MonoBehaviour:
   descriptionInterior: Talk about a hidden gem. This water is so revitalizing.
   descriptionExterior: Traversing the mountainside is a fun, challenging adventure.
     Stay on the lookout for cougers!
+  dateActions:
+  - Hold Hand
 --- !u!114 &927541676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3487,11 +3517,13 @@ MonoBehaviour:
   neutralDateResultDescription: Church Neut
   experienceDescription: Church Exp
   isDateScene: 0
-  isKnown: 1
+  isKnown: 0
   descriptionInterior: I probably shouldn't be snooping around here. But there might
     be people like me, hidden within the ranks.
   descriptionExterior: This church is mysteriously tucked away. I wonder what goes
     on inside.
+  dateActions:
+  - Say Prayer
 --- !u!1 &962587461
 GameObject:
   m_ObjectHideFlags: 0
@@ -5053,6 +5085,7 @@ MonoBehaviour:
   isInside: 1
   activeTimes: 010000
   isPresent: 1
+  returnTime: 0
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
@@ -5078,6 +5111,7 @@ MonoBehaviour:
   isInside: 1
   activeTimes: 010100
   isPresent: 1
+  returnTime: 0
 --- !u!114 &1360229237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5096,6 +5130,7 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 000100
   isPresent: 1
+  returnTime: 0
   isSubordinate: 1
   permanentOpinion: 0
   inLoveAmount: 0
@@ -5121,12 +5156,13 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 010000
   isPresent: 1
+  returnTime: 0
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
   knowsYou: 0
   experienceCount: 0
-  locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000
+  locationPreferences: feffffffffffffff01000000000000000000000000000000000000000000000000000000000000000000000002000000
   tier: 0
 --- !u!114 &1360229239
 MonoBehaviour:
@@ -5166,6 +5202,7 @@ MonoBehaviour:
   isInside: 1
   activeTimes: 000100
   isPresent: 1
+  returnTime: 0
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
@@ -5191,6 +5228,7 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 010000
   isPresent: 1
+  returnTime: 0
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
@@ -5216,6 +5254,7 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 000100
   isPresent: 1
+  returnTime: 0
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
@@ -5241,6 +5280,7 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 000001
   isPresent: 1
+  returnTime: 0
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
@@ -5266,6 +5306,7 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 010000
   isPresent: 1
+  returnTime: 0
   isSubordinate: 1
   permanentOpinion: 0
   inLoveAmount: 0
@@ -5291,6 +5332,7 @@ MonoBehaviour:
   isInside: 0
   activeTimes: 000100
   isPresent: 1
+  returnTime: 0
   isSubordinate: 0
   permanentOpinion: 0
   inLoveAmount: 0
