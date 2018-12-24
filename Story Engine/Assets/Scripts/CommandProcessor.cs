@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CommandProcessor : MonoBehaviour, ICommandProcessor {
 
+    private GameState myGameState;
+
 	Queue<ICommand> commandList;
     
 	public void executeNextCommand(){
@@ -14,14 +16,6 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
 		
 	}
 
-    public void executeAllCommands()
-    {
-        while(commandList.Count > 0)
-        {
-            commandList.Dequeue().execute();
-        }
-    }
-
 	void Awake ()
 	{
 		commandList = new Queue<ICommand>();
@@ -29,18 +23,12 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
 
     void Start()
     {
-        
+        myGameState = GameObject.FindObjectOfType<GameState>();
     }
 
     void Update () {
 
 	}
-
-    public void createAndEnqueueChangeDialogueCommand(string dialogue)
-    {
-        ChangeDialogueCommand command = createChangeDialogueCommand(dialogue);
-        commandList.Enqueue(command);
-    }
 
     private ChangeDialogueCommand createChangeDialogueCommand(string dialogue)
     {
@@ -51,20 +39,12 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
 
     public void createAndEnqueueChangeDialogueSequence(List<string> dialogues)
     {
-        foreach(string dialogue in dialogues)
+        myGameState.currentGameState = GameState.gameStates.COMMANDSEQUENCE;
+        foreach (string dialogue in dialogues)
         {
-            createAndEnqueueChangeDialogueCommand(dialogue);
+            commandList.Enqueue(createChangeDialogueCommand(dialogue));
         }
         this.commandList.Enqueue(new SequenceEndCommand());
         executeNextCommand();
-    }
-
-    public void doSequence(List<ICommand> commandSequence)
-    {
-        foreach(ICommand command in commandSequence)
-        {
-            commandList.Enqueue(command);
-        }
-        executeAllCommands();
     }
 }

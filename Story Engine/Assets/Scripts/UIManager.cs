@@ -320,7 +320,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             }
             else
             {
-                myGameState.currentGameState = GameState.gameStates.COMMANDSEQUENCE;
                 string dialogueString = myTipManager.getTip();
                 myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { dialogueString });
             }
