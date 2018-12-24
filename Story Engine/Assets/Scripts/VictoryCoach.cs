@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class VictoryCoach : MonoBehaviour {
 
-	public List<bool> hasAchievedExperience;
+    public List<Experience> experiences;
+    public List<bool> hasAchievedExperience;
     private SceneCatalogue mySceneCatalogue;
     private DifficultyLevel nextGoal;
 
 	// Use this for initialization
 	void Start () {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
-		nextGoal = DifficultyLevel.EASY;
+
+        experiences = new List<Experience>(this.GetComponents<Experience>());
+
+        nextGoal = DifficultyLevel.EASY;
         hasAchievedExperience = new List<bool>();
 
-        initializeExperienceList();
+        initializeLocationExperienceChecklist();
 
 	}
 	
@@ -27,7 +31,7 @@ public class VictoryCoach : MonoBehaviour {
 		
     }
 
-	private void initializeExperienceList(){
+	private void initializeLocationExperienceChecklist(){
         for (int i = 0; i < mySceneCatalogue.getLocationCount(); i ++){
 			hasAchievedExperience.Add(false);
 		}

@@ -7,6 +7,7 @@ public class Date : MonoBehaviour {
 	public Location dateScene;
 	public DateableCharacter character;
 	public int dateTime;
+    public bool experienceAchieved;
     public bool isOver;
        
 }

@@ -96,11 +96,6 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         return getCurrentLocation().neutralDateResultDescription;
 	}
 
-	public string currentExperienceDescription()
-    {
-        return getCurrentLocation().experienceDescription;
-    }
-
 	public List<Location> getDateScenes(){
 
         List<Location> dateScenes = new List<Location>();

@@ -92,7 +92,20 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         enableComponentsForState(myGameState.currentGameState);
         populateComponentsForState(myGameState.currentGameState);
         BTN_toggleMenuPanel();
-    }   
+    }
+
+    private void deactivateUIComponents()
+    {
+        dialoguePanel.SetActive(false);
+        journalPanel.SetActive(false);
+        mapPanel.SetActive(false);
+        mainPanel.SetActive(false);
+        cutScenePanel.SetActive(false);
+
+        dateButtonsPanel.SetActive(false);
+        mainPanelButtonsPanel.SetActive(false);
+        sequenceButtonsPanel.SetActive(false);
+    }
 
     private void enableComponentsForState(GameState.gameStates currentState)
     {
@@ -129,6 +142,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             mainPanel.SetActive(true);
             dateButtonsPanel.SetActive(myRelationshipCounselor.isAtDate);
+            dateActionButton.SetActive(!myRelationshipCounselor.getCurrentDate().experienceAchieved);
         }
     }
 
@@ -164,19 +178,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             placePotentialPartners( myDialogueManager.findConversationPartners() );
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
         }
-    }
-
-    private void deactivateUIComponents()
-    {
-        dialoguePanel.SetActive(false);
-        journalPanel.SetActive(false);
-        mapPanel.SetActive(false);
-        mainPanel.SetActive(false);
-        cutScenePanel.SetActive(false);
-        
-        dateButtonsPanel.SetActive(false);
-        mainPanelButtonsPanel.SetActive(false);
-        sequenceButtonsPanel.SetActive(false);
     }
 
     private void updateSelectedPartnerUI()
@@ -288,11 +289,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     {
 		setDescriptionText(mySceneCatalogue.neutralResultForCurrentLocationDescription());
     }
-
-	internal void experienceDescription(){
-		setDescriptionText(mySceneCatalogue.currentExperienceDescription());
-		dateActionButton.SetActive(false);
-	}
 
     internal void abandonDateDescription()
     {
