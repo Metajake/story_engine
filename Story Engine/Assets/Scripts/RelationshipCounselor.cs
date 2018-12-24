@@ -13,6 +13,7 @@ public class RelationshipCounselor : MonoBehaviour {
 	public bool isAtDate;
 	public VictoryCoach myVictoryCoach;
     private GameState myGameState;
+    private CommandProcessor myCommandProcessor;
     public int loveChanceIncrement;
 
     private Dictionary<String, Dictionary<int, int>> actionLikelihoodMatrix;
@@ -24,6 +25,7 @@ public class RelationshipCounselor : MonoBehaviour {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myUIManager = GameObject.FindObjectOfType<UIManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
+        myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
         myGameState = GameObject.FindObjectOfType<GameState>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
 
@@ -153,6 +155,11 @@ public class RelationshipCounselor : MonoBehaviour {
         }else{
             myUIManager.experienceDescription();
             myVictoryCoach.achievedExperience(mySceneCatalogue.getCurrentSceneNumber());
+            myCommandProcessor.createAndEnqueueCutSceneSequence(new List<string>() {
+                "You have achieved the experience at " + mySceneCatalogue.getCurrentLocation().locationName,
+                "The day is long and the work is hard. But something good will come of all this.",
+                "I think that I'll go date that other chick now..."
+            });
         }
         myEventQueue.queueEvent(new DateActionEvent());
 	}

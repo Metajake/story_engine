@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour, IEventSubscriber {
 
     GameObject talkButtonObject;
-	GameObject dateActionButton;
+    GameObject dateActionButton;
 	Button departConversationButton;
     GameObject askOnDateButton;
     GameObject mapButton;
@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private GameObject dateButtonsPanel;
 	private GameObject sequenceButtonsPanel;
     private GameObject dateLocationButton;
+    private GameObject cutScenePanel;
     private RelationshipCounselor myRelationshipCounselor;
 	private CommandProcessor myCommandProcessor;
     private Timelord myTimelord;
@@ -38,6 +39,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private Text textPanel;
     private Text pastDatesText;
     private Text upcomingDatesText;
+    private String cutSceneTextToWrite;
     public GameObject dateLocationButtonPrefab;
 
 	bool mapEnabled;
@@ -69,6 +71,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 		sequenceButtonsPanel = GameObject.Find("SequenceButtonsPanel");
         dateLocationButton = GameObject.Find("DateLocationButton");
         menuPanel = GameObject.Find("MenuPanel");
+        cutScenePanel = GameObject.Find("CutScenePanel");
 
         textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
         pastDatesText = GameObject.Find("PastDates").GetComponentInChildren<Text>();
@@ -99,6 +102,9 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             mainPanel.SetActive(true);
             sequenceButtonsPanel.SetActive(true);
+        }else if(currentState == GameState.gameStates.CUTSCENE)
+        {
+            cutScenePanel.SetActive(true);
         }
         else if(currentState == GameState.gameStates.PROWL)
         {
@@ -136,6 +142,9 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
                 dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
                 myGameState.hasGameBegun = true;
             }
+        }else if(currentState == GameState.gameStates.CUTSCENE)
+        {
+            cutScenePanel.GetComponentInChildren<Text>().text = cutSceneTextToWrite;
         }
         else if (currentState == GameState.gameStates.PROWL)
         {
@@ -148,7 +157,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
         else if (currentState == GameState.gameStates.CONVERSATION)
         {
-            
+            //NOTHING HERE YET :D
         }
         else if(currentState == GameState.gameStates.DATE)
         {
@@ -163,6 +172,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         journalPanel.SetActive(false);
         mapPanel.SetActive(false);
         mainPanel.SetActive(false);
+        cutScenePanel.SetActive(false);
         
         dateButtonsPanel.SetActive(false);
         mainPanelButtonsPanel.SetActive(false);
@@ -230,7 +240,12 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 		textPanel.text = toWrite;
 	}
 
-	internal void gameOver()
+    internal void setCutSceneText(string textToWrite)
+    {
+        cutSceneTextToWrite = textToWrite;
+    }
+
+    internal void gameOver()
 	{
         SceneManager.LoadScene("splash_game_over");
 	}
