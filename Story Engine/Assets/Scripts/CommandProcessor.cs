@@ -5,10 +5,6 @@ using UnityEngine;
 public class CommandProcessor : MonoBehaviour, ICommandProcessor {
 
 	Queue<ICommand> commandList;
-
-	public bool isInSequence(){
-		return commandList.Count > 0;
-	}
     
 	public void executeNextCommand(){
         if (commandList.Count > 0)

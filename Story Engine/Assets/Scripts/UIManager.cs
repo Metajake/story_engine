@@ -237,9 +237,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
     public void placePotentialPartners(List<Character> potentialConversationPartners)
     {
-		if(myCommandProcessor.isInSequence()){
-			return;
-		}
         for (int i = 0; i < 3; i++)
         {
             Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
