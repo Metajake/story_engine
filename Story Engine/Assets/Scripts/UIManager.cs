@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
     GameObject talkButtonObject;
 	GameObject contextualActionButtonObject;
-	Button byeButton;
+	Button departConversationButton;
     GameObject askOnDateButton;
     GameObject mapButton;
 	public GameObject dialoguePanel;
@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     void Start () {
         talkButtonObject = GameObject.Find("TalkButton");
 		contextualActionButtonObject = GameObject.Find("ContextActionButton");
-		byeButton = GameObject.Find("Depart").GetComponent<Button>();
+		departConversationButton = GameObject.Find("Depart").GetComponent<Button>();
         askOnDateButton = GameObject.Find("AskOut");
 		mapButton = GameObject.Find("MapButton");
 
@@ -305,6 +305,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
 	public void BTN_toggleDialogueWindow(bool isDialoguing){
         if (!isDialoguing) {
+            myDialogueManager.getPartnerAt(myDialogueManager.selectedPartner + 1).isPresent = false;
+            myDialogueManager.getPartnerAt(myDialogueManager.selectedPartner + 1).returnTime = myTimelord.getCurrentTimestep() +1;
             myGameState.currentGameState = GameState.gameStates.PROWL;
             myDialogueManager.setConversationMode(isDialoguing);
             myDialogueManager.selectedPartner = -1;
@@ -334,8 +336,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
 	public void enableOnlyBye(){
 		dialogueOptionsButtonPanel.SetActive(false);
-		byeButton.gameObject.SetActive(true);
-        byeButton.enabled = true;
+		departConversationButton.gameObject.SetActive(true);
+        departConversationButton.enabled = true;
 	}   
 
 	public void resetDateButtons(){
@@ -423,15 +425,27 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
     public void eventOccured(IGameEvent occurringEvent)
     {
-        Debug.Log("Event Occurred");
-        myDialogueManager.selectedPartner = -1;
-        if (!mySceneCatalogue.getIsInInteriorScene()) {
-            dateLocationButton.GetComponentInChildren<Text>().text = "Enter " + mySceneCatalogue.getCurrentLocation().interiorName;
+        Debug.Log(occurringEvent.getEventType());
+        if (occurringEvent.getEventType() == "TIMEEVENT") {
+            foreach(DateableCharacter character in myDialogueManager.allDateableCharacters)
+            {
+                character.checkAndSetReturnToPresent(myTimelord.getCurrentTimestep());
+            }
+            
         }
-        else
+        else if (occurringEvent.getEventType() == "LOCATIONEVENT")
         {
-            dateLocationButton.GetComponentInChildren<Text>().text = "Back to " + mySceneCatalogue.getCurrentLocation().locationName;
+            myDialogueManager.selectedPartner = -1;
+            if (!mySceneCatalogue.getIsInInteriorScene())
+            {
+                dateLocationButton.GetComponentInChildren<Text>().text = "Enter " + mySceneCatalogue.getCurrentLocation().interiorName;
+            }
+            else
+            {
+                dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
+            }
         }
+        
         
     }
 }

@@ -11,8 +11,14 @@ public class Character : MonoBehaviour {
     public bool isInside;
     public bool[] activeTimes;
     public bool isPresent;
+    public int returnTime;
 
     public virtual bool checkIsPresent(){
         return this.isPresent;
+    }
+    
+    public void returnToPresent()
+    {
+        this.isPresent = true;
     }
 }

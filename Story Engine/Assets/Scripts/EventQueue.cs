@@ -9,12 +9,12 @@ public class EventQueue : MonoBehaviour {
     List<IEventSubscriber> eventSubscribers;
 
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake () {
         gameEvents = new Queue<IGameEvent>();
         pastEvents = new Queue<IGameEvent>();
         eventSubscribers = new List<IEventSubscriber>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {

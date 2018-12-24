@@ -19,6 +19,7 @@ public class DateableCharacter : Character {
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 		experienceCount = 0;
         inLoveAmount = 0;
+        returnTime = 0;
 
 		if(givenName.ToLower() == "kristie"){
             dm.registerDialogue(new DialoguePiece("Hi.",this).addTag("greeting"));
@@ -437,4 +438,12 @@ public class DateableCharacter : Character {
 	{
 		return isPresent && this.tier <= myVictoryCoach.getNumberOfAchievedExperiences();
 	}
+
+    public void checkAndSetReturnToPresent(int currentTimeStep)
+    {
+        if (currentTimeStep == this.returnTime)
+        {
+            this.isPresent = true;
+        }
+    }
 }

@@ -10,6 +10,7 @@ public class Timelord : MonoBehaviour {
 	public Text dayText;
     private DialogueManager myDialogueManager;
     private SceneCatalogue mySceneCatalogue;
+    private EventQueue myEventQueue;
     private int creepAmount;
     private Location pastLocation;
     private bool pastInteriorStatus;
@@ -19,6 +20,7 @@ public class Timelord : MonoBehaviour {
 		timeStep = 0;	
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
+        myEventQueue = GameObject.FindObjectOfType<EventQueue>();
 	}
 	
 	// Update is called once per frame
@@ -30,13 +32,14 @@ public class Timelord : MonoBehaviour {
 	public void advanceTimestep(){
 		myDialogueManager.selectedPartner = -1;
         timeStep++;
-        if(timeStep % 21 == 0){ //if it's a multiple of 21
+        if(timeStep % 21 == 0){ //if it's a multiple of 21 (aka Every 7 Days)
             myDialogueManager.scatterCharacters(); 
         }
         if (checkIfCreep()) {
             mySceneCatalogue.setRandomKnownScene();
         }
-	}
+        myEventQueue.queueEvent(new TimeChangeEvent());
+    }
 
     private bool checkIfCreep()
     {
@@ -52,7 +55,7 @@ public class Timelord : MonoBehaviour {
             }
         }
 
-        if (creepAmount >= 3)
+        if (creepAmount >= 4)
         {
             creepAmount = 0;
             return true;
