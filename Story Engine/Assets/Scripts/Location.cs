@@ -12,6 +12,7 @@ public class Location : MonoBehaviour {
     public bool isKnown;
     public string descriptionInterior;
     public string descriptionExterior;
+    public string descriptionDate;
     public string[] dateActions;
     public string currentDateAction;
     private System.Random random;

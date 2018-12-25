@@ -3335,6 +3335,7 @@ MonoBehaviour:
   descriptionExterior: This used to be a nude beach. But the local church blackmailed
     our governer with those reciepts from the Old West Side, and now the dress code
     is highly regulated.
+  descriptionDate: If this goes bad, I'm moving back in with my parents.
   dateActions:
   - Sun Bathe
   - Go Swimming
@@ -3360,6 +3361,7 @@ MonoBehaviour:
   descriptionInterior: I can read and work on projects here without being bothered.
     Let's just hope no one checks my expired Student Identification card.
   descriptionExterior: A typical college campus. The students look busy.
+  descriptionDate: 
   dateActions:
   - Study
   currentDateAction: 
@@ -3383,6 +3385,7 @@ MonoBehaviour:
   descriptionInterior: I feel like I've seen a lot of this picnic bench...
   descriptionExterior: The breeze combes through the tall grass, stirring up a fresh
     grassy aroma.
+  descriptionDate: Many names are carved into this picnic bench. Will ours?
   dateActions:
   - Slice Watermelon
   - Recite Poetry
@@ -3407,6 +3410,7 @@ MonoBehaviour:
   isKnown: 0
   descriptionInterior: The sun glimmers through the rich green leaves.
   descriptionExterior: The woods bring out my primal nature.
+  descriptionDate: 
   dateActions:
   - Tell Joke
   currentDateAction: 
@@ -3430,6 +3434,7 @@ MonoBehaviour:
   descriptionInterior: The ocean breeze smells so fresh. This is the way to live.
   descriptionExterior: The arcade is my home away from home. Keep on the lookout for
     any worthy Street Fighter opponents.
+  descriptionDate: 
   dateActions:
   - Challenge to Game
   currentDateAction: 
@@ -3454,6 +3459,7 @@ MonoBehaviour:
     the humming computer and dim monitor is comforting.
   descriptionExterior: I hope that I don't run into any neighbors. I really hate meaningless
     relationships with people that you have to see everyday.
+  descriptionDate: 
   dateActions:
   - Kiss
   currentDateAction: 
@@ -3478,6 +3484,7 @@ MonoBehaviour:
     is the perfect life for a lazy bachelor like myself.
   descriptionExterior: The city is full of life and action. There's something for
     everyone here (except peace and quiet).
+  descriptionDate: 
   dateActions:
   - Work
   currentDateAction: 
@@ -3502,6 +3509,7 @@ MonoBehaviour:
     and it's hard not to move your body to the beat.
   descriptionExterior: This part of town is known for it's impurity. But everyone
     needs a place to express their wild side.
+  descriptionDate: 
   dateActions:
   - Dance
   - Get Drink
@@ -3529,6 +3537,7 @@ MonoBehaviour:
   descriptionExterior: The river always reminds me of life itself. Always from beginning
     to end. You can paddle with the current, against the current, or just go with
     the flow.
+  descriptionDate: 
   dateActions:
   - Stoke Bonfire
   - Paddle Canoe
@@ -3554,6 +3563,7 @@ MonoBehaviour:
     You can find things here that you can't find anywhere else.
   descriptionExterior: It's nice to get outside the big city. This village is the
     definition of 'cozy'.
+  descriptionDate: 
   dateActions:
   - Buy Gift
   - Small Talk
@@ -3578,6 +3588,7 @@ MonoBehaviour:
   descriptionInterior: Talk about a hidden gem. This water is so revitalizing.
   descriptionExterior: Traversing the mountainside is a fun, challenging adventure.
     Stay on the lookout for cougers!
+  descriptionDate: 
   dateActions:
   - Hold Hand
   currentDateAction: 
@@ -3602,6 +3613,7 @@ MonoBehaviour:
     be people like me, hidden within the ranks.
   descriptionExterior: This church is mysteriously tucked away. I wonder what goes
     on inside.
+  descriptionDate: 
   dateActions:
   - Say Prayer
   currentDateAction: 
@@ -6115,9 +6127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 555710953155d49398a296ccd255e03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiences:
-  - {fileID: 0}
-  - {fileID: 0}
   hasAchievedExperience: 
 --- !u!114 &1564499111
 MonoBehaviour:
