@@ -76,7 +76,6 @@ public class DialogueManager : MonoBehaviour {
 				);
 				myRelationshipCounselor.isAtDate = true;
                 myGameState.currentGameState = GameState.gameStates.DATE;
-                myUIManager.setDescriptionText(mySceneCatalogue.getCurrentLocation().descriptionDate);
                 charactersPresent = toReturn;
 				return toReturn;
             }
