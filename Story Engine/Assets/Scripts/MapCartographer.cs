@@ -110,6 +110,9 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
     {
         mySceneCatalogue.setCurrentSceneNumber(sceneNumber);
         myUIManager.BTN_toggleMap();
+        AudioSource audioBoi = GameObject.Find("AudioConductor").GetComponent<AudioSource>();
+        audioBoi.clip = myUIManager.subwayCar;
+        audioBoi.Play();
     }
 
     public void BeNotifiedOfLocationChange()

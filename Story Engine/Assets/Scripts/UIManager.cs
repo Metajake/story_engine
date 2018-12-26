@@ -43,6 +43,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private String cutSceneTextToWrite;
     public GameObject dateLocationButtonPrefab;
 
+    public AudioClip subwayCar;
+
 	bool mapEnabled;
     bool journalEnabled;
     
