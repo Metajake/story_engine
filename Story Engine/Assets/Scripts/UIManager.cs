@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 	private GameObject sequenceButtonsPanel;
     private GameObject dateLocationButton;
     private GameObject cutScenePanel;
+    private GameObject characterPanel;
     private RelationshipCounselor myRelationshipCounselor;
 	private CommandProcessor myCommandProcessor;
     private Timelord myTimelord;
@@ -72,6 +73,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         dateLocationButton = GameObject.Find("DateLocationButton");
         menuPanel = GameObject.Find("MenuPanel");
         cutScenePanel = GameObject.Find("CutScenePanel");
+        characterPanel = GameObject.Find("CharacterPanel");
 
         textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
         pastDatesText = GameObject.Find("PastDates").GetComponentInChildren<Text>();
@@ -101,6 +103,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         mapPanel.SetActive(false);
         mainPanel.SetActive(false);
         cutScenePanel.SetActive(false);
+        characterPanel.gameObject.SetActive(false);
 
         dateButtonsPanel.SetActive(false);
         mainPanelButtonsPanel.SetActive(false);
@@ -115,7 +118,9 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             mainPanel.SetActive(true);
             sequenceButtonsPanel.SetActive(true);
-        }else if(currentState == GameState.gameStates.CUTSCENE)
+            characterPanel.gameObject.SetActive(true);
+        }
+        else if(currentState == GameState.gameStates.CUTSCENE)
         {
             cutScenePanel.SetActive(true);
         }
@@ -124,6 +129,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             mainPanel.SetActive(true);
             mainPanelButtonsPanel.SetActive(true);
             mapButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
+            characterPanel.gameObject.SetActive(true);
             if (this.mapEnabled)
             {
                 mainPanel.SetActive(false);
@@ -136,21 +142,24 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }else if (currentState == GameState.gameStates.CONVERSATION)
         {
             dialoguePanel.SetActive(true);
-
+            characterPanel.gameObject.SetActive(true);
             askOnDateButton.SetActive(conversationTracker.canAskOnDateEnabled());
         }else if(currentState == GameState.gameStates.DATEINTRO)
         {
-            mainPanel.SetActive(true);
-            dateButtonsPanel.SetActive(myRelationshipCounselor.isAtDate);
-            dateActionButton.SetActive(!myRelationshipCounselor.getCurrentDateFromScheduledDateList().experienceAchieved);
+            enableDateComponents();
         }
         else if (currentState == GameState.gameStates.DATE)
         {
-            mainPanel.SetActive(true);
-            dateButtonsPanel.SetActive(myRelationshipCounselor.isAtDate);
-            dateActionButton.SetActive(!myRelationshipCounselor.getCurrentDateFromScheduledDateList().experienceAchieved);
+            enableDateComponents();
+        }
+        else if (currentState == GameState.gameStates.DATEOUTRO)
+        {
+            enableDateComponents();
+            characterPanel.gameObject.SetActive(false);
         }
     }
+
+
 
     private void populateComponentsForState(GameState.gameStates currentState)
     {
@@ -193,6 +202,19 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
         }
+        else if (currentState == GameState.gameStates.DATEOUTRO)
+        {
+            dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
+            setDescriptionText("The results of my date went fine.");
+        }
+    }
+
+    private void enableDateComponents()
+    {
+        mainPanel.SetActive(true);
+        characterPanel.gameObject.SetActive(true);
+        dateButtonsPanel.SetActive(myRelationshipCounselor.isAtDate);
+        dateActionButton.SetActive(!myRelationshipCounselor.getCurrentDateFromScheduledDateList().experienceAchieved);
     }
 
     private void updateSelectedPartnerUI()
