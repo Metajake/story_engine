@@ -52,7 +52,7 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
         {
             commandList.Enqueue(createChangeDialogueCommand(dialogue));
         }
-        this.commandList.Enqueue(new SequenceEndCommand());
+        this.commandList.Enqueue(new SequenceEndCommand(GameState.gameStates.PROWL));
         executeNextCommand();
     }
 
@@ -63,7 +63,7 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
         {
             commandList.Enqueue(createCutSceneCommand(cut));
         }
-        this.commandList.Enqueue(new SequenceEndCommand());
+        this.commandList.Enqueue(new SequenceEndCommand(GameState.gameStates.DATE));
         executeNextCommand();
     }
 }

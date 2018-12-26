@@ -3,15 +3,17 @@ using System.Collections;
 
 public class SequenceEndCommand : ICommand
 {
+    private readonly GameState.gameStates toEndIn;
     private GameState myGameState;
 
-    public SequenceEndCommand()
+    public SequenceEndCommand(GameState.gameStates toEndIn)
     {
         myGameState = GameObject.FindObjectOfType<GameState>();
+        this.toEndIn = toEndIn;
     }
 
     public void execute()
     {
-        myGameState.currentGameState = GameState.gameStates.PROWL;
+        myGameState.currentGameState = toEndIn;
     }
 }

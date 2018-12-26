@@ -59,17 +59,24 @@ public class RelationshipCounselor : MonoBehaviour {
         actionLikelihoodMatrix.Add("experience", expReactions);
     }
 
-	void Update () {
-        foreach(Date d in getAllDates())
+	void Update ()
+    {
+        expireOldDates();
+        checkStartDate();
+    }
+
+    private void expireOldDates()
+    {
+        foreach (Date d in getAllDates())
         {
-            if(d.dateTime < myTimeLord.getCurrentTimestep())
+            if (d.dateTime < myTimeLord.getCurrentTimestep())
             {
                 d.isOver = true;
             }
         }
     }
 
-	internal void createDate(Location dateLocation, int dateTime, DateableCharacter speaker)
+    internal void createDate(Location dateLocation, int dateTime, DateableCharacter speaker)
 	{
 		GameObject dateObject = new GameObject();
 		Date date = dateObject.AddComponent<Date>();
@@ -79,8 +86,23 @@ public class RelationshipCounselor : MonoBehaviour {
         date.isOver = false;
 		this.scheduledDates.Add(date);
 	}
-       
-	public DateableCharacter datePartner(Location dateLocation, int dateTime){
+
+    private void checkStartDate()
+    {
+        if (myGameState.currentGameState == GameState.gameStates.PROWL)
+        {
+            if (mySceneCatalogue.getIsInInteriorScene())
+            {
+                if (hasDateAtPresentTimeInPresentLocationAndDateNotOver())
+                {
+                    isAtDate = true;
+                    myGameState.currentGameState = GameState.gameStates.DATEINTRO;
+                }
+            }
+        }
+    }
+
+    public DateableCharacter datePartner(Location dateLocation, int dateTime){
 		DateableCharacter toReturn = null;
         foreach (Date date in this.scheduledDates)
         {
@@ -92,11 +114,11 @@ public class RelationshipCounselor : MonoBehaviour {
         return toReturn;
 	}
 
-	public bool isInDateMode(){
-        return getCurrentDate() != null;
+	public bool hasDateAtPresentTimeInPresentLocationAndDateNotOver(){
+        return getCurrentDateFromScheduledDateList() != null;
 	}
 
-    public Date getCurrentDate(){
+    public Date getCurrentDateFromScheduledDateList(){
         foreach (Date date in this.scheduledDates){
             if (date.dateTime == myTimeLord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentLocation() && !date.isOver)
             {
@@ -126,10 +148,15 @@ public class RelationshipCounselor : MonoBehaviour {
         myGameState.currentGameState = GameState.gameStates.PROWL;
 		mySceneCatalogue.toggleInteriorScene();
         myUIManager.resetDateButtons();
-        getCurrentDate().isOver = true;
+        getCurrentDateFromScheduledDateList().isOver = true;
 	}
 
 	public void act(){
+        if(myGameState.currentGameState == GameState.gameStates.DATEINTRO)
+        {
+            myGameState.currentGameState = GameState.gameStates.DATE;
+        }
+
 		var roller = new System.Random();
 		var roll = roller.Next(0, 100);
 
@@ -153,7 +180,7 @@ public class RelationshipCounselor : MonoBehaviour {
             myUIManager.showNeutralDescriptionText();
             Debug.Log("Contextual pre-programmed neutral location description (which we will eventually do).");
         }else{
-            getCurrentDate().experienceAchieved = true;
+            getCurrentDateFromScheduledDateList().experienceAchieved = true;
             myVictoryCoach.achievedExperience(mySceneCatalogue.getCurrentSceneNumber());
             Experience currentExp = myVictoryCoach.getNextExperience();
             myCommandProcessor.createAndEnqueueCutSceneSequence(new List<string>(currentExp.experienceCutSceneTexts));

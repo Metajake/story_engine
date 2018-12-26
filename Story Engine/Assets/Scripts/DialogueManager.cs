@@ -19,7 +19,6 @@ public class DialogueManager : MonoBehaviour {
     private Timelord myTimeLord;
     private SceneCatalogue mySceneCatalogue;
     private RelationshipCounselor myRelationshipCounselor;
-    private GameState myGameState;
 
 	public void registerDialogue(DialoguePiece piece){
 		this.pieces.Add(piece);
@@ -42,7 +41,6 @@ public class DialogueManager : MonoBehaviour {
         myTimeLord = GameObject.FindObjectOfType<Timelord>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
-        myGameState = GameObject.FindObjectOfType<GameState>();
 
         findConversationPartners();
     }
@@ -64,26 +62,14 @@ public class DialogueManager : MonoBehaviour {
 	}
 
     public List<Character> findConversationPartners(){
-
 		List<Character> toReturn = new List<Character>();
-        
-		if(mySceneCatalogue.getIsInInteriorScene()){
-            if(myRelationshipCounselor.isInDateMode()){
-				toReturn.Add( 
-    	            myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentLocation(), myTimeLord.getCurrentTimestep())
-				);
-				myRelationshipCounselor.isAtDate = true;
-                myGameState.currentGameState = GameState.gameStates.DATE;
-                charactersPresent = toReturn;
-				return toReturn;
+        foreach (Character character in this.allCharacters)
+        {
+            if (isCharacterInTimeOfDay(character) && isCharacterPresentAtCurrentLocation(character) && character.checkIsPresent())
+            {
+                toReturn.Add(character);
             }
         }
-
-        foreach (Character character in this.allCharacters) {
-			if(isCharacterInTimeOfDay(character) && isCharacterPresentAtCurrentLocation(character) && character.checkIsPresent()){
-				toReturn.Add(character);
-			}
-		}
         charactersPresent = toReturn;
 		return toReturn;
 	}

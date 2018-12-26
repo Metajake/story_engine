@@ -138,11 +138,17 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             dialoguePanel.SetActive(true);
 
             askOnDateButton.SetActive(conversationTracker.canAskOnDateEnabled());
-        }else if (currentState == GameState.gameStates.DATE)
+        }else if(currentState == GameState.gameStates.DATEINTRO)
         {
             mainPanel.SetActive(true);
             dateButtonsPanel.SetActive(myRelationshipCounselor.isAtDate);
-            dateActionButton.SetActive(!myRelationshipCounselor.getCurrentDate().experienceAchieved);
+            dateActionButton.SetActive(!myRelationshipCounselor.getCurrentDateFromScheduledDateList().experienceAchieved);
+        }
+        else if (currentState == GameState.gameStates.DATE)
+        {
+            mainPanel.SetActive(true);
+            dateButtonsPanel.SetActive(myRelationshipCounselor.isAtDate);
+            dateActionButton.SetActive(!myRelationshipCounselor.getCurrentDateFromScheduledDateList().experienceAchieved);
         }
     }
 
@@ -172,10 +178,19 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         else if (currentState == GameState.gameStates.CONVERSATION)
         {
             //NOTHING HERE YET :D
+        }else if (currentState == GameState.gameStates.DATEINTRO)
+        {
+            placePotentialPartners(new List<Character>() {
+                myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
+            });
+            dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
+            setDescriptionText(mySceneCatalogue.getCurrentLocation().descriptionDate);
         }
         else if(currentState == GameState.gameStates.DATE)
         {
-            placePotentialPartners( myDialogueManager.findConversationPartners() );
+            placePotentialPartners(new List<Character>() {
+                myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
+            });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
         }
     }
