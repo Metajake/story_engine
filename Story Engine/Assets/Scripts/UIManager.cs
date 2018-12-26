@@ -461,13 +461,11 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
     public void BTN_exitApplication()
     {
-        if (Application.isEditor) {
+        #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
-        }
-        else
-        {
+        #else
             Application.Quit();
-        }
+        #endif
     }
 
     public void eventOccured(IGameEvent occurringEvent)
