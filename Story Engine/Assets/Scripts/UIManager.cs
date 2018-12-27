@@ -37,13 +37,12 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 	private CommandProcessor myCommandProcessor;
     private Timelord myTimelord;
     private EventQueue myEventQueue;
+    private AudioConductor myAudioConductor;
     private Text textPanel;
     private Text pastDatesText;
     private Text upcomingDatesText;
     private String cutSceneTextToWrite;
     public GameObject dateLocationButtonPrefab;
-
-    public AudioClip subwayCar;
 
 	bool mapEnabled;
     bool journalEnabled;
@@ -65,6 +64,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 		myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
         myTipManager = GameObject.FindObjectOfType<TipManager>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
+        myAudioConductor = GameObject.FindObjectOfType<AudioConductor>();
 
         dialogueButtonPanel = GameObject.Find("DialogueButtonPanel");
         dialogueOptionsButtonPanel = GameObject.Find("DialogueOptionsButtonPanel");
@@ -447,7 +447,15 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         this.dateLocationButtonPanel.SetActive(false);
     }
 
-	public void BTN_toggleMap(){
+    public void BTN_onLocationClick(int sceneNumber)
+    {
+        myMapCartographer.changeScene(sceneNumber);
+        BTN_toggleMap();
+        myAudioConductor.loadAndPlay(myAudioConductor.subwayCar);
+        myEventQueue.queueEvent(new SceneChangeEvent());
+    }
+
+    public void BTN_toggleMap(){
         myMapCartographer.highlightCurrentLocation();
 		this.mapEnabled = !this.mapEnabled;
 	}

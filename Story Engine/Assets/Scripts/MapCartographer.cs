@@ -13,7 +13,6 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 	private SceneCatalogue mySceneCatalogue;
 	private GameObject myMapPanel;
     private UIManager myUIManager;
-    private EventQueue myEventQueue;
 
 	// Use this for initialization
 	void Start ()
@@ -22,7 +21,6 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 		myUIManager = GameObject.FindObjectOfType<UIManager>();
-        myEventQueue = GameObject.FindObjectOfType<EventQueue>();
 
         createLocationButtons();
 
@@ -81,7 +79,7 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 
         buttonObject.GetComponentInChildren<Text>().text = mySceneCatalogue.getLocationNames()[mapButtonIndex];
 
-        UnityAction buttonAction = () => onLocationClick(mapButtonIndex);
+        UnityAction buttonAction = () => myUIManager.BTN_onLocationClick(mapButtonIndex);
         buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);
     }
 
@@ -99,20 +97,10 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
             }
         }
     }
-    
-	public void onLocationClick(int sceneNumber)
-    {
-        changeScene(sceneNumber);
-        myEventQueue.queueEvent(new SceneChangeEvent());
-    }
 
-    private void changeScene(int sceneNumber)
+    public void changeScene(int sceneNumber)
     {
         mySceneCatalogue.setCurrentSceneNumber(sceneNumber);
-        myUIManager.BTN_toggleMap();
-        AudioSource audioBoi = GameObject.Find("AudioConductor").GetComponent<AudioSource>();
-        audioBoi.clip = myUIManager.subwayCar;
-        audioBoi.Play();
     }
 
     public void BeNotifiedOfLocationChange()
