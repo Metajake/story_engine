@@ -42,7 +42,7 @@ public class DialogueManager : MonoBehaviour {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
 
-        findConversationPartners();
+        getAllPresentLocalCurrentConversationPartners();
     }
 
     private void initializeAllCharacters()
@@ -61,7 +61,7 @@ public class DialogueManager : MonoBehaviour {
     void Update () {
 	}
 
-    public List<Character> findConversationPartners(){
+    public List<Character> getAllPresentLocalCurrentConversationPartners(){
 		List<Character> toReturn = new List<Character>();
         foreach (Character character in this.allCharacters)
         {

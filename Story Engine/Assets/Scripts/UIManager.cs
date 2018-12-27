@@ -182,7 +182,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             if (!mapEnabled && !journalEnabled)
             {
                 describeLocation();
-                placePotentialPartners( myDialogueManager.findConversationPartners() );
+                activatePartnerUIInLocation( myDialogueManager.getAllPresentLocalCurrentConversationPartners() );
                 updateSelectedPartnerUI();
             }
         }
@@ -191,7 +191,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             //NOTHING HERE YET :D
         }else if (currentState == GameState.gameStates.DATEINTRO)
         {
-            placePotentialPartners(new List<Character>() {
+            activatePartnerUIInLocation(new List<Character>() {
                 myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
             });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
@@ -199,7 +199,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
         else if(currentState == GameState.gameStates.DATE)
         {
-            placePotentialPartners(new List<Character>() {
+            activatePartnerUIInLocation(new List<Character>() {
                 myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
             });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
@@ -228,6 +228,25 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         if (partners && myDialogueManager.selectedPartner < 0)
         {
             onPortraitClicked(new System.Random().Next(1, myDialogueManager.charactersPresent.Count + 1));
+        }
+    }
+    public void activatePartnerUIInLocation(List<Character> potentialConversationPartners)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
+            Text partnerNameplate = GameObject.Find("Character " + (i + 1) + " NamePlate").GetComponent<Text>();
+            if (i < potentialConversationPartners.Count)
+            {
+                partnerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(potentialConversationPartners[i].image);
+                partnerPortrait.color = new Color(255,255,255, 1);
+                partnerNameplate.text = potentialConversationPartners[i].givenName + " " + potentialConversationPartners[i].surname;
+
+            }
+            else
+            {
+                disablePartnerSelectionUI(partnerPortrait, partnerNameplate);
+            }
         }
     }
 
@@ -288,26 +307,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     internal void gameOver()
 	{
         SceneManager.LoadScene("splash_game_over");
-	}
-
-    public void placePotentialPartners(List<Character> potentialConversationPartners)
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
-            Text partnerNameplate = GameObject.Find("Character " + (i + 1) + " NamePlate").GetComponent<Text>();
-            if (i < potentialConversationPartners.Count)
-            {
-                partnerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(potentialConversationPartners[i].image);
-                partnerPortrait.color = new Color(partnerPortrait.color.r, partnerPortrait.color.g, partnerPortrait.color.b, 1);
-                partnerNameplate.text = potentialConversationPartners[i].givenName + " " + potentialConversationPartners[i].surname;
-
-            }
-            else
-			{
-				disablePartnerSelectionUI(partnerPortrait, partnerNameplate);
-			}
-		}
 	}
 
 	private void clearPotentialPartners(){
@@ -476,6 +475,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         #endif
     }
 
+
     public void eventOccured(IGameEvent occurringEvent)
     {
         Debug.Log(occurringEvent.getEventType());
@@ -497,7 +497,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             {
                 dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
             }
-        }else if(occurringEvent.getEventType() == "DATEACTIONEVENT")
+        }
+        else if(occurringEvent.getEventType() == "DATEACTIONEVENT")
         {
             mySceneCatalogue.getCurrentLocation().setRandomDateAction();
         }
