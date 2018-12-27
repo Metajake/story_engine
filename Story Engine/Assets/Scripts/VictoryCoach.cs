@@ -9,7 +9,7 @@ public class VictoryCoach : MonoBehaviour {
     public List<bool> hasAchievedExperience;
     private SceneCatalogue mySceneCatalogue;
     private DifficultyLevel nextGoal;
-    private bool isNEET;
+    private bool isIrresponsible;
 
     private void Awake()
     {
@@ -28,7 +28,8 @@ public class VictoryCoach : MonoBehaviour {
         hasAchievedExperience = new List<bool>();
 
         nextGoal = DifficultyLevel.EASY;
-        isNEET = true;
+
+        isIrresponsible = true;
 
         initializeLocationExperienceChecklist();
 
@@ -86,11 +87,11 @@ public class VictoryCoach : MonoBehaviour {
     {
         System.Random random = new System.Random();
         Experience toReturn;
-        if (isNEET)
+        if (isIrresponsible)
         {
             toReturn = experiences["responsibility"];
             experiences.Remove("responsibility");
-            isNEET = false;
+            isIrresponsible = false;
             return toReturn;
         }
         else

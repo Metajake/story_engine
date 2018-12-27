@@ -1008,8 +1008,6 @@ MonoBehaviour:
   journalPanel: {fileID: 1758800456}
   dateLocationButtonPrefab: {fileID: 1069225531541500, guid: 9f093dce7c64345f1bdafc0a590f6850,
     type: 2}
-  minimum: 0
-  maximum: 1
 --- !u!4 &112322380
 Transform:
   m_ObjectHideFlags: 0
@@ -3332,8 +3330,8 @@ MonoBehaviour:
   experienceDescription: Beach Exp
   isDateScene: 1
   isKnown: 1
-  descriptionInterior: These dunes remind me of the animated film, "Aladin". Taking
-    a date here would be like Aladin and Jasmine together in their sand castle palace.
+  descriptionInterior: These dunes remind me of the animated film, "Aladin". Going
+    on a date here would be like Jasmine and Alladin together in their sand castle.
   descriptionExterior: This used to be a nude beach. I wonder why it changed...
   descriptionDate: If this goes bad, I'm moving back in with my parents.
   dateActions:
