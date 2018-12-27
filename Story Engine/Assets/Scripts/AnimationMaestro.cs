@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AnimationMaestro : MonoBehaviour {
+public class AnimationMaestro : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Use this for initialization
+    void Start()
+    {
 
-    public void activatePartnerUIInLocation(List<Character> potentialConversationPartners)
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void placePotentialPartnersInUI(List<Character> potentialConversationPartners)
     {
         for (int i = 0; i < 3; i++)
         {
@@ -24,9 +27,8 @@ public class AnimationMaestro : MonoBehaviour {
             if (i < potentialConversationPartners.Count)
             {
                 partnerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(potentialConversationPartners[i].image);
-                partnerPortrait.color = new Color(255, 255, 255, 1);
                 partnerNameplate.text = potentialConversationPartners[i].givenName + " " + potentialConversationPartners[i].surname;
-
+                partnerPortrait.color = new Color(255, 255, 255, 1);
             }
             else
             {
@@ -49,5 +51,17 @@ public class AnimationMaestro : MonoBehaviour {
     {
         partnerPortrait.color = new Color(partnerPortrait.color.r, partnerPortrait.color.g, partnerPortrait.color.b, 0);
         partnerNameplate.text = "";
+    }
+
+    IEnumerator FadeTo(Image characterImage, float aValue, float aTime)
+    {
+        //Use in Update. Example: StartCoroutine(FadeTo(partnerPortrait, 1.0f, 1.0f));
+        float alpha = characterImage.color.a;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
+        {
+            Color newColor = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, Mathf.Lerp(alpha, aValue, t));
+            characterImage.color = newColor;
+            yield return null;
+        }
     }
 }

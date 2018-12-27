@@ -165,8 +165,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
     }
 
-
-
     private void populateComponentsForState(GameState.gameStates currentState)
     {
         if (currentState == GameState.gameStates.COMMANDSEQUENCE)
@@ -186,7 +184,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             if (!mapEnabled && !journalEnabled)
             {
                 describeLocation();
-                myAnimationMaestro.activatePartnerUIInLocation( myDialogueManager.getAllCurrentLocalPresentConversationPartners() );
+                myAnimationMaestro.placePotentialPartnersInUI( myDialogueManager.getAllCurrentLocalPresentConversationPartners() );
                 updateSelectedPartnerUI();
             }
         }
@@ -195,7 +193,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             //NOTHING HERE YET :D
         }else if (currentState == GameState.gameStates.DATEINTRO)
         {
-            myAnimationMaestro.activatePartnerUIInLocation(new List<Character>() {
+            myAnimationMaestro.placePotentialPartnersInUI(new List<Character>() {
                 myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
             });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
@@ -203,7 +201,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
         else if(currentState == GameState.gameStates.DATE)
         {
-            myAnimationMaestro.activatePartnerUIInLocation(new List<Character>() {
+            myAnimationMaestro.placePotentialPartnersInUI(new List<Character>() {
                 myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
             });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
