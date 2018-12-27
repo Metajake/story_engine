@@ -18,12 +18,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 	public GameObject mapPanel;
     public GameObject journalPanel;
     private GameObject menuPanel;
-    private GameState myGameState;
-    private DialogueManager myDialogueManager;
-	private MapCartographer myMapCartographer;
-	private ConversationTracker conversationTracker;
-	private SceneCatalogue mySceneCatalogue;
-    private TipManager myTipManager;
     private GameObject dialogueButtonPanel;
 	private GameObject dialogueOptionsButtonPanel;
 	private GameObject dateLocationButtonPanel;
@@ -33,11 +27,20 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private GameObject dateLocationButton;
     private GameObject cutScenePanel;
     private GameObject characterPanel;
+
+    private GameState myGameState;
+    private DialogueManager myDialogueManager;
+    private MapCartographer myMapCartographer;
+    private ConversationTracker conversationTracker;
+    private SceneCatalogue mySceneCatalogue;
+    private TipManager myTipManager;
     private RelationshipCounselor myRelationshipCounselor;
 	private CommandProcessor myCommandProcessor;
     private Timelord myTimelord;
     private EventQueue myEventQueue;
     private AudioConductor myAudioConductor;
+    private AnimationMaestro myAnimationMaestro;
+
     private Text textPanel;
     private Text pastDatesText;
     private Text upcomingDatesText;
@@ -65,6 +68,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         myTipManager = GameObject.FindObjectOfType<TipManager>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myAudioConductor = GameObject.FindObjectOfType<AudioConductor>();
+        myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
 
         dialogueButtonPanel = GameObject.Find("DialogueButtonPanel");
         dialogueOptionsButtonPanel = GameObject.Find("DialogueOptionsButtonPanel");
@@ -84,7 +88,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         myEventQueue.subscribe(this);
 
         dateLocationButtonPanel.SetActive(false);
-		clearPotentialPartners();
+		myAnimationMaestro.clearPotentialPartners();
 
 		mapEnabled = false;
         journalEnabled = false;
@@ -182,7 +186,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             if (!mapEnabled && !journalEnabled)
             {
                 describeLocation();
-                activatePartnerUIInLocation( myDialogueManager.getAllPresentLocalCurrentConversationPartners() );
+                myAnimationMaestro.activatePartnerUIInLocation( myDialogueManager.getAllCurrentLocalPresentConversationPartners() );
                 updateSelectedPartnerUI();
             }
         }
@@ -191,16 +195,16 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             //NOTHING HERE YET :D
         }else if (currentState == GameState.gameStates.DATEINTRO)
         {
-            activatePartnerUIInLocation(new List<Character>() {
-                myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
+            myAnimationMaestro.activatePartnerUIInLocation(new List<Character>() {
+                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
             });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
             setDescriptionText(mySceneCatalogue.getCurrentLocation().descriptionDate);
         }
         else if(currentState == GameState.gameStates.DATE)
         {
-            activatePartnerUIInLocation(new List<Character>() {
-                myRelationshipCounselor.datePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
+            myAnimationMaestro.activatePartnerUIInLocation(new List<Character>() {
+                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
             });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
         }
@@ -230,23 +234,14 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             onPortraitClicked(new System.Random().Next(1, myDialogueManager.charactersPresent.Count + 1));
         }
     }
-    public void activatePartnerUIInLocation(List<Character> potentialConversationPartners)
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
-            Text partnerNameplate = GameObject.Find("Character " + (i + 1) + " NamePlate").GetComponent<Text>();
-            if (i < potentialConversationPartners.Count)
-            {
-                partnerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(potentialConversationPartners[i].image);
-                partnerPortrait.color = new Color(255,255,255, 1);
-                partnerNameplate.text = potentialConversationPartners[i].givenName + " " + potentialConversationPartners[i].surname;
 
-            }
-            else
-            {
-                disablePartnerSelectionUI(partnerPortrait, partnerNameplate);
-            }
+    public void onPortraitClicked(int portraitNumber)
+    {
+        Character clickedCharacter = myDialogueManager.getPartnerAt(portraitNumber);
+        if (clickedCharacter != null)
+        {
+            myDialogueManager.selectedPartner = portraitNumber - 1;
+            talkButtonObject.GetComponentInChildren<Text>().text = "Talk to " + clickedCharacter.givenName;
         }
     }
 
@@ -309,20 +304,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         SceneManager.LoadScene("splash_game_over");
 	}
 
-	private void clearPotentialPartners(){
-		for (int i = 0; i < 3; i++){
-			Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
-            Text partnerNameplate = GameObject.Find("Character " + (i + 1) + " NamePlate").GetComponent<Text>();
-			disablePartnerSelectionUI(partnerPortrait, partnerNameplate);
-		}
-	}
-
-	private static void disablePartnerSelectionUI(Image partnerPortrait, Text partnerNameplate)
-	{
-		partnerPortrait.color = new Color(partnerPortrait.color.r, partnerPortrait.color.g, partnerPortrait.color.b, 0);
-		partnerNameplate.text = "";
-	}
-
 	internal void showNeutralDescriptionText()
     {
 		setDescriptionText(mySceneCatalogue.neutralResultForCurrentLocationDescription());
@@ -333,14 +314,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         setDescriptionText("Bye, lame.");
         dateActionButton.SetActive(false);
     }
-
-	public void onPortraitClicked(int portraitNumber){
-		Character clickedCharacter = myDialogueManager.getPartnerAt(portraitNumber);
-		if(clickedCharacter != null ){
-			myDialogueManager.selectedPartner = portraitNumber - 1;
-			talkButtonObject.GetComponentInChildren<Text>().text ="Talk to " + clickedCharacter.givenName;
-		}
-	}
 
     private void BTN_toggleMenuPanel()
     {

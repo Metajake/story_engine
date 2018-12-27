@@ -102,7 +102,7 @@ public class RelationshipCounselor : MonoBehaviour {
         }
     }
 
-    public DateableCharacter datePartner(Location dateLocation, int dateTime){
+    public DateableCharacter getDatePartner(Location dateLocation, int dateTime){
 		DateableCharacter toReturn = null;
         foreach (Date date in this.scheduledDates)
         {
@@ -160,7 +160,7 @@ public class RelationshipCounselor : MonoBehaviour {
 		var roller = new System.Random();
 		var roll = roller.Next(0, 100);
 
-        DateableCharacter she = datePartner(mySceneCatalogue.getCurrentLocation(), myTimeLord.getCurrentTimestep());
+        DateableCharacter she = getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimeLord.getCurrentTimestep());
 
         Debug.Log("Roll: " + roll);
         Debug.Log("In love amount: " + she.inLoveAmount*this.loveChanceIncrement);

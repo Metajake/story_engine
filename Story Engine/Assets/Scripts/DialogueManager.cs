@@ -41,8 +41,6 @@ public class DialogueManager : MonoBehaviour {
         myTimeLord = GameObject.FindObjectOfType<Timelord>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
-
-        getAllPresentLocalCurrentConversationPartners();
     }
 
     private void initializeAllCharacters()
@@ -61,7 +59,7 @@ public class DialogueManager : MonoBehaviour {
     void Update () {
 	}
 
-    public List<Character> getAllPresentLocalCurrentConversationPartners(){
+    public List<Character> getAllCurrentLocalPresentConversationPartners(){
 		List<Character> toReturn = new List<Character>();
         foreach (Character character in this.allCharacters)
         {
