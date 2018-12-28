@@ -446,12 +446,12 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         #endif
     }
 
-
     public void eventOccured(IGameEvent occurringEvent)
     {
         Debug.Log(occurringEvent.getEventType());
         if (occurringEvent.getEventType() == "TIMEEVENT") {
-            foreach(DateableCharacter character in myDialogueManager.allDateableCharacters)
+            myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+            foreach (DateableCharacter character in myDialogueManager.allDateableCharacters)
             {
                 character.checkAndSetReturnToPresent(myTimelord.getCurrentTimestep());
             }
@@ -459,6 +459,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
         else if (occurringEvent.getEventType() == "LOCATIONEVENT")
         {
+            myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
             myDialogueManager.selectedPartner = -1;
             if (!mySceneCatalogue.getIsInInteriorScene())
             {
@@ -468,6 +469,12 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             {
                 dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
             }
+        }else if (occurringEvent.getEventType() == "DATESTARTEVENT")
+        {
+            myAnimationMaestro.fadeInCharacters(new List<Character>() {
+                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
+            });
+            myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
         }
         else if(occurringEvent.getEventType() == "DATEACTIONEVENT")
         {

@@ -97,6 +97,7 @@ public class RelationshipCounselor : MonoBehaviour {
                 {
                     isAtDate = true;
                     myGameState.currentGameState = GameState.gameStates.DATEINTRO;
+                    myEventQueue.queueEvent(new EventDateStart());
                 }
             }
         }

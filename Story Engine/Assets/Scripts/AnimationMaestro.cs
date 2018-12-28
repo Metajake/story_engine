@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class AnimationMaestro : MonoBehaviour
 {
+    private GameState myGameState;
 
     // Use this for initialization
     void Start()
     {
-
+        myGameState = GameObject.FindObjectOfType<GameState>();
     }
 
     // Update is called once per frame
@@ -28,7 +29,7 @@ public class AnimationMaestro : MonoBehaviour
             {
                 partnerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(potentialConversationPartners[i].image);
                 partnerNameplate.text = potentialConversationPartners[i].givenName + " " + potentialConversationPartners[i].surname;
-                partnerPortrait.color = new Color(255, 255, 255, 1);
+                //partnerPortrait.color = new Color(255, 255, 255, 1);
             }
             else
             {
@@ -53,9 +54,22 @@ public class AnimationMaestro : MonoBehaviour
         partnerNameplate.text = "";
     }
 
-    IEnumerator FadeTo(Image characterImage, float aValue, float aTime)
+    public void fadeInCharacters(List<Character> potentialConversationPartners)
     {
-        //Use in Update. Example: StartCoroutine(FadeTo(partnerPortrait, 1.0f, 1.0f));
+        for (int i = 0; i < 3; i++)
+        {
+            Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
+            if (i < potentialConversationPartners.Count)
+            {
+                partnerPortrait.color = new Color(255, 255, 255, 0);
+                StartCoroutine(fadeImageTo(partnerPortrait, 1.0f, 0.6f));
+            }
+        }
+    }
+
+    IEnumerator fadeImageTo(Image characterImage, float aValue, float aTime)
+    {
+        //Use in Update. Example: StartCoroutine(fadeImageTo(partnerPortrait, 1.0f, 1.0f));
         float alpha = characterImage.color.a;
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
         {
