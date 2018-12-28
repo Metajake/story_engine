@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     public GameObject mainPanel;
 	public GameObject mapPanel;
     public GameObject journalPanel;
-    private GameObject menuPanel;
+    public GameObject menuPanel;
     private GameObject dialogueButtonPanel;
 	private GameObject dialogueOptionsButtonPanel;
 	private GameObject dateLocationButtonPanel;
@@ -30,7 +30,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
     private GameState myGameState;
     private DialogueManager myDialogueManager;
-    private MapCartographer myMapCartographer;
     private ConversationTracker conversationTracker;
     private SceneCatalogue mySceneCatalogue;
     private TipManager myTipManager;
@@ -38,17 +37,16 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 	private CommandProcessor myCommandProcessor;
     private Timelord myTimelord;
     private EventQueue myEventQueue;
-    private AudioConductor myAudioConductor;
     private AnimationMaestro myAnimationMaestro;
+    private InputOrganizer myInputOrganizer;
 
     private Text textPanel;
-    private Text pastDatesText;
-    private Text upcomingDatesText;
+    public Text pastDatesText;
+    public Text upcomingDatesText;
     private String cutSceneTextToWrite;
-    public GameObject dateLocationButtonPrefab;
 
-	bool mapEnabled;
-    bool journalEnabled;
+	public bool mapEnabled;
+    public bool journalEnabled;
     
     void Start () {
         talkButtonObject = GameObject.Find("TalkButton");
@@ -59,7 +57,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
         myGameState = GameObject.FindObjectOfType<GameState>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
-        myMapCartographer = GameObject.FindObjectOfType<MapCartographer>();
         myTimelord = GameObject.FindObjectOfType<Timelord>();
         conversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
 		mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
@@ -67,8 +64,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 		myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
         myTipManager = GameObject.FindObjectOfType<TipManager>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
-        myAudioConductor = GameObject.FindObjectOfType<AudioConductor>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
+        myInputOrganizer = GameObject.FindObjectOfType<InputOrganizer>();
 
         dialogueButtonPanel = GameObject.Find("DialogueButtonPanel");
         dialogueOptionsButtonPanel = GameObject.Find("DialogueOptionsButtonPanel");
@@ -99,7 +96,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 	{
         enableComponentsForState(myGameState.currentGameState);
         populateComponentsForState(myGameState.currentGameState);
-        BTN_toggleMenuPanel();
+        myInputOrganizer.BTN_toggleMenuPanel();
     }
 
     private void deactivateUIComponents()
@@ -248,7 +245,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         setDescriptionText(mySceneCatalogue.getLocationDescription());
     }
 
-    private string convertPastDatesToDateInfo(List<Date> allDates)
+    public string convertPastDatesToDateInfo(List<Date> allDates)
     {
         List<Date> pastDates = new List<Date>();
         foreach(Date d in allDates)
@@ -262,7 +259,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         return allDatesInfo;
     }
 
-    private string convertUpcomingDatesToDateInfo(List<Date> allDates)
+    public string convertUpcomingDatesToDateInfo(List<Date> allDates)
     {
         List<Date> upcomingDates = new List<Date>();
         foreach (Date d in allDates)
@@ -313,39 +310,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         dateActionButton.SetActive(false);
     }
 
-    private void BTN_toggleMenuPanel()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            menuPanel.gameObject.SetActive(!menuPanel.gameObject.activeSelf);
-        }
-    }
-
-	public void BTN_toggleDialogueWindow(bool isDialoguing){
-        if (!isDialoguing) {
-            myDialogueManager.getPartnerAt(myDialogueManager.selectedPartner + 1).isPresent = false;
-            myDialogueManager.getPartnerAt(myDialogueManager.selectedPartner + 1).returnTime = myTimelord.getCurrentTimestep() +1;
-            myGameState.currentGameState = GameState.gameStates.PROWL;
-            myDialogueManager.setConversationMode(isDialoguing);
-            myDialogueManager.selectedPartner = -1;
-        }
-        else
-        {
-            Character selectedCharacter = myDialogueManager.getPartnerAt(myDialogueManager.selectedPartner + 1);
-            if (selectedCharacter is DateableCharacter)
-            {
-                myDialogueManager.setConversationMode(isDialoguing);
-                GameObject.FindObjectOfType<ConversationTracker>().beginConversation((DateableCharacter)selectedCharacter);
-                myGameState.currentGameState = GameState.gameStates.CONVERSATION;
-            }
-            else
-            {
-                string dialogueString = myTipManager.getTip();
-                myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { dialogueString });
-            }
-        }
-    }
-
 	public void enableAllButtons()
     {
 		dialogueOptionsButtonPanel.SetActive(true);
@@ -361,89 +325,16 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 		dateActionButton.SetActive(true);
 	}
 
-    private void createDateLocationButtons(){
-
-        List<string> dateSceneNames = mySceneCatalogue.getDateSceneNames();
-
-        List<Location> dateScenes = mySceneCatalogue.getDateScenes();
-
-        Button[] allButtons = dateLocationButtonPanel.GetComponentsInChildren<Button>();
-
-        foreach (Button b in allButtons)
-        {
-            Destroy(b.gameObject);
-        }
-
-        for (int j = 0; j < 3; j++)
-        {
-
-            for (int k = 0; k < 3; k++)
-            {
-
-                int dateButtonIndex = j * 3 + k;
-
-                if (!mySceneCatalogue.isKnownDateLocation(dateSceneNames[dateButtonIndex]))
-                {
-                    continue;
-                }
-
-                GameObject buttonObject = GameObject.Instantiate(dateLocationButtonPrefab, dateLocationButtonPanel.transform);
-
-                buttonObject.transform.Translate(new Vector3(k * 140, j * 50));
-
-                buttonObject.GetComponentInChildren<Text>().text = dateSceneNames[dateButtonIndex];
-
-                UnityAction buttonAction = () => BTN_scheduleDateForLocation(dateScenes[dateButtonIndex]);
-                buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);
-
-            }
-
-        }
-	}
-
-	public void BTN_scheduleDateForLocation(Location dateLocation){
-		conversationTracker.scheduleDate(dateLocation);
-	}
-
 	public void showLocationOptions(){
         this.dialogueButtonPanel.SetActive(false);
 		this.dateLocationButtonPanel.SetActive(true);
-		createDateLocationButtons();
+		myInputOrganizer.createDateLocationButtons();
 	}
 
 	internal void hideLocationOptions()
 	{
 		this.dialogueButtonPanel.SetActive(true);
         this.dateLocationButtonPanel.SetActive(false);
-    }
-
-    public void BTN_onLocationClick(int sceneNumber)
-    {
-        myMapCartographer.changeScene(sceneNumber);
-        BTN_toggleMap();
-        myAudioConductor.loadAndPlay(myAudioConductor.subwayCar);
-        myEventQueue.queueEvent(new SceneChangeEvent());
-    }
-
-    public void BTN_toggleMap(){
-        myMapCartographer.highlightCurrentLocation();
-		this.mapEnabled = !this.mapEnabled;
-	}
-
-    public void BTN_toggleJournal()
-    {
-        pastDatesText.text = convertPastDatesToDateInfo(myRelationshipCounselor.getAllDates());
-        upcomingDatesText.text = convertUpcomingDatesToDateInfo(myRelationshipCounselor.getAllDates());
-        this.journalEnabled = !this.journalEnabled;
-    }
-
-    public void BTN_exitApplication()
-    {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
-            Application.Quit();
-        #endif
     }
 
     public void eventOccured(IGameEvent occurringEvent)

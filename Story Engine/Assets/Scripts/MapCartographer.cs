@@ -12,7 +12,7 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 	public GameObject mapLocationButtonPrefab;
 	private SceneCatalogue mySceneCatalogue;
 	private GameObject myMapPanel;
-    private UIManager myUIManager;
+    private InputOrganizer myInputOrganizer;
 
 	// Use this for initialization
 	void Start ()
@@ -20,7 +20,7 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 		myMapPanel = GameObject.Find("MapPanel");
 
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
-		myUIManager = GameObject.FindObjectOfType<UIManager>();
+        myInputOrganizer = GameObject.FindObjectOfType<InputOrganizer>();
 
         createLocationButtons();
 
@@ -79,7 +79,7 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 
         buttonObject.GetComponentInChildren<Text>().text = mySceneCatalogue.getLocationNames()[mapButtonIndex];
 
-        UnityAction buttonAction = () => myUIManager.BTN_onLocationClick(mapButtonIndex);
+        UnityAction buttonAction = () => myInputOrganizer.BTN_onLocationClick(mapButtonIndex);
         buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);
     }
 

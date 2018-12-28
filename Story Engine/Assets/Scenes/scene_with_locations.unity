@@ -805,7 +805,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 112322379}
+      - m_Target: {fileID: 1062449721}
         m_MethodName: BTN_toggleMap
         m_Mode: 1
         m_Arguments:
@@ -1006,8 +1006,11 @@ MonoBehaviour:
   mainPanel: {fileID: 457801087}
   mapPanel: {fileID: 865104627}
   journalPanel: {fileID: 1758800456}
-  dateLocationButtonPrefab: {fileID: 1069225531541500, guid: 9f093dce7c64345f1bdafc0a590f6850,
-    type: 2}
+  menuPanel: {fileID: 0}
+  pastDatesText: {fileID: 0}
+  upcomingDatesText: {fileID: 0}
+  mapEnabled: 0
+  journalEnabled: 0
 --- !u!4 &112322380
 Transform:
   m_ObjectHideFlags: 0
@@ -1184,7 +1187,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &176462119
 GameObject:
@@ -1961,7 +1964,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &479041414
 GameObject:
@@ -2116,7 +2119,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 112322379}
+      - m_Target: {fileID: 1062449721}
         m_MethodName: BTN_exitApplication
         m_Mode: 1
         m_Arguments:
@@ -2635,7 +2638,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &679222673
 GameObject:
@@ -2836,7 +2839,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 112322379}
+      - m_Target: {fileID: 1062449721}
         m_MethodName: BTN_toggleDialogueWindow
         m_Mode: 6
         m_Arguments:
@@ -3135,7 +3138,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &865104627
 GameObject:
@@ -3768,7 +3771,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 112322379}
+      - m_Target: {fileID: 1062449721}
         m_MethodName: BTN_toggleJournal
         m_Mode: 1
         m_Arguments:
@@ -3961,6 +3964,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1061422101}
   m_CullTransparentMesh: 0
+--- !u!1 &1062449720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1062449722}
+  - component: {fileID: 1062449721}
+  m_Layer: 0
+  m_Name: InputOrganizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1062449721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1062449720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1146c5e4c07bec442a1318b89d1c3e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dateLocationButtonPrefab: {fileID: 1069225531541500, guid: 9f093dce7c64345f1bdafc0a590f6850,
+    type: 2}
+--- !u!4 &1062449722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1062449720}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 387.1203, y: 211.73845, z: -2.5687158}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1115135608
 GameObject:
   m_ObjectHideFlags: 0
@@ -5073,7 +5118,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 112322379}
+      - m_Target: {fileID: 1062449721}
         m_MethodName: BTN_toggleDialogueWindow
         m_Mode: 6
         m_Arguments:
@@ -6054,7 +6099,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1528989334
 MonoBehaviour:
@@ -6249,7 +6294,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1564499110
 MonoBehaviour:
@@ -6417,7 +6462,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1650917025
 GameObject:
@@ -6460,7 +6505,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1659255697
 GameObject:
@@ -7439,7 +7484,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1970188418
 GameObject:
@@ -7894,7 +7939,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 112322379}
+      - m_Target: {fileID: 1062449721}
         m_MethodName: BTN_toggleMap
         m_Mode: 1
         m_Arguments:
@@ -8479,7 +8524,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 112322379}
+      - m_Target: {fileID: 1062449721}
         m_MethodName: BTN_toggleJournal
         m_Mode: 1
         m_Arguments:
