@@ -17,20 +17,30 @@ public class AnimationMaestro : MonoBehaviour
 
     }
 
-    public void placePotentialPartnersInUI(List<Character> potentialConversationPartners)
+    public void populatePotentialPartnersUI(List<Character> potentialConversationPartners)
     {
         for (int i = 0; i < 3; i++)
         {
             Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
             Text partnerNameplate = GameObject.Find("Character " + (i + 1) + " NamePlate").GetComponent<Text>();
+            Text partnerLoveAmount = GameObject.Find("Character " + (i + 1) + " LoveAmount").GetComponent<Text>();
             if (i < potentialConversationPartners.Count)
             {
                 partnerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(potentialConversationPartners[i].image);
                 partnerNameplate.text = potentialConversationPartners[i].givenName + " " + potentialConversationPartners[i].surname;
+                if (potentialConversationPartners[i] is DateableCharacter)
+                {
+                    partnerLoveAmount.text = "Love Amount: " + potentialConversationPartners[i].inLoveAmount.ToString();
+                }
+                else
+                {
+                    partnerLoveAmount.text = "";
+                }
+                
             }
             else
             {
-                disablePartnerSelectionUI(partnerPortrait, partnerNameplate);
+                disablePartnerSelectionUI(partnerPortrait, partnerNameplate, partnerLoveAmount);
             }
         }
     }
@@ -41,14 +51,16 @@ public class AnimationMaestro : MonoBehaviour
         {
             Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
             Text partnerNameplate = GameObject.Find("Character " + (i + 1) + " NamePlate").GetComponent<Text>();
-            disablePartnerSelectionUI(partnerPortrait, partnerNameplate);
+            Text partnerLoveAmount = GameObject.Find("Character " + (i + 1) + " LoveAmount").GetComponent<Text>();
+            disablePartnerSelectionUI(partnerPortrait, partnerNameplate, partnerLoveAmount);
         }
     }
 
-    private static void disablePartnerSelectionUI(Image partnerPortrait, Text partnerNameplate)
+    private static void disablePartnerSelectionUI(Image partnerPortrait, Text partnerNameplate, Text partnerLoveAmount)
     {
         partnerPortrait.color = new Color(partnerPortrait.color.r, partnerPortrait.color.g, partnerPortrait.color.b, 0);
         partnerNameplate.text = "";
+        partnerLoveAmount.text = "";
     }
 
     public void fadeInCharacters(List<Character> potentialConversationPartners)

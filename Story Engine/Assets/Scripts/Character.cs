@@ -9,11 +9,13 @@ public class Character : MonoBehaviour {
     public string surname;
     public string currentSceneName;
     public bool isInside;
+    public int inLoveAmount;
     public bool[] activeTimes;
     public bool isPresent;
     public int returnTime;
 
     public virtual bool checkIsPresent(){
+        inLoveAmount = 0;
         return this.isPresent;
     }
     

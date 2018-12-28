@@ -6,7 +6,6 @@ public class DateableCharacter : Character {
 
 	public bool isSubordinate;
 	public int permanentOpinion;
-    public int inLoveAmount;
 	public bool knowsYou;
 	public int experienceCount;
     public int[] locationPreferences;
@@ -18,7 +17,6 @@ public class DateableCharacter : Character {
         DialogueManager dm = GameObject.FindObjectOfType<DialogueManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 		experienceCount = 0;
-        inLoveAmount = 0;
         returnTime = 0;
 
 		if(givenName.ToLower() == "kristie"){
