@@ -35,9 +35,6 @@ public class Timelord : MonoBehaviour {
         if(timeStep % 21 == 0){ //if it's a multiple of 21 (aka Every 7 Days)
             myDialogueManager.scatterCharacters(); 
         }
-        if (checkIfCreep()) {
-            mySceneCatalogue.setRandomKnownScene();
-        }
         myEventQueue.queueEvent(new TimeChangeEvent());
     }
 

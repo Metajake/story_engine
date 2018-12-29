@@ -22,6 +22,10 @@ public class InputOrganizer : MonoBehaviour {
     private GameObject dateLocationButtonPanel;
     public GameObject dateLocationButtonPrefab;
 
+    private void Awake()
+    {
+        dateLocationButtonPanel = GameObject.Find("LocationButtonPanel");
+    }
 
     // Use this for initialization
     void Start () {
@@ -37,9 +41,6 @@ public class InputOrganizer : MonoBehaviour {
         myAudioConductor = GameObject.FindObjectOfType<AudioConductor>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
-
-
-        dateLocationButtonPanel = GameObject.Find("LocationButtonPanel");
     }
 
     // Update is called once per frame

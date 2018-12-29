@@ -30,7 +30,7 @@ public class AnimationMaestro : MonoBehaviour
                 partnerNameplate.text = potentialConversationPartners[i].givenName + " " + potentialConversationPartners[i].surname;
                 if (potentialConversationPartners[i] is DateableCharacter)
                 {
-                    partnerLoveAmount.text = "Love Amount: " + potentialConversationPartners[i].inLoveAmount.ToString();
+                    partnerLoveAmount.text = "In Love Amount: " + potentialConversationPartners[i].inLoveAmount.ToString();
                 }
                 else
                 {
@@ -81,9 +81,10 @@ public class AnimationMaestro : MonoBehaviour
         float alpha = characterImage.color.a;
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
         {
-            Color newColor = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, Mathf.Lerp(alpha, aValue, t));
+            Color newColor = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, Mathf.SmoothStep(alpha, aValue, t));
             characterImage.color = newColor;
             yield return null;
         }
+        characterImage.color = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, 1);
     }
 }
