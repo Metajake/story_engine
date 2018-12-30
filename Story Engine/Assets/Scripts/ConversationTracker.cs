@@ -25,7 +25,7 @@ public class ConversationTracker : MonoBehaviour {
 
 	public void beginConversation(DateableCharacter speaker)
     {
-        uiManager.enableAllButtons();
+        uiManager.activateDialogueButtons();
         List<string> greetingTags = new List<string>();
         greetingTags.Add("greeting");
         if (speaker.permanentOpinion < 0)

@@ -121,6 +121,11 @@ public class InputOrganizer : MonoBehaviour {
         }
     }
 
+    public void BTN_startGame()
+    {
+        myUIManager.startGame();
+    }
+
     public void BTN_advanceTime()
     {
         oneClick = true;

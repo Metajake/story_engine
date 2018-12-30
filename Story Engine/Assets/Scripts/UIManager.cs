@@ -8,26 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour, IEventSubscriber {
 
-    GameObject talkButtonObject;
-    GameObject dateActionButton;
-	Button departConversationButton;
-    GameObject askOnDateButton;
-    GameObject mapButton;
-	public GameObject dialoguePanel;
-    public GameObject mainPanel;
-	public GameObject mapPanel;
-    public GameObject journalPanel;
-    public GameObject menuPanel;
-    private GameObject dialogueButtonPanel;
-	private GameObject dialogueOptionsButtonPanel;
-	private GameObject dateLocationButtonPanel;
-    private GameObject mainPanelButtonsPanel;
-    private GameObject dateButtonsPanel;
-	private GameObject sequenceButtonsPanel;
-    private GameObject dateLocationButton;
-    private GameObject cutScenePanel;
-    private GameObject characterPanel;
-
     private GameState myGameState;
     private DialogueManager myDialogueManager;
     private ConversationTracker conversationTracker;
@@ -40,29 +20,49 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private AnimationMaestro myAnimationMaestro;
     private InputOrganizer myInputOrganizer;
 
+    public GameObject dialoguePanel;
+    public GameObject mainPanel;
+    public GameObject mapPanel;
+    public GameObject journalPanel;
+    public GameObject menuPanel;
+    private GameObject dialogueButtonPanel;
+    private GameObject dialogueOptionsButtonPanel;
+    private GameObject dateLocationButtonPanel;
+    private GameObject mainPanelButtonsPanel;
+    private GameObject dateButtonsPanel;
+    private GameObject sequenceButtonsPanel;
+    private GameObject dateLocationButton;
+    private GameObject cutScenePanel;
+    private GameObject characterPanel;
+    private GameObject startScreenPanel;
+
     private Text textPanel;
     public Text pastDatesText;
     public Text upcomingDatesText;
     private String cutSceneTextToWrite;
 
-	public bool mapEnabled;
+    GameObject talkButtonObject;
+    GameObject dateActionButton;
+    Button departConversationButton;
+    GameObject askOnDateButton;
+    GameObject mapButton;
+
+    public bool mapEnabled;
     public bool journalEnabled;
+
+    void Awake()
+    {
+        myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
+        myTipManager = GameObject.FindObjectOfType<TipManager>();
+        mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
+        myGameState = GameObject.FindObjectOfType<GameState>();
+    }
     
     void Start () {
-        talkButtonObject = GameObject.Find("TalkButton");
-		dateActionButton = GameObject.Find("DateActionButton");
-		departConversationButton = GameObject.Find("Depart").GetComponent<Button>();
-        askOnDateButton = GameObject.Find("AskOut");
-		mapButton = GameObject.Find("MapButton");
-
-        myGameState = GameObject.FindObjectOfType<GameState>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         myTimelord = GameObject.FindObjectOfType<Timelord>();
         conversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
-		mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 		myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
-		myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
-        myTipManager = GameObject.FindObjectOfType<TipManager>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
         myInputOrganizer = GameObject.FindObjectOfType<InputOrganizer>();
@@ -77,10 +77,17 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         menuPanel = GameObject.Find("MenuPanel");
         cutScenePanel = GameObject.Find("CutScenePanel");
         characterPanel = GameObject.Find("CharacterPanel");
+        startScreenPanel = GameObject.Find("StartScreenPanel");
 
         textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
         pastDatesText = GameObject.Find("PastDates").GetComponentInChildren<Text>();
         upcomingDatesText = GameObject.Find("UpcomingDates").GetComponentInChildren<Text>();
+
+        talkButtonObject = GameObject.Find("TalkButton");
+        dateActionButton = GameObject.Find("DateActionButton");
+        departConversationButton = GameObject.Find("Depart").GetComponent<Button>();
+        askOnDateButton = GameObject.Find("AskOut");
+        mapButton = GameObject.Find("MapButton");
 
         myEventQueue.subscribe(this);
 
@@ -166,12 +173,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     {
         if (currentState == GameState.gameStates.COMMANDSEQUENCE)
         {
-            if (!myGameState.hasGameBegun)
-            {
-                myCommandProcessor.createAndEnqueueChangeDialogueSequence(myTipManager.introText);
-                dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
-                myGameState.hasGameBegun = true;
-            }
+            
         }else if(currentState == GameState.gameStates.CUTSCENE)
         {
             cutScenePanel.GetComponentInChildren<Text>().text = cutSceneTextToWrite;
@@ -187,7 +189,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
         else if (currentState == GameState.gameStates.CONVERSATION)
         {
-            //NOTHING HERE YET :D
+            
         }else if (currentState == GameState.gameStates.DATEINTRO)
         {
             myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() {
@@ -283,6 +285,14 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         SceneManager.LoadScene("splash_game_over");
 	}
 
+    internal void startGame()
+    {
+        startScreenPanel.SetActive(false);
+        myCommandProcessor.createAndEnqueueChangeDialogueSequence(myTipManager.introText);
+        dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
+        myGameState.hasGameBegun = true;
+    }
+
 	public void enableOnlyBye(){
 		dialogueOptionsButtonPanel.SetActive(false);
 		departConversationButton.gameObject.SetActive(true);
@@ -305,12 +315,12 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         this.dateLocationButtonPanel.SetActive(false);
     }
 
-    public void enableAllButtons()
+    public void activateDialogueButtons()
     {
         dialogueOptionsButtonPanel.SetActive(true);
     }
 
-internal void updateCutSceneText(string textToWrite)
+internal void updateCutSceneTextContent(string textToWrite)
     {
         cutSceneTextToWrite = textToWrite;
     }
