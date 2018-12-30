@@ -144,8 +144,8 @@ public class InputOrganizer : MonoBehaviour {
 
     public void BTN_toggleJournal()
     {
-        myUIManager.pastDatesText.text = myUIManager.convertPastDatesToDateInfo(myRelationshipCounselor.getAllDates());
-        myUIManager.upcomingDatesText.text = myUIManager.convertUpcomingDatesToDateInfo(myRelationshipCounselor.getAllDates());
+        myUIManager.pastDatesText.text = myRelationshipCounselor.convertPastDatesToDateInfo(myRelationshipCounselor.getAllDates());
+        myUIManager.upcomingDatesText.text = myRelationshipCounselor.convertUpcomingDatesToDateInfo(myRelationshipCounselor.getAllDates());
         myUIManager.journalEnabled = !myUIManager.journalEnabled;
     }
 

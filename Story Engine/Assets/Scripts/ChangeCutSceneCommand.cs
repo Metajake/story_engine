@@ -8,7 +8,7 @@ public class ChangeCutSceneCommand : AbstractCommand {
 
 	public override void execute()
 	{
-    	GameObject.FindObjectOfType<UIManager>().setCutSceneText(textToWrite);
+    	GameObject.FindObjectOfType<UIManager>().updateCutSceneText(textToWrite);
 	}
    
 }

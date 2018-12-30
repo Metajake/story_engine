@@ -6,10 +6,11 @@ using UnityEngine;
 public class RelationshipCounselor : MonoBehaviour {
 
 	private List<Date> scheduledDates;
-	private Timelord myTimeLord;
+	private Timelord myTimelord;
     private SceneCatalogue mySceneCatalogue;
 	private UIManager myUIManager;
     private EventQueue myEventQueue;
+    private AnimationMaestro myAnimationMaestro;
 	public bool isAtDate;
 	public VictoryCoach myVictoryCoach;
     private GameState myGameState;
@@ -21,13 +22,14 @@ public class RelationshipCounselor : MonoBehaviour {
 	void Start ()
     {
 		scheduledDates = new List<Date>();
-		myTimeLord = GameObject.FindObjectOfType<Timelord>();
+		myTimelord = GameObject.FindObjectOfType<Timelord>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myUIManager = GameObject.FindObjectOfType<UIManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
         myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
         myGameState = GameObject.FindObjectOfType<GameState>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
+        myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
 
         ConstructDateLikelihoods();
     }
@@ -69,7 +71,7 @@ public class RelationshipCounselor : MonoBehaviour {
     {
         foreach (Date d in getAllDates())
         {
-            if (d.dateTime < myTimeLord.getCurrentTimestep())
+            if (d.dateTime < myTimelord.getCurrentTimestep())
             {
                 d.isOver = true;
             }
@@ -121,7 +123,7 @@ public class RelationshipCounselor : MonoBehaviour {
 
     public Date getCurrentDateFromScheduledDateList(){
         foreach (Date date in this.scheduledDates){
-            if (date.dateTime == myTimeLord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentLocation() && !date.isOver)
+            if (date.dateTime == myTimelord.getCurrentTimestep() && date.dateScene == mySceneCatalogue.getCurrentLocation() && !date.isOver)
             {
                 return date;
             }
@@ -134,9 +136,49 @@ public class RelationshipCounselor : MonoBehaviour {
         return new List<Date>(this.scheduledDates);
     }
 
+    public string convertPastDatesToDateInfo(List<Date> allDates)
+    {
+        List<Date> pastDates = new List<Date>();
+        foreach (Date d in allDates)
+        {
+            if (d.isOver)
+            {
+                pastDates.Add(d);
+            }
+        }
+        string allDatesInfo = stringifyAndSortDates(pastDates);
+        return allDatesInfo;
+    }
+
+    public string convertUpcomingDatesToDateInfo(List<Date> allDates)
+    {
+        List<Date> upcomingDates = new List<Date>();
+        foreach (Date d in allDates)
+        {
+            if (!d.isOver)
+            {
+                upcomingDates.Add(d);
+            }
+        }
+        string allDatesInfo = stringifyAndSortDates(upcomingDates);
+        return allDatesInfo;
+    }
+
+    private string stringifyAndSortDates(List<Date> allDates)
+    {
+        allDates.Sort((x, y) => x.dateTime.CompareTo(y.dateTime));
+        string allDatesInfo = "";
+        foreach (Date d in allDates)
+        {
+            allDatesInfo += d.dateScene.interiorName + " " + myTimelord.getTimeString(d.dateTime) + " " + d.character.givenName + "\n";
+        }
+
+        return allDatesInfo;
+    }
+
     public bool hasDateInFuture(Character character) {
         foreach (Date date in getAllDates()){
-            if(date.dateTime >= myTimeLord.getCurrentTimestep() && (date.character.givenName == character.givenName))
+            if(date.dateTime >= myTimelord.getCurrentTimestep() && (date.character.givenName == character.givenName))
             {
                 return true;
             }
@@ -161,7 +203,7 @@ public class RelationshipCounselor : MonoBehaviour {
 		var roller = new System.Random();
 		var roll = roller.Next(0, 100);
 
-        DateableCharacter she = getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimeLord.getCurrentTimestep());
+        DateableCharacter she = getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep());
 
         Debug.Log("Roll: " + roll);
         Debug.Log("In love amount: " + she.inLoveAmount*this.loveChanceIncrement);
@@ -175,10 +217,10 @@ public class RelationshipCounselor : MonoBehaviour {
         int leavePercentageForLocation = 0; //FOR DEBUGGING
 
         if (roll <= leavePercentageForLocation){
-            myUIManager.abandonDateDescription();
+            myAnimationMaestro.abandonDateDescription();
             Debug.Log("You got ditched, you lame. Enjoy watching porn at home, alone.");
         }else if (roll <= leavePercentageForLocation + actionLikelihoodMatrix["neutral"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]]){
-            myUIManager.showNeutralDescriptionText();
+            myAnimationMaestro.showNeutralDescriptionText();
             Debug.Log("Contextual pre-programmed neutral location description (which we will eventually do).");
         }else{
             getCurrentDateFromScheduledDateList().experienceAchieved = true;

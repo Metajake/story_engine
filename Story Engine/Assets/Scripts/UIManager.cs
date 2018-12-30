@@ -180,8 +180,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             if (!mapEnabled && !journalEnabled)
             {
-                describeLocation();
-                myAnimationMaestro.populatePotentialPartnersUI( myDialogueManager.getAllCurrentLocalPresentConversationPartners() );
+                myAnimationMaestro.describeLocation();
+                myAnimationMaestro.updatePotentialPartnersSprites( myDialogueManager.getAllCurrentLocalPresentConversationPartners() );
                 updateSelectedPartnerUI();
             }
         }
@@ -190,15 +190,15 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             //NOTHING HERE YET :D
         }else if (currentState == GameState.gameStates.DATEINTRO)
         {
-            myAnimationMaestro.populatePotentialPartnersUI(new List<Character>() {
+            myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() {
                 myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
             });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
-            setDescriptionText(mySceneCatalogue.getCurrentLocation().descriptionDate);
+            myAnimationMaestro.setDescriptionText(mySceneCatalogue.getCurrentLocation().descriptionDate, textPanel);
         }
         else if(currentState == GameState.gameStates.DATE)
         {
-            myAnimationMaestro.populatePotentialPartnersUI(new List<Character>() {
+            myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() {
                 myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
             });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
@@ -206,7 +206,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         else if (currentState == GameState.gameStates.DATEOUTRO)
         {
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
-            setDescriptionText("The results of my date went fine.");
+            myAnimationMaestro.setDescriptionText("The results of my date went fine.", textPanel);
         }
     }
 
@@ -278,80 +278,10 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
     }
 
-    private void describeLocation()
-    {
-        setDescriptionText(mySceneCatalogue.getLocationDescription());
-    }
-
-    public string convertPastDatesToDateInfo(List<Date> allDates)
-    {
-        List<Date> pastDates = new List<Date>();
-        foreach(Date d in allDates)
-        {
-            if(d.isOver)
-            {
-                pastDates.Add(d);
-            }
-        }
-        string allDatesInfo = stringifyAndSortDates(pastDates);
-        return allDatesInfo;
-    }
-
-    public string convertUpcomingDatesToDateInfo(List<Date> allDates)
-    {
-        List<Date> upcomingDates = new List<Date>();
-        foreach (Date d in allDates)
-        {
-            if (!d.isOver)
-            {
-                upcomingDates.Add(d);
-            }
-        }
-        string allDatesInfo = stringifyAndSortDates(upcomingDates);
-        return allDatesInfo;
-    }
-
-    private string stringifyAndSortDates(List<Date> allDates)
-    {
-        allDates.Sort((x, y) => x.dateTime.CompareTo(y.dateTime));
-        string allDatesInfo = "";
-        foreach (Date d in allDates)
-        {
-            allDatesInfo += d.dateScene.interiorName + " " +  myTimelord.getTimeString(d.dateTime) + " " + d.character.givenName + "\n";
-        }
-
-        return allDatesInfo;
-    }
-
-    public void setDescriptionText(string toWrite){
-		textPanel.text = toWrite;
-	}
-
-    internal void setCutSceneText(string textToWrite)
-    {
-        cutSceneTextToWrite = textToWrite;
-    }
-
     internal void gameOver()
 	{
         SceneManager.LoadScene("splash_game_over");
 	}
-
-	internal void showNeutralDescriptionText()
-    {
-		setDescriptionText(mySceneCatalogue.neutralResultForCurrentLocationDescription());
-    }
-
-    internal void abandonDateDescription()
-    {
-        setDescriptionText("Bye, lame.");
-        dateActionButton.SetActive(false);
-    }
-
-	public void enableAllButtons()
-    {
-		dialogueOptionsButtonPanel.SetActive(true);
-    }
 
 	public void enableOnlyBye(){
 		dialogueOptionsButtonPanel.SetActive(false);
@@ -373,5 +303,15 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 	{
 		this.dialogueButtonPanel.SetActive(true);
         this.dateLocationButtonPanel.SetActive(false);
+    }
+
+    public void enableAllButtons()
+    {
+        dialogueOptionsButtonPanel.SetActive(true);
+    }
+
+internal void updateCutSceneText(string textToWrite)
+    {
+        cutSceneTextToWrite = textToWrite;
     }
 }

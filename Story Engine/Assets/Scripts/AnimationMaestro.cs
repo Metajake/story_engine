@@ -5,10 +5,18 @@ using UnityEngine.UI;
 
 public class AnimationMaestro : MonoBehaviour
 {
+    private SceneCatalogue mySceneCatalogue;
+
+    private Text textPanel;
+    GameObject dateActionButton;
 
     // Use this for initialization
     void Start()
     {
+        mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
+
+        textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
+        dateActionButton = GameObject.Find("DateActionButton");
     }
 
     // Update is called once per frame
@@ -17,7 +25,7 @@ public class AnimationMaestro : MonoBehaviour
 
     }
 
-    public void populatePotentialPartnersUI(List<Character> potentialConversationPartners)
+    public void updatePotentialPartnersSprites(List<Character> potentialConversationPartners)
     {
         for (int i = 0; i < 3; i++)
         {
@@ -87,4 +95,26 @@ public class AnimationMaestro : MonoBehaviour
         }
         characterImage.color = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, 1);
     }
+
+    public void describeLocation()
+    {
+        setDescriptionText(mySceneCatalogue.getLocationDescription(), textPanel);
+    }
+
+    public void setDescriptionText(string toWrite, Text toWriteTo)
+    {
+        toWriteTo.text = toWrite;
+    }
+
+    internal void showNeutralDescriptionText()
+    {
+        setDescriptionText(mySceneCatalogue.neutralResultForCurrentLocationDescription(), textPanel);
+    }
+
+    internal void abandonDateDescription()
+    {
+        setDescriptionText("Bye, lame.", textPanel);
+        dateActionButton.SetActive(false);
+    }
+
 }
