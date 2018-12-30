@@ -11,6 +11,9 @@ public class Timelord : MonoBehaviour {
     private DialogueManager myDialogueManager;
     private SceneCatalogue mySceneCatalogue;
     private EventQueue myEventQueue;
+    private CommandProcessor myCommandProcessor;
+    private AnimationMaestro myAnimationMaestro;
+
     private int creepAmount;
     private Location pastLocation;
     private bool pastInteriorStatus;
@@ -21,10 +24,13 @@ public class Timelord : MonoBehaviour {
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
+        myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 		int currentTimeStep = getCurrentTimestep();
 		dayText.text = (currentTimeStep / timeNames.Length).ToString() + " " + getDayOfWeek(currentTimeStep / timeNames.Length);
     }
@@ -34,6 +40,12 @@ public class Timelord : MonoBehaviour {
         timeStep++;
         if(timeStep % 21 == 0){ //if it's a multiple of 21 (aka Every 7 Days)
             myDialogueManager.scatterCharacters(); 
+        }
+        if (checkIfCreep())
+        {
+            mySceneCatalogue.setRandomKnownScene();
+            myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+            myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { "Go somewhere else. Stop creeping around one location." });
         }
         myEventQueue.queueEvent(new TimeChangeEvent());
     }
@@ -52,7 +64,7 @@ public class Timelord : MonoBehaviour {
             }
         }
 
-        if (creepAmount >= 4)
+        if (creepAmount >= 11)
         {
             creepAmount = 0;
             return true;

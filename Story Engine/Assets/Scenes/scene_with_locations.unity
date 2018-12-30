@@ -264,8 +264,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1810743729}
-        m_MethodName: advanceTimestep
+      - m_Target: {fileID: 1062449721}
+        m_MethodName: BTN_advanceTime
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -763,7 +763,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -239.9, y: 0}
+  m_AnchoredPosition: {x: 186, y: 0}
   m_SizeDelta: {x: 125, y: 30}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &99024929
@@ -3160,7 +3160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &865104628
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5101,7 +5101,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 197.76, y: 0}
+  m_AnchoredPosition: {x: -252.19, y: 0}
   m_SizeDelta: {x: 145, y: 30}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1323209898
@@ -5319,7 +5319,7 @@ MonoBehaviour:
   givenName: Kristie
   surname: Yamaguchi
   currentSceneName: City
-  isInside: 1
+  isInside: 0
   inLoveAmount: 0
   activeTimes: 010000
   isPresent: 1
@@ -5364,7 +5364,7 @@ MonoBehaviour:
   image: {fileID: 2800000, guid: 98fdac68e47be4a6aa9757d2eedbaf45, type: 3}
   givenName: Tammy
   surname: Chan
-  currentSceneName: Field
+  currentSceneName: City
   isInside: 0
   inLoveAmount: 0
   activeTimes: 000100
@@ -5390,10 +5390,10 @@ MonoBehaviour:
   image: {fileID: 2800000, guid: dc9867ba9efc244f89ec752c313b417e, type: 3}
   givenName: Becky
   surname: Moore
-  currentSceneName: Beach
+  currentSceneName: City
   isInside: 0
   inLoveAmount: 0
-  activeTimes: 010000
+  activeTimes: 000001
   isPresent: 1
   returnTime: 0
   isSubordinate: 0
@@ -6176,7 +6176,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1280, y: 196.3}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1548482803
@@ -6897,7 +6897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1758800457
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8222,7 +8222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2076873264
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8310,7 +8310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1280, y: 196.3}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2124327961
@@ -8486,7 +8486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2128296100
 RectTransform:
   m_ObjectHideFlags: 0

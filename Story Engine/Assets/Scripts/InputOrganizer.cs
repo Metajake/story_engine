@@ -22,6 +22,11 @@ public class InputOrganizer : MonoBehaviour {
     private GameObject dateLocationButtonPanel;
     public GameObject dateLocationButtonPrefab;
 
+    bool oneClick = false;
+    bool doubleClickTimerRunning;
+    float timerForDoubleClick;
+    float doubleClickDelay;
+
     private void Awake()
     {
         dateLocationButtonPanel = GameObject.Find("LocationButtonPanel");
@@ -41,10 +46,38 @@ public class InputOrganizer : MonoBehaviour {
         myAudioConductor = GameObject.FindObjectOfType<AudioConductor>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
+
+        doubleClickDelay = 0.6f;
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update ()
+    {
+        checkDoubleClick();
+    }
+
+    private void checkDoubleClick()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!oneClick)
+            {
+                //oneClick = true;
+                timerForDoubleClick = Time.time;
+            }
+            else
+            {
+                oneClick = false;
+                myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { "Slow Down." });
+            }
+        }
+        if (oneClick)
+        {
+            if ((Time.time - timerForDoubleClick) > doubleClickDelay)
+            {
+                oneClick = false;
+            }
+        }
     }
 
     public void createDateLocationButtons()
@@ -88,6 +121,12 @@ public class InputOrganizer : MonoBehaviour {
         }
     }
 
+    public void BTN_advanceTime()
+    {
+        oneClick = true;
+        myTimelord.advanceTimestep();
+    }
+
     public void BTN_toggleMenuPanel()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -117,8 +156,7 @@ public class InputOrganizer : MonoBehaviour {
             }
             else
             {
-                string dialogueString = myTipManager.getTip();
-                myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { dialogueString });
+                myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { myTipManager.getTip() });
             }
         }
     }
