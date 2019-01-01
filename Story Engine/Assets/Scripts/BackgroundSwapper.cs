@@ -39,7 +39,7 @@ public class BackgroundSwapper : MonoBehaviour
         {
             return dateBackgroundsForThisScene()[0];
         }
-		return backgroundsForThisScene()[myTimeLord.timeStep % backgroundsForThisScene().Length];
+		return backgroundsForThisScene()[0];
 	}
 
     public Texture2D getNextEnvironmentBackground()
