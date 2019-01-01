@@ -32,6 +32,7 @@ public class AnimationMaestro : MonoBehaviour
             Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
             Text partnerNameplate = GameObject.Find("Character " + (i + 1) + " NamePlate").GetComponent<Text>();
             Text partnerLoveAmount = GameObject.Find("Character " + (i + 1) + " LoveAmount").GetComponent<Text>();
+
             if (i < potentialConversationPartners.Count)
             {
                 partnerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(potentialConversationPartners[i].image);
@@ -96,7 +97,7 @@ public class AnimationMaestro : MonoBehaviour
         characterImage.color = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, 1);
     }
 
-    public void describeLocation()
+    public void updateLocationDescription()
     {
         setDescriptionText(mySceneCatalogue.getLocationDescription(), textPanel);
     }

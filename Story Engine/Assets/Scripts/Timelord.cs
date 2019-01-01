@@ -64,7 +64,7 @@ public class Timelord : MonoBehaviour {
             }
         }
 
-        if (creepAmount >= 11)
+        if (creepAmount >= 8)
         {
             creepAmount = 0;
             return true;

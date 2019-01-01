@@ -14,8 +14,11 @@ public class TipManager : MonoBehaviour {
         "... It's time to find a girlfriend. Things will change if I start dating.",
         "......",
         "The problem with that is: the more time I spend with a girl, the more chance there is of her falling in love with me...",
-        "...But once that happens, it never works out for one reason or another, and I'm left heartbroken, crushed, and defeated. Life feels like a game over.",
-        "I have to get out there, and have some new experiences without letting anyone fall in love with me. ... At least not until I've experienced everything that life has to offer. Let's go!"
+        "...But when that happens, I fall in love with her. Then it inevitably falls apart for one reason or another.",
+        "I'm left crushed and heartbroken. And life feels like game over.",
+        "I have to get out there, and have some new experiences without letting anyone fall in love with me!..",
+        "...At least I can't let it happen until I've experienced everything that life has to offer. Let's go!",
+        "Life isn't always easy. But there's something calling me for more."
     };
 
     // Use this for initialization

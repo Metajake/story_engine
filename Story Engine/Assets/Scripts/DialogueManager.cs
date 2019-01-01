@@ -11,7 +11,6 @@ public class DialogueManager : MonoBehaviour {
     public List<Character> allCharacters;
 	public List<DialoguePiece> pieces;
 	public List<Character> charactersPresent;
-    private List<MinorCharacter> minorCharactersPresent;
     private List<Character> allCharactersPresent;
 	public int selectedPartner;
 	private bool conversationMode;

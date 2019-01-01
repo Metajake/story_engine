@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private EventQueue myEventQueue;
     private AnimationMaestro myAnimationMaestro;
     private InputOrganizer myInputOrganizer;
+    private BackgroundSwapper myBackgroundSwapper;
 
     public GameObject dialoguePanel;
     public GameObject mainPanel;
@@ -66,6 +67,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
         myInputOrganizer = GameObject.FindObjectOfType<InputOrganizer>();
+        myBackgroundSwapper = GameObject.FindObjectOfType<BackgroundSwapper>();
+
 
         dialogueButtonPanel = GameObject.Find("DialogueButtonPanel");
         dialogueOptionsButtonPanel = GameObject.Find("DialogueOptionsButtonPanel");
@@ -182,7 +185,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             if (!mapEnabled && !journalEnabled)
             {
-                myAnimationMaestro.describeLocation();
+                myAnimationMaestro.updateLocationDescription();
                 myAnimationMaestro.updatePotentialPartnersSprites( myDialogueManager.getAllCurrentLocalPresentConversationPartners() );
                 updateSelectedPartnerUI();
             }
@@ -217,6 +220,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         Debug.Log(occurringEvent.getEventType());
         if (occurringEvent.getEventType() == "TIMEEVENT")
         {
+            myBackgroundSwapper.backgroundSky.sprite = BackgroundSwapper.createSpriteFromTex2D( myBackgroundSwapper.getNextEnvironmentBackground() );
             myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
             foreach (DateableCharacter character in myDialogueManager.allDateableCharacters)
             {
