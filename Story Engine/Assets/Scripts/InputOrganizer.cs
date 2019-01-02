@@ -53,7 +53,6 @@ public class InputOrganizer : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        checkDoubleClick();
     }
 
     private void checkDoubleClick()
@@ -128,7 +127,6 @@ public class InputOrganizer : MonoBehaviour {
 
     public void BTN_advanceTime()
     {
-        oneClick = true;
         myTimelord.advanceTimestep();
     }
 
