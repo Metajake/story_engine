@@ -28,7 +28,7 @@ public class AnimationMaestro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        List<Character> currentCharacters = myDialogueManager.getAllCurrentLocalPresentConversationPartners();
+        /*List<Character> currentCharacters = myDialogueManager.getAllCurrentLocalPresentConversationPartners();
         if (myGameState.currentGameState == GameState.gameStates.CUTSCENE || myGameState.currentGameState == GameState.gameStates.PROWL)
         {
             if (currentCharacters != this.pastCharacters)
@@ -37,7 +37,7 @@ public class AnimationMaestro : MonoBehaviour
             }
 
         }
-        pastCharacters = currentCharacters;
+        pastCharacters = currentCharacters;*/
     }
 
     public void updatePotentialPartnersSprites(List<Character> potentialConversationPartners)
@@ -60,11 +60,12 @@ public class AnimationMaestro : MonoBehaviour
                 {
                     partnerLoveAmount.text = "";
                 }
-                
+                partnerPortrait.color = new Color(255, 255, 255, 1);
+
             }
             else
             {
-                disablePartnerSelectionUI(partnerPortrait, partnerNameplate, partnerLoveAmount);
+                hideUnusedCharacterUI(partnerPortrait, partnerNameplate, partnerLoveAmount);
             }
         }
     }
@@ -76,11 +77,11 @@ public class AnimationMaestro : MonoBehaviour
             Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
             Text partnerNameplate = GameObject.Find("Character " + (i + 1) + " NamePlate").GetComponent<Text>();
             Text partnerLoveAmount = GameObject.Find("Character " + (i + 1) + " LoveAmount").GetComponent<Text>();
-            disablePartnerSelectionUI(partnerPortrait, partnerNameplate, partnerLoveAmount);
+            hideUnusedCharacterUI(partnerPortrait, partnerNameplate, partnerLoveAmount);
         }
     }
 
-    private static void disablePartnerSelectionUI(Image partnerPortrait, Text partnerNameplate, Text partnerLoveAmount)
+    private static void hideUnusedCharacterUI(Image partnerPortrait, Text partnerNameplate, Text partnerLoveAmount)
     {
         partnerPortrait.color = new Color(partnerPortrait.color.r, partnerPortrait.color.g, partnerPortrait.color.b, 0);
         partnerNameplate.text = "";

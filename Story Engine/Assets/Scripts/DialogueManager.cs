@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour {
 	public List<MinorCharacter> allMinorCharacters;
     public List<Character> allCharacters;
     public List<Character> experienceActors;
+
     public List<DialoguePiece> pieces;
 	public List<Character> charactersPresent;
     private List<Character> allCharactersPresent;
