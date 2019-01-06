@@ -3,10 +3,10 @@
 public class RevealNPCCommand : ICommand
 {
     string NPCToReveal;
-    DialogueManager myDialogueManager;
+    CharacterManager myDialogueManager;
     VictoryCoach myVictoryCoach;
     
-    public RevealNPCCommand(VictoryCoach victoryCoach, DialogueManager dialogueManager, string NPCName)
+    public RevealNPCCommand(VictoryCoach victoryCoach, CharacterManager dialogueManager, string NPCName)
     {
         myVictoryCoach = victoryCoach;
         myDialogueManager = dialogueManager;

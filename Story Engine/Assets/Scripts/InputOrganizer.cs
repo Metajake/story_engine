@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class InputOrganizer : MonoBehaviour {
     private UIManager myUIManager;
-    private DialogueManager myDialogueManager;
+    private CharacterManager myDialogueManager;
     private GameState myGameState;
     private Timecop myTimelord;
     private TipManager myTipManager;
@@ -34,7 +34,7 @@ public class InputOrganizer : MonoBehaviour {
     // Use this for initialization
     void Start () {
         myUIManager = GameObject.FindObjectOfType<UIManager>();
-        myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
+        myDialogueManager = GameObject.FindObjectOfType<CharacterManager>();
         myGameState = GameObject.FindObjectOfType<GameState>();
         myTimelord = GameObject.FindObjectOfType<Timecop>();
         myTipManager = GameObject.FindObjectOfType<TipManager>();

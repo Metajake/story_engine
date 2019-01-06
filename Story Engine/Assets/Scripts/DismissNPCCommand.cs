@@ -3,10 +3,10 @@
 public class DismissNPCCommand : ICommand
 {
     private string NPCToDismiss;
-    DialogueManager myDialogueManager;
+    CharacterManager myDialogueManager;
     VictoryCoach myVictoryCoach;
 
-    public DismissNPCCommand(VictoryCoach victoryCoach, DialogueManager dialogueManager, string NPCName)
+    public DismissNPCCommand(VictoryCoach victoryCoach, CharacterManager dialogueManager, string NPCName)
     {
         myVictoryCoach = victoryCoach;
         myDialogueManager = dialogueManager;

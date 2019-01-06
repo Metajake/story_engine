@@ -9,13 +9,13 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour, IEventSubscriber {
 
     private GameState myGameState;
-    private DialogueManager myDialogueManager;
+    private CharacterManager myCharacterManager;
     private ConversationTracker conversationTracker;
     private SceneCatalogue mySceneCatalogue;
     private TipManager myTipManager;
     private RelationshipCounselor myRelationshipCounselor;
 	private CommandProcessor myCommandProcessor;
-    private Timecop myTimelord;
+    private Timecop myTimeCop;
     private EventQueue myEventQueue;
     private AnimationMaestro myAnimationMaestro;
     private InputOrganizer myInputOrganizer;
@@ -61,8 +61,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     }
     
     void Start () {
-        myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
-        myTimelord = GameObject.FindObjectOfType<Timecop>();
+        myCharacterManager = GameObject.FindObjectOfType<CharacterManager>();
+        myTimeCop = GameObject.FindObjectOfType<Timecop>();
         conversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
 		myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
@@ -182,19 +182,19 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             
         }else if(currentState == GameState.gameStates.CUTSCENE)
         {
-            cutScenePanel.GetComponentInChildren<Text>().text = cutSceneTextToWrite;
+            myAnimationMaestro.setDescriptionText(cutSceneTextToWrite, textPanel);
             List<Character> sceneCharacters = new List<Character>() {
-                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
+                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimeCop.getCurrentTimestep())
             };
-            sceneCharacters.AddRange(myDialogueManager.experienceActors);
-            myAnimationMaestro.updatePotentialPartnersSprites(sceneCharacters);
+            sceneCharacters.AddRange(myCharacterManager.experienceActors);
+            myAnimationMaestro.updateCharacterPanelSprites(sceneCharacters);
         }
         else if (currentState == GameState.gameStates.PROWL)
         {
             if (!mapEnabled && !journalEnabled)
             {
                 myAnimationMaestro.updateLocationDescription();
-                myAnimationMaestro.updatePotentialPartnersSprites( myDialogueManager.getAllCurrentLocalPresentConversationPartners() );
+                myAnimationMaestro.updateCharacterPanelSprites( myCharacterManager.getAllCurrentLocalPresentCharacters() );
                 updateSelectedPartnerUI();
             }
         }
@@ -203,16 +203,16 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             
         }else if (currentState == GameState.gameStates.DATEINTRO)
         {
-            myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() {
-                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
+            myAnimationMaestro.updateCharacterPanelSprites(new List<Character>() {
+                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimeCop.getCurrentTimestep())
             });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
             myAnimationMaestro.setDescriptionText(mySceneCatalogue.getCurrentLocation().descriptionDate, textPanel);
         }
         else if(currentState == GameState.gameStates.DATE)
         {
-            myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() {
-                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
+            myAnimationMaestro.updateCharacterPanelSprites(new List<Character>() {
+                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimeCop.getCurrentTimestep())
             });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
         }
@@ -230,16 +230,16 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             myBackgroundSwapper.backgroundSky.sprite = BackgroundSwapper.createSpriteFromTex2D( myBackgroundSwapper.getNextEnvironmentBackground() );
             //myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-            foreach (DateableCharacter character in myDialogueManager.allDateableCharacters)
+            foreach (DateableCharacter character in myCharacterManager.allDateableCharacters)
             {
-                character.checkAndSetReturnToPresent(myTimelord.getCurrentTimestep());
+                character.checkAndSetReturnToPresent(myTimeCop.getCurrentTimestep());
             }
 
         }
         else if (occurringEvent.getEventType() == "LOCATIONEVENT")
         {
             //myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-            myDialogueManager.selectedPartner = -1;
+            myCharacterManager.selectedPartner = -1;
             if (!mySceneCatalogue.getIsInInteriorScene())
             {
                 dateLocationButton.GetComponentInChildren<Text>().text = "Enter " + mySceneCatalogue.getCurrentLocation().interiorName;
@@ -252,9 +252,9 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         else if (occurringEvent.getEventType() == "DATESTARTEVENT")
         {
             myAnimationMaestro.fadeInCharacters(new List<Character>() {
-                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
+                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimeCop.getCurrentTimestep())
             });
-            myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+            myAnimationMaestro.fadeInCharacters(myCharacterManager.getAllCurrentLocalPresentCharacters());
         }
         else if (occurringEvent.getEventType() == "DATEACTIONEVENT")
         {
@@ -272,22 +272,22 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
     private void updateSelectedPartnerUI()
     {
-        bool partners = myDialogueManager.charactersPresent.Count > 0;
+        bool partners = myCharacterManager.charactersPresent.Count > 0;
 
         talkButtonObject.SetActive(partners);
 
-        if (partners && myDialogueManager.selectedPartner < 0)
+        if (partners && myCharacterManager.selectedPartner < 0)
         {
-            onPortraitClicked(new System.Random().Next(1, myDialogueManager.charactersPresent.Count + 1));
+            onPortraitClicked(new System.Random().Next(1, myCharacterManager.charactersPresent.Count + 1));
         }
     }
 
     public void onPortraitClicked(int portraitNumber)
     {
-        Character clickedCharacter = myDialogueManager.getPartnerAt(portraitNumber);
+        Character clickedCharacter = myCharacterManager.getPartnerAt(portraitNumber);
         if (clickedCharacter != null)
         {
-            myDialogueManager.selectedPartner = portraitNumber - 1;
+            myCharacterManager.selectedPartner = portraitNumber - 1;
             talkButtonObject.GetComponentInChildren<Text>().text = "Talk to " + clickedCharacter.givenName;
         }
     }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueManager : MonoBehaviour {
+public class CharacterManager : MonoBehaviour {
 
     public List<DateableCharacter> allDateableCharacters;
 	public List<MinorCharacter> allMinorCharacters;
@@ -62,7 +62,7 @@ public class DialogueManager : MonoBehaviour {
     void Update () {
 	}
 
-    public List<Character> getAllCurrentLocalPresentConversationPartners(){
+    public List<Character> getAllCurrentLocalPresentCharacters(){
 		List<Character> toReturn = new List<Character>();
         foreach (Character character in this.allCharacters)
         {
@@ -71,7 +71,6 @@ public class DialogueManager : MonoBehaviour {
                 toReturn.Add(character);
             }
         }
-        toReturn.AddRange(this.experienceActors);
         this.charactersPresent = toReturn;
 		return toReturn;
 	}

@@ -8,7 +8,7 @@ public class Timecop : MonoBehaviour {
 	public string[] timeNames;
 	public int timeStep;
 	public Text dayText;
-    private DialogueManager myDialogueManager;
+    private CharacterManager myDialogueManager;
     private SceneCatalogue mySceneCatalogue;
     private EventQueue myEventQueue;
     private CommandProcessor myCommandProcessor;
@@ -21,7 +21,7 @@ public class Timecop : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		timeStep = 0;	
-        myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
+        myDialogueManager = GameObject.FindObjectOfType<CharacterManager>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
@@ -44,7 +44,7 @@ public class Timecop : MonoBehaviour {
         if (checkIfCreep())
         {
             mySceneCatalogue.setRandomKnownScene();
-            myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+            myAnimationMaestro.updateCharacterPanelSprites(myDialogueManager.getAllCurrentLocalPresentCharacters());
             myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { "Go somewhere else. Stop creeping around one location." });
         }
         myEventQueue.queueEvent(new TimeChangeEvent());

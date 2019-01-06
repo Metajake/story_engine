@@ -6,19 +6,17 @@ using UnityEngine.UI;
 public class AnimationMaestro : MonoBehaviour
 {
     private SceneCatalogue mySceneCatalogue;
-    private DialogueManager myDialogueManager;
+    private CharacterManager myDialogueManager;
     private GameState myGameState;
 
     private Text textPanel;
     GameObject dateActionButton;
 
-    private List<Character> pastCharacters;
-
     // Use this for initialization
     void Start()
     {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
-        myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
+        myDialogueManager = GameObject.FindObjectOfType<CharacterManager>();
         myGameState = GameObject.FindObjectOfType<GameState>();
 
         textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
@@ -28,19 +26,10 @@ public class AnimationMaestro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*List<Character> currentCharacters = myDialogueManager.getAllCurrentLocalPresentConversationPartners();
-        if (myGameState.currentGameState == GameState.gameStates.CUTSCENE || myGameState.currentGameState == GameState.gameStates.PROWL)
-        {
-            if (currentCharacters != this.pastCharacters)
-            {
-                fadeInCharacters(currentCharacters);
-            }
-
-        }
-        pastCharacters = currentCharacters;*/
+   
     }
 
-    public void updatePotentialPartnersSprites(List<Character> potentialConversationPartners)
+    public void updateCharacterPanelSprites(List<Character> potentialConversationPartners)
     {
         for (int i = 0; i < 3; i++)
         {

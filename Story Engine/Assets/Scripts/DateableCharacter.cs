@@ -14,7 +14,7 @@ public class DateableCharacter : Character {
 
 	void Start () {
 
-        DialogueManager dm = GameObject.FindObjectOfType<DialogueManager>();
+        CharacterManager dm = GameObject.FindObjectOfType<CharacterManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 		experienceCount = 0;
         returnTime = 0;

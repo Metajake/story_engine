@@ -15,7 +15,7 @@ public class RelationshipCounselor : MonoBehaviour {
 	public VictoryCoach myVictoryCoach;
     private GameState myGameState;
     private CommandProcessor myCommandProcessor;
-    private DialogueManager myDialogueManager;
+    private CharacterManager myDialogueManager;
     public int loveChanceIncrement;
 
     private Dictionary<String, Dictionary<int, int>> actionLikelihoodMatrix;
@@ -31,7 +31,7 @@ public class RelationshipCounselor : MonoBehaviour {
         myGameState = GameObject.FindObjectOfType<GameState>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
-        myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
+        myDialogueManager = GameObject.FindObjectOfType<CharacterManager>();
 
         ConstructDateLikelihoods();
     }

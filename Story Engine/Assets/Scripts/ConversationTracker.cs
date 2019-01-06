@@ -9,7 +9,7 @@ public class ConversationTracker : MonoBehaviour {
 	private List<Conversation> pastConversations;
 
 	private Text dialogueText;
-    private DialogueManager myDialogueManager;
+    private CharacterManager myDialogueManager;
     private UIManager uiManager;
     private Timecop myTimelord;
     private RelationshipCounselor myRelationshipCounselor;
@@ -17,7 +17,7 @@ public class ConversationTracker : MonoBehaviour {
     public void Start()
 	{
 		dialogueText = GameObject.Find("DialogueText").GetComponent<Text>();
-        myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
+        myDialogueManager = GameObject.FindObjectOfType<CharacterManager>();
         uiManager = GameObject.FindObjectOfType<UIManager>();
         myTimelord = GameObject.FindObjectOfType<Timecop>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
