@@ -56,6 +56,19 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
         executeNextCommand();
     }
 
+    internal List<ICommand> createAndReturnCutSceneSequence(List<string> sceneCuts)
+    {
+        List<ICommand> toReturn = new List<ICommand>();
+
+        foreach (string cut in sceneCuts)
+        {
+            toReturn.Add(createCutSceneCommand(cut));
+        }
+        toReturn.Add( new SequenceEndCommand(GameState.gameStates.DATEOUTRO) );
+
+        return toReturn;
+    }
+
     internal void createAndEnqueueCutSceneSequence(List<string> sceneCuts)
     {
         myGameState.currentGameState = GameState.gameStates.CUTSCENE;
@@ -64,6 +77,17 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
             commandList.Enqueue(createCutSceneCommand(cut));
         }
         this.commandList.Enqueue(new SequenceEndCommand(GameState.gameStates.DATEOUTRO));
+        executeNextCommand();
+    }
+
+    internal void enqueueCutSceneCommandSequence(List<ICommand> commandsToEnqueue)
+    {
+        myGameState.currentGameState = GameState.gameStates.CUTSCENE;
+        foreach (ICommand command in commandsToEnqueue)
+        {
+            commandList.Enqueue( command );
+        }
+        
         executeNextCommand();
     }
 }

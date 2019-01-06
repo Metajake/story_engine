@@ -6,7 +6,7 @@ using UnityEngine;
 public class RelationshipCounselor : MonoBehaviour {
 
 	private List<Date> scheduledDates;
-	private Timelord myTimelord;
+	private Timecop myTimelord;
     private SceneCatalogue mySceneCatalogue;
 	private UIManager myUIManager;
     private EventQueue myEventQueue;
@@ -15,6 +15,7 @@ public class RelationshipCounselor : MonoBehaviour {
 	public VictoryCoach myVictoryCoach;
     private GameState myGameState;
     private CommandProcessor myCommandProcessor;
+    private DialogueManager myDialogueManager;
     public int loveChanceIncrement;
 
     private Dictionary<String, Dictionary<int, int>> actionLikelihoodMatrix;
@@ -22,7 +23,7 @@ public class RelationshipCounselor : MonoBehaviour {
 	void Start ()
     {
 		scheduledDates = new List<Date>();
-		myTimelord = GameObject.FindObjectOfType<Timelord>();
+		myTimelord = GameObject.FindObjectOfType<Timecop>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myUIManager = GameObject.FindObjectOfType<UIManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
@@ -30,6 +31,7 @@ public class RelationshipCounselor : MonoBehaviour {
         myGameState = GameObject.FindObjectOfType<GameState>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
+        myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
 
         ConstructDateLikelihoods();
     }
@@ -226,9 +228,24 @@ public class RelationshipCounselor : MonoBehaviour {
             getCurrentDateFromScheduledDateList().experienceAchieved = true;
             myVictoryCoach.achievedExperience(mySceneCatalogue.getCurrentSceneNumber());
             Experience currentExp = myVictoryCoach.getNextExperience();
-            myCommandProcessor.createAndEnqueueCutSceneSequence(new List<string>(currentExp.experienceCutSceneTexts));
+            List<ICommand> cutScenes = myCommandProcessor.createAndReturnCutSceneSequence(new List<string>(currentExp.experienceCutSceneTexts));
+
+            if (currentExp.experienceName == "protect")
+            {
+                showChad(cutScenes);
+            }
+
+            myCommandProcessor.enqueueCutSceneCommandSequence(cutScenes);
         }
         myEventQueue.queueEvent(new DateActionEvent());
 	}
+
+    private List<ICommand> showChad(List<ICommand> commandsToProcess)
+    {
+        commandsToProcess.Insert(0, new RevealNPCCommand(myVictoryCoach, myDialogueManager,"chad") );
+        commandsToProcess.Insert(3, new DismissNPCCommand(myVictoryCoach, myDialogueManager, "chad") );
+
+        return commandsToProcess;
+    }
 
 }

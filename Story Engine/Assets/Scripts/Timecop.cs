@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Timelord : MonoBehaviour {
+public class Timecop : MonoBehaviour {
        
 	public string[] timeNames;
 	public int timeStep;

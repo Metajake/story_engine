@@ -89,8 +89,8 @@ public class VictoryCoach : MonoBehaviour {
         Experience toReturn;
         if (isIrresponsible)
         {
-            toReturn = experiences["responsibility"];
-            experiences.Remove("responsibility");
+            toReturn = experiences["protect"];
+            experiences.Remove("protect");
             isIrresponsible = false;
             return toReturn;
         }

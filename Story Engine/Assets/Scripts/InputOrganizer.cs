@@ -8,7 +8,7 @@ public class InputOrganizer : MonoBehaviour {
     private UIManager myUIManager;
     private DialogueManager myDialogueManager;
     private GameState myGameState;
-    private Timelord myTimelord;
+    private Timecop myTimelord;
     private TipManager myTipManager;
     private CommandProcessor myCommandProcessor;
     private SceneCatalogue mySceneCatalogue;
@@ -17,7 +17,6 @@ public class InputOrganizer : MonoBehaviour {
     private AudioConductor myAudioConductor;
     private EventQueue myEventQueue;
     private RelationshipCounselor myRelationshipCounselor;
-
 
     private GameObject dateLocationButtonPanel;
     public GameObject dateLocationButtonPrefab;
@@ -37,7 +36,7 @@ public class InputOrganizer : MonoBehaviour {
         myUIManager = GameObject.FindObjectOfType<UIManager>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         myGameState = GameObject.FindObjectOfType<GameState>();
-        myTimelord = GameObject.FindObjectOfType<Timelord>();
+        myTimelord = GameObject.FindObjectOfType<Timecop>();
         myTipManager = GameObject.FindObjectOfType<TipManager>();
         myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();

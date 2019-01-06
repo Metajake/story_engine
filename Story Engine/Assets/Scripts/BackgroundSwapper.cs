@@ -12,7 +12,7 @@ public class BackgroundSwapper : MonoBehaviour
     public Texture2D[] environmentBackgrounds;
     public Image backgroundSky;
 	private Image backgroundLocation;
-	private Timelord myTimeLord;
+	private Timecop myTimeLord;
 	private SceneCatalogue mySceneCatalogue;
 
 	// Use this for initialization
@@ -20,7 +20,7 @@ public class BackgroundSwapper : MonoBehaviour
 	{
         backgroundLocation = GameObject.Find("BackgroundLocation").GetComponentInChildren<Image>();
         backgroundSky = GameObject.Find("BackgroundSky").GetComponentInChildren<Image>();
-		myTimeLord = GameObject.FindObjectOfType<Timelord>();
+		myTimeLord = GameObject.FindObjectOfType<Timecop>();
 		mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 
         backgroundSky.sprite = createSpriteFromTex2D(getNextEnvironmentBackground());

@@ -15,11 +15,12 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private TipManager myTipManager;
     private RelationshipCounselor myRelationshipCounselor;
 	private CommandProcessor myCommandProcessor;
-    private Timelord myTimelord;
+    private Timecop myTimelord;
     private EventQueue myEventQueue;
     private AnimationMaestro myAnimationMaestro;
     private InputOrganizer myInputOrganizer;
     private BackgroundSwapper myBackgroundSwapper;
+    private VictoryCoach myVictoryCoach;
 
     public GameObject dialoguePanel;
     public GameObject mainPanel;
@@ -61,14 +62,14 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     
     void Start () {
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
-        myTimelord = GameObject.FindObjectOfType<Timelord>();
+        myTimelord = GameObject.FindObjectOfType<Timecop>();
         conversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
 		myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
         myInputOrganizer = GameObject.FindObjectOfType<InputOrganizer>();
         myBackgroundSwapper = GameObject.FindObjectOfType<BackgroundSwapper>();
-
+        myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 
         dialogueButtonPanel = GameObject.Find("DialogueButtonPanel");
         dialogueOptionsButtonPanel = GameObject.Find("DialogueOptionsButtonPanel");
@@ -135,6 +136,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
         else if(currentState == GameState.gameStates.CUTSCENE)
         {
+            mainPanel.SetActive(true);
+            characterPanel.gameObject.SetActive(true);
             cutScenePanel.SetActive(true);
         }
         else if(currentState == GameState.gameStates.PROWL)
@@ -180,6 +183,11 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }else if(currentState == GameState.gameStates.CUTSCENE)
         {
             cutScenePanel.GetComponentInChildren<Text>().text = cutSceneTextToWrite;
+            List<Character> sceneCharacters = new List<Character>() {
+                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
+            };
+            sceneCharacters.AddRange(myDialogueManager.experienceActors);
+            myAnimationMaestro.updatePotentialPartnersSprites(sceneCharacters);
         }
         else if (currentState == GameState.gameStates.PROWL)
         {
@@ -221,7 +229,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         if (occurringEvent.getEventType() == "TIMEEVENT")
         {
             myBackgroundSwapper.backgroundSky.sprite = BackgroundSwapper.createSpriteFromTex2D( myBackgroundSwapper.getNextEnvironmentBackground() );
-            myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+            //myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
             foreach (DateableCharacter character in myDialogueManager.allDateableCharacters)
             {
                 character.checkAndSetReturnToPresent(myTimelord.getCurrentTimestep());
@@ -230,7 +238,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
         else if (occurringEvent.getEventType() == "LOCATIONEVENT")
         {
-            myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+            //myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
             myDialogueManager.selectedPartner = -1;
             if (!mySceneCatalogue.getIsInInteriorScene())
             {

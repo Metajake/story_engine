@@ -9,17 +9,18 @@ public class DialogueManager : MonoBehaviour {
     public List<DateableCharacter> allDateableCharacters;
 	public List<MinorCharacter> allMinorCharacters;
     public List<Character> allCharacters;
-	public List<DialoguePiece> pieces;
+    public List<Character> experienceActors;
+    public List<DialoguePiece> pieces;
 	public List<Character> charactersPresent;
     private List<Character> allCharactersPresent;
 	public int selectedPartner;
 	private bool conversationMode;
 
-    private Timelord myTimeLord;
+    private Timecop myTimeLord;
     private SceneCatalogue mySceneCatalogue;
     private RelationshipCounselor myRelationshipCounselor;
 
-	public void registerDialogue(DialoguePiece piece){
+    public void registerDialogue(DialoguePiece piece){
 		this.pieces.Add(piece);
 	}
 
@@ -35,9 +36,11 @@ public class DialogueManager : MonoBehaviour {
     {
         this.allDateableCharacters = new List<DateableCharacter>(this.GetComponents<DateableCharacter>());
         this.allMinorCharacters = new List<MinorCharacter>(this.GetComponents<MinorCharacter>());
+        this.experienceActors = new List<Character>();
+
         initializeAllCharacters();
 
-        myTimeLord = GameObject.FindObjectOfType<Timelord>();
+        myTimeLord = GameObject.FindObjectOfType<Timecop>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
     }
@@ -67,7 +70,8 @@ public class DialogueManager : MonoBehaviour {
                 toReturn.Add(character);
             }
         }
-        charactersPresent = toReturn;
+        toReturn.AddRange(this.experienceActors);
+        this.charactersPresent = toReturn;
 		return toReturn;
 	}
 
@@ -116,7 +120,7 @@ public class DialogueManager : MonoBehaviour {
         return bestMatch;
 	}
 
-	public DateableCharacter getCharacterForName(string name){
+	public DateableCharacter getDateableCharacterForName(string name){
 		foreach (DateableCharacter chara in allDateableCharacters){
 			if (chara.givenName.ToLower() == name.ToLower()){
 				return chara;
@@ -124,6 +128,18 @@ public class DialogueManager : MonoBehaviour {
 		}
 		return null;
 	}
+
+    public Character getCharacterForName(string name)
+    {
+        foreach (Character chara in allCharacters)
+        {
+            if (chara.givenName.ToLower() == name.ToLower())
+            {
+                return chara;
+            }
+        }
+        return null;
+    }
 
     public void scatterCharacters(){
 		System.Random random = new System.Random();

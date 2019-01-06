@@ -1328,7 +1328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5697,6 +5697,7 @@ GameObject:
   - component: {fileID: 1360229243}
   - component: {fileID: 1360229244}
   - component: {fileID: 1360229245}
+  - component: {fileID: 1360229246}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -5991,6 +5992,26 @@ MonoBehaviour:
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000
   tier: 10
+--- !u!114 &1360229246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1360229233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c89a1443646f497ba0447bdfe3669b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 2800000, guid: 76c622f0d27dfd14bbfcfef514a123fc, type: 3}
+  givenName: Chad
+  surname: Sama
+  currentSceneName: 
+  isInside: 0
+  inLoveAmount: 0
+  activeTimes: 000000
+  isPresent: 0
+  returnTime: 0
 --- !u!1 &1388197263
 GameObject:
   m_ObjectHideFlags: 0
@@ -6760,6 +6781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasAchievedExperience: 
+  experienceActors: []
 --- !u!114 &1564499111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6788,7 +6810,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   experienceName: protect
   experienceCutSceneTexts:
-  - Some chad slaps your girlfriend's ass in the club? What do you do?
+  - Some chad slaps your girlfriend's ass in the club?
+  - You move in between them.
   - You've experienced the need to protect.
 --- !u!114 &1564499113
 MonoBehaviour:
@@ -8987,7 +9010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
