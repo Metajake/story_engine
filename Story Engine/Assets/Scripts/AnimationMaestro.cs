@@ -49,7 +49,11 @@ public class AnimationMaestro : MonoBehaviour
                 {
                     partnerLoveAmount.text = "";
                 }
-                partnerPortrait.color = new Color(255, 255, 255, 1);
+                if(partnerPortrait.color.a == 0)
+                {
+                    fadeTo(potentialConversationPartners, true);
+                }
+                //partnerPortrait.color = new Color(255, 255, 255, partnerPortrait.color.a);
 
             }
             else
@@ -77,20 +81,25 @@ public class AnimationMaestro : MonoBehaviour
         partnerLoveAmount.text = "";
     }
 
-    public void fadeInCharacters(List<Character> potentialConversationPartners)
+    public void fadeTo(List<Character> potentialConversationPartners, bool isFadeIn)
     {
         for (int i = 0; i < 3; i++)
         {
             Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
             if (i < potentialConversationPartners.Count)
             {
-                partnerPortrait.color = new Color(255, 255, 255, 0);
-                StartCoroutine(fadeImageTo(partnerPortrait, 1.0f, 0.6f));
+                partnerPortrait.color = new Color(255, 255, 255, isFadeIn ? 0 : 1);
+                StartCoroutine(fadeImageTo(fadeComplete, partnerPortrait, isFadeIn ? 1 : 0, 0.6f));
             }
         }
     }
 
-    IEnumerator fadeImageTo(Image characterImage, float aValue, float aTime)
+    public void fadeComplete()
+    {
+        Debug.Log("Fade Complete");
+    }
+
+    IEnumerator fadeImageTo(System.Action callback, Image characterImage, float aValue, float aTime)
     {
         float alpha = characterImage.color.a;
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
@@ -99,7 +108,8 @@ public class AnimationMaestro : MonoBehaviour
             characterImage.color = newColor;
             yield return null;
         }
-        characterImage.color = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, 1);
+        characterImage.color = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, aValue);
+        callback();
     }
 
     public void updateLocationDescription()

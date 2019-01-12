@@ -188,6 +188,7 @@ public class RelationshipCounselor : MonoBehaviour {
         return false;
     }
 
+    //TODO MOVE TO INPUT ORGANIZER
 	public void leaveDate(){
 		isAtDate = false;
         myGameState.currentGameState = GameState.gameStates.PROWL;
