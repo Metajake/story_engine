@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameState : MonoBehaviour {
     public enum gameStates { PROWL, DATE, DATEINTRO, DATEOUTRO, CUTSCENE, COMMANDSEQUENCE, CONVERSATION };
     public gameStates currentGameState;
+    public gameStates pastGameState;
     public bool hasGameBegun;
     public bool hasLearnedHowToDate;
 
@@ -16,6 +17,6 @@ public class GameState : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        pastGameState = currentGameState;
 	}
 }

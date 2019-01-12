@@ -5634,10 +5634,10 @@ MonoBehaviour:
   image: {fileID: 2800000, guid: 98fdac68e47be4a6aa9757d2eedbaf45, type: 3}
   givenName: Tammy
   surname: Chan
-  currentSceneName: Beach
+  currentSceneName: Field
   isInside: 0
   inLoveAmount: 0
-  activeTimes: 000100
+  activeTimes: 010000
   isPresent: 1
   returnTime: 0
   isSubordinate: 1

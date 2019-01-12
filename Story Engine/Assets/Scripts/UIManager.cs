@@ -191,6 +191,10 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
         else if (currentState == GameState.gameStates.PROWL)
         {
+            if(myGameState.pastGameState == GameState.gameStates.DATEOUTRO)
+            {
+                myAnimationMaestro.clearPotentialPartners();
+            }
             if (!mapEnabled && !journalEnabled)
             {
                 myAnimationMaestro.updateLocationDescription();
@@ -218,7 +222,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
         else if (currentState == GameState.gameStates.DATEOUTRO)
         {
-            dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
             myAnimationMaestro.setDescriptionText("The results of my date went fine.", textPanel);
         }
     }
@@ -237,12 +240,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
         else if (occurringEvent.getEventType() == "LOCATIONEVENT")
         {
-            //check past characters vs present characters
-            //fadeout absent characters
-            //change scene backgrounr
-            //fade in new characters
-            //myAnimationMaestro.fadeTo(myCharacterManager.getAllCurrentLocalPresentCharacters(), true);
-
             myCharacterManager.selectedPartner = -1;
             if (!mySceneCatalogue.getIsInInteriorScene())
             {
@@ -299,7 +296,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             myCharacterManager.selectedPartner = portraitNumber - 1;
             talkButtonObject.GetComponentInChildren<Text>().text = "Talk to " + clickedCharacter.givenName;
         }
-        //myAnimationMaestro.doFade(myCharacterManager.getAllCurrentLocalPresentCharacters(), false);
     }
 
     internal void gameOver()
