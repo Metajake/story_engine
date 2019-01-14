@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -51,6 +52,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     public bool mapEnabled;
     public bool journalEnabled;
 
+    private List<Character> previouslyPresentCharacters;
+    
     void Awake()
     {
         myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
@@ -59,7 +62,9 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         myGameState = GameObject.FindObjectOfType<GameState>();
     }
     
-    void Start () {
+    void Start ()
+    {
+        previouslyPresentCharacters = new List<Character>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         myTimelord = GameObject.FindObjectOfType<Timelord>();
         conversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
@@ -220,13 +225,16 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         Debug.Log(occurringEvent.getEventType());
         if (occurringEvent.getEventType() == "TIMEEVENT")
         {
+            
             myBackgroundSwapper.backgroundSky.sprite = BackgroundSwapper.createSpriteFromTex2D( myBackgroundSwapper.getNextEnvironmentBackground() );
-            myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+            Debug.Log("Partners Size: " + myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count + " , Previous Size: " + this.previouslyPresentCharacters.Count + " Except Size: " + myDialogueManager.getAllCurrentLocalPresentConversationPartners().Except(this.previouslyPresentCharacters).ToList().Count);
+            myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners().Except(this.previouslyPresentCharacters).ToList());
             foreach (DateableCharacter character in myDialogueManager.allDateableCharacters)
             {
                 character.checkAndSetReturnToPresent(myTimelord.getCurrentTimestep());
             }
 
+            this.previouslyPresentCharacters = myDialogueManager.getAllCurrentLocalPresentConversationPartners();
         }
         else if (occurringEvent.getEventType() == "LOCATIONEVENT")
         {

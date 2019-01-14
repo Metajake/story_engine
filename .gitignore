@@ -27,6 +27,8 @@ sysinfo.txt
 *.userprefs
 *.pidb
 .DS_Store
+Plugins/
+Plugins.meta
 
 ###
 # OS generated
