@@ -18,8 +18,9 @@ public class RelationshipCounselor : MonoBehaviour {
     public int loveChanceIncrement;
 
     private Dictionary<String, Dictionary<int, int>> actionLikelihoodMatrix;
-    
-	void Start ()
+    private AudioConductor myAudioConductor;
+
+    void Start ()
     {
 		scheduledDates = new List<Date>();
 		myTimelord = GameObject.FindObjectOfType<Timelord>();
@@ -30,7 +31,8 @@ public class RelationshipCounselor : MonoBehaviour {
         myGameState = GameObject.FindObjectOfType<GameState>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
-
+        myAudioConductor = FindObjectOfType<AudioConductor>();
+        
         ConstructDateLikelihoods();
     }
 
@@ -98,6 +100,7 @@ public class RelationshipCounselor : MonoBehaviour {
                 if (hasDateAtPresentTimeInPresentLocationAndDateNotOver())
                 {
                     isAtDate = true;
+                    myAudioConductor.startMusic(myAudioConductor.dateMusic);
                     myGameState.currentGameState = GameState.gameStates.DATEINTRO;
                     myEventQueue.queueEvent(new EventDateStart());
                 }
@@ -191,6 +194,7 @@ public class RelationshipCounselor : MonoBehaviour {
         myGameState.currentGameState = GameState.gameStates.PROWL;
 		mySceneCatalogue.toggleInteriorScene();
         myUIManager.resetDateButtons();
+        myAudioConductor.fadeOutCurrentMusic();
         getCurrentDateFromScheduledDateList().isOver = true;
 	}
 
