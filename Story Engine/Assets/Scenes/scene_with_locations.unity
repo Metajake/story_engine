@@ -2556,7 +2556,6 @@ GameObject:
   - component: {fileID: 665576481}
   - component: {fileID: 665576483}
   - component: {fileID: 665576482}
-  - component: {fileID: 665576484}
   m_Layer: 5
   m_Name: DialogueText
   m_TagString: Untagged
@@ -2622,22 +2621,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 665576480}
   m_CullTransparentMesh: 0
---- !u!114 &665576484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 665576480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 882307d93617dc54d8b20951efb4cb89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _textComponentToScroll: {fileID: 665576482}
-  _timeScrollingStart: 0
-  _fullTextValue: 
-  showingCharacters: 0
-  framesPerCharacter: 4
 --- !u!1 &676023468
 GameObject:
   m_ObjectHideFlags: 0
@@ -3783,11 +3766,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882307d93617dc54d8b20951efb4cb89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textComponentToScroll: {fileID: 665576482}
   _timeScrollingStart: 0
   _fullTextValue: 
   showingCharacters: 0
-  framesPerCharacter: 2
+  textComponentToScroll: {fileID: 665576482}
+  scrollingSpeed: 20
 --- !u!1 &940756640
 GameObject:
   m_ObjectHideFlags: 0
@@ -7616,11 +7599,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882307d93617dc54d8b20951efb4cb89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textComponentToScroll: {fileID: 176462121}
   _timeScrollingStart: 0
   _fullTextValue: 
   showingCharacters: 0
-  framesPerCharacter: 2
+  textComponentToScroll: {fileID: 176462121}
+  scrollingSpeed: 20
 --- !u!1 &1801641751
 GameObject:
   m_ObjectHideFlags: 0
