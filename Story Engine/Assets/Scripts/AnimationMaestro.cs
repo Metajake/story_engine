@@ -22,7 +22,6 @@ public class AnimationMaestro : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
 
     public void updatePotentialPartnersSprites(List<Character> potentialConversationPartners)
@@ -35,17 +34,19 @@ public class AnimationMaestro : MonoBehaviour
 
             if (i < potentialConversationPartners.Count)
             {
-                partnerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(potentialConversationPartners[i].image);
-                partnerNameplate.text = potentialConversationPartners[i].givenName + " " + potentialConversationPartners[i].surname;
+                partnerPortrait.sprite =
+                    BackgroundSwapper.createSpriteFromTex2D(potentialConversationPartners[i].image);
+                partnerNameplate.text = potentialConversationPartners[i].givenName + " " +
+                                        potentialConversationPartners[i].surname;
                 if (potentialConversationPartners[i] is DateableCharacter)
                 {
-                    partnerLoveAmount.text = "In Love Amount: " + potentialConversationPartners[i].inLoveAmount.ToString();
+                    partnerLoveAmount.text =
+                        "In Love Amount: " + potentialConversationPartners[i].inLoveAmount.ToString();
                 }
                 else
                 {
                     partnerLoveAmount.text = "";
                 }
-                
             }
             else
             {
@@ -90,10 +91,12 @@ public class AnimationMaestro : MonoBehaviour
         float alpha = characterImage.color.a;
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
         {
-            Color newColor = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, Mathf.SmoothStep(alpha, aValue, t));
+            Color newColor = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b,
+                Mathf.SmoothStep(alpha, aValue, t));
             characterImage.color = newColor;
             yield return null;
         }
+
         characterImage.color = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, 1);
     }
 
@@ -104,7 +107,7 @@ public class AnimationMaestro : MonoBehaviour
 
     public void setDescriptionText(string toWrite, Text toWriteTo)
     {
-        toWriteTo.text = toWrite;
+        GameObject.Find("DescriptionTextScroller").GetComponent<TextScroller>().SetText(toWrite);
     }
 
     internal void showNeutralDescriptionText()
@@ -117,5 +120,4 @@ public class AnimationMaestro : MonoBehaviour
         setDescriptionText("Bye, lame.", textPanel);
         dateActionButton.SetActive(false);
     }
-
 }

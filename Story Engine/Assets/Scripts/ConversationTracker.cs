@@ -8,7 +8,7 @@ public class ConversationTracker : MonoBehaviour {
 	public Conversation currentConversation;
 	private List<Conversation> pastConversations;
 
-	private Text dialogueText;
+	private TextScroller dialogueTextScroller;
     private DialogueManager myDialogueManager;
     private UIManager uiManager;
     private Timelord myTimelord;
@@ -16,7 +16,7 @@ public class ConversationTracker : MonoBehaviour {
 
     public void Start()
 	{
-		dialogueText = GameObject.Find("DialogueText").GetComponent<Text>();
+		dialogueTextScroller = GameObject.Find("DialogueTextScroller").GetComponent<TextScroller>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         uiManager = GameObject.FindObjectOfType<UIManager>();
         myTimelord = GameObject.FindObjectOfType<Timelord>();
@@ -32,7 +32,7 @@ public class ConversationTracker : MonoBehaviour {
         {
             greetingTags.Add("annoyed");
         }
-        dialogueText.text = myDialogueManager.getDialogueForTags(greetingTags).dialogueContent;
+        dialogueTextScroller.SetText( myDialogueManager.getDialogueForTags(greetingTags).dialogueContent);
 		this.currentConversation = this.gameObject.AddComponent<Conversation>();
 		this.currentConversation.speaker = speaker;
     }
@@ -63,7 +63,7 @@ public class ConversationTracker : MonoBehaviour {
 			currentConversation.opinion += 1;
         }
 
-        dialogueText.text = myDialogueManager.getDialogueForTags(tags).dialogueContent;
+        dialogueTextScroller.SetText( myDialogueManager.getDialogueForTags(tags).dialogueContent);
 		currentConversation.lastChosenOption = Conversation.SpeechOption.INTRODUCTION;
 		currentConversation.speaker.knowsYou = true;
 		currentConversation.greetedSoFar = true;
@@ -115,7 +115,7 @@ public class ConversationTracker : MonoBehaviour {
             tags.Add("willing");
         }
 
-        dialogueText.text = myDialogueManager.getDialogueForTags(tags).dialogueContent;
+        dialogueTextScroller.SetText( myDialogueManager.getDialogueForTags(tags).dialogueContent);
         currentConversation.lastChosenOption = Conversation.SpeechOption.QUESTION;
         this.currentConversation.questionedSoFar = true;
         this.currentConversation.questionCount++;
@@ -160,7 +160,7 @@ public class ConversationTracker : MonoBehaviour {
             tags.Add("embarrassed");
         }
 
-        dialogueText.text = myDialogueManager.getDialogueForTags(tags).dialogueContent;
+        dialogueTextScroller.SetText( myDialogueManager.getDialogueForTags(tags).dialogueContent);
         currentConversation.lastChosenOption = Conversation.SpeechOption.COMPLIMENT;
 		this.currentConversation.complimentedSoFar = true;
 		this.currentConversation.complimentCount++;
@@ -211,7 +211,7 @@ public class ConversationTracker : MonoBehaviour {
         currentConversation.lastChosenOption = Conversation.SpeechOption.DEMAND;
         //this.thingsSaid.push("demand");
         this.currentConversation.demandCount++;
-        dialogueText.text = myDialogueManager.getDialogueForTags(tags).dialogueContent;
+        dialogueTextScroller.SetText( myDialogueManager.getDialogueForTags(tags).dialogueContent);
     }
 
     public bool canAskOnDateEnabled()
@@ -225,7 +225,7 @@ public class ConversationTracker : MonoBehaviour {
 
     public void successfullyAskOnDate()
     {
-        dialogueText.text = "Where would you like to go for our date?";
+        dialogueTextScroller.SetText( "Where would you like to go for our date?");
 
         uiManager.showLocationOptions();
         this.currentConversation.lastChosenOption = Conversation.SpeechOption.ASK_ON_DATE;
@@ -244,7 +244,7 @@ public class ConversationTracker : MonoBehaviour {
     {
         List<string> tags = new List<string>();
         tags.AddRange(new List<string>() { "departure", "deflection" });
-        dialogueText.text = farewell == "" ? myDialogueManager.getDialogueForTags(tags).dialogueContent : farewell;
+        dialogueTextScroller.SetText( farewell == "" ? myDialogueManager.getDialogueForTags(tags).dialogueContent : farewell);
 
         uiManager.enableOnlyBye();
         this.currentConversation.opinion = 0;

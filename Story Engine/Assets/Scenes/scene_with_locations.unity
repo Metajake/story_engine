@@ -2556,6 +2556,7 @@ GameObject:
   - component: {fileID: 665576481}
   - component: {fileID: 665576483}
   - component: {fileID: 665576482}
+  - component: {fileID: 665576484}
   m_Layer: 5
   m_Name: DialogueText
   m_TagString: Untagged
@@ -2621,6 +2622,22 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 665576480}
   m_CullTransparentMesh: 0
+--- !u!114 &665576484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 665576480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882307d93617dc54d8b20951efb4cb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textComponentToScroll: {fileID: 665576482}
+  _timeScrollingStart: 0
+  _fullTextValue: 
+  showingCharacters: 0
+  framesPerCharacter: 4
 --- !u!1 &676023468
 GameObject:
   m_ObjectHideFlags: 0
@@ -3726,6 +3743,51 @@ MonoBehaviour:
   dateActions:
   - Say Prayer
   currentDateAction: 
+--- !u!1 &929217063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 929217064}
+  - component: {fileID: 929217065}
+  m_Layer: 0
+  m_Name: DialogueTextScroller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &929217064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 929217063}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1508175201}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &929217065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 929217063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882307d93617dc54d8b20951efb4cb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textComponentToScroll: {fileID: 665576482}
+  _timeScrollingStart: 0
+  _fullTextValue: 
+  showingCharacters: 0
+  framesPerCharacter: 2
 --- !u!1 &940756640
 GameObject:
   m_ObjectHideFlags: 0
@@ -6430,6 +6492,36 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1502614197}
   m_CullTransparentMesh: 0
+--- !u!1 &1508175200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1508175201}
+  m_Layer: 0
+  m_Name: TextScrollers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1508175201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1508175200}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 480, y: 168.15001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1786804116}
+  - {fileID: 929217064}
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1528989331
 GameObject:
   m_ObjectHideFlags: 0
@@ -7484,6 +7576,51 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1758800456}
   m_CullTransparentMesh: 0
+--- !u!1 &1786804115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1786804116}
+  - component: {fileID: 1786804117}
+  m_Layer: 0
+  m_Name: DescriptionTextScroller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1786804116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1786804115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1508175201}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1786804117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1786804115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882307d93617dc54d8b20951efb4cb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textComponentToScroll: {fileID: 176462121}
+  _timeScrollingStart: 0
+  _fullTextValue: 
+  showingCharacters: 0
+  framesPerCharacter: 2
 --- !u!1 &1801641751
 GameObject:
   m_ObjectHideFlags: 0
