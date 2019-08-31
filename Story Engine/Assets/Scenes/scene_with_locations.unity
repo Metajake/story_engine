@@ -3689,7 +3689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationName: Mountains
-  interiorName: Hot Springs
+  interiorName: Hidden Villa
   neutralDateResultDescription: Mount Neut
   experienceDescription: Mount Exp
   isDateScene: 1
@@ -3766,9 +3766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882307d93617dc54d8b20951efb4cb89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeScrollingStart: 0
-  _fullTextValue: 
-  showingCharacters: 0
   textComponentToScroll: {fileID: 665576482}
   scrollingSpeed: 20
 --- !u!1 &940756640
@@ -5376,55 +5373,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgrounds:
-  - {fileID: 2800000, guid: 6b0c73a7369b7455cb06b89257420634, type: 3}
-  - {fileID: 2800000, guid: 28788f9511985dd4f88ff44fbef097f7, type: 3}
   - {fileID: 2800000, guid: 102cabf201e70644887a4c8bff421240, type: 3}
-  - {fileID: 2800000, guid: 7b9e4f05a5364ea4f85aa97bb953bc86, type: 3}
-  - {fileID: 2800000, guid: 8beee41df6e26437b86bb7f6caabfec6, type: 3}
+  - {fileID: 2800000, guid: 79ad5e1d67f5d5044b0ef4c10428bd0b, type: 3}
   - {fileID: 2800000, guid: 265a9000ef195cb4cb3976c659da6dd3, type: 3}
-  - {fileID: 2800000, guid: 28788f9511985dd4f88ff44fbef097f7, type: 3}
-  - {fileID: 2800000, guid: 9cd3e6da7212f461d93c04524533a045, type: 3}
-  - {fileID: 2800000, guid: 479b2f330a14d418caf45cbf77d9a948, type: 3}
-  - {fileID: 2800000, guid: 97b71ee758f04490baa054c301d77794, type: 3}
-  - {fileID: 2800000, guid: fedb9cb8053a344dea84b300d3d2b7f5, type: 3}
-  - {fileID: 2800000, guid: 520e5d90c49fe43c4be00063e8228404, type: 3}
-  - {fileID: 2800000, guid: 8beee41df6e26437b86bb7f6caabfec6, type: 3}
-  - {fileID: 2800000, guid: 869060a53656842fa93b3ffa58a537dd, type: 3}
-  - {fileID: 2800000, guid: e2a592ee57e10417ba3fd386edf399c1, type: 3}
   - {fileID: 2800000, guid: 29c2c4556703b43568fc73df683d7c36, type: 3}
   - {fileID: 2800000, guid: 64bea06a4cd7041a89f5268423759487, type: 3}
   - {fileID: 2800000, guid: c2e94a88648504bb2aac5304f20cee1e, type: 3}
-  - {fileID: 2800000, guid: 062a4bb3aafccf943b51a58947eba7dc, type: 3}
-  - {fileID: 2800000, guid: 37c3151ad1ebc6d4f87505e5537b46d0, type: 3}
-  - {fileID: 2800000, guid: e6ee7925df8e4934289b93e367a0d540, type: 3}
-  - {fileID: 2800000, guid: 3c06e76ed4fd14bbab73ae4ba660736b, type: 3}
-  - {fileID: 2800000, guid: d1403a882497e419bb84e6259a80e8e1, type: 3}
-  - {fileID: 2800000, guid: fa1b7aa63835542d88a6e42c4dec54f6, type: 3}
-  - {fileID: 2800000, guid: 31ff2ab3bea4f48b48e05ea7f3614366, type: 3}
-  - {fileID: 2800000, guid: 5419da81471d949589fbc15e480f3714, type: 3}
-  - {fileID: 2800000, guid: 62af9ff16a9ea456a9fdb727a39c3b62, type: 3}
-  - {fileID: 2800000, guid: faa182e3c6ea74681899f3cbd69f8fa7, type: 3}
-  - {fileID: 2800000, guid: add036eca78f5409c8f87abcd99959ce, type: 3}
-  - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
   - {fileID: 2800000, guid: 8793bf3c1c0d14c629655612efcd24a2, type: 3}
   - {fileID: 2800000, guid: 713f989b2a8bb4d7bb1f72b4b055e7d1, type: 3}
   - {fileID: 2800000, guid: de00723e9305a480891e42ef01b239c2, type: 3}
+  - {fileID: 2800000, guid: 3c06e76ed4fd14bbab73ae4ba660736b, type: 3}
+  - {fileID: 2800000, guid: d1403a882497e419bb84e6259a80e8e1, type: 3}
+  - {fileID: 2800000, guid: fa1b7aa63835542d88a6e42c4dec54f6, type: 3}
   - {fileID: 2800000, guid: 4ed821511f6644e179db2116fa7e7c01, type: 3}
   - {fileID: 2800000, guid: 2d2826c775c5d4f4c988b824d65eddb6, type: 3}
   - {fileID: 2800000, guid: 9cf3a940a43c54e4eabd30d96905ba9b, type: 3}
+  - {fileID: 2800000, guid: cc2506f242d09ed4293c4e73b5fb8c47, type: 3}
+  - {fileID: 2800000, guid: 9cd3e6da7212f461d93c04524533a045, type: 3}
+  - {fileID: 2800000, guid: 479b2f330a14d418caf45cbf77d9a948, type: 3}
+  - {fileID: 2800000, guid: 3fb9d56c6e0b78a4fba8167c1b4f09d0, type: 3}
+  - {fileID: 2800000, guid: 58afe670e451499449d6412bcda06225, type: 3}
+  - {fileID: 2800000, guid: 46c9dc4af01e43549b69890454bfd370, type: 3}
+  - {fileID: 2800000, guid: 31ff2ab3bea4f48b48e05ea7f3614366, type: 3}
+  - {fileID: 2800000, guid: 5419da81471d949589fbc15e480f3714, type: 3}
+  - {fileID: 2800000, guid: 62af9ff16a9ea456a9fdb727a39c3b62, type: 3}
+  - {fileID: 2800000, guid: 8beee41df6e26437b86bb7f6caabfec6, type: 3}
+  - {fileID: 2800000, guid: 869060a53656842fa93b3ffa58a537dd, type: 3}
+  - {fileID: 2800000, guid: e2a592ee57e10417ba3fd386edf399c1, type: 3}
+  - {fileID: 2800000, guid: 7b9e4f05a5364ea4f85aa97bb953bc86, type: 3}
+  - {fileID: 2800000, guid: fedb9cb8053a344dea84b300d3d2b7f5, type: 3}
+  - {fileID: 2800000, guid: 520e5d90c49fe43c4be00063e8228404, type: 3}
+  - {fileID: 2800000, guid: faa182e3c6ea74681899f3cbd69f8fa7, type: 3}
+  - {fileID: 2800000, guid: add036eca78f5409c8f87abcd99959ce, type: 3}
+  - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
+  - {fileID: 2800000, guid: 6b0c73a7369b7455cb06b89257420634, type: 3}
+  - {fileID: 2800000, guid: c9adcb859c668443b8240730c19eb976, type: 3}
+  - {fileID: 2800000, guid: 13c17850b64c64157998a611ff2874e7, type: 3}
   dateBackgrounds:
-  - {fileID: 2800000, guid: 673cb8a78217843ed9c8ebfd4fedf778, type: 3}
-  - {fileID: 2800000, guid: ac7477a70741d43ce95a3a55ee133838, type: 3}
-  - {fileID: 2800000, guid: bca59e675b9754c0c93d890d0b937ac6, type: 3}
-  - {fileID: 2800000, guid: 5aff4a88ce87e4cd1b37da8b3fb75ad4, type: 3}
-  - {fileID: 2800000, guid: d550123b88b2543c3a768088cc4f75c2, type: 3}
-  - {fileID: 2800000, guid: 75dc1ac919d7c4cbba8d7890a8804af7, type: 3}
-  - {fileID: 2800000, guid: e09f8d7982ba7ee4490a0af12a877c70, type: 3}
-  - {fileID: 2800000, guid: 30eece18d297347ccae2e397ad3cc56b, type: 3}
+  - {fileID: 2800000, guid: 1a01cafbf0f640b4fb4dc847c668e54f, type: 3}
+  - {fileID: 2800000, guid: d809263601c5b2042a0ff6e7041a9af9, type: 3}
+  - {fileID: 2800000, guid: 1419a4686bd9d474eb61417fb4691196, type: 3}
+  - {fileID: 2800000, guid: 120fe3648695b6c4db42b41ad9ef17d9, type: 3}
+  - {fileID: 2800000, guid: c09300ec604adf043954b05edf72a4ca, type: 3}
+  - {fileID: 2800000, guid: ac0a59c9101555a4696320acf3371393, type: 3}
+  - {fileID: 2800000, guid: 0de9c3a8620da46eab13df1e0168ac63, type: 3}
+  - {fileID: 2800000, guid: 787fc423d3ffe45eda4662e345118810, type: 3}
   - {fileID: 2800000, guid: 787fc423d3ffe45eda4662e345118810, type: 3}
   - {fileID: 2800000, guid: 0de9c3a8620da46eab13df1e0168ac63, type: 3}
-  - {fileID: 2800000, guid: 9fa2b32c3897bbd4dbec1a7084a09280, type: 3}
-  - {fileID: 2800000, guid: afc2039122659084fb3c00c84efcf8d7, type: 3}
+  - {fileID: 2800000, guid: dbe3e44c140e37448b809fc83b7fe1f6, type: 3}
+  - {fileID: 2800000, guid: f59210d72aaee2546b25e4dd30104f06, type: 3}
+  - {fileID: 2800000, guid: 513530ec1ee8fbb4f899c2fd1b44f952, type: 3}
+  - {fileID: 2800000, guid: 899244667b4d647439f2b8527183a117, type: 3}
+  - {fileID: 2800000, guid: 4a9d45f9455e41c449cb41a0deb7cd9f, type: 3}
+  - {fileID: 2800000, guid: 0577c9d60a642ec44a433ed128fcda6e, type: 3}
+  - {fileID: 2800000, guid: 787fc423d3ffe45eda4662e345118810, type: 3}
+  - {fileID: 2800000, guid: 787fc423d3ffe45eda4662e345118810, type: 3}
   environmentBackgrounds:
   - {fileID: 2800000, guid: 517c88c3ca7b5e04fb42ab36b51d2517, type: 3}
   - {fileID: 2800000, guid: 1d33fc27e5de1db409905cd688739e23, type: 3}
@@ -5773,7 +5776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51511b26b2d946b1841b601c3df4bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 2800000, guid: 6792cb03d38b142f4b0b13eb6d978ee6, type: 3}
+  image: {fileID: 2800000, guid: 9a5c0d096ae7df747a3bc8b021054022, type: 3}
   givenName: Kristie
   surname: Yamaguchi
   currentSceneName: City
@@ -5799,7 +5802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c89a1443646f497ba0447bdfe3669b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 2800000, guid: 52e905c9930dd4903b65ab8e5bb9e5db, type: 3}
+  image: {fileID: 2800000, guid: 163ea44eeaa7f114fa96133a92b676b3, type: 3}
   givenName: Evan
   surname: Clyde
   currentSceneName: City
@@ -5819,7 +5822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51511b26b2d946b1841b601c3df4bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 2800000, guid: 98fdac68e47be4a6aa9757d2eedbaf45, type: 3}
+  image: {fileID: 2800000, guid: 5abae700844a5434f812a00693c2852c, type: 3}
   givenName: Tammy
   surname: Chan
   currentSceneName: Beach
@@ -7599,9 +7602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882307d93617dc54d8b20951efb4cb89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeScrollingStart: 0
-  _fullTextValue: 
-  showingCharacters: 0
   textComponentToScroll: {fileID: 176462121}
   scrollingSpeed: 20
 --- !u!1 &1801641751

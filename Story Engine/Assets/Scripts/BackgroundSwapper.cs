@@ -37,9 +37,9 @@ public class BackgroundSwapper : MonoBehaviour
 	private Texture2D getNextBackground(){
         if (mySceneCatalogue.getIsInInteriorScene() == true)
         {
-            return dateBackgroundsForThisScene()[0];
+            return dateBackgroundsForThisScene()[myTimeLord.timeStep % environmentBackgrounds.Length];
         }
-		return backgroundsForThisScene()[0];
+		return backgroundsForThisScene()[myTimeLord.timeStep % environmentBackgrounds.Length];
 	}
 
     public Texture2D getNextEnvironmentBackground()
