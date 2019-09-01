@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class VictoryCoach : MonoBehaviour {
@@ -94,12 +95,30 @@ public class VictoryCoach : MonoBehaviour {
             isIrresponsible = false;
             return toReturn;
         }
+        else if(IsReadyToCreate()){
+            toReturn = experiences["create"];
+            experiences.Remove("create");
+            return toReturn;
+        }
         else
         {
-            List<Experience> expList = new List<Experience>(experiences.Values);
+            List<Experience> expList = getExperiencesExceptFinal();
             Experience toRemoveAndReturn = expList[random.Next(expList.Count)];
             experiences.Remove(toRemoveAndReturn.experienceName);
             return toRemoveAndReturn;
         }
+    }
+
+    private bool IsReadyToCreate()
+    {
+        List<Experience> expList = new List<Experience>(experiences.Values);
+        return expList.Count <= 1;
+    }
+
+    private List<Experience> getExperiencesExceptFinal()
+    {
+        List<Experience> expList = new List<Experience>(experiences.Values);
+        expList = new List<Experience>( expList.Where( exp => exp.experienceName != "create") );
+        return expList;
     }
 }
