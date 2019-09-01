@@ -6811,6 +6811,12 @@ GameObject:
   - component: {fileID: 1564499113}
   - component: {fileID: 1564499112}
   - component: {fileID: 1564499111}
+  - component: {fileID: 1564499114}
+  - component: {fileID: 1564499119}
+  - component: {fileID: 1564499118}
+  - component: {fileID: 1564499117}
+  - component: {fileID: 1564499116}
+  - component: {fileID: 1564499115}
   m_Layer: 0
   m_Name: VictoryCoach
   m_TagString: Untagged
@@ -6889,6 +6895,109 @@ MonoBehaviour:
   - You've experienced the need to take responsibility for yourself.
   - Go take a shower...
   - '...then go buy some deodorant.'
+--- !u!114 &1564499114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1564499108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7735121f8d4852b4e9cb188f75de801c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceName: showoff
+  experienceCutSceneTexts:
+  - She's looking a little bored, but you know she likes you...
+  - Whether it's a new shirt, or some new muscles, sometimes you have to show off
+    what you've got.
+  - You've experienced the need to show off.
+--- !u!114 &1564499115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1564499108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7735121f8d4852b4e9cb188f75de801c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceName: create
+  experienceCutSceneTexts:
+  - You've experienced all of life's major, formative lessons.
+  - You're ready to unify with a partner, bring all of your experiences to the table,
+    and pass them along to new life.
+  - You've expereinced the need to create new life for new experiences...
+  - '...'
+  - What experiences lie ahead?...
+--- !u!114 &1564499116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1564499108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7735121f8d4852b4e9cb188f75de801c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceName: honesty
+  experienceCutSceneTexts:
+  - There's no way around this one. She knows the truth and so do you.
+  - But it's not whether she knows the truth. It's whether you know the truth. And
+    you've been honest with her.
+  - You've experienced the need to be honest.
+--- !u!114 &1564499117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1564499108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7735121f8d4852b4e9cb188f75de801c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceName: selfsacrifice
+  experienceCutSceneTexts:
+  - Sometimes life isn't about you.
+  - She needed you, and you recognized that it was time to put yourself second; to
+    put someone else first.
+  - You've experienced the need for self sacrifice.
+--- !u!114 &1564499118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1564499108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7735121f8d4852b4e9cb188f75de801c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceName: persistance
+  experienceCutSceneTexts:
+  - A difference betweeen the two of you became a challenge to work through.
+  - But you had faith even when times were tough. And with persistance, you've overcome
+    your difficulties.
+  - You've experienced the need to have faith, remain persistant, and dedicated.
+--- !u!114 &1564499119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1564499108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7735121f8d4852b4e9cb188f75de801c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experienceName: humble
+  experienceCutSceneTexts:
+  - After a disagreement, you realize that she was right. You were wrong.
+  - '...And you''re not afraid to admit it.'
+  - You've experienced the need to be humble, and apologize for your actions.
 --- !u!1 &1601175267
 GameObject:
   m_ObjectHideFlags: 0
