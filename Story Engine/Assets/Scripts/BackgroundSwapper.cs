@@ -9,8 +9,6 @@ public class BackgroundSwapper : MonoBehaviour
 
 	public Texture2D[] backgrounds;
 	public Texture2D[] dateBackgrounds;
-    public Texture2D[] environmentBackgrounds;
-    public Image backgroundSky;
 	private Image backgroundLocation;
 	private Timelord myTimeLord;
 	private SceneCatalogue mySceneCatalogue;
@@ -19,11 +17,8 @@ public class BackgroundSwapper : MonoBehaviour
 	void Start()
 	{
         backgroundLocation = GameObject.Find("BackgroundLocation").GetComponentInChildren<Image>();
-        backgroundSky = GameObject.Find("BackgroundSky").GetComponentInChildren<Image>();
-		myTimeLord = GameObject.FindObjectOfType<Timelord>();
+        myTimeLord = GameObject.FindObjectOfType<Timelord>();
 		mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
-
-        backgroundSky.sprite = createSpriteFromTex2D(getNextEnvironmentBackground());
     }
 
 	// Update is called once per frame
@@ -37,15 +32,10 @@ public class BackgroundSwapper : MonoBehaviour
 	private Texture2D getNextBackground(){
         if (mySceneCatalogue.getIsInInteriorScene() == true)
         {
-            return dateBackgroundsForThisScene()[myTimeLord.timeStep % environmentBackgrounds.Length];
+            return dateBackgroundsForThisScene()[myTimeLord.timeStep % 3];
         }
-		return backgroundsForThisScene()[myTimeLord.timeStep % environmentBackgrounds.Length];
+		return backgroundsForThisScene()[myTimeLord.timeStep % 3];
 	}
-
-    public Texture2D getNextEnvironmentBackground()
-    {
-        return environmentBackgrounds[myTimeLord.timeStep % environmentBackgrounds.Length];
-    }
 
 	public static Sprite createSpriteFromTex2D(Texture2D from){
 		return Sprite.Create(from, new Rect(0, 0, from.width, from.height), Vector2.zero);
