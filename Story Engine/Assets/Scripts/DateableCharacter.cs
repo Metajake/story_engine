@@ -21,7 +21,7 @@ public class DateableCharacter : Character {
 
 		if(givenName.ToLower() == "kristie"){
             dm.registerDialogue(new DialoguePiece("Hi.",this).addTag("greeting"));
-            dm.registerDialogue(new DialoguePiece("Fuck off!",this).addTag("greeting").addTag("annoyed"));
+            dm.registerDialogue(new DialoguePiece("You again...",this).addTag("greeting").addTag("annoyed"));
 
 			dm.registerDialogue(new DialoguePiece("Nice to meet you.", this).addTag("introduction"));
             dm.registerDialogue(new DialoguePiece("Hi again!", this).addTag("introduction").addTag("known"));
@@ -60,7 +60,7 @@ public class DateableCharacter : Character {
 		}else if (givenName.ToLower() == "tammy")
         {
             dm.registerDialogue(new DialoguePiece("HELLO.", this).addTag("greeting"));
-            dm.registerDialogue(new DialoguePiece("Fuck off!", this).addTag("greeting").addTag("annoyed"));
+            dm.registerDialogue(new DialoguePiece("You again...", this).addTag("greeting").addTag("annoyed"));
 
             dm.registerDialogue(new DialoguePiece("Nice to meet you.", this).addTag("introduction"));
             dm.registerDialogue(new DialoguePiece("Hi again!", this).addTag("introduction").addTag("known"));
@@ -99,7 +99,7 @@ public class DateableCharacter : Character {
 		}else if (givenName.ToLower() == "becky")
         {
             dm.registerDialogue(new DialoguePiece("HELLO.", this).addTag("greeting"));
-            dm.registerDialogue(new DialoguePiece("Fuck off!", this).addTag("greeting").addTag("annoyed"));
+            dm.registerDialogue(new DialoguePiece("You again...", this).addTag("greeting").addTag("annoyed"));
 
             dm.registerDialogue(new DialoguePiece("Nice to meet you.", this).addTag("introduction"));
             dm.registerDialogue(new DialoguePiece("Hi again!", this).addTag("introduction").addTag("known"));
@@ -138,7 +138,7 @@ public class DateableCharacter : Character {
 		}else if (givenName.ToLower() == "jill")
         {
             dm.registerDialogue(new DialoguePiece("HELLO.", this).addTag("greeting"));
-            dm.registerDialogue(new DialoguePiece("Fuck off!", this).addTag("greeting").addTag("annoyed"));
+            dm.registerDialogue(new DialoguePiece("You again...", this).addTag("greeting").addTag("annoyed"));
 
             dm.registerDialogue(new DialoguePiece("Nice to meet you.", this).addTag("introduction"));
             dm.registerDialogue(new DialoguePiece("Hi again!", this).addTag("introduction").addTag("known"));
@@ -178,7 +178,7 @@ public class DateableCharacter : Character {
         else if (givenName.ToLower() == "donna")
         {
             dm.registerDialogue(new DialoguePiece("HELLO.", this).addTag("greeting"));
-            dm.registerDialogue(new DialoguePiece("Fuck off!", this).addTag("greeting").addTag("annoyed"));
+            dm.registerDialogue(new DialoguePiece("You again...", this).addTag("greeting").addTag("annoyed"));
 
             dm.registerDialogue(new DialoguePiece("Nice to meet you.", this).addTag("introduction"));
             dm.registerDialogue(new DialoguePiece("Hi again!", this).addTag("introduction").addTag("known"));
@@ -218,7 +218,7 @@ public class DateableCharacter : Character {
         else if (givenName.ToLower() == "laura")
         {
             dm.registerDialogue(new DialoguePiece("HELLO.", this).addTag("greeting"));
-            dm.registerDialogue(new DialoguePiece("Fuck off!", this).addTag("greeting").addTag("annoyed"));
+            dm.registerDialogue(new DialoguePiece("You again...", this).addTag("greeting").addTag("annoyed"));
 
             dm.registerDialogue(new DialoguePiece("Nice to meet you.", this).addTag("introduction"));
             dm.registerDialogue(new DialoguePiece("Hi again!", this).addTag("introduction").addTag("known"));
@@ -258,7 +258,7 @@ public class DateableCharacter : Character {
         else if (givenName.ToLower() == "sarah")
         {
             dm.registerDialogue(new DialoguePiece("HELLO.", this).addTag("greeting"));
-            dm.registerDialogue(new DialoguePiece("Fuck off!", this).addTag("greeting").addTag("annoyed"));
+            dm.registerDialogue(new DialoguePiece("You again...", this).addTag("greeting").addTag("annoyed"));
 
             dm.registerDialogue(new DialoguePiece("Nice to meet you.", this).addTag("introduction"));
             dm.registerDialogue(new DialoguePiece("Hi again!", this).addTag("introduction").addTag("known"));
@@ -298,7 +298,7 @@ public class DateableCharacter : Character {
         else if (givenName.ToLower() == "jasmine")
         {
             dm.registerDialogue(new DialoguePiece("HELLO.", this).addTag("greeting"));
-            dm.registerDialogue(new DialoguePiece("Fuck off!", this).addTag("greeting").addTag("annoyed"));
+            dm.registerDialogue(new DialoguePiece("You again...", this).addTag("greeting").addTag("annoyed"));
 
             dm.registerDialogue(new DialoguePiece("Nice to meet you.", this).addTag("introduction"));
             dm.registerDialogue(new DialoguePiece("Hi again!", this).addTag("introduction").addTag("known"));
@@ -338,7 +338,7 @@ public class DateableCharacter : Character {
         else if (givenName.ToLower() == "eli")
         {
             dm.registerDialogue(new DialoguePiece("HELLO.", this).addTag("greeting"));
-            dm.registerDialogue(new DialoguePiece("Fuck off!", this).addTag("greeting").addTag("annoyed"));
+            dm.registerDialogue(new DialoguePiece("You again...", this).addTag("greeting").addTag("annoyed"));
 
             dm.registerDialogue(new DialoguePiece("Nice to meet you.", this).addTag("introduction"));
             dm.registerDialogue(new DialoguePiece("Hi again!", this).addTag("introduction").addTag("known"));
@@ -378,7 +378,7 @@ public class DateableCharacter : Character {
         else if (givenName.ToLower() == "melissa")
         {
             dm.registerDialogue(new DialoguePiece("HELLO.", this).addTag("greeting"));
-            dm.registerDialogue(new DialoguePiece("Fuck off!", this).addTag("greeting").addTag("annoyed"));
+            dm.registerDialogue(new DialoguePiece("You again...", this).addTag("greeting").addTag("annoyed"));
 
             dm.registerDialogue(new DialoguePiece("Nice to meet you.", this).addTag("introduction"));
             dm.registerDialogue(new DialoguePiece("Hi again!", this).addTag("introduction").addTag("known"));
