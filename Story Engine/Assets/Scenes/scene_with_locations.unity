@@ -5425,20 +5425,15 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 513530ec1ee8fbb4f899c2fd1b44f952, type: 3}
   - {fileID: 2800000, guid: 899244667b4d647439f2b8527183a117, type: 3}
   - {fileID: 2800000, guid: 4a9d45f9455e41c449cb41a0deb7cd9f, type: 3}
-  - {fileID: 2800000, guid: 787fc423d3ffe45eda4662e345118810, type: 3}
-  - {fileID: 2800000, guid: 787fc423d3ffe45eda4662e345118810, type: 3}
-  - {fileID: 2800000, guid: 787fc423d3ffe45eda4662e345118810, type: 3}
+  - {fileID: 2800000, guid: c8c2a32145cc9c3418c5dae552eecc2c, type: 3}
+  - {fileID: 2800000, guid: 5a14739b0d611044ab57b6f327af0426, type: 3}
+  - {fileID: 2800000, guid: 3f761c3d54eb16347b99eb0f4e6ca64d, type: 3}
   - {fileID: 2800000, guid: d9a3a09a16a6df74cbab2b26fb520299, type: 3}
   - {fileID: 2800000, guid: 730dd328bdac8784eaaf9587fcdfc940, type: 3}
   - {fileID: 2800000, guid: ffb278c4c37da824eafdeb74d581de84, type: 3}
   - {fileID: 2800000, guid: c45569cef2af5c54da80ed79591a07bc, type: 3}
   - {fileID: 2800000, guid: b8d22fe2ff9b475418ef24977f86e3ae, type: 3}
   - {fileID: 2800000, guid: 65e732b3c4beffd408fdd06de68c3c7f, type: 3}
-  environmentBackgrounds:
-  - {fileID: 2800000, guid: 517c88c3ca7b5e04fb42ab36b51d2517, type: 3}
-  - {fileID: 2800000, guid: 1d33fc27e5de1db409905cd688739e23, type: 3}
-  - {fileID: 2800000, guid: 2389516055da7884986081fea56d8213, type: 3}
-  backgroundSky: {fileID: 0}
 --- !u!224 &1311753324
 RectTransform:
   m_ObjectHideFlags: 0
