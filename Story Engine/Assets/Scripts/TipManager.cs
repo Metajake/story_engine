@@ -10,15 +10,16 @@ public class TipManager : MonoBehaviour {
 
     public List<string> introText = new List<string>() {
         "Sitting at home is safe and comfortable...",
-        "...But I need to grow up.",
-        "... It's time to find a girlfriend. Things will change if I start dating.",
-        "......",
-        "The problem with that is: the more time I spend with a girl, the more chance there is of her falling in love with me...",
-        "...But when that happens, I fall in love with her. Then it inevitably falls apart for one reason or another.",
-        "I'm left crushed and heartbroken. And life feels like game over.",
-        "I have to get out there, and have some new experiences without letting anyone fall in love with me!..",
-        "...At least I can't let it happen until I've experienced everything that life has to offer. Let's go!",
-        "Life isn't always easy. But there's something calling me for more."
+        "But things need to change. I need to change.",
+        "It's time to get out there and meet someone. I will experience a whole new side of life if I start dating.",
+        "...",
+        "The one BIG problem with that? the more time I spend with someone, the greater the chance there is of them falling in love with me.",
+        "...And as soon as that happens, I absolutely can't help but fall in love back.",
+        "Unfortunatley, the relationship never seems work out for one reason or another. And I'm left crushed and heartbroken. It's a horrible ending.",
+        "...",
+        "But I have to get out there. I have to gain those life changing experiences that only a relationship can bring.",
+        "And I have to do it without spending too much time with any one person. Until I'm ready, I can't let anyone fall in love with me!",
+        "Let's go!"
     };
 
     // Use this for initialization
@@ -27,7 +28,6 @@ public class TipManager : MonoBehaviour {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 
         tips = new List<string>();
-        tips.Add("Keep trying.");
         tips.Add("Learn about a girl's preferred location before asking them out. The chances of you getting laid will increase.");
         tips.Add("I'll reveal more locations on the map, the more experiences you have, so visit often!");
         tips.Add("Make sure not to linger in one location for too long. Eventually \"the locals\" will ask you to leave, and you might even miss a date!");

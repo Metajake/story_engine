@@ -39,7 +39,11 @@ public class Timelord : MonoBehaviour {
 		myDialogueManager.selectedPartner = -1;
         timeStep++;
         if(timeStep % 21 == 0){ //if it's a multiple of 21 (aka Every 7 Days)
-            myDialogueManager.scatterCharacters(); 
+            myDialogueManager.scatterCharacters();
+            myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() {
+                "It's been another whole week. Time flies by when you're really out here, on this grind.",
+                "I wonder where I'll meet people to talk to this week. It's a big city!"
+            });
         }
         if (checkIfCreep())
         {
