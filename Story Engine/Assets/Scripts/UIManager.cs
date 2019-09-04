@@ -214,7 +214,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         else if (currentState == GameState.gameStates.DATEOUTRO)
         {
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
-            myAnimationMaestro.setDescriptionText("The results of my date went fine.", textPanel);
+            myAnimationMaestro.setDescriptionText("One good date can change your life.", textPanel);
         }
     }
 
