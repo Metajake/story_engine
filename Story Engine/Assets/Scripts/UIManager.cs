@@ -188,7 +188,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             if (!mapEnabled && !journalEnabled)
             {
-                myAnimationMaestro.updateLocationDescription();
+                this.updateLocationDescription();
                 myAnimationMaestro.updatePotentialPartnersSprites( myDialogueManager.getAllCurrentLocalPresentConversationPartners() );
                 updateSelectedPartnerUI();
             }
@@ -285,6 +285,11 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             myDialogueManager.selectedPartner = portraitNumber - 1;
             talkButtonObject.GetComponentInChildren<Text>().text = "Talk to " + clickedCharacter.givenName;
         }
+    }
+
+    private void updateLocationDescription()
+    {
+        myAnimationMaestro.setDescriptionText(mySceneCatalogue.getLocationDescription(), textPanel);
     }
 
     internal void gameOver()

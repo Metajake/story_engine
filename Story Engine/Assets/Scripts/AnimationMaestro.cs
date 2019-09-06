@@ -100,11 +100,6 @@ public class AnimationMaestro : MonoBehaviour
         characterImage.color = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, 1);
     }
 
-    public void updateLocationDescription()
-    {
-        setDescriptionText(mySceneCatalogue.getLocationDescription(), textPanel);
-    }
-
     public void setDescriptionText(string toWrite, Text toWriteTo)
     {
         GameObject.Find("DescriptionTextScroller").GetComponent<TextScroller>().SetText(toWrite);
