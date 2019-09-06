@@ -100,19 +100,19 @@ public class AnimationMaestro : MonoBehaviour
         characterImage.color = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, 1);
     }
 
-    public void setDescriptionText(string toWrite, Text toWriteTo)
+    public void writeDescriptionText(string toWrite, Text toWriteTo)
     {
         GameObject.Find("DescriptionTextScroller").GetComponent<TextScroller>().SetText(toWrite);
     }
 
     internal void showNeutralDescriptionText()
     {
-        setDescriptionText(mySceneCatalogue.neutralResultForCurrentLocationDescription(), textPanel);
+        writeDescriptionText(mySceneCatalogue.neutralResultForCurrentLocationDescription(), textPanel);
     }
 
     internal void abandonDateDescription()
     {
-        setDescriptionText("Bye, lame.", textPanel);
+        writeDescriptionText("Bye, lame.", textPanel);
         dateActionButton.SetActive(false);
     }
 }

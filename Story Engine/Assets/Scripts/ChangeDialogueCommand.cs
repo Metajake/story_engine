@@ -9,7 +9,7 @@ public class ChangeDialogueCommand : AbstractCommand {
 
 	public override void execute()
 	{
-    	GameObject.FindObjectOfType<AnimationMaestro>().setDescriptionText(textToWrite, GameObject.Find("TextPanel").GetComponentInChildren<Text>());
+    	GameObject.FindObjectOfType<AnimationMaestro>().writeDescriptionText(textToWrite, GameObject.Find("TextPanel").GetComponentInChildren<Text>());
 	}
    
 }

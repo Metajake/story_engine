@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private EventQueue myEventQueue;
     private AnimationMaestro myAnimationMaestro;
     private InputOrganizer myInputOrganizer;
+    private VictoryCoach myVictoryCoach;
 
     public GameObject dialoguePanel;
     public GameObject mainPanel;
@@ -202,7 +203,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
                 myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
             });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
-            myAnimationMaestro.setDescriptionText(mySceneCatalogue.getCurrentLocation().descriptionDate, textPanel);
+            myAnimationMaestro.writeDescriptionText(mySceneCatalogue.getCurrentLocation().descriptionDate, textPanel);
         }
         else if(currentState == GameState.gameStates.DATE)
         {
@@ -214,7 +215,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         else if (currentState == GameState.gameStates.DATEOUTRO)
         {
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
-            myAnimationMaestro.setDescriptionText("One good date can change your life.", textPanel);
+            myAnimationMaestro.writeDescriptionText("One good date can change your life.", textPanel);
         }
     }
 
@@ -289,13 +290,18 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
     private void updateLocationDescription()
     {
-        myAnimationMaestro.setDescriptionText(mySceneCatalogue.getLocationDescription(), textPanel);
+        myAnimationMaestro.writeDescriptionText(mySceneCatalogue.getLocationDescription(), textPanel);
     }
 
     internal void gameOver()
 	{
         SceneManager.LoadScene("splash_game_over");
 	}
+
+    internal void gameClear()
+    {
+        SceneManager.LoadScene("splash_game_clear");
+    }
 
     internal void startGame()
     {
