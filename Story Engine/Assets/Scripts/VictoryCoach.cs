@@ -6,15 +6,17 @@ using UnityEngine;
 
 public class VictoryCoach : MonoBehaviour {
 
-    public Dictionary<string, Experience> experiences;
+    public Dictionary<string, Experience> remainingExperiences;
     public List<bool> hasAchievedExperience;
     private SceneCatalogue mySceneCatalogue;
     private DifficultyLevel nextGoal;
     private bool isIrresponsible;
+    private List<Experience> achievedExperiences;
 
     private void Awake()
     {
-        experiences = new Dictionary<string, Experience>();
+        remainingExperiences = new Dictionary<string, Experience>();
+        achievedExperiences = new List<Experience>();
     }
 
     // Use this for initialization
@@ -23,7 +25,8 @@ public class VictoryCoach : MonoBehaviour {
 
         foreach (Experience exp in this.GetComponents<Experience>())
         {
-            experiences.Add(exp.experienceName, exp);
+            // TODO Experience Name is duplicate Data
+            remainingExperiences.Add(exp.experienceName, exp);
         }
 
         hasAchievedExperience = new List<bool>();
@@ -44,7 +47,7 @@ public class VictoryCoach : MonoBehaviour {
         }
 		
     }
-
+    
 	private void initializeLocationExperienceChecklist(){
         for (int i = 0; i < mySceneCatalogue.getLocationCount(); i ++){
 			hasAchievedExperience.Add(false);
@@ -90,35 +93,50 @@ public class VictoryCoach : MonoBehaviour {
         Experience toReturn;
         if (isIrresponsible)
         {
-            toReturn = experiences["responsibility"];
-            experiences.Remove("responsibility");
+            toReturn = remainingExperiences["responsibility"];
+            remainingExperiences.Remove("responsibility");
             isIrresponsible = false;
-            return toReturn;
         }
         else if(IsReadyToCreate()){
-            toReturn = experiences["create"];
-            experiences.Remove("create");
-            return toReturn;
+            toReturn = remainingExperiences["create"];
+            remainingExperiences.Remove("create");
         }
         else
         {
             List<Experience> expList = getExperiencesExceptFinal();
             Experience toRemoveAndReturn = expList[random.Next(expList.Count)];
-            experiences.Remove(toRemoveAndReturn.experienceName);
-            return toRemoveAndReturn;
+            remainingExperiences.Remove(toRemoveAndReturn.experienceName);
+            toReturn = toRemoveAndReturn;
         }
+        achievedExperiences.Add(toReturn);
+        return toReturn;
     }
 
     private bool IsReadyToCreate()
     {
-        List<Experience> expList = new List<Experience>(experiences.Values);
+        List<Experience> expList = new List<Experience>(remainingExperiences.Values);
         return expList.Count <= 1;
     }
 
     private List<Experience> getExperiencesExceptFinal()
     {
-        List<Experience> expList = new List<Experience>(experiences.Values);
+        List<Experience> expList = new List<Experience>(remainingExperiences.Values);
         expList = new List<Experience>( expList.Where( exp => exp.experienceName != "create") );
         return expList;
+    }
+
+    public string convertExperiencesToExperienceInfo()
+    {
+        string achievedExperienceInfo = "";
+        foreach (Experience e in achievedExperiences)
+        {
+            achievedExperienceInfo += e.experienceName + "\n";
+        }
+
+        for(int i = achievedExperiences.Count() + 1 ; i <= remainingExperiences.Count() + achievedExperiences.Count(); i++) {
+            achievedExperienceInfo += i + ". \n";
+        }
+
+        return achievedExperienceInfo;
     }
 }

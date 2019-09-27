@@ -167,6 +167,7 @@ public class RelationshipCounselor : MonoBehaviour {
         return allDatesInfo;
     }
 
+    // TODO Separate into two methods
     private string stringifyAndSortDates(List<Date> allDates)
     {
         allDates.Sort((x, y) => x.dateTime.CompareTo(y.dateTime));

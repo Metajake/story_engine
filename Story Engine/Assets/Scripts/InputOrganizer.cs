@@ -17,6 +17,7 @@ public class InputOrganizer : MonoBehaviour {
     private AudioConductor myAudioConductor;
     private EventQueue myEventQueue;
     private RelationshipCounselor myRelationshipCounselor;
+    private VictoryCoach myVictoryCoach;
 
 
     private GameObject dateLocationButtonPanel;
@@ -46,6 +47,7 @@ public class InputOrganizer : MonoBehaviour {
         myAudioConductor = GameObject.FindObjectOfType<AudioConductor>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
+        myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 
         doubleClickDelay = 0.6f;
     }
@@ -183,10 +185,12 @@ public class InputOrganizer : MonoBehaviour {
         myUIManager.mapEnabled = !myUIManager.mapEnabled;
     }
 
+    // TODO generate UI in a different place
     public void BTN_toggleJournal()
     {
         myUIManager.pastDatesText.text = myRelationshipCounselor.convertPastDatesToDateInfo(myRelationshipCounselor.getAllDates());
         myUIManager.upcomingDatesText.text = myRelationshipCounselor.convertUpcomingDatesToDateInfo(myRelationshipCounselor.getAllDates());
+        myUIManager.experiencesText.text = myVictoryCoach.convertExperiencesToExperienceInfo();
         myUIManager.journalEnabled = !myUIManager.journalEnabled;
     }
 

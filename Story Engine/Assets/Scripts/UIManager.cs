@@ -41,6 +41,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private Text textPanel;
     public Text pastDatesText;
     public Text upcomingDatesText;
+    public Text experiencesText;
     private String cutSceneTextToWrite;
 
     GameObject talkButtonObject;
@@ -89,6 +90,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
         pastDatesText = GameObject.Find("PastDates").GetComponentInChildren<Text>();
         upcomingDatesText = GameObject.Find("UpcomingDates").GetComponentInChildren<Text>();
+        experiencesText = GameObject.Find("ExperiencesList").GetComponentInChildren<Text>();
 
         talkButtonObject = GameObject.Find("TalkButton");
         dateActionButton = GameObject.Find("DateActionButton");
