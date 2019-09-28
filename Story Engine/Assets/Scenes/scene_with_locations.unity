@@ -3620,7 +3620,7 @@ MonoBehaviour:
   neutralDateResultDescription: Sea Neut
   experienceDescription: Sea Exp
   isDateScene: 1
-  isKnown: 1
+  isKnown: 0
   descriptionInterior: The ocean breeze smells so fresh. This is the way to live.
   descriptionExterior: The arcade is my home away from home. Keep on the lookout for
     any worthy Street Fighter opponents.

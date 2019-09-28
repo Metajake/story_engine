@@ -229,7 +229,6 @@ public class RelationshipCounselor : MonoBehaviour {
             Debug.Log("Contextual pre-programmed neutral location description (which we will eventually do).");
         }else{
             getCurrentDateFromScheduledDateList().experienceAchieved = true;
-            myVictoryCoach.achievedExperience(mySceneCatalogue.getCurrentSceneNumber());
             Experience currentExp = myVictoryCoach.getNextExperience();
             myCommandProcessor.createAndEnqueueCutSceneSequence(new List<string>(currentExp.experienceCutSceneTexts));
         }

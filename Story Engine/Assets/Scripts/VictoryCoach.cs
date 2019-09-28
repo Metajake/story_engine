@@ -7,8 +7,6 @@ using UnityEngine;
 public class VictoryCoach : MonoBehaviour {
 
     public Dictionary<string, Experience> remainingExperiences;
-    public List<bool> hasAchievedExperience;
-    private SceneCatalogue mySceneCatalogue;
     private DifficultyLevel nextGoal;
     private bool isIrresponsible;
     private List<Experience> achievedExperiences;
@@ -21,22 +19,16 @@ public class VictoryCoach : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 
         foreach (Experience exp in this.GetComponents<Experience>())
         {
             // TODO Experience Name is duplicate Data
             remainingExperiences.Add(exp.experienceName, exp);
         }
-
-        hasAchievedExperience = new List<bool>();
-
+        
         nextGoal = DifficultyLevel.EASY;
 
         isIrresponsible = true;
-
-        initializeLocationExperienceChecklist();
-
 	}
 	
 	// Update is called once per frame
@@ -47,32 +39,13 @@ public class VictoryCoach : MonoBehaviour {
         }
 		
     }
-    
-	private void initializeLocationExperienceChecklist(){
-        for (int i = 0; i < mySceneCatalogue.getLocationCount(); i ++){
-			hasAchievedExperience.Add(false);
-		}
-	}
-
-	public void achievedExperience(int currentSceneNumber){
-		hasAchievedExperience[currentSceneNumber] = true;
-	}
 
     public bool hasAchievedSomeExperiences(){
         return getNumberOfAchievedExperiences() >= (int) nextGoal;
 	}
 
     public int getNumberOfAchievedExperiences(){
-        int numberOfExperiences = 0;
-
-        foreach (bool b in hasAchievedExperience)
-        {
-            if (b)
-            {
-                numberOfExperiences++;
-            }
-        }
-        return numberOfExperiences;
+        return achievedExperiences.Count();
     }
 
     private void goalAchieved(DifficultyLevel levelAchieved)
