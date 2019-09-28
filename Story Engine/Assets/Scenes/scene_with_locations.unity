@@ -2665,7 +2665,7 @@ MonoBehaviour:
     only a relationship can bring.
   - And I have to do it without spending too much time with any one person. Until
     I'm ready, I can't let anyone fall in love with me!
-  - Let's go!
+  - I could start by making it to work on time... Let's go!
 --- !u!4 &676023470
 Transform:
   m_ObjectHideFlags: 0
@@ -3522,8 +3522,9 @@ MonoBehaviour:
   experienceDescription: Beach Exp
   isDateScene: 1
   isKnown: 1
-  descriptionInterior: These dunes remind me of the animated film, "Aladin". Going
-    on a date here would be like Jasmine and Alladdin together in their sand palace.
+  descriptionInterior: These dunes remind me of the animated film, "Aladdin". Going
+    on a date here would be like Jasmine and Alladdin together in their castle in
+    the sand.
   descriptionExterior: This used to be a nude beach. I wonder why it changed...
   descriptionDate: If this goes bad, I'm moving back in with my parents.
   dateActions:
@@ -7082,7 +7083,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 555710953155d49398a296ccd255e03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasAchievedExperience: 
 --- !u!114 &1564499111
 MonoBehaviour:
   m_ObjectHideFlags: 0
