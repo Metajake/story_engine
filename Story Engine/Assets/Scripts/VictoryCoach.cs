@@ -10,11 +10,13 @@ public class VictoryCoach : MonoBehaviour {
     private DifficultyLevel nextGoal;
     private bool isIrresponsible;
     private List<Experience> achievedExperiences;
+    private CommandProcessor myCommandProcessor;
 
     private void Awake()
     {
         remainingExperiences = new Dictionary<string, Experience>();
         achievedExperiences = new List<Experience>();
+        myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
     }
 
     // Use this for initialization
@@ -60,7 +62,7 @@ public class VictoryCoach : MonoBehaviour {
         }
     }
 
-    public Experience getNextExperience()
+    public void achieveNextExperience(bool playCutscene)
     {
         System.Random random = new System.Random();
         Experience toReturn;
@@ -82,7 +84,11 @@ public class VictoryCoach : MonoBehaviour {
             toReturn = toRemoveAndReturn;
         }
         achievedExperiences.Add(toReturn);
-        return toReturn;
+
+        if (playCutscene)
+        {
+            myCommandProcessor.createAndEnqueueCutSceneSequence(new List<string>(toReturn.experienceCutSceneTexts));
+        }
     }
 
     private bool IsReadyToCreate()

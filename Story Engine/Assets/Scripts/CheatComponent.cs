@@ -14,7 +14,7 @@ public class CheatComponent : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            myVictoryCoach.achieveNextExperience();
+            myVictoryCoach.achieveNextExperience(false);
         }
 	}
 }

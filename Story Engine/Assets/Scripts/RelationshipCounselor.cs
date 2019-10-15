@@ -14,7 +14,6 @@ public class RelationshipCounselor : MonoBehaviour {
 	public bool isAtDate;
 	public VictoryCoach myVictoryCoach;
     private GameState myGameState;
-    private CommandProcessor myCommandProcessor;
     public int loveChanceIncrement;
 
     private Dictionary<String, Dictionary<int, int>> actionLikelihoodMatrix;
@@ -27,7 +26,6 @@ public class RelationshipCounselor : MonoBehaviour {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myUIManager = GameObject.FindObjectOfType<UIManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
-        myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
         myGameState = GameObject.FindObjectOfType<GameState>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
@@ -229,8 +227,7 @@ public class RelationshipCounselor : MonoBehaviour {
             Debug.Log("Contextual pre-programmed neutral location description (which we will eventually do).");
         }else{
             getCurrentDateFromScheduledDateList().experienceAchieved = true;
-            Experience currentExp = myVictoryCoach.getNextExperience();
-            myCommandProcessor.createAndEnqueueCutSceneSequence(new List<string>(currentExp.experienceCutSceneTexts));
+            myVictoryCoach.achieveNextExperience(true);
         }
         myEventQueue.queueEvent(new DateActionEvent());
 	}

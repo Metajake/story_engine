@@ -300,11 +300,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         SceneManager.LoadScene("splash_game_over");
 	}
 
-    internal void gameClear()
-    {
-        SceneManager.LoadScene("splash_game_clear");
-    }
-
     internal void startGame()
     {
         startScreenPanel.SetActive(false);
