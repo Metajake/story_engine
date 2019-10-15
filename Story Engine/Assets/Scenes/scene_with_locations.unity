@@ -7371,7 +7371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAtDate: 0
   myVictoryCoach: {fileID: 0}
-  loveChanceIncrement: 1
+  loveChanceIncrement: 100
 --- !u!4 &1650917027
 Transform:
   m_ObjectHideFlags: 0

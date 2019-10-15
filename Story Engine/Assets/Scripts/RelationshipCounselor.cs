@@ -210,8 +210,8 @@ public class RelationshipCounselor : MonoBehaviour {
 
         DateableCharacter she = getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep());
 
-        Debug.Log("Roll: " + roll);
-        Debug.Log("In love amount: " + she.inLoveAmount*this.loveChanceIncrement);
+        Debug.Log("Roll: " + roll + " In love amount: " + she.inLoveAmount * this.loveChanceIncrement);
+
         if (roll < she.inLoveAmount*this.loveChanceIncrement) {
     		myUIManager.gameOver();
         }
