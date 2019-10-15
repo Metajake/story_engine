@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/splash_game_over.unity
     guid: 9203dfa4242b2434b956bd913be3664a
+  - enabled: 1
+    path: Assets/Scenes/splash_game_clear.unity
+    guid: 25fb5615210c3894e91e92827d7e4848
   m_configObjects: {}

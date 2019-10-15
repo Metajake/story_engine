@@ -87,7 +87,7 @@ public class VictoryCoach : MonoBehaviour {
 
         if (playCutscene)
         {
-            myCommandProcessor.createAndEnqueueCutSceneSequence(new List<string>(toReturn.experienceCutSceneTexts));
+            myCommandProcessor.createAndEnqueueCutSceneSequence(new List<string>(toReturn.experienceCutSceneTexts), IsReadyToCreate() );
         }
     }
 

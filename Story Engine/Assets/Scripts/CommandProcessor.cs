@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class CommandProcessor : MonoBehaviour, ICommandProcessor {
@@ -56,14 +54,23 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
         executeNextCommand();
     }
 
-    internal void createAndEnqueueCutSceneSequence(List<string> sceneCuts)
+    internal void createAndEnqueueCutSceneSequence(List<string> sceneCuts, bool isFinalCutScene)
     {
         myGameState.currentGameState = GameState.gameStates.CUTSCENE;
         foreach (string cut in sceneCuts)
         {
             commandList.Enqueue(createCutSceneCommand(cut));
         }
-        this.commandList.Enqueue(new SequenceEndCommand(GameState.gameStates.DATEOUTRO));
+
+        if (isFinalCutScene)
+        {
+            this.commandList.Enqueue(new GameClearCommand());
+        }
+        else
+        {
+            this.commandList.Enqueue(new SequenceEndCommand(GameState.gameStates.DATEOUTRO));
+        }
+
         executeNextCommand();
     }
 }
