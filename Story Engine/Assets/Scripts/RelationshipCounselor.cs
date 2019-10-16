@@ -39,23 +39,18 @@ public class RelationshipCounselor : MonoBehaviour {
         actionLikelihoodMatrix = new Dictionary<String, Dictionary<int, int>>();
 
         Dictionary<int, int> neutralReactions = new Dictionary<int, int>();
-        neutralReactions.Add(-2, 20);
         neutralReactions.Add(-1, 25);
         neutralReactions.Add(-0, 35);
         neutralReactions.Add(1, 45);
-        neutralReactions.Add(2, 30);
         Dictionary<int, int> leaveReactions = new Dictionary<int, int>();
-        leaveReactions.Add(-2, 70);
         leaveReactions.Add(-1, 55);
-        leaveReactions.Add(0, 35);
-        leaveReactions.Add(1, 20);
-        leaveReactions.Add(2, 10);
+        leaveReactions.Add(0, 20);
+        leaveReactions.Add(1, 5);
+        //TODO remove "experience" dictionary because I don't think that it get's used anywhere.
         Dictionary<int, int> expReactions = new Dictionary<int, int>();
-        expReactions.Add(-2, 10);
         expReactions.Add(-1, 20);
         expReactions.Add(-0, 30);
         expReactions.Add(1, 40);
-        expReactions.Add(2, 60);
         actionLikelihoodMatrix.Add("neutral", neutralReactions);
         actionLikelihoodMatrix.Add("leave", leaveReactions);
         actionLikelihoodMatrix.Add("experience", expReactions);
@@ -216,13 +211,15 @@ public class RelationshipCounselor : MonoBehaviour {
 
         she.inLoveAmount ++;
 
-        //int leavePercentageForLocation = actionLikelihoodMatrix["leave"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]];
-        int leavePercentageForLocation = 0; //FOR DEBUGGING
+        int leavePercentageForLocation = actionLikelihoodMatrix["leave"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]];
+        //int leavePercentageForLocation = 0; //FOR DEBUGGING
 
         if (roll <= leavePercentageForLocation){
+            getCurrentDateFromScheduledDateList().isAbandoned = true;
             myAnimationMaestro.abandonDateDescription();
-            Debug.Log("You got ditched, you lame. Enjoy watching porn at home, alone.");
-        }else if (roll <= leavePercentageForLocation + actionLikelihoodMatrix["neutral"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]]){
+            myGameState.currentGameState = GameState.gameStates.DATEOUTRO;
+        }
+        else if (roll <= leavePercentageForLocation + actionLikelihoodMatrix["neutral"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]]){
             myAnimationMaestro.showNeutralDescriptionText();
             Debug.Log("Contextual pre-programmed neutral location description (which we will eventually do).");
         }else{

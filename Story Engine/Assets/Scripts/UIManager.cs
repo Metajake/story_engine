@@ -265,7 +265,17 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         mainPanel.SetActive(true);
         characterPanel.gameObject.SetActive(true);
         dateButtonsPanel.SetActive(myRelationshipCounselor.isAtDate);
-        dateActionButton.SetActive(!myRelationshipCounselor.getCurrentDateFromScheduledDateList().experienceAchieved);
+        dateActionButton.SetActive(!getDateAbandonedOrExperienced());
+    }
+
+    private bool getDateAbandonedOrExperienced()
+    {
+        bool toReturn = false;
+        if (myRelationshipCounselor.getCurrentDateFromScheduledDateList().experienceAchieved || myRelationshipCounselor.getCurrentDateFromScheduledDateList().isAbandoned)
+        {
+            toReturn = true;
+        }
+        return toReturn;
     }
 
     private void updateSelectedPartnerUI()
