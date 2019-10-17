@@ -28,9 +28,9 @@ public class TipManager : MonoBehaviour {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 
         tips = new List<string>();
-        tips.Add("Learn about a girl's preferred location before asking them out. The chances of you getting laid will increase.");
+        tips.Add("Try and figure out a girl's preferred location before asking them out. The chance to have a rewarding date will increase!");
         tips.Add("I'll reveal more locations on the map, the more experiences you have, so visit often!");
-        tips.Add("Make sure not to linger in one location for too long. Eventually \"the locals\" will ask you to leave, and you might even miss a date!");
+        tips.Add("Make sure not to linger in one location for too long. Peope will get creeped out and force you to leave.");
 
         locationReveals = new List<string>();
         locationReveals.Add("Have you visited the %location% yet?");
