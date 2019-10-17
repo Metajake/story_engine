@@ -217,7 +217,6 @@ public class RelationshipCounselor : MonoBehaviour {
         if (roll <= leavePercentageForLocation){
             getCurrentDateFromScheduledDateList().isAbandoned = true;
             myAnimationMaestro.abandonDateDescription();
-            myGameState.currentGameState = GameState.gameStates.DATEOUTRO;
         }
         else if (roll <= leavePercentageForLocation + actionLikelihoodMatrix["neutral"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]]){
             myAnimationMaestro.showNeutralDescriptionText();

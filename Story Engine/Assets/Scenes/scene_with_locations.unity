@@ -3465,16 +3465,13 @@ GameObject:
   - component: {fileID: 927541664}
   - component: {fileID: 927541676}
   - component: {fileID: 927541675}
-  - component: {fileID: 927541674}
-  - component: {fileID: 927541673}
+  - component: {fileID: 927541669}
   - component: {fileID: 927541672}
   - component: {fileID: 927541671}
   - component: {fileID: 927541670}
-  - component: {fileID: 927541669}
-  - component: {fileID: 927541668}
-  - component: {fileID: 927541666}
   - component: {fileID: 927541667}
-  - component: {fileID: 927541665}
+  - component: {fileID: 927541666}
+  - component: {fileID: 927541673}
   m_Layer: 0
   m_Name: SceneCatalogue
   m_TagString: Untagged
@@ -3507,29 +3504,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locations: []
---- !u!114 &927541665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 927541662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f0f3c3a1d7f4d12b41f5550cd0f361, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  locationName: test
-  interiorName: test
-  neutralDateResultDescription: test
-  experienceDescription: test
-  isDateScene: 1
-  isKnown: 0
-  descriptionInterior: test
-  descriptionExterior: tests
-  descriptionDate: test
-  dateActions:
-  - test
-  currentDateAction: 
 --- !u!114 &927541666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3546,7 +3520,7 @@ MonoBehaviour:
   neutralDateResultDescription: Uni Neut
   experienceDescription: Uni Exp
   isDateScene: 1
-  isKnown: 1
+  isKnown: 0
   descriptionInterior: I can read and work on projects here without being bothered.
     Let's just hope no one checks my expired Student Identification card.
   descriptionExterior: A typical college campus. The students look busy.
@@ -3565,7 +3539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f0f3c3a1d7f4d12b41f5550cd0f361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locationName: Field
+  locationName: Park
   interiorName: Picnic Bench
   neutralDateResultDescription: Field Neut
   experienceDescription: Field Exp
@@ -3573,35 +3547,12 @@ MonoBehaviour:
   isKnown: 1
   descriptionInterior: I feel like I've seen a lot of this picnic bench...
   descriptionExterior: The breeze combes through the tall grass, stirring up a fresh
-    grassy aroma.
+    aroma.
   descriptionDate: Many names are carved into this picnic bench. Will ours?
   dateActions:
   - Slice Watermelon
   - Recite Poetry
   - Pick Flower
-  currentDateAction: 
---- !u!114 &927541668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 927541662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f0f3c3a1d7f4d12b41f5550cd0f361, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  locationName: Woods
-  interiorName: Grove
-  neutralDateResultDescription: Woods Neut
-  experienceDescription: Woods Exp
-  isDateScene: 1
-  isKnown: 0
-  descriptionInterior: The sun glimmers through the rich green leaves.
-  descriptionExterior: The woods bring out my primal nature.
-  descriptionDate: 
-  dateActions:
-  - Tell Joke
   currentDateAction: 
 --- !u!114 &927541669
 MonoBehaviour:
@@ -3693,7 +3644,7 @@ MonoBehaviour:
   neutralDateResultDescription: West Neut
   experienceDescription: West Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: The club is really bumping. The rythmic bass is hypnotizing,
     and it's hard not to move your body to the beat.
   descriptionExterior: This part of town is known for it's impurity. But everyone
@@ -3715,47 +3666,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f0f3c3a1d7f4d12b41f5550cd0f361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locationName: River
-  interiorName: River Bend
-  neutralDateResultDescription: Riv Neut
-  experienceDescription: Riv Exp
+  locationName: Beach
+  interiorName: Sand Dunes
+  neutralDateResultDescription: The soft waves roll onto the shore.
+  experienceDescription: Beach Exp
   isDateScene: 1
   isKnown: 0
-  descriptionInterior: This secluded beach on the edge of the water is a great place
-    for a bonfire, or some fishing.
-  descriptionExterior: The river always reminds me of life itself. Always from beginning
-    to end. You can paddle with the current, against the current, or just go with
-    the flow.
-  descriptionDate: 
+  descriptionInterior: These dunes remind me of the animated film, "Aladdin". Going
+    on a date here would be like Jasmine and Aladdin together in their castle in the
+    sand.
+  descriptionExterior: This used to be a nude beach. I wonder why it changed...
+  descriptionDate: If this goes bad, I'm moving back in with my parents.
   dateActions:
-  - Stoke Bonfire
-  - Paddle Canoe
-  currentDateAction: 
---- !u!114 &927541674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 927541662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f0f3c3a1d7f4d12b41f5550cd0f361, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  locationName: Village
-  interiorName: Market
-  neutralDateResultDescription: Village Neut
-  experienceDescription: Vill Exp
-  isDateScene: 1
-  isKnown: 0
-  descriptionInterior: The local residents have their own unique culture and economy.
-    You can find things here that you can't find anywhere else.
-  descriptionExterior: It's nice to get outside the big city. This village is the
-    definition of 'cozy'.
-  descriptionDate: 
-  dateActions:
-  - Buy Gift
-  - Small Talk
+  - Sun Bathe
+  - Go Swimming
+  - Light Joint
   currentDateAction: 
 --- !u!114 &927541675
 MonoBehaviour:
@@ -3769,7 +3694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationName: Mountains
-  interiorName: Hidden Villa
+  interiorName: Hot Spring
   neutralDateResultDescription: Mount Neut
   experienceDescription: Mount Exp
   isDateScene: 1
@@ -6121,14 +6046,14 @@ MonoBehaviour:
   currentSceneName: City
   isInside: 1
   inLoveAmount: 0
-  activeTimes: 010000
+  activeTimes: 010100
   isPresent: 1
   returnTime: 0
   isSubordinate: 0
   permanentOpinion: 0
   knowsYou: 0
   experienceCount: 0
-  locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000
+  locationPreferences: 000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000
   tier: 0
 --- !u!114 &1360229236
 MonoBehaviour:
@@ -6162,10 +6087,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 5abae700844a5434f812a00693c2852c, type: 3}
-  givenName: Tammy
+  givenName: Sara
   surname: Chan
-  currentSceneName: Beach
-  isInside: 0
+  currentSceneName: City
+  isInside: 1
   inLoveAmount: 0
   activeTimes: 000100
   isPresent: 1
@@ -6174,7 +6099,7 @@ MonoBehaviour:
   permanentOpinion: 0
   knowsYou: 0
   experienceCount: 0
-  locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000
+  locationPreferences: 000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000
   tier: 0
 --- !u!114 &1360229238
 MonoBehaviour:
@@ -6200,7 +6125,7 @@ MonoBehaviour:
   permanentOpinion: 0
   knowsYou: 0
   experienceCount: 0
-  locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000
+  locationPreferences: 000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000
   tier: 1
 --- !u!114 &1360229239
 MonoBehaviour:
@@ -6246,7 +6171,7 @@ MonoBehaviour:
   permanentOpinion: 0
   knowsYou: 0
   experienceCount: 0
-  locationPreferences: 000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  locationPreferences: 000000000100000000000000000000000000000000000000000000000000000001000000000000000000000000000000
   tier: 2
 --- !u!114 &1360229241
 MonoBehaviour:
@@ -7475,7 +7400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAtDate: 0
   myVictoryCoach: {fileID: 0}
-  loveChanceIncrement: 20
+  loveChanceIncrement: 12
 --- !u!4 &1650917027
 Transform:
   m_ObjectHideFlags: 0

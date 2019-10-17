@@ -19,7 +19,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     }
 
     void Start () {
-        mySceneNumber = 6;
+        mySceneNumber = 5;
         isInInteriorScene = true; // Start Player out in apartment
 
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();

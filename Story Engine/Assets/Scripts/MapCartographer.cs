@@ -8,7 +8,7 @@ using UnityEngine.UI;
 // variable based dialogue
 public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 	private const int numberOfRows = 3;
-	private const int numberOfColumns = 4;
+	private const int numberOfColumns = 3;
 	public GameObject mapLocationButtonPrefab;
 	private SceneCatalogue mySceneCatalogue;
 	private GameObject myMapPanel;
