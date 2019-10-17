@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System;
 
 public class InputOrganizer : MonoBehaviour {
     private UIManager myUIManager;
@@ -95,6 +96,7 @@ public class InputOrganizer : MonoBehaviour {
             Destroy(b.gameObject);
         }
 
+        //TODO: this checks for 9 total max date locations. Update this to accommodate any number of date locations.
         for (int j = 0; j < 3; j++)
         {
 
@@ -103,19 +105,26 @@ public class InputOrganizer : MonoBehaviour {
 
                 int dateButtonIndex = j * 3 + k;
 
-                if (!mySceneCatalogue.isKnownDateLocation(dateSceneNames[dateButtonIndex]))
-                {
+                try {
+
+                    if (!mySceneCatalogue.isKnownDateLocation(dateSceneNames[dateButtonIndex]))
+                    {
+                        continue;
+                    }
+
+                    GameObject buttonObject = GameObject.Instantiate(dateLocationButtonPrefab, dateLocationButtonPanel.transform);
+
+                    buttonObject.transform.Translate(new Vector3(k * 140, j * 50));
+
+                    buttonObject.GetComponentInChildren<Text>().text = dateSceneNames[dateButtonIndex];
+
+                    UnityAction buttonAction = () => BTN_scheduleDateForLocation(dateScenes[dateButtonIndex]);
+                    buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);
+
+                } catch (ArgumentOutOfRangeException outOfRange) {
+                    Debug.Log("Exception: " + outOfRange.Message);
                     continue;
                 }
-
-                GameObject buttonObject = GameObject.Instantiate(dateLocationButtonPrefab, dateLocationButtonPanel.transform);
-
-                buttonObject.transform.Translate(new Vector3(k * 140, j * 50));
-
-                buttonObject.GetComponentInChildren<Text>().text = dateSceneNames[dateButtonIndex];
-
-                UnityAction buttonAction = () => BTN_scheduleDateForLocation(dateScenes[dateButtonIndex]);
-                buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);
 
             }
 

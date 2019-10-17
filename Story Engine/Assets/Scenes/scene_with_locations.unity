@@ -3472,8 +3472,8 @@ GameObject:
   - component: {fileID: 927541670}
   - component: {fileID: 927541669}
   - component: {fileID: 927541668}
-  - component: {fileID: 927541667}
   - component: {fileID: 927541666}
+  - component: {fileID: 927541667}
   - component: {fileID: 927541665}
   m_Layer: 0
   m_Name: SceneCatalogue
@@ -3518,21 +3518,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f0f3c3a1d7f4d12b41f5550cd0f361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locationName: Beach
-  interiorName: Sand Dunes
-  neutralDateResultDescription: Beach Neut
-  experienceDescription: Beach Exp
+  locationName: test
+  interiorName: test
+  neutralDateResultDescription: test
+  experienceDescription: test
   isDateScene: 1
-  isKnown: 1
-  descriptionInterior: These dunes remind me of the animated film, "Aladdin". Going
-    on a date here would be like Jasmine and Alladdin together in their castle in
-    the sand.
-  descriptionExterior: This used to be a nude beach. I wonder why it changed...
-  descriptionDate: If this goes bad, I'm moving back in with my parents.
+  isKnown: 0
+  descriptionInterior: test
+  descriptionExterior: tests
+  descriptionDate: test
   dateActions:
-  - Sun Bathe
-  - Go Swimming
-  - Light Joint
+  - test
   currentDateAction: 
 --- !u!114 &927541666
 MonoBehaviour:
@@ -3550,7 +3546,7 @@ MonoBehaviour:
   neutralDateResultDescription: Uni Neut
   experienceDescription: Uni Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: I can read and work on projects here without being bothered.
     Let's just hope no one checks my expired Student Identification card.
   descriptionExterior: A typical college campus. The students look busy.
