@@ -44,7 +44,7 @@ public class RelationshipCounselor : MonoBehaviour {
         neutralReactions.Add(1, 45);
         Dictionary<int, int> leaveReactions = new Dictionary<int, int>();
         leaveReactions.Add(-1, 55);
-        leaveReactions.Add(0, 20);
+        leaveReactions.Add(0, 25);
         leaveReactions.Add(1, 5);
         //TODO remove "experience" dictionary because I don't think that it get's used anywhere.
         Dictionary<int, int> expReactions = new Dictionary<int, int>();

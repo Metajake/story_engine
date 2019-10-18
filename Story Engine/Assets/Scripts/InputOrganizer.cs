@@ -86,9 +86,9 @@ public class InputOrganizer : MonoBehaviour {
     {
 
         List<string> dateSceneNames = mySceneCatalogue.getDateSceneNames();
-
+      
         List<Location> dateScenes = mySceneCatalogue.getDateScenes();
-
+      
         Button[] allButtons = dateLocationButtonPanel.GetComponentsInChildren<Button>();
 
         foreach (Button b in allButtons)
@@ -114,7 +114,7 @@ public class InputOrganizer : MonoBehaviour {
 
                     GameObject buttonObject = GameObject.Instantiate(dateLocationButtonPrefab, dateLocationButtonPanel.transform);
 
-                    buttonObject.transform.Translate(new Vector3(k * 140, j * 50));
+                    buttonObject.transform.Translate(new Vector3(k * 140, j * 30));
 
                     buttonObject.GetComponentInChildren<Text>().text = dateSceneNames[dateButtonIndex];
 

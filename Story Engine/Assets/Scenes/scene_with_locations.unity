@@ -2659,10 +2659,11 @@ MonoBehaviour:
   - The problem with that is, the more time I spend with someone, the greater the
     chance there is of them falling in love with me.
   - And as soon as that happens, I can't help but fall in love back!..
-  - Unfortunatley for me, relationships never seems to work out (for one reason or
-    another). When it ends, I'm left crushed and heartbroken.
+  - Unfortunatley for me, relationships never seem to work out (for one reason or
+    another). Every time I fall in love, eventually I'm left crushed and heartbroken.
+    It's devestating!
   - '...'
-  - But I have to get out there! I have to gain those life altering experiences that
+  - But I have to get out there! I have to gain those life changing experiences that
     only a true relationship can bring.
   - And I have to do it without spending too much time with any one person. Until
     I'm ready, I can't let anyone fall in love with me!
@@ -3363,10 +3364,10 @@ RectTransform:
   m_Father: {fileID: 1309085502}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.1999512, y: 1.7999268}
-  m_SizeDelta: {x: -48, y: -49.2}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1007.6, y: 561.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &865104629
 MonoBehaviour:
@@ -3544,7 +3545,7 @@ MonoBehaviour:
   neutralDateResultDescription: Field Neut
   experienceDescription: Field Exp
   isDateScene: 1
-  isKnown: 1
+  isKnown: 0
   descriptionInterior: I feel like I've seen a lot of this picnic bench...
   descriptionExterior: The breeze combes through the tall grass, stirring up a fresh
     aroma.
@@ -3570,7 +3571,7 @@ MonoBehaviour:
   neutralDateResultDescription: Sea Neut
   experienceDescription: Sea Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: The ocean breeze smells so fresh. This is the way to live.
   descriptionExterior: The arcade is my home away from home. Keep on the lookout for
     any worthy Street Fighter opponents.
@@ -3644,7 +3645,7 @@ MonoBehaviour:
   neutralDateResultDescription: West Neut
   experienceDescription: West Exp
   isDateScene: 1
-  isKnown: 1
+  isKnown: 0
   descriptionInterior: The club is really bumping. The rythmic bass is hypnotizing,
     and it's hard not to move your body to the beat.
   descriptionExterior: This part of town is known for it's impurity. But everyone
@@ -3671,7 +3672,7 @@ MonoBehaviour:
   neutralDateResultDescription: The soft waves roll onto the shore.
   experienceDescription: Beach Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: These dunes remind me of the animated film, "Aladdin". Going
     on a date here would be like Jasmine and Aladdin together in their castle in the
     sand.
@@ -4165,9 +4166,9 @@ RectTransform:
   m_Father: {fileID: 1226579502}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -315.2, y: -195.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 310.05, y: 96.28}
   m_SizeDelta: {x: 315.90002, y: 127.79999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040141057
@@ -4814,75 +4815,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1175929216}
   m_CullTransparentMesh: 0
---- !u!1 &1190114724
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1190114725}
-  - component: {fileID: 1190114727}
-  - component: {fileID: 1190114726}
-  m_Layer: 5
-  m_Name: BackgroundSky
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1190114725
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1190114724}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1685437603}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1190114726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1190114724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1190114727
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1190114724}
-  m_CullTransparentMesh: 0
 --- !u!1 &1197722806
 GameObject:
   m_ObjectHideFlags: 0
@@ -5470,8 +5402,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -399.7, y: 7.6}
-  m_SizeDelta: {x: 333.2, y: 338.59998}
+  m_AnchoredPosition: {x: -368.4, y: 1.9}
+  m_SizeDelta: {x: 422.2, y: 419.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299021975
 MonoBehaviour:
@@ -6042,10 +5974,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 9a5c0d096ae7df747a3bc8b021054022, type: 3}
   givenName: Kristie
-  surname: Yamaguchi
+  surname: Kerner
   currentSceneName: City
   isInside: 1
-  inLoveAmount: 0
+  inLoveAmount: -1
   activeTimes: 010100
   isPresent: 1
   returnTime: 0
@@ -6088,10 +6020,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 5abae700844a5434f812a00693c2852c, type: 3}
   givenName: Sara
-  surname: Chan
-  currentSceneName: City
+  surname: Deal
+  currentSceneName: Sea Side
   isInside: 1
-  inLoveAmount: 0
+  inLoveAmount: -1
   activeTimes: 000100
   isPresent: 1
   returnTime: 0
@@ -6114,10 +6046,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: dc9867ba9efc244f89ec752c313b417e, type: 3}
   givenName: Becky
-  surname: Moore
+  surname: Less
   currentSceneName: Beach
   isInside: 1
-  inLoveAmount: 0
+  inLoveAmount: -1
   activeTimes: 000001
   isPresent: 1
   returnTime: 0
@@ -6163,7 +6095,7 @@ MonoBehaviour:
   surname: Write
   currentSceneName: Beach
   isInside: 1
-  inLoveAmount: 0
+  inLoveAmount: -1
   activeTimes: 000100
   isPresent: 1
   returnTime: 0
@@ -6185,11 +6117,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 017ca9f4b971f4c4f86371bd3794ae69, type: 3}
-  givenName: Laura
-  surname: Desu
+  givenName: Jasmine
+  surname: Picholine
   currentSceneName: Beach
   isInside: 0
-  inLoveAmount: 0
+  inLoveAmount: -1
   activeTimes: 010000
   isPresent: 1
   returnTime: 0
@@ -6198,7 +6130,7 @@ MonoBehaviour:
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000
-  tier: 11
+  tier: 3
 --- !u!114 &1360229242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7076,7 +7008,6 @@ GameObject:
   - component: {fileID: 1564499112}
   - component: {fileID: 1564499111}
   - component: {fileID: 1564499114}
-  - component: {fileID: 1564499119}
   - component: {fileID: 1564499118}
   - component: {fileID: 1564499117}
   - component: {fileID: 1564499116}
@@ -7209,7 +7140,7 @@ MonoBehaviour:
   experienceCutSceneTexts:
   - There's no way around this one. She knows the truth and so do you.
   - But it's not whether she knows the truth. It's whether you know the truth. And
-    you've been honest with her.
+    whether you've been honest with her.
   - You've experienced the need to be honest.
 --- !u!114 &1564499117
 MonoBehaviour:
@@ -7245,22 +7176,6 @@ MonoBehaviour:
   - But you had faith even when times were tough. And with persistance, you've overcome
     your difficulties.
   - You've experienced the need to have faith, remain persistant, and dedicated.
---- !u!114 &1564499119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1564499108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7735121f8d4852b4e9cb188f75de801c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  experienceName: humble
-  experienceCutSceneTexts:
-  - After a disagreement, you realize that she was right. You were wrong.
-  - '...And you''re not afraid to admit it.'
-  - You've experienced the need to be humble, and apologize for your actions.
 --- !u!1 &1601175267
 GameObject:
   m_ObjectHideFlags: 0
@@ -7400,7 +7315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAtDate: 0
   myVictoryCoach: {fileID: 0}
-  loveChanceIncrement: 12
+  loveChanceIncrement: 6
 --- !u!4 &1650917027
 Transform:
   m_ObjectHideFlags: 0
@@ -7441,7 +7356,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1190114725}
   - {fileID: 1801641752}
   m_Father: {fileID: 1309085502}
   m_RootOrder: 0
@@ -8008,7 +7922,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1685437603}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8680,8 +8594,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 113, y: 0}
-  m_SizeDelta: {x: 355, y: 127.8}
+  m_AnchoredPosition: {x: 22, y: 9.5}
+  m_SizeDelta: {x: 317.3, y: 159.1}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1996684468
 MonoBehaviour:
