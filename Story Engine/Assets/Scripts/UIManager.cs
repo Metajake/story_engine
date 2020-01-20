@@ -241,10 +241,12 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             if (!mySceneCatalogue.getIsInInteriorScene())
             {
                 dateLocationButton.GetComponentInChildren<Text>().text = "Enter " + mySceneCatalogue.getCurrentLocation().interiorName;
+                dateLocationButton.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/icon_enter");
             }
             else
             {
                 dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
+                dateLocationButton.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/icon_exit");
             }
         }
         else if (occurringEvent.getEventType() == "DATESTARTEVENT")

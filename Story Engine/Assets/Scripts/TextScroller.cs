@@ -11,7 +11,7 @@ public class TextScroller : MonoBehaviour
 	private float showingCharacters;
 	
 	public Text textComponentToScroll;
-	public float scrollingSpeed = 20f;
+	public float scrollingSpeed = 1f;
 
 	void Awake()
 	{

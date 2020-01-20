@@ -96,11 +96,11 @@ public class InputOrganizer : MonoBehaviour {
             Destroy(b.gameObject);
         }
 
-        //TODO: this checks for 9 total max date locations. Update this to accommodate any number of date locations.
-        for (int j = 0; j < 3; j++)
+        //TODO: this checks for 6 total max date locations. Update this to accommodate any number of date locations.
+        for (int j = 0; j < 2; j++)
         {
 
-            for (int k = 0; k < 3; k++)
+            for (int k = 0; k < 2; k++)
             {
 
                 int dateButtonIndex = j * 3 + k;
