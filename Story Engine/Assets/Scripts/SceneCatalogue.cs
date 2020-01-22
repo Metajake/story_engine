@@ -10,6 +10,8 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 	private int mySceneNumber;
 	private bool isInInteriorScene;
     private EventQueue myEventQueue;
+    private AnimationMaestro myAnimationMaestro;
+    private DialogueManager myDialogueManager;
 
     private List<IKnownLocationsChangedObserver> currentObservers;
 
@@ -23,9 +25,11 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         isInInteriorScene = true; // Start Player out in apartment
 
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
-	}
-	
-	void Update () {
+        myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
+        myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
+    }
+
+    void Update () {
 		
 	}
 
@@ -54,9 +58,29 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     }
 
 	public void toggleInteriorScene(){
-		isInInteriorScene = !isInInteriorScene;
-        myEventQueue.queueEvent(new SceneChangeEvent());
+        if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
+        {
+            myAnimationMaestro.fadeOutCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+            StartCoroutine(FadeOutCoroutine(0.6f));
+        }
+        else
+        {
+            addLocationChangeEventForInteriorSceneToggle();
+        }
+        
 	}
+
+    IEnumerator FadeOutCoroutine(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        addLocationChangeEventForInteriorSceneToggle();
+    }
+
+    private void addLocationChangeEventForInteriorSceneToggle()
+    {
+        isInInteriorScene = !isInInteriorScene;
+        myEventQueue.queueEvent(new SceneChangeEvent());
+    }
 
 	public bool getIsInInteriorScene(){
 		return isInInteriorScene;

@@ -6022,7 +6022,7 @@ MonoBehaviour:
   givenName: Sara
   surname: Deal
   currentSceneName: Sea Side
-  isInside: 1
+  isInside: 0
   inLoveAmount: -1
   activeTimes: 000100
   isPresent: 1

@@ -10,18 +10,12 @@ public class AnimationMaestro : MonoBehaviour
     private Text textPanel;
     GameObject dateActionButton;
 
-    // Use this for initialization
     void Start()
     {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
 
         textPanel = GameObject.Find("TextPanel").GetComponentInChildren<Text>();
         dateActionButton = GameObject.Find("DateActionButton");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     public void updatePotentialPartnersSprites(List<Character> potentialConversationPartners)
@@ -86,6 +80,19 @@ public class AnimationMaestro : MonoBehaviour
         }
     }
 
+    public void fadeOutCharacters(List<Character> potentialConversationPartners)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
+            if (i < potentialConversationPartners.Count)
+            {
+                partnerPortrait.color = new Color(255, 255, 255, 1);
+                StartCoroutine(fadeImageTo(partnerPortrait, 0.0f, 0.6f));
+            }
+        }
+    }
+
     IEnumerator fadeImageTo(Image characterImage, float aValue, float aTime)
     {
         float alpha = characterImage.color.a;
@@ -97,7 +104,7 @@ public class AnimationMaestro : MonoBehaviour
             yield return null;
         }
 
-        characterImage.color = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, 1);
+        characterImage.color = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, aValue);
     }
 
     public void writeDescriptionText(string toWrite, Text toWriteTo)
