@@ -135,7 +135,7 @@ public class DateableCharacter : Character {
 
             dm.registerDialogue(new DialoguePiece("Um.. I have to go over there now.", this).addTag("departure").addTag("deflection"));
             dm.registerDialogue(new DialoguePiece("Um.. I have to be somewhere.", this).addTag("departure").addTag("time"));
-		}else if (givenName.ToLower() == "jill")
+		}else if (givenName.ToLower() == "olivia")
         {
             dm.registerDialogue(new DialoguePiece("HELLO.", this).addTag("greeting"));
             dm.registerDialogue(new DialoguePiece("You again...", this).addTag("greeting").addTag("annoyed"));

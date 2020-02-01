@@ -6019,12 +6019,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 5abae700844a5434f812a00693c2852c, type: 3}
-  givenName: Sara
+  givenName: Sarah
   surname: Deal
   currentSceneName: Sea Side
   isInside: 0
   inLoveAmount: -1
-  activeTimes: 000100
+  activeTimes: 000101
   isPresent: 1
   returnTime: 0
   isSubordinate: 1
@@ -6143,12 +6143,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 5d3701bfdd1ba4e4daa57abf09dc1068, type: 3}
-  givenName: Sarah
-  surname: Deah
-  currentSceneName: Beach
+  givenName: Olivia
+  surname: Bachman
+  currentSceneName: Sea Side
   isInside: 0
   inLoveAmount: 0
-  activeTimes: 000100
+  activeTimes: 000101
   isPresent: 1
   returnTime: 0
   isSubordinate: 0
@@ -6156,7 +6156,7 @@ MonoBehaviour:
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000
-  tier: 11
+  tier: 0
 --- !u!114 &1360229243
 MonoBehaviour:
   m_ObjectHideFlags: 0

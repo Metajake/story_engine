@@ -65,7 +65,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     
     void Start ()
     {
-        previouslyPresentCharacters = new List<Character>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         myTimelord = GameObject.FindObjectOfType<Timelord>();
         conversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
@@ -226,13 +225,12 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         Debug.Log(occurringEvent.getEventType());
         if (occurringEvent.getEventType() == "TIMEEVENT")
         {
-            myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners().Except(this.previouslyPresentCharacters).ToList());
             foreach (DateableCharacter character in myDialogueManager.allDateableCharacters)
             {
                 character.checkAndSetReturnToPresent(myTimelord.getCurrentTimestep());
             }
 
-            this.previouslyPresentCharacters = myDialogueManager.getAllCurrentLocalPresentConversationPartners();
+            myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
         }
         else if (occurringEvent.getEventType() == "LOCATIONEVENT")
         {
