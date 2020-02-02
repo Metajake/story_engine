@@ -75,7 +75,7 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
     {
         GameObject buttonObject = GameObject.Instantiate(mapLocationButtonPrefab, myMapPanel.transform);
 
-        buttonObject.transform.Translate(new Vector3(-400 + k * 200, 200 - j * 200));
+        buttonObject.transform.Translate(new Vector3(-350 + k * 200, 200 - j * 200));
 
         buttonObject.GetComponentInChildren<Text>().text = mySceneCatalogue.getLocationNames()[mapButtonIndex];
 
