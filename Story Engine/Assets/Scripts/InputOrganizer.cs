@@ -19,7 +19,7 @@ public class InputOrganizer : MonoBehaviour {
     private EventQueue myEventQueue;
     private RelationshipCounselor myRelationshipCounselor;
     private VictoryCoach myVictoryCoach;
-
+    private AnimationMaestro myAnimationMaestro;
 
     private GameObject dateLocationButtonPanel;
     public GameObject dateLocationButtonPrefab;
@@ -49,6 +49,7 @@ public class InputOrganizer : MonoBehaviour {
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
+        myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
 
         doubleClickDelay = 0.6f;
     }
@@ -138,6 +139,22 @@ public class InputOrganizer : MonoBehaviour {
 
     public void BTN_advanceTime()
     {
+        if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
+        {
+            myAnimationMaestro.fadeOutCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+            StartCoroutine(FadeOutCoroutine(0.6f));
+        }
+        else
+        {
+            myTimelord.advanceTimestep();
+        }
+        
+    }
+
+    //TODO Refactor. We're using a very similar function in SceneCatalogue.cs. This is called from this.BTN_advanceTime()
+    public IEnumerator FadeOutCoroutine(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
         myTimelord.advanceTimestep();
     }
 

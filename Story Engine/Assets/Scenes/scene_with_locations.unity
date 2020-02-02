@@ -439,7 +439,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 22
     m_FontStyle: 3
     m_BestFit: 0
     m_MinSize: 1
@@ -2243,7 +2243,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 22
     m_FontStyle: 3
     m_BestFit: 0
     m_MinSize: 1
@@ -3832,7 +3832,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 22
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -6157,7 +6157,7 @@ MonoBehaviour:
   knowsYou: 0
   experienceCount: 0
   locationPreferences: 000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000
-  tier: 0
+  tier: 11
 --- !u!114 &1360229243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6453,7 +6453,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 22
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -7532,7 +7532,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 22
     m_FontStyle: 3
     m_BestFit: 0
     m_MinSize: 1
@@ -8847,7 +8847,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
+    m_FontSize: 22
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
