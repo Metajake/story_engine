@@ -139,23 +139,7 @@ public class InputOrganizer : MonoBehaviour {
 
     public void BTN_advanceTime()
     {
-        if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
-        {
-            myAnimationMaestro.fadeOutCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-            StartCoroutine(FadeOutCoroutine(0.6f));
-        }
-        else
-        {
-            myTimelord.advanceTimestep();
-        }
-        
-    }
-
-    //TODO Refactor. We're using a very similar function in SceneCatalogue.cs. This is called from this.BTN_advanceTime()
-    public IEnumerator FadeOutCoroutine(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        myTimelord.advanceTimestep();
+        myTimelord.checkCharactersToFadeAndAdvanceTime();
     }
 
     public void BTN_toggleMenuPanel()

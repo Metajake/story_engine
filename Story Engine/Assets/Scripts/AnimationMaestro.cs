@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class AnimationMaestro : MonoBehaviour
 {
@@ -105,6 +106,12 @@ public class AnimationMaestro : MonoBehaviour
         }
 
         characterImage.color = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, aValue);
+    }
+
+    public IEnumerator FadeOutCoroutine(float seconds, Action passedFunction)
+    {
+        yield return new WaitForSeconds(seconds);
+        passedFunction();
     }
 
     public void writeDescriptionText(string toWrite, Text toWriteTo)

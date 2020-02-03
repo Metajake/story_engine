@@ -35,7 +35,21 @@ public class Timelord : MonoBehaviour {
 		dayText.text = (currentTimeStep / timeNames.Length).ToString() + " " + getDayOfWeek(currentTimeStep / timeNames.Length);
     }
 
-	public void advanceTimestep(){
+    //TODO This is very similar to SceneCatalogue.ToggleInteriorScene(). Refactor?
+    public void checkCharactersToFadeAndAdvanceTime()
+    {
+        if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
+        {
+            myAnimationMaestro.fadeOutCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+            StartCoroutine(myAnimationMaestro.FadeOutCoroutine(0.6f, this.advanceTimestep));
+        }
+        else
+        {
+            this.advanceTimestep();
+        }
+    }
+
+	private void advanceTimestep(){
 		myDialogueManager.selectedPartner = -1;
         timeStep++;
         if(timeStep % 21 == 0){ //if it's a multiple of 21 (aka Every 7 Days)

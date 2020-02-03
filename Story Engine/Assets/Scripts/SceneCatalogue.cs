@@ -57,11 +57,12 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         }
     }
 
-	public void toggleInteriorScene(){
+    //TODO This is very similar to Timelord.checkCharactersToFadeAndAdvanceTime(). Refactor?
+    public void toggleInteriorScene(){
         if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
         {
             myAnimationMaestro.fadeOutCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-            StartCoroutine(FadeOutCoroutine(0.6f));
+            StartCoroutine(myAnimationMaestro.FadeOutCoroutine(0.6f, addLocationChangeEventForInteriorSceneToggle));
         }
         else
         {
@@ -69,12 +70,6 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         }
         
 	}
-
-    IEnumerator FadeOutCoroutine(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        addLocationChangeEventForInteriorSceneToggle();
-    }
 
     private void addLocationChangeEventForInteriorSceneToggle()
     {
