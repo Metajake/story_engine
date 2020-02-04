@@ -19,15 +19,9 @@ public class InputOrganizer : MonoBehaviour {
     private EventQueue myEventQueue;
     private RelationshipCounselor myRelationshipCounselor;
     private VictoryCoach myVictoryCoach;
-    private AnimationMaestro myAnimationMaestro;
 
     private GameObject dateLocationButtonPanel;
     public GameObject dateLocationButtonPrefab;
-
-    bool oneClick = false;
-    bool doubleClickTimerRunning;
-    float timerForDoubleClick;
-    float doubleClickDelay;
 
     private void Awake()
     {
@@ -49,38 +43,6 @@ public class InputOrganizer : MonoBehaviour {
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
-        myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
-
-        doubleClickDelay = 0.6f;
-    }
-
-    // Update is called once per frame
-    void Update ()
-    {
-    }
-
-    private void checkDoubleClick()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!oneClick)
-            {
-                //oneClick = true;
-                timerForDoubleClick = Time.time;
-            }
-            else
-            {
-                oneClick = false;
-                myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { "Slow Down." });
-            }
-        }
-        if (oneClick)
-        {
-            if ((Time.time - timerForDoubleClick) > doubleClickDelay)
-            {
-                oneClick = false;
-            }
-        }
     }
 
     public void createDateLocationButtons()

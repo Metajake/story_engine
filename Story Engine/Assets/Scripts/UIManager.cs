@@ -181,8 +181,10 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     {
         if (currentState == GameState.gameStates.COMMANDSEQUENCE)
         {
-            
-        }else if(currentState == GameState.gameStates.CUTSCENE)
+            myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+            updateSelectedPartnerUI();
+        }
+        else if(currentState == GameState.gameStates.CUTSCENE)
         {
             cutScenePanel.GetComponentInChildren<Text>().text = cutSceneTextToWrite;
         }
