@@ -3530,6 +3530,7 @@ MonoBehaviour:
   dateActions:
   - Study
   currentDateAction: 
+  isPlural: 0
 --- !u!114 &927541667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3556,6 +3557,7 @@ MonoBehaviour:
   - Recite Poetry
   - Pick Flower
   currentDateAction: 
+  isPlural: 0
 --- !u!114 &927541669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3582,6 +3584,7 @@ MonoBehaviour:
   - Challenge to Game
   - Buy Cotton Candy
   currentDateAction: 
+  isPlural: 0
 --- !u!114 &927541670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3607,6 +3610,7 @@ MonoBehaviour:
   dateActions:
   - Kiss
   currentDateAction: 
+  isPlural: 0
 --- !u!114 &927541671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3632,6 +3636,7 @@ MonoBehaviour:
   dateActions:
   - Work
   currentDateAction: 
+  isPlural: 0
 --- !u!114 &927541672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3659,6 +3664,7 @@ MonoBehaviour:
   - Get Drink
   - Tell a Joke
   currentDateAction: 
+  isPlural: 0
 --- !u!114 &927541673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3686,6 +3692,7 @@ MonoBehaviour:
   - Go Swimming
   - Light Joint
   currentDateAction: 
+  isPlural: 0
 --- !u!114 &927541675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3710,6 +3717,7 @@ MonoBehaviour:
   dateActions:
   - Hold Hand
   currentDateAction: 
+  isPlural: 1
 --- !u!114 &927541676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3735,6 +3743,7 @@ MonoBehaviour:
   dateActions:
   - Say Prayer
   currentDateAction: 
+  isPlural: 0
 --- !u!1 &929217063
 GameObject:
   m_ObjectHideFlags: 0

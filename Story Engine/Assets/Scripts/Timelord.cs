@@ -52,20 +52,65 @@ public class Timelord : MonoBehaviour {
 	private void advanceTimestep(){
 		myDialogueManager.selectedPartner = -1;
         timeStep++;
-        if(timeStep % 21 == 0){ //if it's a multiple of 21 (aka Every 7 Days)
-            myDialogueManager.scatterCharacters();
-            myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() {
+
+        if (checkIfScatterCharacters(timeStep) && checkIfCreep())
+        {
+            scatterCharactersAndRelocatePlayerEvent();
+            myEventQueue.queueEvent(new TimeChangeEvent());
+        }
+        else if (checkIfScatterCharacters(timeStep))
+        {
+            scatterCharactersEvent();
+            myEventQueue.queueEvent(new TimeChangeEvent());
+        }
+        else if (checkIfCreep())
+        {
+            relocatePlayerEvent();
+            myEventQueue.queueEvent(new TimeChangeEvent());
+        }
+        else
+        {
+            myEventQueue.queueEvent(new TimeChangeEvent());
+        }
+        
+    }
+
+    private void relocatePlayerEvent()
+    {
+        mySceneCatalogue.setRandomKnownScene();
+        myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+        myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { "Go somewhere else. Stop creeping around one location." });
+    }
+
+    private void scatterCharactersEvent()
+    {
+        myDialogueManager.scatterCharacters();
+        myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+        myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() {
+                "It's been another whole week. Time flies by when you're really out here, on this grind.",
+                "I wonder where I'll meet people to talk to this week. It's a big city!"
+        });
+    }
+
+    private void scatterCharactersAndRelocatePlayerEvent()
+    {
+        myDialogueManager.scatterCharacters();
+        mySceneCatalogue.setRandomKnownScene();
+        myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+        myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() {
+                "Go somewhere else. Stop creeping around one location.",
                 "It's been another whole week. Time flies by when you're really out here, on this grind.",
                 "I wonder where I'll meet people to talk to this week. It's a big city!"
             });
+    }
+
+    private bool checkIfScatterCharacters(int timeStepToCheck)
+    {
+        if (timeStep % 21 == 0)
+        { //if it's a multiple of 21 (aka Every 7 Days)
+            return true;
         }
-        if (checkIfCreep())
-        {
-            mySceneCatalogue.setRandomKnownScene();
-            myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-            myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { "Go somewhere else. Stop creeping around one location." });
-        }
-        myEventQueue.queueEvent(new TimeChangeEvent());
+        return false;
     }
 
     private bool checkIfCreep()
