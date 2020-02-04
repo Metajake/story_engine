@@ -7,6 +7,7 @@ public class TipManager : MonoBehaviour {
     SceneCatalogue mySceneCatalogue;
     List<string> tips;
     List<string> locationReveals;
+    private Location randomLocationToReveal;
 
     public List<string> introText = new List<string>() {
         "Sitting at home is safe and comfortable...",
@@ -34,7 +35,7 @@ public class TipManager : MonoBehaviour {
 
         locationReveals = new List<string>();
         locationReveals.Add("Have you visited the %location% yet?");
-        locationReveals.Add("I heard that the %location% are beautiful this time of year.");
+        locationReveals.Add("I heard that the %location% %verb% beautiful this time of year.");
         locationReveals.Add("Don't go to the %location%!");
     }
 	
@@ -46,7 +47,8 @@ public class TipManager : MonoBehaviour {
     {
         if (shouldTeachLocation())
         {
-            return locationReveals[new System.Random().Next(0, locationReveals.Count)].Replace("%location%", mySceneCatalogue.revealRandomUnknownLocation().locationName);
+            randomLocationToReveal = mySceneCatalogue.revealRandomUnknownLocation();
+            return locationReveals[new System.Random().Next(0, locationReveals.Count)].Replace("%location%", randomLocationToReveal.locationName).Replace("%verb%", randomLocationToReveal.getVerb());
         }
         else
         {

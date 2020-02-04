@@ -3573,12 +3573,14 @@ MonoBehaviour:
   experienceDescription: Sea Exp
   isDateScene: 1
   isKnown: 1
-  descriptionInterior: The ocean breeze smells so fresh. This is the way to live.
-  descriptionExterior: The arcade is my home away from home. Keep on the lookout for
+  descriptionInterior: The arcade is my home away from home. Keep on the lookout for
     any worthy Street Fighter opponents.
-  descriptionDate: 
+  descriptionExterior: The ocean breeze smells so fresh. This is the way to live.
+  descriptionDate: I only need 500 raffle tickets to buy one of the really good prizes
+    for my date. Let's buy some snacks and play some games!
   dateActions:
   - Challenge to Game
+  - Buy Cotton Candy
   currentDateAction: 
 --- !u!114 &927541670
 MonoBehaviour:

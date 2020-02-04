@@ -16,6 +16,7 @@ public class Location : MonoBehaviour {
     public string[] dateActions;
     public string currentDateAction;
     private System.Random random;
+    public bool isPlural;
 
     // Use this for initialization
     void Start () {
@@ -31,5 +32,17 @@ public class Location : MonoBehaviour {
     public void setRandomDateAction()
     {
         currentDateAction = dateActions[random.Next(dateActions.Length)];
+    }
+
+    public string getVerb()
+    {
+        if (isPlural)
+        {
+            return "are";
+        }
+        else
+        {
+            return "is";
+        }
     }
 }
