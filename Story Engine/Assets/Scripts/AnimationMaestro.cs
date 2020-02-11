@@ -108,7 +108,7 @@ public class AnimationMaestro : MonoBehaviour
         characterImage.color = new Color(characterImage.color.r, characterImage.color.g, characterImage.color.b, aValue);
     }
 
-    public IEnumerator FadeOutCoroutine(float seconds, Action passedFunction)
+    public IEnumerator delayGameCoroutine(float seconds, Action passedFunction)
     {
         yield return new WaitForSeconds(seconds);
         passedFunction();

@@ -22,6 +22,7 @@ public class InputOrganizer : MonoBehaviour {
 
     private GameObject dateLocationButtonPanel;
     public GameObject dateLocationButtonPrefab;
+    private Button timeAdvanceButton;
 
     private void Awake()
     {
@@ -43,6 +44,8 @@ public class InputOrganizer : MonoBehaviour {
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
+
+        timeAdvanceButton = GameObject.Find("TimeButton").GetComponent<Button>();
     }
 
     public void createDateLocationButtons()
@@ -100,6 +103,7 @@ public class InputOrganizer : MonoBehaviour {
 
     public void BTN_advanceTime()
     {
+        timeAdvanceButton.interactable = false;
         myTimelord.checkCharactersToFadeAndAdvanceTime();
     }
 
@@ -172,5 +176,10 @@ public class InputOrganizer : MonoBehaviour {
         #else
             Application.Quit();
         #endif
+    }
+
+    public void ActivateAdvanceTimeButton()
+    {
+        timeAdvanceButton.interactable = true;
     }
 }

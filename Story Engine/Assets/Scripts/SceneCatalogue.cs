@@ -62,7 +62,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
         {
             myAnimationMaestro.fadeOutCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-            StartCoroutine(myAnimationMaestro.FadeOutCoroutine(0.6f, addLocationChangeEventForInteriorSceneToggle));
+            StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, addLocationChangeEventForInteriorSceneToggle));
         }
         else
         {

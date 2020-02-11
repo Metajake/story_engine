@@ -41,7 +41,7 @@ public class Timelord : MonoBehaviour {
         if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
         {
             myAnimationMaestro.fadeOutCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-            StartCoroutine(myAnimationMaestro.FadeOutCoroutine(0.6f, this.advanceTimestep));
+            StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, this.advanceTimestep));
         }
         else
         {

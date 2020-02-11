@@ -231,6 +231,15 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             }
 
             myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+
+            if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
+            {
+                StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, myInputOrganizer.ActivateAdvanceTimeButton));
+            }
+            else
+            {
+                myInputOrganizer.ActivateAdvanceTimeButton();
+            }
         }
         else if (occurringEvent.getEventType() == "LOCATIONEVENT")
         {
