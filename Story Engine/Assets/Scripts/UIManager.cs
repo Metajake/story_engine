@@ -232,14 +232,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
             myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
 
-            if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
-            {
-                StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, myInputOrganizer.ActivateAdvanceTimeButton));
-            }
-            else
-            {
-                myInputOrganizer.ActivateAdvanceTimeButton();
-            }
+            this.checkIfCharactersAndActivateButton(myInputOrganizer.ActivateAdvanceTimeButton);
         }
         else if (occurringEvent.getEventType() == "LOCATIONEVENT")
         {
@@ -255,6 +248,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
                 dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
                 dateLocationButton.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/icon_exit");
             }
+
+            this.checkIfCharactersAndActivateButton(myInputOrganizer.ActivateToggleInteriorSceneButton);
         }
         else if (occurringEvent.getEventType() == "DATESTARTEVENT")
         {
@@ -354,8 +349,20 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         dialogueOptionsButtonPanel.SetActive(true);
     }
 
-internal void updateCutSceneTextContent(string textToWrite)
+    internal void updateCutSceneTextContent(string textToWrite)
     {
         cutSceneTextToWrite = textToWrite;
+    }
+
+    private void checkIfCharactersAndActivateButton(Action buttonActivationFunction)
+    {
+        if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
+        {
+            StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, buttonActivationFunction));
+        }
+        else
+        {
+            buttonActivationFunction();
+        }
     }
 }

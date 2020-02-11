@@ -23,6 +23,7 @@ public class InputOrganizer : MonoBehaviour {
     private GameObject dateLocationButtonPanel;
     public GameObject dateLocationButtonPrefab;
     private Button timeAdvanceButton;
+    private Button toggleInteriorSceneButton;
 
     private void Awake()
     {
@@ -46,6 +47,7 @@ public class InputOrganizer : MonoBehaviour {
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 
         timeAdvanceButton = GameObject.Find("TimeButton").GetComponent<Button>();
+        toggleInteriorSceneButton = GameObject.Find("DateLocationButton").GetComponent<Button>();
     }
 
     public void createDateLocationButtons()
@@ -178,8 +180,19 @@ public class InputOrganizer : MonoBehaviour {
         #endif
     }
 
+    public void BTN_toggleIntertiorScene()
+    {
+        toggleInteriorSceneButton.interactable = false;
+        mySceneCatalogue.toggleInteriorScene();
+    }
+
     public void ActivateAdvanceTimeButton()
     {
         timeAdvanceButton.interactable = true;
+    }
+    
+    public void ActivateToggleInteriorSceneButton()
+    {
+        toggleInteriorSceneButton.interactable = true;
     }
 }
