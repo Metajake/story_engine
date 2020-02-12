@@ -3519,13 +3519,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f0f3c3a1d7f4d12b41f5550cd0f361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locationName: Shopping District
-  interiorName: Coffee Shop
-  neutralDateResultDescription: Neut Coffee Shop Result
-  experienceDescription: Coffeee Shop Exp desc.
+  locationName: Mid Town
+  interiorName: Cafe
+  neutralDateResultDescription: Neut Cafe Result
+  experienceDescription: Cafe Exp desc.
   isDateScene: 0
   isKnown: 1
-  descriptionInterior: Coffee Shop Desc.
+  descriptionInterior: Cafe Desc.
   descriptionExterior: Shopping Ext Desc
   descriptionDate: Coffee Shop Date Desc
   dateActions:
@@ -3600,7 +3600,7 @@ MonoBehaviour:
   neutralDateResultDescription: Neutral Date result Forest
   experienceDescription: Experience Desctiption Forest
   isDateScene: 0
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: Descript Int
   descriptionExterior: Descript Ext
   descriptionDate: Descript Date
@@ -3731,7 +3731,7 @@ MonoBehaviour:
   neutralDateResultDescription: The soft waves roll onto the shore.
   experienceDescription: Beach Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: These dunes remind me of the animated film, "Aladdin". Going
     on a date here would be like Jasmine and Aladdin together in their castle in the
     sand.
@@ -3759,7 +3759,7 @@ MonoBehaviour:
   neutralDateResultDescription: Mount Neut
   experienceDescription: Mount Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: Talk about a hidden gem. This water is so revitalizing.
   descriptionExterior: Traversing the mountainside is a fun, challenging adventure.
     Stay on the lookout for cougers!
@@ -3784,7 +3784,7 @@ MonoBehaviour:
   neutralDateResultDescription: Church Neut
   experienceDescription: Church Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: I probably shouldn't be snooping around here. But there might
     be people like me, hidden within the ranks.
   descriptionExterior: This church is mysteriously tucked away. I wonder what goes

@@ -76,8 +76,8 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
     {
         GameObject buttonObject = GameObject.Instantiate(mapLocationButtonPrefab, myMapPanel.transform);
 
-        //These position transform multiples should be half the width/height of the prefab button. I don't know why.
-        buttonObject.transform.Translate(new Vector3(k * 117, j * -100));
+        buttonObject.GetComponentInChildren<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, k * 250, 250);
+        buttonObject.GetComponentInChildren<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, j * 200, 200);
 
         buttonObject.GetComponentInChildren<Text>().text = mySceneCatalogue.getLocationNames()[mapButtonIndex];
 
