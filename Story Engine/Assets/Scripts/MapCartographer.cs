@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 	private const int numberOfRows = 3;
 	private const int numberOfColumns = 3;
+    int[] mapColumnLengths = new int[] { 4, 4, 3 };
 	public GameObject mapLocationButtonPrefab;
 	private SceneCatalogue mySceneCatalogue;
 	private GameObject myMapPanel;
@@ -48,10 +49,10 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
         for (int j = 0; j < numberOfRows; j++)
         {
 
-            for (int k = 0; k < numberOfColumns; k++)
+            for (int k = 0; k < mapColumnLengths[j]; k++)
             {
-
-                int mapButtonIndex = j * numberOfColumns + k;
+                //TODO make this int 4 more flexible (accommodating for various map sizes. Maybe make it the length of the largest row?)
+                int mapButtonIndex = j * 4 + k;
 
                 if (mapButtonIndex >= mySceneCatalogue.getLocationCount())
                 {
@@ -75,7 +76,8 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
     {
         GameObject buttonObject = GameObject.Instantiate(mapLocationButtonPrefab, myMapPanel.transform);
 
-        buttonObject.transform.Translate(new Vector3(-350 + k * 200, 200 - j * 200));
+        //These position transform multiples should be half the width/height of the prefab button. I don't know why.
+        buttonObject.transform.Translate(new Vector3(k * 117, j * -100));
 
         buttonObject.GetComponentInChildren<Text>().text = mySceneCatalogue.getLocationNames()[mapButtonIndex];
 

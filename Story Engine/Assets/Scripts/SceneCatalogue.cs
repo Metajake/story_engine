@@ -7,7 +7,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 
     public List<Location> locations;
 
-	private int mySceneNumber;
+	private int startingSceneNumber;
 	private bool isInInteriorScene;
     private EventQueue myEventQueue;
     private AnimationMaestro myAnimationMaestro;
@@ -21,7 +21,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     }
 
     void Start () {
-        mySceneNumber = 5;
+        startingSceneNumber = 7;
         isInInteriorScene = true; // Start Player out in apartment
 
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
@@ -82,19 +82,19 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 	}
 
     public Location getCurrentLocation(){
-        return this.locations[mySceneNumber];
+        return this.locations[startingSceneNumber];
     }
 
 	public int getCurrentSceneNumber(){
-		return mySceneNumber;
+		return startingSceneNumber;
 	}
     
 	public string getCurrentSceneName(){
-        return locations[mySceneNumber].locationName;
+        return locations[startingSceneNumber].locationName;
 	}
 
 	public void setCurrentSceneNumber(int newSceneNumber){
-		mySceneNumber = newSceneNumber;
+		startingSceneNumber = newSceneNumber;
         //CHANGE LOCATION EVENT
 	}
 

@@ -3465,10 +3465,12 @@ GameObject:
   m_Component:
   - component: {fileID: 927541663}
   - component: {fileID: 927541664}
+  - component: {fileID: 927541668}
   - component: {fileID: 927541676}
   - component: {fileID: 927541675}
   - component: {fileID: 927541669}
   - component: {fileID: 927541672}
+  - component: {fileID: 927541665}
   - component: {fileID: 927541671}
   - component: {fileID: 927541670}
   - component: {fileID: 927541667}
@@ -3506,6 +3508,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locations: []
+--- !u!114 &927541665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 927541662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f0f3c3a1d7f4d12b41f5550cd0f361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locationName: Shopping District
+  interiorName: Coffee Shop
+  neutralDateResultDescription: Neut Coffee Shop Result
+  experienceDescription: Coffeee Shop Exp desc.
+  isDateScene: 0
+  isKnown: 1
+  descriptionInterior: Coffee Shop Desc.
+  descriptionExterior: Shopping Ext Desc
+  descriptionDate: Coffee Shop Date Desc
+  dateActions:
+  - Buy Coffee
+  currentDateAction: 
+  isPlural: 0
 --- !u!114 &927541666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3522,7 +3548,7 @@ MonoBehaviour:
   neutralDateResultDescription: Uni Neut
   experienceDescription: Uni Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: I can read and work on projects here without being bothered.
     Let's just hope no one checks my expired Student Identification card.
   descriptionExterior: A typical college campus. The students look busy.
@@ -3547,7 +3573,7 @@ MonoBehaviour:
   neutralDateResultDescription: Field Neut
   experienceDescription: Field Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: I feel like I've seen a lot of this picnic bench...
   descriptionExterior: The breeze combes through the tall grass, stirring up a fresh
     aroma.
@@ -3556,6 +3582,30 @@ MonoBehaviour:
   - Slice Watermelon
   - Recite Poetry
   - Pick Flower
+  currentDateAction: 
+  isPlural: 0
+--- !u!114 &927541668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 927541662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f0f3c3a1d7f4d12b41f5550cd0f361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locationName: Forest
+  interiorName: Grove
+  neutralDateResultDescription: Neutral Date result Forest
+  experienceDescription: Experience Desctiption Forest
+  isDateScene: 0
+  isKnown: 0
+  descriptionInterior: Descript Int
+  descriptionExterior: Descript Ext
+  descriptionDate: Descript Date
+  dateActions:
+  - Make Bonfire
   currentDateAction: 
   isPlural: 0
 --- !u!114 &927541669
@@ -3681,7 +3731,7 @@ MonoBehaviour:
   neutralDateResultDescription: The soft waves roll onto the shore.
   experienceDescription: Beach Exp
   isDateScene: 1
-  isKnown: 1
+  isKnown: 0
   descriptionInterior: These dunes remind me of the animated film, "Aladdin". Going
     on a date here would be like Jasmine and Aladdin together in their castle in the
     sand.
@@ -3709,7 +3759,7 @@ MonoBehaviour:
   neutralDateResultDescription: Mount Neut
   experienceDescription: Mount Exp
   isDateScene: 1
-  isKnown: 1
+  isKnown: 0
   descriptionInterior: Talk about a hidden gem. This water is so revitalizing.
   descriptionExterior: Traversing the mountainside is a fun, challenging adventure.
     Stay on the lookout for cougers!
@@ -3734,7 +3784,7 @@ MonoBehaviour:
   neutralDateResultDescription: Church Neut
   experienceDescription: Church Exp
   isDateScene: 1
-  isKnown: 1
+  isKnown: 0
   descriptionInterior: I probably shouldn't be snooping around here. But there might
     be people like me, hidden within the ranks.
   descriptionExterior: This church is mysteriously tucked away. I wonder what goes
