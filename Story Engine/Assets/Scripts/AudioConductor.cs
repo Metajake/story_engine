@@ -71,14 +71,26 @@ public class AudioConductor : MonoBehaviour {
         sfxAudioSource.Play();
     }
 
-    public void startMusic(AudioClip clip)
-    {
-	    musicAudioSource.clip = clip;
-	    musicAudioSource.Play();
-	    fadeInCurrentMusic();
-    }
+    public void startMusic(string currentSceneName, int currentTimeOfDay)
+	{
+		selectDateMusic(currentSceneName, currentTimeOfDay);
+		musicAudioSource.Play();
+		fadeInCurrentMusic();
+	}
 
-    public void fadeOutCurrentMusic()
+	private void selectDateMusic(string currentSceneName, int currentTimeOfDay)
+	{
+		if (currentSceneName.ToLower() == "west side" && currentTimeOfDay == 2)
+		{
+			musicAudioSource.clip = clubMusic;
+		}
+		else
+		{
+			musicAudioSource.clip = dateMusic;
+		}
+	}
+
+	public void fadeOutCurrentMusic()
     {
 	    this.isFadingIn = false;
 	    this.isFadingOut = true;

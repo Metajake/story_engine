@@ -93,7 +93,7 @@ public class RelationshipCounselor : MonoBehaviour {
                 if (hasDateAtPresentTimeInPresentLocationAndDateNotOver())
                 {
                     isAtDate = true;
-                    myAudioConductor.startMusic(myAudioConductor.dateMusic);
+                    myAudioConductor.startMusic(mySceneCatalogue.getCurrentSceneName(), myTimelord.getCurrentModulusTimestep());
                     myGameState.currentGameState = GameState.gameStates.DATEINTRO;
                     myEventQueue.queueEvent(new EventDateStart());
                 }
