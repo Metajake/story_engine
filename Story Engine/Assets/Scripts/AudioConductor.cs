@@ -6,8 +6,9 @@ using UnityEngine;
 public class AudioConductor : MonoBehaviour {
     public AudioClip subwayCar;
     public AudioClip dateMusic;
+	public AudioClip clubMusic;
 
-    public AudioSource musicAudioSource;
+	public AudioSource musicAudioSource;
     
     private bool isFadingIn;
 

@@ -5643,8 +5643,8 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 0bdf0b9dc754b05409c34554de888402, type: 3}
   - {fileID: 2800000, guid: 7d9d4c7a466de884887d46b5d1babda0, type: 3}
   - {fileID: 2800000, guid: 353d4d4275370f24a80e87238b41e6df, type: 3}
-  - {fileID: 2800000, guid: 4ed821511f6644e179db2116fa7e7c01, type: 3}
-  - {fileID: 2800000, guid: 2d2826c775c5d4f4c988b824d65eddb6, type: 3}
+  - {fileID: 2800000, guid: f1ee2011f343b8e41b28b15abb724d8e, type: 3}
+  - {fileID: 2800000, guid: bf75ad840435a984c9575140325bcdf8, type: 3}
   - {fileID: 2800000, guid: 9cf3a940a43c54e4eabd30d96905ba9b, type: 3}
   - {fileID: 2800000, guid: cc2506f242d09ed4293c4e73b5fb8c47, type: 3}
   - {fileID: 2800000, guid: 9cd3e6da7212f461d93c04524533a045, type: 3}
@@ -5668,12 +5668,12 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 1a01cafbf0f640b4fb4dc847c668e54f, type: 3}
   - {fileID: 2800000, guid: d809263601c5b2042a0ff6e7041a9af9, type: 3}
   - {fileID: 2800000, guid: 1419a4686bd9d474eb61417fb4691196, type: 3}
-  - {fileID: 2800000, guid: 120fe3648695b6c4db42b41ad9ef17d9, type: 3}
-  - {fileID: 2800000, guid: c09300ec604adf043954b05edf72a4ca, type: 3}
-  - {fileID: 2800000, guid: ac0a59c9101555a4696320acf3371393, type: 3}
+  - {fileID: 2800000, guid: efde302a833c9464593aac5012bcf8ba, type: 3}
+  - {fileID: 2800000, guid: 37bfce6900f43074399e5e1e0fde3fa0, type: 3}
+  - {fileID: 2800000, guid: 989276013f3b49a48842c804c297c8b8, type: 3}
   - {fileID: 2800000, guid: 0de9c3a8620da46eab13df1e0168ac63, type: 3}
-  - {fileID: 2800000, guid: 0de9c3a8620da46eab13df1e0168ac63, type: 3}
-  - {fileID: 2800000, guid: 0de9c3a8620da46eab13df1e0168ac63, type: 3}
+  - {fileID: 2800000, guid: 23c4f8e93fecd0e4dbc462407c15f1fc, type: 3}
+  - {fileID: 2800000, guid: fc3818a7e2db52545b73e0325e6fca8c, type: 3}
   - {fileID: 2800000, guid: dbe3e44c140e37448b809fc83b7fe1f6, type: 3}
   - {fileID: 2800000, guid: f59210d72aaee2546b25e4dd30104f06, type: 3}
   - {fileID: 2800000, guid: 0577c9d60a642ec44a433ed128fcda6e, type: 3}
@@ -5692,11 +5692,11 @@ MonoBehaviour:
   - {fileID: 2800000, guid: e560da5a5adfb274daa69236e91db15e, type: 3}
   - {fileID: 2800000, guid: b2942e8e8bb0b324ba8fcd418cc0272c, type: 3}
   - {fileID: 2800000, guid: bfea3b6aa12a2e94d83054eda5a6161e, type: 3}
-  - {fileID: 2800000, guid: ac7477a70741d43ce95a3a55ee133838, type: 3}
-  - {fileID: 2800000, guid: ac7477a70741d43ce95a3a55ee133838, type: 3}
-  - {fileID: 2800000, guid: ac7477a70741d43ce95a3a55ee133838, type: 3}
-  - {fileID: 2800000, guid: ac7477a70741d43ce95a3a55ee133838, type: 3}
-  - {fileID: 2800000, guid: ac7477a70741d43ce95a3a55ee133838, type: 3}
+  - {fileID: 2800000, guid: b7baf71b319c98e4fa366fe11e01376a, type: 3}
+  - {fileID: 2800000, guid: 9cf98250537e9ef43b23e6630e839bbf, type: 3}
+  - {fileID: 2800000, guid: 120afd8c95ebfaa4391c46707d593326, type: 3}
+  - {fileID: 2800000, guid: 1533f1f554f052e4198c9520636af358, type: 3}
+  - {fileID: 2800000, guid: 128e17747af061e458072128a62111dc, type: 3}
   - {fileID: 2800000, guid: ac7477a70741d43ce95a3a55ee133838, type: 3}
 --- !u!224 &1311753324
 RectTransform:
@@ -6420,7 +6420,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.66400003, g: 0.8731188, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -6912,6 +6912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subwayCar: {fileID: 8300000, guid: f0ba53c2a421489428fd6552351938a7, type: 3}
   dateMusic: {fileID: 8300000, guid: 453ef83dd2d0bf344b1cc60ada9fa1cc, type: 3}
+  clubMusic: {fileID: 0}
   musicAudioSource: {fileID: 2098445838}
   VOLUME_FADE_IN_INCREMENT: 0.1
   VOLUME_FADE_OUT_INCREMENT: 0.5
@@ -7948,7 +7949,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.1999512, y: 1.7999268}
+  m_AnchoredPosition: {x: -1.1999512, y: 1.7998047}
   m_SizeDelta: {x: -483.4, y: -221.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1758800458
@@ -8821,7 +8822,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 32, y: 20.835022}
+  m_AnchoredPosition: {x: 32, y: 20.83496}
   m_SizeDelta: {x: 682.7, y: 209.2}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1996684468
