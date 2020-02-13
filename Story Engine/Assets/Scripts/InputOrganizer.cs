@@ -64,13 +64,13 @@ public class InputOrganizer : MonoBehaviour {
             Destroy(b.gameObject);
         }
 
-        //TODO: this checks for 6 total max date locations. Update this to accommodate any number of date locations.
-        for (int j = 0; j < 3; j++)
+        //TODO: this checks for FIXED number of date locations and creates row sizes. Update this to accommodate any number of date locations.
+        for (int j = 0; j < 4; j++)
         {
 
             for (int k = 0; k < 3; k++)
             {
-                int dateButtonIndex = j * 3 + k;
+                int dateButtonIndex = j * 4 + k;
 
                 try {
 
@@ -81,7 +81,11 @@ public class InputOrganizer : MonoBehaviour {
 
                     GameObject buttonObject = GameObject.Instantiate(dateLocationButtonPrefab, dateLocationButtonPanel.transform);
 
-                    buttonObject.transform.Translate(new Vector3(k * 200, j * -48));
+                    float buttonWidth = buttonObject.GetComponentInChildren<RectTransform>().rect.width;
+                    float buttonHeight = buttonObject.GetComponentInChildren<RectTransform>().rect.height;
+
+                    buttonObject.GetComponentInChildren<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, k * buttonWidth, buttonWidth);
+                    buttonObject.GetComponentInChildren<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, j * buttonHeight, buttonHeight);
 
                     buttonObject.GetComponentInChildren<Text>().text = dateSceneNames[dateButtonIndex];
 

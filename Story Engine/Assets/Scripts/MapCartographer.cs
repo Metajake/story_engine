@@ -51,7 +51,7 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
 
             for (int k = 0; k < mapColumnLengths[j]; k++)
             {
-                //TODO make this int 4 more flexible (accommodating for various map sizes. Maybe make it the length of the largest row?)
+                //TODO make this int 4 more flexible (accommodating for various map sizes. Maybe make it the length of the largest row in mapColumnLenghts?)
                 int mapButtonIndex = j * 4 + k;
 
                 if (mapButtonIndex >= mySceneCatalogue.getLocationCount())
@@ -76,8 +76,11 @@ public class MapCartographer : MonoBehaviour, IKnownLocationsChangedObserver {
     {
         GameObject buttonObject = GameObject.Instantiate(mapLocationButtonPrefab, myMapPanel.transform);
 
-        buttonObject.GetComponentInChildren<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, k * 250, 250);
-        buttonObject.GetComponentInChildren<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, j * 200, 200);
+        float buttonWidth = buttonObject.GetComponentInChildren<RectTransform>().rect.width;
+        float buttonHeight = buttonObject.GetComponentInChildren<RectTransform>().rect.height;
+
+        buttonObject.GetComponentInChildren<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, k * buttonWidth, buttonWidth);
+        buttonObject.GetComponentInChildren<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, j * buttonHeight, buttonHeight);
 
         buttonObject.GetComponentInChildren<Text>().text = mySceneCatalogue.getLocationNames()[mapButtonIndex];
 

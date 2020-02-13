@@ -3519,11 +3519,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f0f3c3a1d7f4d12b41f5550cd0f361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  locationName: Mid Town
+  locationName: Midtown
   interiorName: Cafe
   neutralDateResultDescription: Neut Cafe Result
   experienceDescription: Cafe Exp desc.
-  isDateScene: 0
+  isDateScene: 1
   isKnown: 1
   descriptionInterior: Cafe Desc.
   descriptionExterior: Shopping Ext Desc
@@ -3599,13 +3599,14 @@ MonoBehaviour:
   interiorName: Grove
   neutralDateResultDescription: Neutral Date result Forest
   experienceDescription: Experience Desctiption Forest
-  isDateScene: 0
+  isDateScene: 1
   isKnown: 1
   descriptionInterior: Descript Int
   descriptionExterior: Descript Ext
   descriptionDate: Descript Date
   dateActions:
   - Make Bonfire
+  - Go for a Hike
   currentDateAction: 
   isPlural: 0
 --- !u!114 &927541669
@@ -3703,7 +3704,7 @@ MonoBehaviour:
   neutralDateResultDescription: West Neut
   experienceDescription: West Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: The club is really bumping. The rythmic bass is hypnotizing,
     and it's hard not to move your body to the beat.
   descriptionExterior: This part of town is known for it's impurity. But everyone
@@ -5636,12 +5637,12 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 29c2c4556703b43568fc73df683d7c36, type: 3}
   - {fileID: 2800000, guid: 64bea06a4cd7041a89f5268423759487, type: 3}
   - {fileID: 2800000, guid: c2e94a88648504bb2aac5304f20cee1e, type: 3}
-  - {fileID: 2800000, guid: 8793bf3c1c0d14c629655612efcd24a2, type: 3}
-  - {fileID: 2800000, guid: 713f989b2a8bb4d7bb1f72b4b055e7d1, type: 3}
-  - {fileID: 2800000, guid: de00723e9305a480891e42ef01b239c2, type: 3}
-  - {fileID: 2800000, guid: 3c06e76ed4fd14bbab73ae4ba660736b, type: 3}
-  - {fileID: 2800000, guid: d1403a882497e419bb84e6259a80e8e1, type: 3}
-  - {fileID: 2800000, guid: fa1b7aa63835542d88a6e42c4dec54f6, type: 3}
+  - {fileID: 2800000, guid: 522b4db4ac5828346af403b5b4a913b2, type: 3}
+  - {fileID: 2800000, guid: 5c91430271c0bcc41a13afce788eed71, type: 3}
+  - {fileID: 2800000, guid: f24c98d9c43deea4cb83abc78fbd2009, type: 3}
+  - {fileID: 2800000, guid: 0bdf0b9dc754b05409c34554de888402, type: 3}
+  - {fileID: 2800000, guid: 7d9d4c7a466de884887d46b5d1babda0, type: 3}
+  - {fileID: 2800000, guid: 353d4d4275370f24a80e87238b41e6df, type: 3}
   - {fileID: 2800000, guid: 4ed821511f6644e179db2116fa7e7c01, type: 3}
   - {fileID: 2800000, guid: 2d2826c775c5d4f4c988b824d65eddb6, type: 3}
   - {fileID: 2800000, guid: 9cf3a940a43c54e4eabd30d96905ba9b, type: 3}
@@ -5654,18 +5655,15 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 6f4668e87a087b4448ddf7eb94c16397, type: 3}
   - {fileID: 2800000, guid: 2e15ec04973cfc44e9f620b2c480ab2d, type: 3}
   - {fileID: 2800000, guid: cf52eef23ba9099438fb2e274ee3a5dc, type: 3}
-  - {fileID: 2800000, guid: 522b4db4ac5828346af403b5b4a913b2, type: 3}
-  - {fileID: 2800000, guid: 5c91430271c0bcc41a13afce788eed71, type: 3}
-  - {fileID: 2800000, guid: f24c98d9c43deea4cb83abc78fbd2009, type: 3}
+  - {fileID: 2800000, guid: 6b0c73a7369b7455cb06b89257420634, type: 3}
+  - {fileID: 2800000, guid: c9adcb859c668443b8240730c19eb976, type: 3}
+  - {fileID: 2800000, guid: 13c17850b64c64157998a611ff2874e7, type: 3}
   - {fileID: 2800000, guid: 7b9e4f05a5364ea4f85aa97bb953bc86, type: 3}
   - {fileID: 2800000, guid: fedb9cb8053a344dea84b300d3d2b7f5, type: 3}
   - {fileID: 2800000, guid: 520e5d90c49fe43c4be00063e8228404, type: 3}
   - {fileID: 2800000, guid: faa182e3c6ea74681899f3cbd69f8fa7, type: 3}
   - {fileID: 2800000, guid: add036eca78f5409c8f87abcd99959ce, type: 3}
   - {fileID: 2800000, guid: 4a080ff6687b249cb8534a2bee0903c4, type: 3}
-  - {fileID: 2800000, guid: 6b0c73a7369b7455cb06b89257420634, type: 3}
-  - {fileID: 2800000, guid: c9adcb859c668443b8240730c19eb976, type: 3}
-  - {fileID: 2800000, guid: 13c17850b64c64157998a611ff2874e7, type: 3}
   dateBackgrounds:
   - {fileID: 2800000, guid: 1a01cafbf0f640b4fb4dc847c668e54f, type: 3}
   - {fileID: 2800000, guid: d809263601c5b2042a0ff6e7041a9af9, type: 3}
@@ -8814,9 +8812,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 185, y: 200}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 32, y: 20.835022}
+  m_SizeDelta: {x: 682.7, y: 209.2}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1996684468
 MonoBehaviour:
   m_ObjectHideFlags: 0
