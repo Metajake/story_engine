@@ -111,7 +111,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 	{
         enableComponentsForState(myGameState.currentGameState);
         populateComponentsForState(myGameState.currentGameState);
-        myInputOrganizer.BTN_toggleMenuPanel();
+        myInputOrganizer.updateUIComponents();
     }
 
     private void deactivateUIComponents()
