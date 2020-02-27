@@ -12,7 +12,7 @@ public class DateableCharacter : Character {
     public int tier;
     private VictoryCoach myVictoryCoach;
 
-	void Start () {
+    void Start () {
 
         DialogueManager dm = GameObject.FindObjectOfType<DialogueManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();

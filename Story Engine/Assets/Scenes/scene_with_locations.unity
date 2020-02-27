@@ -6050,6 +6050,16 @@ MonoBehaviour:
   activeTimes: 010100
   isPresent: 1
   returnTime: 0
+  locations:
+  - locationName: City
+    isInside: 1
+    isActive: 1
+  - locationName: City
+    isInside: 0
+    isActive: 1
+  - locationName: City
+    isInside: 0
+    isActive: 0
   isSubordinate: 0
   permanentOpinion: 0
   knowsYou: 0
@@ -6076,6 +6086,16 @@ MonoBehaviour:
   activeTimes: 010100
   isPresent: 1
   returnTime: 0
+  locations:
+  - locationName: City
+    isInside: 1
+    isActive: 1
+  - locationName: City
+    isInside: 1
+    isActive: 1
+  - locationName: City
+    isInside: 1
+    isActive: 0
 --- !u!114 &1360229237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6096,6 +6116,16 @@ MonoBehaviour:
   activeTimes: 000101
   isPresent: 1
   returnTime: 0
+  locations:
+  - locationName: Sea Side
+    isInside: 0
+    isActive: 0
+  - locationName: Sea Side
+    isInside: 0
+    isActive: 1
+  - locationName: 
+    isInside: 0
+    isActive: 0
   isSubordinate: 1
   permanentOpinion: 0
   knowsYou: 0
@@ -6122,6 +6152,16 @@ MonoBehaviour:
   activeTimes: 000001
   isPresent: 1
   returnTime: 0
+  locations:
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
   isSubordinate: 0
   permanentOpinion: 0
   knowsYou: 0
@@ -6168,6 +6208,16 @@ MonoBehaviour:
   activeTimes: 000100
   isPresent: 1
   returnTime: 0
+  locations:
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
   isSubordinate: 0
   permanentOpinion: 0
   knowsYou: 0
@@ -6194,6 +6244,16 @@ MonoBehaviour:
   activeTimes: 010000
   isPresent: 1
   returnTime: 0
+  locations:
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
   isSubordinate: 0
   permanentOpinion: 0
   knowsYou: 0
@@ -6220,6 +6280,16 @@ MonoBehaviour:
   activeTimes: 000101
   isPresent: 1
   returnTime: 0
+  locations:
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
   isSubordinate: 0
   permanentOpinion: 0
   knowsYou: 0
@@ -6246,6 +6316,16 @@ MonoBehaviour:
   activeTimes: 000001
   isPresent: 1
   returnTime: 0
+  locations:
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
   isSubordinate: 0
   permanentOpinion: 0
   knowsYou: 0
@@ -6272,6 +6352,16 @@ MonoBehaviour:
   activeTimes: 010000
   isPresent: 1
   returnTime: 0
+  locations:
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
   isSubordinate: 1
   permanentOpinion: 0
   knowsYou: 0
@@ -6298,6 +6388,16 @@ MonoBehaviour:
   activeTimes: 000100
   isPresent: 1
   returnTime: 0
+  locations:
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
   isSubordinate: 0
   permanentOpinion: 0
   knowsYou: 0

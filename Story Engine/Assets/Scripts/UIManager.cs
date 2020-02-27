@@ -114,23 +114,9 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         myInputOrganizer.updateUIComponents();
     }
 
-    private void deactivateUIComponents()
-    {
-        dialoguePanel.SetActive(false);
-        journalPanel.SetActive(false);
-        mapPanel.SetActive(false);
-        mainPanel.SetActive(false);
-        cutScenePanel.SetActive(false);
-        characterPanel.gameObject.SetActive(false);
-
-        dateButtonsPanel.SetActive(false);
-        mainPanelButtonsPanel.SetActive(false);
-        sequenceButtonsPanel.SetActive(false);
-    }
-
     private void enableComponentsForState(GameState.gameStates currentState)
     {
-        deactivateUIComponents();
+        this.deactivateUIComponents();
 
         if(currentState == GameState.gameStates.COMMANDSEQUENCE)
         {
@@ -218,6 +204,20 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
             myAnimationMaestro.writeDescriptionText("One good date can change your life.", textPanel);
         }
+    }
+
+    private void deactivateUIComponents()
+    {
+        dialoguePanel.SetActive(false);
+        journalPanel.SetActive(false);
+        mapPanel.SetActive(false);
+        mainPanel.SetActive(false);
+        cutScenePanel.SetActive(false);
+        characterPanel.gameObject.SetActive(false);
+
+        dateButtonsPanel.SetActive(false);
+        mainPanelButtonsPanel.SetActive(false);
+        sequenceButtonsPanel.SetActive(false);
     }
 
     public void eventOccured(IGameEvent occurringEvent)

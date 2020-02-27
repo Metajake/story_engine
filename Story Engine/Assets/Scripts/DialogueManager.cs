@@ -60,9 +60,11 @@ public class DialogueManager : MonoBehaviour {
 
     public List<Character> getAllCurrentLocalPresentConversationPartners(){
 		List<Character> toReturn = new List<Character>();
+        int currentTimeOfDay = myTimeLord.getCurrentModulusTimestep();
+
         foreach (Character character in this.allCharacters)
         {
-            if (isCharacterInTimeOfDay(character) && isCharacterPresentAtCurrentLocation(character) && character.checkIsPresent())
+            if (this.isCharacterInTimeOfDay(character, currentTimeOfDay) && this.isCharacterPresentAtCurrentLocation(character, currentTimeOfDay) && character.checkIsPresent())
             {
                 toReturn.Add(character);
             }
@@ -71,12 +73,16 @@ public class DialogueManager : MonoBehaviour {
 		return toReturn;
 	}
 
-	private bool isCharacterInTimeOfDay(Character character){
-		return character.activeTimes[myTimeLord.getCurrentModulusTimestep()] && !myRelationshipCounselor.hasDateInFuture(character);
+	private bool isCharacterInTimeOfDay(Character character, int timeOfDayToCheck){
+		//return character.activeTimes[myTimeLord.getCurrentModulusTimestep()] && !myRelationshipCounselor.hasDateInFuture(character);
+		return character.locations[timeOfDayToCheck].isActive && !myRelationshipCounselor.hasDateInFuture(character);
 	}
 
-	private bool isCharacterPresentAtCurrentLocation(Character character){
-        if (character.currentSceneName.ToLower().Equals(mySceneCatalogue.getCurrentSceneName().ToLower()) && character.isInside.Equals(mySceneCatalogue.getIsInInteriorScene())){
+	private bool isCharacterPresentAtCurrentLocation(Character character, int timeOfDayToCheck){
+  //      if (character.currentSceneName.ToLower().Equals(mySceneCatalogue.getCurrentSceneName().ToLower()) && character.isInside.Equals(mySceneCatalogue.getIsInInteriorScene())){
+		//	return true;
+		//}
+        if (character.locations[timeOfDayToCheck].locationName.ToLower().Equals(mySceneCatalogue.getCurrentSceneName().ToLower()) && character.locations[timeOfDayToCheck].isInside.Equals(mySceneCatalogue.getIsInInteriorScene())){
 			return true;
 		}
 		return false;
@@ -128,12 +134,33 @@ public class DialogueManager : MonoBehaviour {
     public void scatterCharacters(){
 		System.Random random = new System.Random();
         List<Location> knownLocations = mySceneCatalogue.getKnownLocations();
+
         foreach (DateableCharacter chara in allDateableCharacters){
-            string destination = knownLocations[random.Next(knownLocations.Count)].locationName;
-            bool indoorDestination = random.Next(2) == 0 ? false : true;
-            if (! (destination == "Residential District" && indoorDestination == true)){
-                chara.currentSceneName = destination;
-                chara.isInside = indoorDestination;
+
+            for ( int i = 0; i < 3; i++)
+            {
+                string destination;
+                bool indoorDestination;
+                bool toBeActive;
+
+                while (true)
+                {
+                    destination = knownLocations[random.Next(knownLocations.Count)].locationName;
+                    indoorDestination = random.Next(2) == 0 ? false : true;
+                    toBeActive = random.Next(2) == 0 ? false : true;
+
+                    if ((destination == "Residential District" && indoorDestination == true))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        chara.locations[i].locationName = destination;
+                        chara.locations[i].isInside = indoorDestination;
+                        chara.locations[i].isActive = toBeActive;
+                        break;
+                    }
+                }
             }
         }
     }
