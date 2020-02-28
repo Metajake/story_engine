@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class characterLocation
+public class CharacterLocation
 {
     public string locationName;
     public bool isInside;
@@ -18,7 +18,7 @@ public class Character : MonoBehaviour {
     public int inLoveAmount;
     public bool isPresent;
     public int returnTime;
-    public List<characterLocation> locations;
+    public List<CharacterLocation> locations;
 
     public virtual bool checkIsPresent(){
         inLoveAmount = 0;

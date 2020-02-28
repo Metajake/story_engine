@@ -9,7 +9,7 @@ public class DateableCharacter : Character {
 	public bool knowsYou;
 	public int experienceCount;
     public int[] locationPreferences;
-    public int tier;
+    public int league;
     private VictoryCoach myVictoryCoach;
 
     void Start () {
@@ -431,11 +431,6 @@ public class DateableCharacter : Character {
         }
         return preferredLocation;
     }
-
-	public override bool checkIsPresent()
-	{
-		return isPresent && this.tier <= myVictoryCoach.getNumberOfAchievedExperiences();
-	}
 
     public void checkAndSetReturnToPresent(int currentTimeStep)
     {

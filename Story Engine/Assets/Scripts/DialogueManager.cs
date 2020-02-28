@@ -64,7 +64,7 @@ public class DialogueManager : MonoBehaviour {
 
         foreach (Character character in this.allCharacters)
         {
-            if (this.isCharacterInTimeOfDay(character, currentTimeOfDay) && this.isCharacterPresentAtCurrentLocation(character, currentTimeOfDay) && character.checkIsPresent())
+            if (this.isCharacterInTimeOfDay(character, currentTimeOfDay) && this.isCharacterPresentAtCurrentLocation(character, currentTimeOfDay) && character.isPresent)
             {
                 toReturn.Add(character);
             }
