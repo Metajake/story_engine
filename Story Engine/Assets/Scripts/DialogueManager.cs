@@ -35,11 +35,13 @@ public class DialogueManager : MonoBehaviour {
     {
         this.allDateableCharacters = new List<DateableCharacter>(this.GetComponents<DateableCharacter>());
         this.allMinorCharacters = new List<MinorCharacter>(this.GetComponents<MinorCharacter>());
-        initializeAllCharacters();
 
         myTimeLord = GameObject.FindObjectOfType<Timelord>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
+
+        initializeAllCharacters();
+        this.scatterCharacters("Kristie");
     }
 
     private void initializeAllCharacters()
@@ -131,11 +133,13 @@ public class DialogueManager : MonoBehaviour {
 		return null;
 	}
 
-    public void scatterCharacters(){
+    public void scatterCharacters(string characterToExcept = ""){
 		System.Random random = new System.Random();
         List<Location> knownLocations = mySceneCatalogue.getKnownLocations();
 
         foreach (DateableCharacter chara in allDateableCharacters){
+
+            if ( characterToExcept.ToLower() == chara.givenName.ToLower() ) { continue; }
 
             for ( int i = 0; i < 3; i++)
             {

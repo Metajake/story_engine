@@ -10,12 +10,10 @@ public class DateableCharacter : Character {
 	public int experienceCount;
     public int[] locationPreferences;
     public int league;
-    private VictoryCoach myVictoryCoach;
 
     void Start () {
 
         DialogueManager dm = GameObject.FindObjectOfType<DialogueManager>();
-        myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 		experienceCount = 0;
         returnTime = 0;
 
@@ -418,9 +416,6 @@ public class DateableCharacter : Character {
 
     }
 	
-	void Update () {
-		
-	}
 
     public int getPreferredLocation(){
         int preferredLocation = 0;
