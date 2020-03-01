@@ -179,16 +179,16 @@ public class InputOrganizer : MonoBehaviour {
     public void BTN_toggleIntertiorScene()
     {
         toggleInteriorSceneButton.interactable = false;
-        mySceneCatalogue.toggleInteriorScene();
+        mySceneCatalogue.checkIfCharactersPresentAndToggleInteriorScene();
     }
 
-    public void ActivateAdvanceTimeButton()
+    public void BTN_leaveDate()
     {
-        timeAdvanceButton.interactable = true;
+        myRelationshipCounselor.leaveDate();
     }
-    
-    public void ActivateToggleInteriorSceneButton()
+
+    public void BTN_dateAction()
     {
-        toggleInteriorSceneButton.interactable = true;
+        myRelationshipCounselor.act();
     }
 }

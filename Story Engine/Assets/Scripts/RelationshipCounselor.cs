@@ -185,8 +185,8 @@ public class RelationshipCounselor : MonoBehaviour {
 
 	public void leaveDate(){
 		isAtDate = false;
+        mySceneCatalogue.toggleInteriorScene();
         myGameState.currentGameState = GameState.gameStates.PROWL;
-		mySceneCatalogue.toggleInteriorScene();
         myUIManager.resetDateButtons();
         myAudioConductor.fadeOutCurrentMusic();
         getCurrentDateFromScheduledDateList().isOver = true;

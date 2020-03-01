@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UIDriver : MonoBehaviour, IEventSubscriber {
 	private EventQueue myEventQueue;
+	private Button timeAdvanceButton;
+	private Button toggleInteriorSceneButton;
 	private DialogueManager myDialogueManager;
 	private Timelord myTimelord;
 	private AnimationMaestro myAnimationMaestro;
@@ -27,15 +29,12 @@ public class UIDriver : MonoBehaviour, IEventSubscriber {
 		myInputOrganizer = GameObject.FindObjectOfType<InputOrganizer>();
 		myUIManager = GameObject.FindObjectOfType<UIManager>();
 		myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
-
 		myEventQueue = GameObject.FindObjectOfType<EventQueue>();
 
+		timeAdvanceButton = GameObject.Find("TimeButton").GetComponent<Button>();
+		toggleInteriorSceneButton = GameObject.Find("DateLocationButton").GetComponent<Button>();
+
 		myEventQueue.subscribe(this);
-	}
-
-	// Update is called once per frame
-	void Update() {
-
 	}
 
 	public void eventOccured(IGameEvent occurringEvent)
@@ -50,14 +49,14 @@ public class UIDriver : MonoBehaviour, IEventSubscriber {
 
 			myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
 
-			this.checkIfCharactersAndFadeInButtonUI(myInputOrganizer.ActivateAdvanceTimeButton);
+			this.checkIfCharactersAndFadeInButtonUI(this.ActivateAdvanceTimeButton);
 		}
 		else if (occurringEvent.getEventType() == "LOCATIONEVENT")
 		{
 			myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
 			myDialogueManager.selectedPartner = -1;
 			this.updateToggleInteriorButtonUI();
-			this.checkIfCharactersAndFadeInButtonUI(myInputOrganizer.ActivateToggleInteriorSceneButton);
+			this.checkIfCharactersAndFadeInButtonUI(this.ActivateToggleInteriorSceneButton);
 		}
 		else if (occurringEvent.getEventType() == "DATESTARTEVENT")
 		{
@@ -97,5 +96,14 @@ public class UIDriver : MonoBehaviour, IEventSubscriber {
 			myUIManager.dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
 			myUIManager.dateLocationButton.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/icon_exit");
 		}
+	}
+	public void ActivateToggleInteriorSceneButton()
+	{
+		toggleInteriorSceneButton.interactable = true;
+	}
+
+	public void ActivateAdvanceTimeButton()
+	{
+		timeAdvanceButton.interactable = true;
 	}
 }
