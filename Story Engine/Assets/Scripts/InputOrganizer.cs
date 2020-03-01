@@ -8,10 +8,7 @@ using System;
 public class InputOrganizer : MonoBehaviour {
     private UIManager myUIManager;
     private DialogueManager myDialogueManager;
-    private GameState myGameState;
-    private Timelord myTimelord;
-    private TipManager myTipManager;
-    private CommandProcessor myCommandProcessor;
+    private Timelord myTimeLord;
     private SceneCatalogue mySceneCatalogue;
     private ConversationTracker myConversationTracker;
     private MapCartographer myMapCartographer;
@@ -34,10 +31,7 @@ public class InputOrganizer : MonoBehaviour {
     void Start () {
         myUIManager = GameObject.FindObjectOfType<UIManager>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
-        myGameState = GameObject.FindObjectOfType<GameState>();
-        myTimelord = GameObject.FindObjectOfType<Timelord>();
-        myTipManager = GameObject.FindObjectOfType<TipManager>();
-        myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
+        myTimeLord = GameObject.FindObjectOfType<Timelord>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myConversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
         myMapCartographer = GameObject.FindObjectOfType<MapCartographer>();
@@ -52,11 +46,8 @@ public class InputOrganizer : MonoBehaviour {
 
     public void createDateLocationButtons()
     {
-
         List<string> dateSceneNames = mySceneCatalogue.getDateSceneNames();
-      
         List<Location> dateScenes = mySceneCatalogue.getDateScenes();
-      
         Button[] allButtons = dateLocationButtonPanel.GetComponentsInChildren<Button>();
 
         foreach (Button b in allButtons)
@@ -110,32 +101,18 @@ public class InputOrganizer : MonoBehaviour {
     public void BTN_advanceTime()
     {
         timeAdvanceButton.interactable = false;
-        myTimelord.checkCharactersToFadeAndAdvanceTime();
+        myTimeLord.checkCharactersToFadeAndAdvanceTime();
     }
 
     public void BTN_toggleDialogueWindow(bool isDialoguing)
     {
         if (!isDialoguing)
         {
-            myDialogueManager.getPartnerAt(myDialogueManager.selectedPartner + 1).isPresent = false;
-            myDialogueManager.getPartnerAt(myDialogueManager.selectedPartner + 1).returnTime = myTimelord.getCurrentTimestep() + 1;
-            myGameState.currentGameState = GameState.gameStates.PROWL;
-            myDialogueManager.setConversationMode(isDialoguing);
-            myDialogueManager.selectedPartner = -1;
+            myDialogueManager.endDialogue(isDialoguing);
         }
         else
         {
-            Character selectedCharacter = myDialogueManager.getPartnerAt(myDialogueManager.selectedPartner + 1);
-            if (selectedCharacter is DateableCharacter)
-            {
-                myDialogueManager.setConversationMode(isDialoguing);
-                myGameState.currentGameState = GameState.gameStates.CONVERSATION;
-                GameObject.FindObjectOfType<ConversationTracker>().beginConversation((DateableCharacter)selectedCharacter);
-            }
-            else
-            {
-                myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { myTipManager.getTip() });
-            }
+            myDialogueManager.beginDialogue(isDialoguing);
         }
     }
 

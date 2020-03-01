@@ -3525,7 +3525,7 @@ MonoBehaviour:
   interiorName: Cafe
   neutralDateResultDescription: Neut Cafe Result
   experienceDescription: Cafe Exp desc.
-  isDateScene: 0
+  isDateScene: 1
   isKnown: 1
   descriptionInterior: Cafe Desc.
   descriptionExterior: Shopping Ext Desc
@@ -3574,7 +3574,7 @@ MonoBehaviour:
   interiorName: Picnic Bench
   neutralDateResultDescription: Field Neut
   experienceDescription: Field Exp
-  isDateScene: 0
+  isDateScene: 1
   isKnown: 1
   descriptionInterior: I feel like I've seen a lot of this picnic bench...
   descriptionExterior: The breeze combes through the tall grass, stirring up a fresh
@@ -3601,7 +3601,7 @@ MonoBehaviour:
   interiorName: Grove
   neutralDateResultDescription: Neutral Date result Forest
   experienceDescription: Experience Desctiption Forest
-  isDateScene: 0
+  isDateScene: 1
   isKnown: 1
   descriptionInterior: Descript Int
   descriptionExterior: Descript Ext
@@ -3706,7 +3706,7 @@ MonoBehaviour:
   neutralDateResultDescription: West Neut
   experienceDescription: West Exp
   isDateScene: 1
-  isKnown: 1
+  isKnown: 0
   descriptionInterior: The club is really bumping. The rythmic bass is hypnotizing,
     and it's hard not to move your body to the beat.
   descriptionExterior: This part of town is known for it's impurity. But everyone
@@ -3733,8 +3733,8 @@ MonoBehaviour:
   interiorName: Sand Dunes
   neutralDateResultDescription: The soft waves roll onto the shore.
   experienceDescription: Beach Exp
-  isDateScene: 0
-  isKnown: 1
+  isDateScene: 1
+  isKnown: 0
   descriptionInterior: These dunes remind me of the animated film, "Aladdin". Going
     on a date here would be like Jasmine and Aladdin together in their castle in the
     sand.
@@ -3761,8 +3761,8 @@ MonoBehaviour:
   interiorName: Hot Spring
   neutralDateResultDescription: Mount Neut
   experienceDescription: Mount Exp
-  isDateScene: 0
-  isKnown: 1
+  isDateScene: 1
+  isKnown: 0
   descriptionInterior: Talk about a hidden gem. This water is so revitalizing.
   descriptionExterior: Traversing the mountainside is a fun, challenging adventure.
     Stay on the lookout for cougers!

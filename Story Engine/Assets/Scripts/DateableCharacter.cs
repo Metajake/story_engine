@@ -10,11 +10,13 @@ public class DateableCharacter : Character {
 	public int experienceCount;
     public int[] locationPreferences;
     public int league;
+    public int dateCount;
 
     void Start () {
 
         DialogueManager dm = GameObject.FindObjectOfType<DialogueManager>();
 		experienceCount = 0;
+		dateCount = 0;
         returnTime = 0;
 
 		if(givenName.ToLower() == "kristie"){

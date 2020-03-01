@@ -183,16 +183,17 @@ public class RelationshipCounselor : MonoBehaviour {
         return false;
     }
 
-	public void leaveDate(){
-		isAtDate = false;
+	public void leaveDate()
+    {
+        isAtDate = false;
         mySceneCatalogue.toggleInteriorScene();
         myGameState.currentGameState = GameState.gameStates.PROWL;
         myUIManager.resetDateButtons();
         myAudioConductor.fadeOutCurrentMusic();
         getCurrentDateFromScheduledDateList().isOver = true;
-	}
+    }
 
-	public void act(){
+    public void act(){
         if(myGameState.currentGameState == GameState.gameStates.DATEINTRO)
         {
             myGameState.currentGameState = GameState.gameStates.DATE;
@@ -222,6 +223,7 @@ public class RelationshipCounselor : MonoBehaviour {
             myAnimationMaestro.showNeutralDescriptionText();
             Debug.Log("Contextual pre-programmed neutral location description (which we will eventually do).");
         }else{
+            she.experienceCount++;
             getCurrentDateFromScheduledDateList().experienceAchieved = true;
             myVictoryCoach.achieveNextExperience(true);
         }

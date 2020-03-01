@@ -17,8 +17,11 @@ public class DialogueManager : MonoBehaviour {
     private Timelord myTimeLord;
     private SceneCatalogue mySceneCatalogue;
     private RelationshipCounselor myRelationshipCounselor;
+    private GameState myGameState;
+    private CommandProcessor myCommandProcessor;
+    private TipManager myTipManager;
 
-	public void registerDialogue(DialoguePiece piece){
+    public void registerDialogue(DialoguePiece piece){
 		this.pieces.Add(piece);
 	}
 
@@ -29,15 +32,17 @@ public class DialogueManager : MonoBehaviour {
 		this.charactersPresent = new List<Character>();
 	}
 
-	// Use this for initialization
 	void Start ()
     {
-        this.allDateableCharacters = new List<DateableCharacter>(this.GetComponents<DateableCharacter>());
-        this.allMinorCharacters = new List<MinorCharacter>(this.GetComponents<MinorCharacter>());
-
         myTimeLord = GameObject.FindObjectOfType<Timelord>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
+        myGameState = GameObject.FindObjectOfType<GameState>();
+        myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
+        myTipManager = GameObject.FindObjectOfType<TipManager>();
+
+        this.allDateableCharacters = new List<DateableCharacter>(this.GetComponents<DateableCharacter>());
+        this.allMinorCharacters = new List<MinorCharacter>(this.GetComponents<MinorCharacter>());
 
         initializeAllCharacters();
         this.scatterCharacters("Kristie");
@@ -55,9 +60,6 @@ public class DialogueManager : MonoBehaviour {
             this.allCharacters.Add((Character)mc);
         }
     }
-
-    void Update () {
-	}
 
     public List<Character> getAllCurrentLocalPresentConversationPartners(){
 		List<Character> toReturn = new List<Character>();
@@ -165,6 +167,30 @@ public class DialogueManager : MonoBehaviour {
                     }
                 }
             }
+        }
+    }
+
+    public void endDialogue(bool isDialoguing)
+    {
+        this.getPartnerAt(this.selectedPartner + 1).isPresent = false;
+        this.getPartnerAt(this.selectedPartner + 1).returnTime = myTimeLord.getCurrentTimestep() + 1;
+        myGameState.currentGameState = GameState.gameStates.PROWL;
+        this.setConversationMode(isDialoguing);
+        this.selectedPartner = -1;
+    }
+
+    public void beginDialogue(bool isDialoguing)
+    {
+        Character selectedCharacter = this.getPartnerAt(this.selectedPartner + 1);
+        if (selectedCharacter is DateableCharacter)
+        {
+            this.setConversationMode(isDialoguing);
+            myGameState.currentGameState = GameState.gameStates.CONVERSATION;
+            GameObject.FindObjectOfType<ConversationTracker>().beginConversation((DateableCharacter)selectedCharacter);
+        }
+        else
+        {
+            myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { myTipManager.getTip() });
         }
     }
 }

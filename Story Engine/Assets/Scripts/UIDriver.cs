@@ -11,7 +11,6 @@ public class UIDriver : MonoBehaviour, IEventSubscriber {
 	private DialogueManager myDialogueManager;
 	private Timelord myTimelord;
 	private AnimationMaestro myAnimationMaestro;
-	private InputOrganizer myInputOrganizer;
 	private SceneCatalogue mySceneCatalogue;
 	private UIManager myUIManager;
 	private RelationshipCounselor myRelationshipCounselor;
@@ -26,7 +25,6 @@ public class UIDriver : MonoBehaviour, IEventSubscriber {
 		myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
 		myTimelord = GameObject.FindObjectOfType<Timelord>();
 		myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
-		myInputOrganizer = GameObject.FindObjectOfType<InputOrganizer>();
 		myUIManager = GameObject.FindObjectOfType<UIManager>();
 		myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
 		myEventQueue = GameObject.FindObjectOfType<EventQueue>();

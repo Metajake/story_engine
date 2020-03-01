@@ -12,7 +12,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     private EventQueue myEventQueue;
     private AnimationMaestro myAnimationMaestro;
     private DialogueManager myDialogueManager;
-
+    private ConversationTracker myConversationTracker;
     private List<IKnownLocationsChangedObserver> currentObservers;
 
     void Awake() {
@@ -21,17 +21,14 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     }
 
     void Start () {
-        startingSceneNumber = 7;
-        isInInteriorScene = true; // Start Player out in apartment
-
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
-    }
+        myConversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
 
-    void Update () {
-		
-	}
+        startingSceneNumber = 7;
+        isInInteriorScene = true; // Start Player out in apartment
+    }
 
     public int getLocationCount(){
         return this.locations.Count;
@@ -43,6 +40,17 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
             result.Add(local.locationName);
         }
         return result;
+    }
+
+    public void setLocationIsDateScene(string locationName, bool isDateScene)
+    {
+        foreach(Location local in locations)
+        {
+            if (local.locationName.ToLower() == locationName.ToLower())
+            {
+                local.isDateScene = isDateScene;
+            }
+        }
     }
 
     public string getLocationDescription()
@@ -114,29 +122,6 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 	public string neutralResultForCurrentLocationDescription(){
         return getCurrentLocation().neutralDateResultDescription;
 	}
-
-	public List<Location> getDateScenes(){
-
-        List<Location> dateScenes = new List<Location>();
-
-		foreach (Location local in this.locations){
-			if(local.isDateScene){
-				dateScenes.Add(local);
-			}
-		}
-		return dateScenes;
-	}
-
-    public List<string> getDateSceneNames(){
-        List<string> dateLocationNames = new List<string>();
-        foreach(Location local in this.locations){
-            if(local.isDateScene){
-                dateLocationNames.Add(local.interiorName);
-            }
-        }
-        return dateLocationNames;
-    }
-
 
     public Location revealRandomUnknownLocation()
     {
@@ -216,6 +201,35 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         }
         return results;
     }
+
+    public List<Location> getDateScenes()
+    {
+
+        List<Location> dateScenes = new List<Location>();
+
+        foreach (Location local in this.locations)
+        {
+            if (local.isDateScene)
+            {
+                dateScenes.Add(local);
+            }
+        }
+        return dateScenes;
+    }
+
+    public List<string> getDateSceneNames()
+    {
+        List<string> dateLocationNames = new List<string>();
+        foreach (Location local in this.locations)
+        {
+            if (local.isDateScene)
+            {
+                dateLocationNames.Add(local.interiorName);
+            }
+        }
+        return dateLocationNames;
+    }
+
 
     public List<string> getKnownDateSceneNames(){
         List<string> knownDateSceneNames = new List<string>();
