@@ -19,7 +19,6 @@ public class UIManager : MonoBehaviour {
     private Timelord myTimelord;
     private AnimationMaestro myAnimationMaestro;
     private InputOrganizer myInputOrganizer;
-    private VictoryCoach myVictoryCoach;
 
     public GameObject dialoguePanel;
     public GameObject mainPanel;
@@ -51,8 +50,6 @@ public class UIManager : MonoBehaviour {
 
     public bool mapEnabled;
     public bool journalEnabled;
-
-    private List<Character> previouslyPresentCharacters;
     
     void Awake()
     {
@@ -105,12 +102,11 @@ public class UIManager : MonoBehaviour {
 	
 	void Update ()
 	{
-        enableComponentsForState(myGameState.currentGameState);
-        populateComponentsForState(myGameState.currentGameState);
-        myInputOrganizer.updateUIComponents();
+        updateUIComponentsForState(myGameState.currentGameState);
+        updateUIFromInput();
     }
 
-    private void enableComponentsForState(GameState.gameStates currentState)
+    private void updateUIComponentsForState(GameState.gameStates currentState)
     {
         this.deactivateUIComponents();
 
@@ -123,6 +119,7 @@ public class UIManager : MonoBehaviour {
         else if(currentState == GameState.gameStates.CUTSCENE)
         {
             cutScenePanel.SetActive(true);
+            cutScenePanel.GetComponentInChildren<Text>().text = cutSceneTextToWrite;
         }
         else if(currentState == GameState.gameStates.PROWL)
         {
@@ -139,7 +136,15 @@ public class UIManager : MonoBehaviour {
                 mainPanel.SetActive(false);
                 journalPanel.SetActive(true);
             }
-        }else if (currentState == GameState.gameStates.CONVERSATION)
+
+            if (!mapEnabled && !journalEnabled)
+            {
+                this.updateLocationDescription();
+                myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+                updateSelectedPartnerUI();
+            }
+        }
+        else if (currentState == GameState.gameStates.CONVERSATION)
         {
             dialoguePanel.SetActive(true);
             characterPanel.gameObject.SetActive(true);
@@ -147,49 +152,15 @@ public class UIManager : MonoBehaviour {
         }else if(currentState == GameState.gameStates.DATEINTRO)
         {
             enableDateComponents();
-        }
-        else if (currentState == GameState.gameStates.DATE)
-        {
-            enableDateComponents();
-        }
-        else if (currentState == GameState.gameStates.DATEOUTRO)
-        {
-            enableDateComponents();
-            characterPanel.gameObject.SetActive(false);
-        }
-    }
-
-    private void populateComponentsForState(GameState.gameStates currentState)
-    {
-        if (currentState == GameState.gameStates.COMMANDSEQUENCE)
-        {
-        }
-        else if(currentState == GameState.gameStates.CUTSCENE)
-        {
-            cutScenePanel.GetComponentInChildren<Text>().text = cutSceneTextToWrite;
-        }
-        else if (currentState == GameState.gameStates.PROWL)
-        {
-            if (!mapEnabled && !journalEnabled)
-            {
-                this.updateLocationDescription();
-                myAnimationMaestro.updatePotentialPartnersSprites( myDialogueManager.getAllCurrentLocalPresentConversationPartners() );
-                updateSelectedPartnerUI();
-            }
-        }
-        else if (currentState == GameState.gameStates.CONVERSATION)
-        {
-            
-        }else if (currentState == GameState.gameStates.DATEINTRO)
-        {
             myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() {
                 myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
             });
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
             myAnimationMaestro.writeDescriptionText(mySceneCatalogue.getCurrentLocation().descriptionDate, textPanel);
         }
-        else if(currentState == GameState.gameStates.DATE)
+        else if (currentState == GameState.gameStates.DATE)
         {
+            enableDateComponents();
             myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() {
                 myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
             });
@@ -197,6 +168,8 @@ public class UIManager : MonoBehaviour {
         }
         else if (currentState == GameState.gameStates.DATEOUTRO)
         {
+            enableDateComponents();
+            characterPanel.gameObject.SetActive(false);
             dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
             myAnimationMaestro.writeDescriptionText("One good date can change your life.", textPanel);
         }
@@ -299,6 +272,15 @@ public class UIManager : MonoBehaviour {
     public void activateDialogueOptionsUI()
     {
         dialogueOptionsPanel.SetActive(true);
+    }
+
+    private void updateUIFromInput()
+    {
+        //Handle Game Menu UI
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            menuPanel.gameObject.SetActive(!menuPanel.gameObject.activeSelf);
+        }
     }
 
 }

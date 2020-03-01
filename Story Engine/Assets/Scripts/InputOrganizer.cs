@@ -113,15 +113,6 @@ public class InputOrganizer : MonoBehaviour {
         myTimelord.checkCharactersToFadeAndAdvanceTime();
     }
 
-    public void updateUIComponents()
-    {
-        //Handle Game Menu UI
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            myUIManager.menuPanel.gameObject.SetActive(!myUIManager.menuPanel.gameObject.activeSelf);
-        }
-    }
-
     public void BTN_toggleDialogueWindow(bool isDialoguing)
     {
         if (!isDialoguing)
