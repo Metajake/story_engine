@@ -138,8 +138,8 @@ public class InputOrganizer : MonoBehaviour {
             if (selectedCharacter is DateableCharacter)
             {
                 myDialogueManager.setConversationMode(isDialoguing);
-                GameObject.FindObjectOfType<ConversationTracker>().beginConversation((DateableCharacter)selectedCharacter);
                 myGameState.currentGameState = GameState.gameStates.CONVERSATION;
+                GameObject.FindObjectOfType<ConversationTracker>().beginConversation((DateableCharacter)selectedCharacter);
             }
             else
             {

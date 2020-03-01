@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour {
     public GameObject journalPanel;
     public GameObject menuPanel;
     private GameObject dialogueButtonPanel;
-    private GameObject dialogueOptionsButtonPanel;
+    private GameObject dialogueOptionsPanel;
     private GameObject dateLocationButtonPanel;
     private GameObject mainPanelButtonsPanel;
     private GameObject dateButtonsPanel;
@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour {
     public Text pastDatesText;
     public Text upcomingDatesText;
     public Text experiencesText;
-    private String cutSceneTextToWrite;
+    public String cutSceneTextToWrite;
 
     GameObject talkButtonObject;
     GameObject dateActionButton;
@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour {
 
 
         dialogueButtonPanel = GameObject.Find("DialogueButtonPanel");
-        dialogueOptionsButtonPanel = GameObject.Find("DialogueOptionsButtonPanel");
+        dialogueOptionsPanel = GameObject.Find("DialogueOptionsButtonPanel");
         dateLocationButtonPanel = GameObject.Find("LocationButtonPanel");
         mainPanelButtonsPanel = GameObject.Find("MainPanelButtonsPanel");
         dateButtonsPanel = GameObject.Find("DateButtonsPanel");
@@ -275,7 +275,7 @@ public class UIManager : MonoBehaviour {
     }
 
 	public void enableOnlyBye(){
-		dialogueOptionsButtonPanel.SetActive(false);
+		dialogueOptionsPanel.SetActive(false);
 		departConversationButton.gameObject.SetActive(true);
         departConversationButton.enabled = true;
 	}   
@@ -296,13 +296,9 @@ public class UIManager : MonoBehaviour {
         this.dateLocationButtonPanel.SetActive(false);
     }
 
-    public void activateDialogueButtons()
+    public void activateDialogueOptionsUI()
     {
-        dialogueOptionsButtonPanel.SetActive(true);
+        dialogueOptionsPanel.SetActive(true);
     }
 
-    internal void updateCutSceneTextContent(string textToWrite)
-    {
-        cutSceneTextToWrite = textToWrite;
-    }
 }

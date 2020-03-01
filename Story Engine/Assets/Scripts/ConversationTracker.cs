@@ -4,28 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ConversationTracker : MonoBehaviour {
-
-	public Conversation currentConversation;
-	private List<Conversation> pastConversations;
-
-	private TextScroller dialogueTextScroller;
+    private TextScroller dialogueTextScroller;
     private DialogueManager myDialogueManager;
-    private UIManager uiManager;
+    private UIManager myUIManager;
     private Timelord myTimelord;
     private RelationshipCounselor myRelationshipCounselor;
+
+    public Conversation currentConversation;
+	private List<Conversation> pastConversations;
 
     public void Start()
 	{
 		dialogueTextScroller = GameObject.Find("DialogueTextScroller").GetComponent<TextScroller>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
-        uiManager = GameObject.FindObjectOfType<UIManager>();
+        myUIManager = GameObject.FindObjectOfType<UIManager>();
         myTimelord = GameObject.FindObjectOfType<Timelord>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
     }
 
-	public void beginConversation(DateableCharacter speaker)
+    public void beginConversation(DateableCharacter speaker)
     {
-        uiManager.activateDialogueButtons();
+        myUIManager.activateDialogueOptionsUI();
         List<string> greetingTags = new List<string>();
         greetingTags.Add("greeting");
         if (speaker.permanentOpinion < 0)
@@ -227,7 +226,7 @@ public class ConversationTracker : MonoBehaviour {
     {
         dialogueTextScroller.SetText( "Where would you like to go for our date?");
 
-        uiManager.showLocationOptions();
+        myUIManager.showLocationOptions();
         this.currentConversation.lastChosenOption = Conversation.SpeechOption.ASK_ON_DATE;
     }
 
@@ -236,7 +235,7 @@ public class ConversationTracker : MonoBehaviour {
         int randomTimestepFromPresent = new System.Random().Next(0, 19);
         int randomDateTime = myTimelord.getCurrentTimestep() + randomTimestepFromPresent;
         myRelationshipCounselor.createDate(location, randomDateTime, this.currentConversation.speaker);
-        uiManager.hideLocationOptions();
+        myUIManager.hideLocationOptions();
         endConversation("Sounds good. see you " + myTimelord.getTimeString(randomDateTime) + "!");
     }
 
@@ -246,7 +245,7 @@ public class ConversationTracker : MonoBehaviour {
         tags.AddRange(new List<string>() { "departure", "deflection" });
         dialogueTextScroller.SetText( farewell == "" ? myDialogueManager.getDialogueForTags(tags).dialogueContent : farewell);
 
-        uiManager.enableOnlyBye();
+        myUIManager.enableOnlyBye();
         this.currentConversation.opinion = 0;
     }
 
