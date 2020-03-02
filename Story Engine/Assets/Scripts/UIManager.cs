@@ -86,18 +86,16 @@ public class UIManager : MonoBehaviour {
         upcomingDatesText = GameObject.Find("UpcomingDates").GetComponentInChildren<Text>();
         experiencesText = GameObject.Find("ExperiencesList").GetComponentInChildren<Text>();
 
-        talkButtonObject = GameObject.Find("TalkButton");
         dateActionButton = GameObject.Find("DateActionButton");
         departConversationButton = GameObject.Find("Depart").GetComponent<Button>();
         askOnDateButton = GameObject.Find("AskOut");
         mapButton = GameObject.Find("MapButton");
 
-        dateLocationButtonPanel.SetActive(false);
-		myAnimationMaestro.clearPotentialPartners();
-
 		mapEnabled = false;
         journalEnabled = false;
         menuPanel.gameObject.SetActive(false);
+        dateLocationButtonPanel.SetActive(false);
+		myAnimationMaestro.clearPotentialPartners();
     }
 	
 	void Update ()
@@ -141,7 +139,7 @@ public class UIManager : MonoBehaviour {
             {
                 this.updateLocationDescription();
                 myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-                updateSelectedPartnerUI();
+                myInputOrganizer.updateSelectedPartnerButtonUI();
             }
         }
         else if (currentState == GameState.gameStates.CONVERSATION)
@@ -205,28 +203,6 @@ public class UIManager : MonoBehaviour {
             toReturn = true;
         }
         return toReturn;
-    }
-
-    private void updateSelectedPartnerUI()
-    {
-        bool partners = myDialogueManager.charactersPresent.Count > 0;
-
-        talkButtonObject.SetActive(partners);
-
-        if (partners && myDialogueManager.selectedPartner < 0)
-        {
-            onPortraitClicked(new System.Random().Next(1, myDialogueManager.charactersPresent.Count + 1));
-        }
-    }
-
-    public void onPortraitClicked(int portraitNumber)
-    {
-        Character clickedCharacter = myDialogueManager.getPartnerAt(portraitNumber);
-        if (clickedCharacter != null)
-        {
-            myDialogueManager.selectedPartner = portraitNumber - 1;
-            talkButtonObject.GetComponentInChildren<Text>().text = "Talk to " + clickedCharacter.givenName;
-        }
     }
 
     private void updateLocationDescription()

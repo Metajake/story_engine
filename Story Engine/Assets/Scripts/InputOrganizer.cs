@@ -21,6 +21,7 @@ public class InputOrganizer : MonoBehaviour {
     public GameObject dateLocationButtonPrefab;
     private Button timeAdvanceButton;
     private Button toggleInteriorSceneButton;
+    private GameObject talkButtonObject;
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class InputOrganizer : MonoBehaviour {
 
         timeAdvanceButton = GameObject.Find("TimeButton").GetComponent<Button>();
         toggleInteriorSceneButton = GameObject.Find("DateLocationButton").GetComponent<Button>();
+        talkButtonObject = GameObject.Find("TalkButton");
     }
 
     public void createDateLocationButtons()
@@ -167,5 +169,25 @@ public class InputOrganizer : MonoBehaviour {
     public void BTN_dateAction()
     {
         myRelationshipCounselor.act();
+    }
+
+    public  void updateSelectedPartnerButtonUI()
+    {
+        bool partners = myDialogueManager.charactersPresent.Count > 0;
+        talkButtonObject.SetActive(partners);
+        if (partners && myDialogueManager.selectedPartner < 0)
+        {
+            this.onPortraitClicked(new System.Random().Next(1, myDialogueManager.charactersPresent.Count + 1));
+        }
+    }
+
+    public void onPortraitClicked(int portraitNumber)
+    {
+        Character clickedCharacter = myDialogueManager.getPartnerAt(portraitNumber);
+        if (clickedCharacter != null)
+        {
+            myDialogueManager.selectedPartner = portraitNumber - 1;
+            talkButtonObject.GetComponentInChildren<Text>().text = "Talk to " + clickedCharacter.givenName;
+        }
     }
 }

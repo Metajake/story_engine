@@ -12,7 +12,6 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     private EventQueue myEventQueue;
     private AnimationMaestro myAnimationMaestro;
     private DialogueManager myDialogueManager;
-    private ConversationTracker myConversationTracker;
     private List<IKnownLocationsChangedObserver> currentObservers;
 
     void Awake() {
@@ -24,7 +23,6 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
-        myConversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
 
         startingSceneNumber = 7;
         isInInteriorScene = true; // Start Player out in apartment
