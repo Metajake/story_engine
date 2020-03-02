@@ -33,6 +33,12 @@ public class RelationshipCounselor : MonoBehaviour {
         ConstructDateLikelihoods();
     }
 
+    void Update()
+    {
+        this.expireOldDates();
+        this.checkStartDate();
+    }
+
     private void ConstructDateLikelihoods()
     {
         actionLikelihoodMatrix = new Dictionary<String, Dictionary<int, int>>();
@@ -55,12 +61,6 @@ public class RelationshipCounselor : MonoBehaviour {
         actionLikelihoodMatrix.Add("experience", expReactions);
     }
 
-    public void updateDates()
-    {
-        this.expireOldDates();
-        this.checkStartDate();
-    }
-
     private void expireOldDates()
     {
         foreach (Date d in getAllDates())
@@ -68,6 +68,25 @@ public class RelationshipCounselor : MonoBehaviour {
             if (d.dateTime < myTimelord.getCurrentTimestep())
             {
                 d.isOver = true;
+            }
+        }
+    }
+
+    private void checkStartDate()
+    {
+        if (myGameState.currentGameState == GameState.gameStates.PROWL)
+        {
+            if (mySceneCatalogue.getIsInInteriorScene())
+            {
+                if (hasDateAtPresentTimeInPresentLocationAndDateNotOver())
+                {
+                    isAtDate = true;
+                    myAudioConductor.startMusic(mySceneCatalogue.getCurrentSceneName(), myTimelord.getCurrentModulusTimestep());
+                    myGameState.currentGameState = GameState.gameStates.DATEINTRO;
+                    myEventQueue.queueEvent(new EventDateStart());
+                    DateableCharacter datePartner = this.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep());
+                    datePartner.dateCount++;
+                }
             }
         }
     }
@@ -82,29 +101,6 @@ public class RelationshipCounselor : MonoBehaviour {
         date.isOver = false;
 		this.scheduledDates.Add(date);
 	}
-
-    private void checkStartDate()
-    {
-        if (myGameState.currentGameState == GameState.gameStates.PROWL)
-        {
-            if (mySceneCatalogue.getIsInInteriorScene())
-            {
-                if (hasDateAtPresentTimeInPresentLocationAndDateNotOver())
-                {
-                    isAtDate = true;
-                    myAudioConductor.startMusic(mySceneCatalogue.getCurrentSceneName(), myTimelord.getCurrentModulusTimestep());
-                    myGameState.currentGameState = GameState.gameStates.DATEINTRO;
-                    myEventQueue.queueEvent(new EventDateStart());
-                    this.incrementCharacterDateCount( this.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep()) );
-                }
-            }
-        }
-    }
-
-    private void incrementCharacterDateCount(DateableCharacter charToIncrement)
-    {
-        charToIncrement.dateCount++;
-    }
 
     public DateableCharacter getDatePartner(Location dateLocation, int dateTime){
 		DateableCharacter toReturn = null;
@@ -165,7 +161,6 @@ public class RelationshipCounselor : MonoBehaviour {
         return allDatesInfo;
     }
 
-    // TODO Separate into two methods
     private string stringifyAndSortDates(List<Date> allDates)
     {
         allDates.Sort((x, y) => x.dateTime.CompareTo(y.dateTime));
@@ -196,6 +191,16 @@ public class RelationshipCounselor : MonoBehaviour {
         myUIManager.resetDateButtons();
         myAudioConductor.fadeOutCurrentMusic();
         getCurrentDateFromScheduledDateList().isOver = true;
+    }
+
+    public bool getDateAbandonedOrExperienced()
+    {
+        bool toReturn = false;
+        if (getCurrentDateFromScheduledDateList().experienceAchieved || getCurrentDateFromScheduledDateList().isAbandoned)
+        {
+            toReturn = true;
+        }
+        return toReturn;
     }
 
     public void act(){

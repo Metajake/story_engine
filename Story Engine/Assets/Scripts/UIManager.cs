@@ -101,8 +101,6 @@ public class UIManager : MonoBehaviour {
 	
 	void Update ()
 	{
-        myRelationshipCounselor.updateDates();
-
         updateUIComponentsForState(myGameState.currentGameState);
         updateUIFromInput();
     }
@@ -113,67 +111,104 @@ public class UIManager : MonoBehaviour {
 
         if(currentState == GameState.gameStates.COMMANDSEQUENCE)
         {
-            mainPanel.SetActive(true);
-            sequenceButtonsPanel.SetActive(true);
-            characterPanel.gameObject.SetActive(true);
+            updateUIForCommandSequenceState();
         }
         else if(currentState == GameState.gameStates.CUTSCENE)
         {
-            cutScenePanel.SetActive(true);
-            cutScenePanel.GetComponentInChildren<Text>().text = cutSceneTextToWrite;
+            updateUIForCutSceneState();
         }
         else if(currentState == GameState.gameStates.PROWL)
         {
-            mainPanel.SetActive(true);
-            mainPanelButtonsPanel.SetActive(true);
-            mapButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
-            characterPanel.gameObject.SetActive(true);
-            if (this.mapEnabled)
-            {
-                mainPanel.SetActive(false);
-                mapPanel.SetActive(true);
-            }else if (this.journalEnabled)
-            {
-                mainPanel.SetActive(false);
-                journalPanel.SetActive(true);
-            }
-
-            if (!mapEnabled && !journalEnabled)
-            {
-                this.updateLocationDescription();
-                myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-                this.updateSelectedPartnerButtonUI();
-            }
+            updateUIForProwlState();
         }
         else if (currentState == GameState.gameStates.CONVERSATION)
         {
-            dialoguePanel.SetActive(true);
-            characterPanel.gameObject.SetActive(true);
-            askOnDateButton.SetActive(myConversationTracker.canAskOnDateEnabled());
-        }else if(currentState == GameState.gameStates.DATEINTRO)
+            updateUIForConversationState();
+        }
+        else if(currentState == GameState.gameStates.DATEINTRO)
         {
-            enableDateComponents();
-            myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() {
-                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
-            });
-            dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
-            myAnimationMaestro.writeDescriptionText(mySceneCatalogue.getCurrentLocation().descriptionDate, textPanel);
+            updateUIForDateIntroState();
         }
         else if (currentState == GameState.gameStates.DATE)
         {
-            enableDateComponents();
-            myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() {
-                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
-            });
-            dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
+            updateUIForDateState();
         }
         else if (currentState == GameState.gameStates.DATEOUTRO)
         {
-            enableDateComponents();
-            characterPanel.gameObject.SetActive(false);
-            dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
-            myAnimationMaestro.writeDescriptionText("One good date can change your life.", textPanel);
+            updateUIForDateOutroState();
         }
+    }
+
+    private void updateUIForDateOutroState()
+    {
+        enableDateComponents();
+        characterPanel.gameObject.SetActive(false);
+        dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
+        myAnimationMaestro.writeDescriptionText("One good date can change your life.", textPanel);
+    }
+
+    private void updateUIForDateState()
+    {
+        enableDateComponents();
+        myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() {
+                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
+            });
+        dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
+    }
+
+    private void updateUIForDateIntroState()
+    {
+        enableDateComponents();
+        myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() {
+                myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
+            });
+        dateActionButton.GetComponentInChildren<Text>().text = mySceneCatalogue.getCurrentLocation().currentDateAction;
+        myAnimationMaestro.writeDescriptionText(mySceneCatalogue.getCurrentLocation().descriptionDate, textPanel);
+    }
+
+    private void updateUIForConversationState()
+    {
+        dialoguePanel.SetActive(true);
+        characterPanel.gameObject.SetActive(true);
+        askOnDateButton.SetActive(myConversationTracker.canAskOnDateEnabled());
+    }
+
+    private void updateUIForProwlState()
+    {
+        mainPanel.SetActive(true);
+        mainPanelButtonsPanel.SetActive(true);
+        mapButton.SetActive(!mySceneCatalogue.getIsInInteriorScene());
+        characterPanel.gameObject.SetActive(true);
+        if (this.mapEnabled)
+        {
+            mainPanel.SetActive(false);
+            mapPanel.SetActive(true);
+        }
+        else if (this.journalEnabled)
+        {
+            mainPanel.SetActive(false);
+            journalPanel.SetActive(true);
+        }
+
+        if (!mapEnabled && !journalEnabled)
+        {
+            this.updateLocationDescription();
+            myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+            this.updateSelectedPartnerButtonUI();
+        }
+    }
+
+    private void updateUIForCutSceneState()
+    {
+        cutScenePanel.SetActive(true);
+        cutScenePanel.GetComponentInChildren<Text>().text = cutSceneTextToWrite;
+    }
+
+    private void updateUIForCommandSequenceState()
+    {
+        mainPanel.SetActive(true);
+        sequenceButtonsPanel.SetActive(true);
+        characterPanel.gameObject.SetActive(true);
     }
 
     private void deactivateUIComponents()
@@ -195,17 +230,7 @@ public class UIManager : MonoBehaviour {
         mainPanel.SetActive(true);
         characterPanel.gameObject.SetActive(true);
         dateButtonsPanel.SetActive(myRelationshipCounselor.isAtDate);
-        dateActionButton.SetActive(!getDateAbandonedOrExperienced());
-    }
-
-    private bool getDateAbandonedOrExperienced()
-    {
-        bool toReturn = false;
-        if (myRelationshipCounselor.getCurrentDateFromScheduledDateList().experienceAchieved || myRelationshipCounselor.getCurrentDateFromScheduledDateList().isAbandoned)
-        {
-            toReturn = true;
-        }
-        return toReturn;
+        dateActionButton.SetActive(!myRelationshipCounselor.getDateAbandonedOrExperienced());
     }
 
     private void updateLocationDescription()
