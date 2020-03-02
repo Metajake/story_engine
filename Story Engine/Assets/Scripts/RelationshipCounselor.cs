@@ -4,25 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RelationshipCounselor : MonoBehaviour {
-
-	private List<Date> scheduledDates;
-	private Timelord myTimelord;
+    private List<Date> scheduledDates;
+    private Timelord myTimelord;
     private SceneCatalogue mySceneCatalogue;
-	private UIManager myUIManager;
+    private UIManager myUIManager;
     private EventQueue myEventQueue;
     private AnimationMaestro myAnimationMaestro;
-	public bool isAtDate;
-	public VictoryCoach myVictoryCoach;
+    public VictoryCoach myVictoryCoach;
     private GameState myGameState;
-    public int loveChanceIncrement;
-
-    private Dictionary<String, Dictionary<int, int>> actionLikelihoodMatrix;
     private AudioConductor myAudioConductor;
 
-    void Start ()
+    private Dictionary<String, Dictionary<int, int>> actionLikelihoodMatrix;
+    public int loveChanceIncrement;
+    public bool isAtDate;
+
+    void Start()
     {
-		scheduledDates = new List<Date>();
-		myTimelord = GameObject.FindObjectOfType<Timelord>();
+        scheduledDates = new List<Date>();
+        myTimelord = GameObject.FindObjectOfType<Timelord>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myUIManager = GameObject.FindObjectOfType<UIManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
@@ -30,7 +29,7 @@ public class RelationshipCounselor : MonoBehaviour {
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
         myAudioConductor = FindObjectOfType<AudioConductor>();
-        
+
         ConstructDateLikelihoods();
     }
 
@@ -56,10 +55,10 @@ public class RelationshipCounselor : MonoBehaviour {
         actionLikelihoodMatrix.Add("experience", expReactions);
     }
 
-	void Update ()
+    public void updateDates()
     {
-        expireOldDates();
-        checkStartDate();
+        this.expireOldDates();
+        this.checkStartDate();
     }
 
     private void expireOldDates()
@@ -96,9 +95,15 @@ public class RelationshipCounselor : MonoBehaviour {
                     myAudioConductor.startMusic(mySceneCatalogue.getCurrentSceneName(), myTimelord.getCurrentModulusTimestep());
                     myGameState.currentGameState = GameState.gameStates.DATEINTRO;
                     myEventQueue.queueEvent(new EventDateStart());
+                    this.incrementCharacterDateCount( this.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep()) );
                 }
             }
         }
+    }
+
+    private void incrementCharacterDateCount(DateableCharacter charToIncrement)
+    {
+        charToIncrement.dateCount++;
     }
 
     public DateableCharacter getDatePartner(Location dateLocation, int dateTime){

@@ -12,6 +12,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     private EventQueue myEventQueue;
     private AnimationMaestro myAnimationMaestro;
     private DialogueManager myDialogueManager;
+    private ConversationTracker myConversationTracker;
     private List<IKnownLocationsChangedObserver> currentObservers;
 
     void Awake() {
@@ -23,6 +24,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
+        myConversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
 
         startingSceneNumber = 7;
         isInInteriorScene = true; // Start Player out in apartment
@@ -40,6 +42,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         return result;
     }
 
+    //TODO find out if Unity editor is using this and remove if not
     public void setLocationIsDateScene(string locationName, bool isDateScene)
     {
         foreach(Location local in locations)
@@ -202,49 +205,19 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 
     public List<Location> getDateScenes()
     {
-
         List<Location> dateScenes = new List<Location>();
 
         foreach (Location local in this.locations)
         {
-            if (local.isDateScene)
+            if (local.isDateScene && local.isKnown)
+            {
+                dateScenes.Add(local);
+            }
+            if (local.locationName.ToLower() == "residential district" && (myConversationTracker.currentConversation.speaker.dateCount >= 2))
             {
                 dateScenes.Add(local);
             }
         }
         return dateScenes;
-    }
-
-    public List<string> getDateSceneNames()
-    {
-        List<string> dateLocationNames = new List<string>();
-        foreach (Location local in this.locations)
-        {
-            if (local.isDateScene)
-            {
-                dateLocationNames.Add(local.interiorName);
-            }
-        }
-        return dateLocationNames;
-    }
-
-
-    public List<string> getKnownDateSceneNames(){
-        List<string> knownDateSceneNames = new List<string>();
-        foreach (Location local in this.locations){
-            if (local.isDateScene && local.isKnown){
-                knownDateSceneNames.Add(local.interiorName);
-            }
-        }
-        return knownDateSceneNames;
-    }
-
-    public Boolean isKnownDateLocation(string locationName){
-        foreach(string sName in this.getKnownDateSceneNames()){
-            if(sName == locationName){
-                return true;
-            }
-        }
-        return false;
     }
 }

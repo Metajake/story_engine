@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour {
 
     private GameState myGameState;
     private DialogueManager myDialogueManager;
-    private ConversationTracker conversationTracker;
+    private ConversationTracker myConversationTracker;
     private SceneCatalogue mySceneCatalogue;
     private TipManager myTipManager;
     private RelationshipCounselor myRelationshipCounselor;
@@ -41,11 +41,11 @@ public class UIManager : MonoBehaviour {
     public Text experiencesText;
     public String cutSceneTextToWrite;
 
-    GameObject talkButtonObject;
     GameObject dateActionButton;
     Button departConversationButton;
     GameObject askOnDateButton;
     GameObject mapButton;
+    public GameObject talkButtonObject;
     public GameObject dateLocationButton;
 
     public bool mapEnabled;
@@ -63,7 +63,7 @@ public class UIManager : MonoBehaviour {
     {
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         myTimelord = GameObject.FindObjectOfType<Timelord>();
-        conversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
+        myConversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
 		myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
         myInputOrganizer = GameObject.FindObjectOfType<InputOrganizer>();
@@ -90,8 +90,9 @@ public class UIManager : MonoBehaviour {
         departConversationButton = GameObject.Find("Depart").GetComponent<Button>();
         askOnDateButton = GameObject.Find("AskOut");
         mapButton = GameObject.Find("MapButton");
+        talkButtonObject = GameObject.Find("TalkButton");
 
-		mapEnabled = false;
+        mapEnabled = false;
         journalEnabled = false;
         menuPanel.gameObject.SetActive(false);
         dateLocationButtonPanel.SetActive(false);
@@ -100,6 +101,8 @@ public class UIManager : MonoBehaviour {
 	
 	void Update ()
 	{
+        myRelationshipCounselor.updateDates();
+
         updateUIComponentsForState(myGameState.currentGameState);
         updateUIFromInput();
     }
@@ -139,14 +142,14 @@ public class UIManager : MonoBehaviour {
             {
                 this.updateLocationDescription();
                 myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-                myInputOrganizer.updateSelectedPartnerButtonUI();
+                this.updateSelectedPartnerButtonUI();
             }
         }
         else if (currentState == GameState.gameStates.CONVERSATION)
         {
             dialoguePanel.SetActive(true);
             characterPanel.gameObject.SetActive(true);
-            askOnDateButton.SetActive(conversationTracker.canAskOnDateEnabled());
+            askOnDateButton.SetActive(myConversationTracker.canAskOnDateEnabled());
         }else if(currentState == GameState.gameStates.DATEINTRO)
         {
             enableDateComponents();
@@ -259,4 +262,14 @@ public class UIManager : MonoBehaviour {
         }
     }
 
+    public void updateSelectedPartnerButtonUI()
+    {
+        bool partners = myDialogueManager.charactersPresent.Count > 0;
+        talkButtonObject.SetActive(partners);
+        if (partners && myDialogueManager.selectedPartner < 0)
+        {
+            //Set Talk Button to random character in location
+            myInputOrganizer.BTN_characterClicked(new System.Random().Next(1, myDialogueManager.charactersPresent.Count + 1));
+        }
+    }
 }

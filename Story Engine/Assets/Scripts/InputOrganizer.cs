@@ -21,7 +21,6 @@ public class InputOrganizer : MonoBehaviour {
     public GameObject dateLocationButtonPrefab;
     private Button timeAdvanceButton;
     private Button toggleInteriorSceneButton;
-    private GameObject talkButtonObject;
 
     private void Awake()
     {
@@ -43,55 +42,35 @@ public class InputOrganizer : MonoBehaviour {
 
         timeAdvanceButton = GameObject.Find("TimeButton").GetComponent<Button>();
         toggleInteriorSceneButton = GameObject.Find("DateLocationButton").GetComponent<Button>();
-        talkButtonObject = GameObject.Find("TalkButton");
     }
 
     public void createDateLocationButtons()
     {
-        List<string> dateSceneNames = mySceneCatalogue.getDateSceneNames();
         List<Location> dateScenes = mySceneCatalogue.getDateScenes();
         Button[] allButtons = dateLocationButtonPanel.GetComponentsInChildren<Button>();
 
-        foreach (Button b in allButtons)
-        {
-            Destroy(b.gameObject);
-        }
+        foreach (Button b in allButtons){ Destroy(b.gameObject);}
 
-        //TODO: this checks for FIXED number of date locations and creates row sizes. Update this to accommodate any number of date locations.
         for (int j = 0; j < 4; j++)
         {
-
-            for (int k = 0; k < 3; k++)
+            for (int k = 0; k < 4; k++)
             {
                 int dateButtonIndex = j * 4 + k;
+                if (dateButtonIndex > dateScenes.Count-1){return;}
 
-                try {
+                GameObject buttonObject = GameObject.Instantiate(dateLocationButtonPrefab, dateLocationButtonPanel.transform);
 
-                    if (!mySceneCatalogue.isKnownDateLocation(dateSceneNames[dateButtonIndex]))
-                    {
-                        continue;
-                    }
+                float buttonWidth = buttonObject.GetComponentInChildren<RectTransform>().rect.width;
+                float buttonHeight = buttonObject.GetComponentInChildren<RectTransform>().rect.height;
 
-                    GameObject buttonObject = GameObject.Instantiate(dateLocationButtonPrefab, dateLocationButtonPanel.transform);
+                buttonObject.GetComponentInChildren<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, k * buttonWidth, buttonWidth);
+                buttonObject.GetComponentInChildren<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, j * buttonHeight, buttonHeight);
 
-                    float buttonWidth = buttonObject.GetComponentInChildren<RectTransform>().rect.width;
-                    float buttonHeight = buttonObject.GetComponentInChildren<RectTransform>().rect.height;
+                buttonObject.GetComponentInChildren<Text>().text = dateScenes[dateButtonIndex].interiorName;
 
-                    buttonObject.GetComponentInChildren<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, k * buttonWidth, buttonWidth);
-                    buttonObject.GetComponentInChildren<RectTransform>().SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, j * buttonHeight, buttonHeight);
-
-                    buttonObject.GetComponentInChildren<Text>().text = dateSceneNames[dateButtonIndex];
-
-                    UnityAction buttonAction = () => BTN_scheduleDateForLocation(dateScenes[dateButtonIndex]);
-                    buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);
-
-                } catch (ArgumentOutOfRangeException outOfRange) {
-                    Debug.Log("Exception: " + outOfRange.Message);
-                    continue;
-                }
-
+                UnityAction buttonAction = () => BTN_scheduleDateForLocation(dateScenes[dateButtonIndex]);
+                buttonObject.GetComponent<Button>().onClick.AddListener(buttonAction);
             }
-
         }
     }
 
@@ -171,23 +150,13 @@ public class InputOrganizer : MonoBehaviour {
         myRelationshipCounselor.act();
     }
 
-    public  void updateSelectedPartnerButtonUI()
-    {
-        bool partners = myDialogueManager.charactersPresent.Count > 0;
-        talkButtonObject.SetActive(partners);
-        if (partners && myDialogueManager.selectedPartner < 0)
-        {
-            this.onPortraitClicked(new System.Random().Next(1, myDialogueManager.charactersPresent.Count + 1));
-        }
-    }
-
-    public void onPortraitClicked(int portraitNumber)
+    public void BTN_characterClicked(int portraitNumber)
     {
         Character clickedCharacter = myDialogueManager.getPartnerAt(portraitNumber);
         if (clickedCharacter != null)
         {
             myDialogueManager.selectedPartner = portraitNumber - 1;
-            talkButtonObject.GetComponentInChildren<Text>().text = "Talk to " + clickedCharacter.givenName;
+            myUIManager.talkButtonObject.GetComponentInChildren<Text>().text = "Talk to " + clickedCharacter.givenName;
         }
     }
 }
