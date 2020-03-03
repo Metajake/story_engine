@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIDriver : MonoBehaviour, IEventSubscriber {
+public class EventDriver : MonoBehaviour, IEventSubscriber {
 	private EventQueue myEventQueue;
 	private Button timeAdvanceButton;
 	private Button toggleInteriorSceneButton;
@@ -40,29 +40,25 @@ public class UIDriver : MonoBehaviour, IEventSubscriber {
 		Debug.Log("Driver " + occurringEvent.getEventType());
 		if (occurringEvent.getEventType() == "TIMEEVENT")
 		{
-			foreach (DateableCharacter character in myDialogueManager.allDateableCharacters)
-			{
-				character.checkAndSetReturnToPresent(myTimelord.getCurrentTimestep());
-			}
+			setAbsentCharactersToPresent();
 
 			myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
 
-			this.checkIfCharactersAndFadeInButtonUI(this.ActivateAdvanceTimeButton);
+			runDelayIfCharacterFadeIn(this.ActivateAdvanceTimeButton);
 		}
 		else if (occurringEvent.getEventType() == "LOCATIONEVENT")
 		{
-			myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
 			myDialogueManager.selectedPartner = -1;
-			this.updateToggleInteriorButtonUI();
-			this.checkIfCharactersAndFadeInButtonUI(this.ActivateToggleInteriorSceneButton);
+
+			myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+			
+			updateToggleInteriorButtonUI();
+			
+			runDelayIfCharacterFadeIn(this.ActivateToggleInteriorSceneButton);
 		}
 		else if (occurringEvent.getEventType() == "DATESTARTEVENT")
 		{
-			myAnimationMaestro.fadeInCharacters(new List<Character>() {
-				myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())
-			});
-			//TODO Why is the following line there?
-			myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+			myAnimationMaestro.fadeInCharacters(new List<Character>() {myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())});
 		}
 		else if (occurringEvent.getEventType() == "DATEACTIONEVENT")
 		{
@@ -70,7 +66,15 @@ public class UIDriver : MonoBehaviour, IEventSubscriber {
 		}
 	}
 
-	private void checkIfCharactersAndFadeInButtonUI(Action buttonActivationFunction)
+	private void setAbsentCharactersToPresent()
+	{
+		foreach (DateableCharacter character in myDialogueManager.allDateableCharacters)
+		{
+			character.checkAndSetReturnToPresent(myTimelord.getCurrentTimestep());
+		}
+	}
+
+	private void runDelayIfCharacterFadeIn(Action buttonActivationFunction)
 	{
 		if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
 		{
@@ -95,12 +99,12 @@ public class UIDriver : MonoBehaviour, IEventSubscriber {
 			myUIManager.dateLocationButton.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/icon_exit");
 		}
 	}
-	public void ActivateToggleInteriorSceneButton()
+	private void ActivateToggleInteriorSceneButton()
 	{
 		toggleInteriorSceneButton.interactable = true;
 	}
 
-	public void ActivateAdvanceTimeButton()
+	private void ActivateAdvanceTimeButton()
 	{
 		timeAdvanceButton.interactable = true;
 	}

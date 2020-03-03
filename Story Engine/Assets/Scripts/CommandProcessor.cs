@@ -54,7 +54,7 @@ public class CommandProcessor : MonoBehaviour, ICommandProcessor {
         executeNextCommand();
     }
 
-    internal void createAndEnqueueCutSceneSequence(List<string> sceneCuts, bool isFinalCutScene)
+    internal void createAndEnqueueDateCutSceneSequence(List<string> sceneCuts, bool isFinalCutScene)
     {
         myGameState.currentGameState = GameState.gameStates.CUTSCENE;
         foreach (string cut in sceneCuts)
