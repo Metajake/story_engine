@@ -71,16 +71,16 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
         {
             myAnimationMaestro.fadeOutCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-            StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, this.toggleInteriorScene));
+            StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, this.toggleInteriorSceneAndTriggerSceneChangeEvent));
         }
         else
         {
-            this.toggleInteriorScene();
+            this.toggleInteriorSceneAndTriggerSceneChangeEvent();
         }
         
 	}
 
-    public void toggleInteriorScene()
+    public void toggleInteriorSceneAndTriggerSceneChangeEvent()
     {
         isInInteriorScene = !isInInteriorScene;
         myEventQueue.queueEvent(new SceneChangeEvent());

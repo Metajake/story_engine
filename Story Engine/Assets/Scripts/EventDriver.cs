@@ -37,7 +37,7 @@ public class EventDriver : MonoBehaviour, IEventSubscriber {
 
 	public void eventOccured(IGameEvent occurringEvent)
 	{
-		Debug.Log("Driver " + occurringEvent.getEventType());
+		//Debug.Log("Driver " + occurringEvent.getEventType());
 		if (occurringEvent.getEventType() == "TIMEEVENT")
 		{
 			setAbsentCharactersToPresent();
