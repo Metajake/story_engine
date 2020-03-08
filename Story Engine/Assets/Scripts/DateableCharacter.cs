@@ -5,7 +5,7 @@ using UnityEngine;
 public class DateableCharacter : Character {
 
 	public bool isSubordinate;
-	public int reputation;
+	public int acceptanceLevel;
 	public bool knowsYou;
 	public int experienceCount;
     public int[] locationPreferences;

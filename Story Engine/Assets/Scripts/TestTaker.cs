@@ -76,25 +76,16 @@ public class TestTaker : MonoBehaviour, IEventSubscriber {
 		testResultsText.text = "";
 		testResultsText.text += "Random Character: " + randomDateableChar.givenName + "\n";
 		myConversationTracker.beginConversation(randomDateableChar);
-		testResultsText.text += "Current Reputation in this Conversation : " + myConversationTracker.currentConversation.speaker.reputation + "\n";
+		testResultsText.text += "Current Reputation in this Conversation : " + myConversationTracker.currentConversation.speaker.acceptanceLevel + "\n";
 	}
 
 	private void BTN_timeStepLocationCheck()
 	{
 		testResultsText.text = "";
-		myTimeLord.timeStep++;
-		testResultsText.text += "Time of Day : " + myTimeLord.getCurrentModulusTimestep() + "\n";
-
 		allLocations = mySceneCatalogue.locations;
 		myMapCartographer.changeScene(rn.Next(allLocations.Count));
+		testResultsText.text += "Current Location : " + mySceneCatalogue.getCurrentLocation().locationName + "\n";
 		myEventQueue.queueEvent(new SceneChangeEvent());
-		testResultsText.text += "Current Scene : " + mySceneCatalogue.getCurrentLocation().locationName + "\n";
-
-		List<Character> allLocalChars = myDialogueManager.getAllCurrentLocalPresentConversationPartners();
-		foreach(Character ch in allLocalChars)
-			{
-				testResultsText.text += "Present Character Ext: " + ch.givenName + "\n";
-			}
 	}
 
 	private void CheckEvents()
@@ -122,9 +113,17 @@ public class TestTaker : MonoBehaviour, IEventSubscriber {
 		//testResultsText.text += "Event: " + occurringEvent.getEventType() + " ok.\n";
 		if (occurringEvent.getEventType() == "LOCATIONEVENT")
 		{
-			testResultsText.text += "Test Location Event Occurred.\n";
-			myDialogueManager.selectedPartner = -1;
-			testResultsText.text += "Dialogue Manager selected partner returned to: " + myDialogueManager.selectedPartner + "\n";
+			testResultsText.text += "Event: " + occurringEvent.getEventType() + " Ok.\n";
+		}else if(occurringEvent.getEventType() == "TIMEEVENT") {
+			testResultsText.text += "Event: " + occurringEvent.getEventType() + " Ok.\n";
+		}
+		else if (occurringEvent.getEventType() == "DATESTARTEVENT")
+		{
+			testResultsText.text += "Event: " + occurringEvent.getEventType() + " Ok.\n";
+		}
+		else if (occurringEvent.getEventType() == "DATEACTIONEVENT")
+		{
+			testResultsText.text += "Event: " + occurringEvent.getEventType() + " Ok.\n";
 		}
 	}
 

@@ -68,22 +68,26 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 
     //TODO This is very similar to Timelord.checkCharactersToFadeAndAdvanceTime(). Refactor?
     public void checkIfCharactersPresentAndToggleInteriorScene(){
+        Action toggleInteriorAndTriggerEvent = () => { 
+            isInInteriorScene = !isInInteriorScene;
+            myEventQueue.queueEvent(new SceneChangeEvent());
+        };
         if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
         {
             myAnimationMaestro.fadeOutCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-            StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, this.toggleInteriorSceneAndTriggerSceneChangeEvent));
+            StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, toggleInteriorAndTriggerEvent));
         }
         else
         {
-            this.toggleInteriorSceneAndTriggerSceneChangeEvent();
+            toggleInteriorScene();
+            myEventQueue.queueEvent(new SceneChangeEvent());
         }
-        
-	}
 
-    public void toggleInteriorSceneAndTriggerSceneChangeEvent()
+    }
+
+    public void toggleInteriorScene()
     {
         isInInteriorScene = !isInInteriorScene;
-        myEventQueue.queueEvent(new SceneChangeEvent());
     }
 
 	public bool getIsInInteriorScene(){

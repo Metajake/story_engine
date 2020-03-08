@@ -27,7 +27,7 @@ public class ConversationTracker : MonoBehaviour {
         myUIManager.activateDialogueOptionsUI();
         List<string> greetingTags = new List<string>();
         greetingTags.Add("greeting");
-        if (speaker.reputation < 0)
+        if (speaker.acceptanceLevel < 0)
         {
             greetingTags.Add("annoyed");
         }
@@ -43,7 +43,7 @@ public class ConversationTracker : MonoBehaviour {
 
 		if (currentConversation.lastChosenOption == Conversation.SpeechOption.INTRODUCTION)
         {
-			currentConversation.speaker.reputation -= 1;
+			currentConversation.speaker.acceptanceLevel -= 1;
             endConversation();
             return;
         }
@@ -75,7 +75,7 @@ public class ConversationTracker : MonoBehaviour {
 
 		if (currentConversation.lastChosenOption == Conversation.SpeechOption.QUESTION || currentConversation.complimentCount >= 2)
         {
-			currentConversation.speaker.reputation -= 1;
+			currentConversation.speaker.acceptanceLevel -= 1;
             endConversation();
             return;
         }
@@ -127,7 +127,7 @@ public class ConversationTracker : MonoBehaviour {
 
         if (currentConversation.lastChosenOption == Conversation.SpeechOption.COMPLIMENT || this.currentConversation.complimentCount >= 2)
         {
-            currentConversation.speaker.reputation -= 1;
+            currentConversation.speaker.acceptanceLevel -= 1;
             endConversation();
             return;
         }
@@ -172,7 +172,7 @@ public class ConversationTracker : MonoBehaviour {
 
 		if (currentConversation.lastChosenOption == Conversation.SpeechOption.DEMAND || this.currentConversation.demandCount >= 2)
         {
-            currentConversation.speaker.reputation -= 1;
+            currentConversation.speaker.acceptanceLevel -= 1;
             endConversation();
             return;
         }
