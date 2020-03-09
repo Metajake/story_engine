@@ -57,21 +57,21 @@ public class Timelord : MonoBehaviour {
         if (checkIfScatterCharacters(timeStep) && checkIfCreep())
         {
             scatterCharactersAndRelocatePlayerEvent();
-            myEventQueue.queueEvent(new TimeChangeEvent());
+            myEventQueue.queueEvent(new EventTimeChange());
         }
         else if (checkIfScatterCharacters(timeStep))
         {
             scatterCharactersEvent();
-            myEventQueue.queueEvent(new TimeChangeEvent());
+            myEventQueue.queueEvent(new EventTimeChange());
         }
         else if (checkIfCreep())
         {
             relocatePlayerEvent();
-            myEventQueue.queueEvent(new TimeChangeEvent());
+            myEventQueue.queueEvent(new EventTimeChange());
         }
         else
         {
-            myEventQueue.queueEvent(new TimeChangeEvent());
+            myEventQueue.queueEvent(new EventTimeChange());
         }
         
     }

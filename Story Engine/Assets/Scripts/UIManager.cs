@@ -7,7 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour, IEventSubscriber {
 
     private GameState myGameState;
     private DialogueManager myDialogueManager;
@@ -15,11 +15,11 @@ public class UIManager : MonoBehaviour {
     private SceneCatalogue mySceneCatalogue;
     private TipManager myTipManager;
     private RelationshipCounselor myRelationshipCounselor;
-	private CommandProcessor myCommandProcessor;
+    private CommandProcessor myCommandProcessor;
     private Timelord myTimelord;
     private AnimationMaestro myAnimationMaestro;
     private InputOrganizer myInputOrganizer;
-
+    private EventQueue myEventQueue;
     public GameObject dialoguePanel;
     public GameObject mainPanel;
     public GameObject mapPanel;
@@ -47,10 +47,11 @@ public class UIManager : MonoBehaviour {
     GameObject mapButton;
     public GameObject talkButtonObject;
     public GameObject dateLocationButton;
-
+    private Button timeAdvanceButton;
+    private Button toggleInteriorSceneButton;
     public bool mapEnabled;
     public bool journalEnabled;
-    
+
     void Awake()
     {
         myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
@@ -58,15 +59,16 @@ public class UIManager : MonoBehaviour {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myGameState = GameObject.FindObjectOfType<GameState>();
     }
-    
-    void Start ()
+
+    void Start()
     {
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         myTimelord = GameObject.FindObjectOfType<Timelord>();
         myConversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
-		myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
+        myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
         myInputOrganizer = GameObject.FindObjectOfType<InputOrganizer>();
+        myEventQueue = GameObject.FindObjectOfType<EventQueue>();
 
 
         dialogueButtonPanel = GameObject.Find("DialogueButtonPanel");
@@ -74,7 +76,7 @@ public class UIManager : MonoBehaviour {
         dateLocationButtonPanel = GameObject.Find("LocationButtonPanel");
         mainPanelButtonsPanel = GameObject.Find("MainPanelButtonsPanel");
         dateButtonsPanel = GameObject.Find("DateButtonsPanel");
-		sequenceButtonsPanel = GameObject.Find("SequenceButtonsPanel");
+        sequenceButtonsPanel = GameObject.Find("SequenceButtonsPanel");
         dateLocationButton = GameObject.Find("DateLocationButton");
         menuPanel = GameObject.Find("MenuPanel");
         cutScenePanel = GameObject.Find("CutScenePanel");
@@ -91,16 +93,19 @@ public class UIManager : MonoBehaviour {
         askOnDateButton = GameObject.Find("AskOut");
         mapButton = GameObject.Find("MapButton");
         talkButtonObject = GameObject.Find("TalkButton");
+        timeAdvanceButton = GameObject.Find("TimeButton").GetComponent<Button>();
+        toggleInteriorSceneButton = GameObject.Find("DateLocationButton").GetComponent<Button>();
 
+        myEventQueue.subscribe(this);
         mapEnabled = false;
         journalEnabled = false;
         menuPanel.gameObject.SetActive(false);
         dateLocationButtonPanel.SetActive(false);
-		myAnimationMaestro.clearPotentialPartners();
+        myAnimationMaestro.clearPotentialPartners();
     }
-	
-	void Update ()
-	{
+
+    void Update()
+    {
         updateUIComponentsForState(myGameState.currentGameState);
         updateUIFromInput();
     }
@@ -109,7 +114,7 @@ public class UIManager : MonoBehaviour {
     {
         this.deactivateUIComponents();
 
-        if(currentState == GameState.gameStates.COMMANDSEQUENCE)
+        if (currentState == GameState.gameStates.COMMANDSEQUENCE)
         {
             mainPanel.SetActive(true);
 
@@ -117,11 +122,11 @@ public class UIManager : MonoBehaviour {
 
             sequenceButtonsPanel.SetActive(true);
         }
-        else if(currentState == GameState.gameStates.CUTSCENE)
+        else if (currentState == GameState.gameStates.CUTSCENE)
         {
             updateUIForCutSceneState();
         }
-        else if(currentState == GameState.gameStates.PROWL)
+        else if (currentState == GameState.gameStates.PROWL)
         {
             mainPanel.SetActive(true);
             mainPanelButtonsPanel.SetActive(true);
@@ -144,12 +149,12 @@ public class UIManager : MonoBehaviour {
             characterPanel.gameObject.SetActive(true);
             askOnDateButton.SetActive(myConversationTracker.canAskOnDateEnabled());
         }
-        else if(currentState == GameState.gameStates.DATEINTRO)
+        else if (currentState == GameState.gameStates.DATEINTRO)
         {
             mainPanel.SetActive(true);
             enableDateComponents();
             characterPanel.gameObject.SetActive(true);
-            myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() {myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())});
+            myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() { myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep()) });
             myAnimationMaestro.writeDescriptionText(mySceneCatalogue.getCurrentLocation().descriptionDate, textPanel);
         }
         else if (currentState == GameState.gameStates.DATE)
@@ -157,7 +162,7 @@ public class UIManager : MonoBehaviour {
             mainPanel.SetActive(true);
             enableDateComponents();
             characterPanel.gameObject.SetActive(true);
-            myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() {myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep())});
+            myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() { myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep()) });
         }
         else if (currentState == GameState.gameStates.DATEOUTRO)
         {
@@ -203,9 +208,9 @@ public class UIManager : MonoBehaviour {
     }
 
     internal void gameOver()
-	{
+    {
         SceneManager.LoadScene("splash_game_over");
-	}
+    }
 
     internal void startGame()
     {
@@ -215,25 +220,25 @@ public class UIManager : MonoBehaviour {
         myGameState.hasGameBegun = true;
     }
 
-	public void enableOnlyBye(){
-		dialogueOptionsPanel.SetActive(false);
-		departConversationButton.gameObject.SetActive(true);
+    public void enableOnlyBye() {
+        dialogueOptionsPanel.SetActive(false);
+        departConversationButton.gameObject.SetActive(true);
         departConversationButton.enabled = true;
-	}   
+    }
 
-	public void resetDateButtons(){
-		dateActionButton.SetActive(true);
-	}
+    public void resetDateButtons() {
+        dateActionButton.SetActive(true);
+    }
 
-	public void showLocationOptions(){
+    public void showLocationOptions() {
         this.dialogueButtonPanel.SetActive(false);
-		this.dateLocationButtonPanel.SetActive(true);
-		myInputOrganizer.createDateLocationButtons();
-	}
+        this.dateLocationButtonPanel.SetActive(true);
+        myInputOrganizer.createDateLocationButtons();
+    }
 
-	internal void hideLocationOptions()
-	{
-		this.dialogueButtonPanel.SetActive(true);
+    internal void hideLocationOptions()
+    {
+        this.dialogueButtonPanel.SetActive(true);
         this.dateLocationButtonPanel.SetActive(false);
     }
 
@@ -259,6 +264,68 @@ public class UIManager : MonoBehaviour {
         {
             //Set Talk Button to random character in location
             myInputOrganizer.BTN_characterClicked(new System.Random().Next(1, myDialogueManager.charactersPresent.Count + 1));
+        }
+    }
+
+    void IEventSubscriber.eventOccured(IGameEvent occurringEvent)
+    {
+        if (occurringEvent.getEventType() == "TIMEEVENT")
+        {
+            myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+
+            if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
+            {
+                StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, this.setTimeAdvanceButtonInteractableTrue));
+            }
+            else
+            {
+                this.setTimeAdvanceButtonInteractableTrue();
+            }
+        }else if (occurringEvent.getEventType() == "LOCATIONEVENT")
+        {
+            myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+
+            updateToggleInteriorButtonUI();
+
+            if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
+            {
+                StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, this.setToggleInteriorButtonInteractable));
+            }
+            else
+            {
+                this.setToggleInteriorButtonInteractable();
+            }
+        }else if (occurringEvent.getEventType() == "DATESTARTEVENT")
+        {
+            myAnimationMaestro.fadeInCharacters(new List<Character>() { myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep()) });
+        }
+        else if (occurringEvent.getEventType() == "DATEACTIONEVENT")
+        {
+            mySceneCatalogue.getCurrentLocation().setRandomDateAction();
+        }
+    }
+
+    private void setTimeAdvanceButtonInteractableTrue()
+    {
+        timeAdvanceButton.interactable = true;
+    }
+
+    private void setToggleInteriorButtonInteractable()
+    {
+        toggleInteriorSceneButton.interactable = true;
+    }
+
+    private void updateToggleInteriorButtonUI()
+    {
+        if (!mySceneCatalogue.getIsInInteriorScene())
+        {
+            dateLocationButton.GetComponentInChildren<Text>().text = "Enter " + mySceneCatalogue.getCurrentLocation().interiorName;
+            dateLocationButton.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/icon_enter");
+        }
+        else
+        {
+            dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
+            dateLocationButton.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/icon_exit");
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueManager : MonoBehaviour {
+public class DialogueManager : MonoBehaviour, IEventSubscriber {
 
     public List<DateableCharacter> allDateableCharacters;
 	public List<MinorCharacter> allMinorCharacters;
@@ -20,6 +20,7 @@ public class DialogueManager : MonoBehaviour {
     private GameState myGameState;
     private CommandProcessor myCommandProcessor;
     private TipManager myTipManager;
+    private EventQueue myEventQueue;
 
     public void registerDialogue(DialoguePiece piece){
 		this.pieces.Add(piece);
@@ -40,12 +41,24 @@ public class DialogueManager : MonoBehaviour {
         myGameState = GameObject.FindObjectOfType<GameState>();
         myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
         myTipManager = GameObject.FindObjectOfType<TipManager>();
+        myEventQueue = GameObject.FindObjectOfType<EventQueue>();
 
         this.allDateableCharacters = new List<DateableCharacter>(this.GetComponents<DateableCharacter>());
         this.allMinorCharacters = new List<MinorCharacter>(this.GetComponents<MinorCharacter>());
 
+        myEventQueue.subscribe(this);
         initializeAllCharacters();
         this.scatterCharacters("Kristie");
+    }
+
+    void IEventSubscriber.eventOccured(IGameEvent occurringEvent)
+    {
+        if (occurringEvent.getEventType() == "TIMEEVENT")
+        {
+            this.setAbsentCharactersToPresent();
+        }else if(occurringEvent.getEventType() == "LOCATIONEVENT"){
+            selectedPartner = -1;
+        }
     }
 
     private void initializeAllCharacters()
@@ -191,6 +204,14 @@ public class DialogueManager : MonoBehaviour {
         else
         {
             myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { myTipManager.getTip() });
+        }
+    }
+
+    private void setAbsentCharactersToPresent()
+    {
+        foreach (DateableCharacter character in allDateableCharacters)
+        {
+            character.checkAndSetReturnToPresent(myTimeLord.getCurrentTimestep());
         }
     }
 }

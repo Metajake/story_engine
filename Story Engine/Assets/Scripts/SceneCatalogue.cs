@@ -70,7 +70,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     public void checkIfCharactersPresentAndToggleInteriorScene(){
         Action toggleInteriorAndTriggerEvent = () => { 
             isInInteriorScene = !isInInteriorScene;
-            myEventQueue.queueEvent(new SceneChangeEvent());
+            myEventQueue.queueEvent(new EventSceneChange());
         };
         if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
         {
@@ -80,7 +80,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         else
         {
             toggleInteriorScene();
-            myEventQueue.queueEvent(new SceneChangeEvent());
+            myEventQueue.queueEvent(new EventSceneChange());
         }
 
     }
@@ -121,7 +121,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         }
         isInInteriorScene = false;
         setCurrentSceneNumber(randomLocationNumber);
-        myEventQueue.queueEvent(new SceneChangeEvent());
+        myEventQueue.queueEvent(new EventSceneChange());
     }
 
 	public string neutralResultForCurrentLocationDescription(){

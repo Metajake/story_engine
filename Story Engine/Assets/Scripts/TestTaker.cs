@@ -85,15 +85,15 @@ public class TestTaker : MonoBehaviour, IEventSubscriber {
 		allLocations = mySceneCatalogue.locations;
 		myMapCartographer.changeScene(rn.Next(allLocations.Count));
 		testResultsText.text += "Current Location : " + mySceneCatalogue.getCurrentLocation().locationName + "\n";
-		myEventQueue.queueEvent(new SceneChangeEvent());
+		myEventQueue.queueEvent(new EventSceneChange());
 	}
 
 	private void CheckEvents()
 	{
 		
-		myEventQueue.queueEvent(new SceneChangeEvent());
-		myEventQueue.queueEvent(new TimeChangeEvent());
-		myEventQueue.queueEvent(new DateActionEvent());
+		myEventQueue.queueEvent(new EventSceneChange());
+		myEventQueue.queueEvent(new EventTimeChange());
+		myEventQueue.queueEvent(new EventDateAction());
 		//TODO MAKE THIS EVENT CLASS NAME CONSISTANT WITH THE REST OF THE EVENTS
 		myEventQueue.queueEvent(new EventDateStart());
 		//Destroy(eventSubscriber);

@@ -187,7 +187,7 @@ public class RelationshipCounselor : MonoBehaviour {
     {
         isAtDate = false;
         mySceneCatalogue.toggleInteriorScene();
-        myEventQueue.queueEvent(new SceneChangeEvent());
+        myEventQueue.queueEvent(new EventSceneChange());
         myGameState.currentGameState = GameState.gameStates.PROWL;
         myUIManager.resetDateButtons();
         myAudioConductor.fadeOutCurrentMusic();
@@ -238,7 +238,7 @@ public class RelationshipCounselor : MonoBehaviour {
             getCurrentDateFromScheduledDateList().experienceAchieved = true;
             myVictoryCoach.achieveNextExperience(true);
         }
-        myEventQueue.queueEvent(new DateActionEvent());
+        myEventQueue.queueEvent(new EventDateAction());
 	}
 
 }

@@ -107,7 +107,7 @@ public class InputOrganizer : MonoBehaviour {
         myMapCartographer.changeScene(sceneNumber);
         BTN_toggleMap();
         myAudioConductor.loadAndPlay(myAudioConductor.subwayCar);
-        myEventQueue.queueEvent(new SceneChangeEvent());
+        myEventQueue.queueEvent(new EventSceneChange());
     }
 
     public void BTN_toggleMap()
