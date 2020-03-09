@@ -56,6 +56,7 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
         if (occurringEvent.getEventType() == "TIMEEVENT")
         {
             this.setAbsentCharactersToPresent();
+            selectedPartner = -1;
         }else if(occurringEvent.getEventType() == "LOCATIONEVENT"){
             selectedPartner = -1;
         }

@@ -28,13 +28,14 @@ public class CheatComponent : MonoBehaviour {
         {
             List<DateableCharacter>allDateableCharacters = myDialogueManager.allDateableCharacters;
             DateableCharacter randomDateableChar = allDateableCharacters[rn.Next(allDateableCharacters.Count)];
-            myDialogueManager.charactersPresent.Add(randomDateableChar);
+            myDialogueManager.charactersPresent.Insert(0,randomDateableChar);
             myDialogueManager.selectedPartner = 0;
-
             myConversationTracker.beginConversation(randomDateableChar);
             List<Location> dateScenes = mySceneCatalogue.getDateScenes();
             Location randomDateLocation = dateScenes[rn.Next(dateScenes.Count)];
             myConversationTracker.scheduleDate(randomDateLocation);
+
+            myDialogueManager.selectedPartner = 0;
         }
     }
 }
