@@ -13,7 +13,7 @@ public class TestTaker : MonoBehaviour, IEventSubscriber {
 	//private AnimationMaestro myAnimationMaestro;
 	private EventQueue myEventQueue;
 	private MapCartographer myMapCartographer;
-	private Timelord myTimeLord;
+	//private Timelord myTimeLord;
 	private Button runTestButton;
 	private Button runConversationTestButton;
 	private Button locationCheckButton;
@@ -32,7 +32,7 @@ public class TestTaker : MonoBehaviour, IEventSubscriber {
 		//myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
 		myEventQueue = GameObject.FindObjectOfType<EventQueue>();
 		myMapCartographer = GameObject.FindObjectOfType<MapCartographer>();
-		myTimeLord = GameObject.FindObjectOfType<Timelord>();
+		//myTimeLord = GameObject.FindObjectOfType<Timelord>();
 
 		runTestButton = GameObject.Find("RunTestButton").GetComponent<Button>();
 		runConversationTestButton = GameObject.Find("ConversationButton").GetComponent<Button>();
@@ -68,8 +68,7 @@ public class TestTaker : MonoBehaviour, IEventSubscriber {
 
 	private void BTN_runConversationTest()
 	{
-		allDateableCharacters = myDialogueManager.allDateableCharacters;
-		DateableCharacter randomDateableChar = allDateableCharacters[rn.Next(allDateableCharacters.Count)];
+		DateableCharacter randomDateableChar = myDialogueManager.allDateableCharacters[rn.Next(myDialogueManager.allDateableCharacters.Count)];
 		myDialogueManager.charactersPresent.Add(randomDateableChar);
 		myDialogueManager.selectedPartner = 0;
 
@@ -77,6 +76,7 @@ public class TestTaker : MonoBehaviour, IEventSubscriber {
 		testResultsText.text += "Random Character: " + randomDateableChar.givenName + "\n";
 		myConversationTracker.beginConversation(randomDateableChar);
 		testResultsText.text += "Current Reputation in this Conversation : " + myConversationTracker.currentConversation.speaker.acceptanceLevel + "\n";
+		myDialogueManager.selectedPartner = -1;
 	}
 
 	private void BTN_timeStepLocationCheck()
@@ -108,7 +108,7 @@ public class TestTaker : MonoBehaviour, IEventSubscriber {
 		}
 	}
 
-	public void eventOccured(IGameEvent occurringEvent)
+	public void eventOccurred(IGameEvent occurringEvent)
 	{
 		//testResultsText.text += "Event: " + occurringEvent.getEventType() + " ok.\n";
 		if (occurringEvent.getEventType() == "LOCATIONEVENT")

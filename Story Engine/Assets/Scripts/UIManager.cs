@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private SceneCatalogue mySceneCatalogue;
     private TipManager myTipManager;
     private RelationshipCounselor myRelationshipCounselor;
-    private CommandProcessor myCommandProcessor;
+    private CommandBuilder myCommandBuilder;
     private Timelord myTimelord;
     private AnimationMaestro myAnimationMaestro;
     private InputOrganizer myInputOrganizer;
@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
     void Awake()
     {
-        myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
+        myCommandBuilder = GameObject.FindObjectOfType<CommandBuilder>();
         myTipManager = GameObject.FindObjectOfType<TipManager>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myGameState = GameObject.FindObjectOfType<GameState>();
@@ -117,10 +117,9 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         if (currentState == GameState.gameStates.COMMANDSEQUENCE)
         {
             mainPanel.SetActive(true);
-
             characterPanel.gameObject.SetActive(true);
-
             sequenceButtonsPanel.SetActive(true);
+            myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
         }
         else if (currentState == GameState.gameStates.CUTSCENE)
         {
@@ -215,9 +214,10 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     internal void startGame()
     {
         startScreenPanel.SetActive(false);
-        myCommandProcessor.createAndEnqueueChangeDialogueSequence(myTipManager.introText);
+        myCommandBuilder.createAndEnqueueChangeDialogueSequence(myTipManager.introText);
+        myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.allCharacters[new System.Random().Next(myDialogueManager.allCharacters.Count)]);
+        myCommandBuilder.build();
         dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
-        myGameState.hasGameBegun = true;
     }
 
     public void enableOnlyBye() {
@@ -260,14 +260,14 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     {
         bool partners = myDialogueManager.charactersPresent.Count > 0;
         talkButtonObject.SetActive(partners);
+        //If People present, Set Talk Button to random character in location
         if (partners && myDialogueManager.selectedPartner < 0)
         {
-            //Set Talk Button to random character in location
             myInputOrganizer.BTN_characterClicked(new System.Random().Next(1, myDialogueManager.charactersPresent.Count + 1));
         }
     }
 
-    void IEventSubscriber.eventOccured(IGameEvent occurringEvent)
+    void IEventSubscriber.eventOccurred(IGameEvent occurringEvent)
     {
         if (occurringEvent.getEventType() == "TIMEEVENT")
         {

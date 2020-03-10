@@ -10,13 +10,13 @@ public class VictoryCoach : MonoBehaviour {
     private DifficultyLevel nextGoal;
     private bool isIrresponsible;
     private List<Experience> achievedExperiences;
-    private CommandProcessor myCommandProcessor;
+    private CommandBuilder myCommandBuilder;
 
     private void Awake()
     {
         remainingExperiences = new Dictionary<string, Experience>();
         achievedExperiences = new List<Experience>();
-        myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
+        myCommandBuilder = GameObject.FindObjectOfType<CommandBuilder>();
     }
 
     // Use this for initialization
@@ -72,7 +72,7 @@ public class VictoryCoach : MonoBehaviour {
             remainingExperiences.Remove("responsibility");
             isIrresponsible = false;
         }
-        else if(IsReadyToCreate()){
+        else if(isEndOfGame()){
             toReturn = remainingExperiences["create"];
             remainingExperiences.Remove("create");
         }
@@ -87,11 +87,12 @@ public class VictoryCoach : MonoBehaviour {
 
         if (playCutscene)
         {
-            myCommandProcessor.createAndEnqueueDateCutSceneSequence(new List<string>(toReturn.experienceCutSceneTexts), IsReadyToCreate() );
+            myCommandBuilder.createAndEnqueueDateCutSceneSequence(new List<string>(toReturn.experienceCutSceneTexts), isEndOfGame() );
+            myCommandBuilder.build(GameState.gameStates.CUTSCENE);
         }
     }
 
-    private bool IsReadyToCreate()
+    private bool isEndOfGame()
     {
         List<Experience> expList = new List<Experience>(remainingExperiences.Values);
         return expList.Count <= 1;

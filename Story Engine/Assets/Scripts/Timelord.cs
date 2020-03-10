@@ -11,7 +11,7 @@ public class Timelord : MonoBehaviour {
     private DialogueManager myDialogueManager;
     private SceneCatalogue mySceneCatalogue;
     private EventQueue myEventQueue;
-    private CommandProcessor myCommandProcessor;
+    private CommandBuilder myCommandBuilder;
     private AnimationMaestro myAnimationMaestro;
 
     private int creepAmount;
@@ -24,7 +24,7 @@ public class Timelord : MonoBehaviour {
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
-        myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
+        myCommandBuilder = GameObject.FindObjectOfType<CommandBuilder>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
 
     }
@@ -80,17 +80,19 @@ public class Timelord : MonoBehaviour {
     {
         mySceneCatalogue.setRandomKnownScene();
         myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-        myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { "Go somewhere else. Stop creeping around one location." });
+        myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>() { "Go somewhere else. Stop creeping around one location." });
+        myCommandBuilder.build();
     }
 
     private void scatterCharactersEvent()
     {
         myDialogueManager.scatterCharacters();
         myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-        myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() {
+        myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>() {
                 "It's been another whole week. Time flies by when you're really out here, on this grind.",
                 "I wonder where I'll meet people to talk to this week. It's a big city!"
         });
+        myCommandBuilder.build();
     }
 
     private void scatterCharactersAndRelocatePlayerEvent()
@@ -98,11 +100,12 @@ public class Timelord : MonoBehaviour {
         myDialogueManager.scatterCharacters();
         mySceneCatalogue.setRandomKnownScene();
         myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-        myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() {
+        myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>() {
                 "Go somewhere else. Stop creeping around one location.",
                 "It's been another whole week. Time flies by when you're really out here, on this grind.",
                 "I wonder where I'll meet people to talk to this week. It's a big city!"
             });
+        myCommandBuilder.build();
     }
 
     private bool checkIfScatterCharacters(int timeStepToCheck)

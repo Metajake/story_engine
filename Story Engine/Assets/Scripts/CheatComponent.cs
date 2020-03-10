@@ -26,8 +26,8 @@ public class CheatComponent : MonoBehaviour {
             myVictoryCoach.achieveNextExperience(false);
         }else if (Input.GetKeyDown(KeyCode.D))
         {
-            List<DateableCharacter>allDateableCharacters = myDialogueManager.allDateableCharacters;
-            DateableCharacter randomDateableChar = allDateableCharacters[rn.Next(allDateableCharacters.Count)];
+            DateableCharacter randomDateableChar = myDialogueManager.allDateableCharacters[rn.Next(myDialogueManager.allDateableCharacters.Count)];
+            
             myDialogueManager.charactersPresent.Insert(0,randomDateableChar);
             myDialogueManager.selectedPartner = 0;
             myConversationTracker.beginConversation(randomDateableChar);
@@ -35,7 +35,7 @@ public class CheatComponent : MonoBehaviour {
             Location randomDateLocation = dateScenes[rn.Next(dateScenes.Count)];
             myConversationTracker.scheduleDate(randomDateLocation);
 
-            myDialogueManager.selectedPartner = 0;
+            myDialogueManager.selectedPartner = -1;
         }
     }
 }

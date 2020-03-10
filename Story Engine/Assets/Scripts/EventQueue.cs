@@ -21,7 +21,7 @@ public class EventQueue : MonoBehaviour {
 		while (gameEvents.Count > 0){
             var thisEvent = gameEvents.Peek();
             foreach(IEventSubscriber subscriber in eventSubscribers) {
-                subscriber.eventOccured(thisEvent);
+                subscriber.eventOccurred(thisEvent);
             }
             moveProcessedEventToPastEvents();
         }

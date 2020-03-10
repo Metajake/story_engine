@@ -18,7 +18,7 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
     private SceneCatalogue mySceneCatalogue;
     private RelationshipCounselor myRelationshipCounselor;
     private GameState myGameState;
-    private CommandProcessor myCommandProcessor;
+    private CommandBuilder myCommandBuilder;
     private TipManager myTipManager;
     private EventQueue myEventQueue;
 
@@ -39,7 +39,7 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myGameState = GameObject.FindObjectOfType<GameState>();
-        myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
+        myCommandBuilder = GameObject.FindObjectOfType<CommandBuilder>();
         myTipManager = GameObject.FindObjectOfType<TipManager>();
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
 
@@ -51,7 +51,7 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
         this.scatterCharacters("Kristie");
     }
 
-    void IEventSubscriber.eventOccured(IGameEvent occurringEvent)
+    void IEventSubscriber.eventOccurred(IGameEvent occurringEvent)
     {
         if (occurringEvent.getEventType() == "TIMEEVENT")
         {
@@ -204,7 +204,8 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
         }
         else
         {
-            myCommandProcessor.createAndEnqueueChangeDialogueSequence(new List<string>() { myTipManager.getTip() });
+            myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>() { myTipManager.getTip() });
+            myCommandBuilder.build();
         }
     }
 

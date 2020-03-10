@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IEventSubscriber{
 
-    void eventOccured(IGameEvent occurringEvent);
+    void eventOccurred(IGameEvent occurringEvent);
 
 }
