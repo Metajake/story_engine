@@ -235,7 +235,6 @@ public class ConversationTracker : MonoBehaviour {
         int randomTimestepFromPresent = new System.Random().Next(0, 19);
         int randomDateTime = myTimelord.getCurrentTimestep() + randomTimestepFromPresent;
         myRelationshipCounselor.createDate(location, randomDateTime, this.currentConversation.speaker);
-        myUIManager.hideLocationOptions();
         endConversation("Sounds good. see you " + myTimelord.getTimeString(randomDateTime) + "!");
     }
 
@@ -244,9 +243,6 @@ public class ConversationTracker : MonoBehaviour {
         List<string> tags = new List<string>();
         tags.AddRange(new List<string>() { "departure", "deflection" });
         dialogueTextScroller.SetText( farewell == "" ? myDialogueManager.getDialogueForTags(tags).dialogueContent : farewell);
-
-        myUIManager.enableOnlyBye();
         this.currentConversation.opinion = 0;
     }
-
 }

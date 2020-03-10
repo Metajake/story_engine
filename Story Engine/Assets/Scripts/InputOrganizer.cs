@@ -76,7 +76,7 @@ public class InputOrganizer : MonoBehaviour {
 
     public void BTN_startGame()
     {
-        myUIManager.startGame();
+        myUIManager.deactivateStartScreenPanel();
         myDialogueManager.startGame();
     }
 
@@ -101,6 +101,7 @@ public class InputOrganizer : MonoBehaviour {
     public void BTN_scheduleDateForLocation(Location dateLocation)
     {
         myConversationTracker.scheduleDate(dateLocation);
+        myUIManager.updateConversationUIAfterDateScheduled();
     }
 
     public void BTN_onLocationClick(int sceneNumber)

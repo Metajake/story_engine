@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour, IEventSubscriber {
 
@@ -13,9 +10,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     private DialogueManager myDialogueManager;
     private ConversationTracker myConversationTracker;
     private SceneCatalogue mySceneCatalogue;
-    private TipManager myTipManager;
     private RelationshipCounselor myRelationshipCounselor;
-    private CommandBuilder myCommandBuilder;
     private Timelord myTimelord;
     private AnimationMaestro myAnimationMaestro;
     private InputOrganizer myInputOrganizer;
@@ -42,7 +37,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     public String cutSceneTextToWrite;
 
     GameObject dateActionButton;
-    Button departConversationButton;
     GameObject askOnDateButton;
     GameObject mapButton;
     public GameObject talkButtonObject;
@@ -54,8 +48,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
     void Awake()
     {
-        myCommandBuilder = GameObject.FindObjectOfType<CommandBuilder>();
-        myTipManager = GameObject.FindObjectOfType<TipManager>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myGameState = GameObject.FindObjectOfType<GameState>();
     }
@@ -89,7 +81,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         experiencesText = GameObject.Find("ExperiencesList").GetComponentInChildren<Text>();
 
         dateActionButton = GameObject.Find("DateActionButton");
-        departConversationButton = GameObject.Find("Depart").GetComponent<Button>();
         askOnDateButton = GameObject.Find("AskOut");
         mapButton = GameObject.Find("MapButton");
         talkButtonObject = GameObject.Find("TalkButton");
@@ -140,6 +131,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
                 myAnimationMaestro.writeDescriptionText(mySceneCatalogue.getLocationDescription(), textPanel);
                 myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
                 updateSelectedPartnerButtonUI();
+                updateToggleInteriorButtonUI();
             }
         }
         else if (currentState == GameState.gameStates.CONVERSATION)
@@ -211,16 +203,9 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         SceneManager.LoadScene("splash_game_over");
     }
 
-    internal void startGame()
+    internal void deactivateStartScreenPanel()
     {
         startScreenPanel.SetActive(false);
-        dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
-    }
-
-    public void enableOnlyBye() {
-        dialogueOptionsPanel.SetActive(false);
-        departConversationButton.gameObject.SetActive(true);
-        departConversationButton.enabled = true;
     }
 
     public void resetDateButtons() {
@@ -233,12 +218,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         myInputOrganizer.createDateLocationButtons();
     }
 
-    internal void hideLocationOptions()
-    {
-        this.dialogueButtonPanel.SetActive(true);
-        this.dateLocationButtonPanel.SetActive(false);
-    }
-
     public void activateDialogueOptionsUI()
     {
         dialogueOptionsPanel.SetActive(true);
@@ -246,7 +225,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
     private void updateUIFromInput()
     {
-        //Handle Game Menu UI
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             menuPanel.gameObject.SetActive(!menuPanel.gameObject.activeSelf);
@@ -272,25 +250,23 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
 
             if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
             {
-                StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, this.setTimeAdvanceButtonInteractableTrue));
+                StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, () => { timeAdvanceButton.interactable = true; }));
             }
             else
             {
-                this.setTimeAdvanceButtonInteractableTrue();
+                timeAdvanceButton.interactable = true;
             }
         }else if (occurringEvent.getEventType() == "LOCATIONEVENT")
         {
             myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
 
-            updateToggleInteriorButtonUI();
-
             if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
             {
-                StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, this.setToggleInteriorButtonInteractable));
+                StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, () => { toggleInteriorSceneButton.interactable = true; }));
             }
             else
             {
-                this.setToggleInteriorButtonInteractable();
+                toggleInteriorSceneButton.interactable = true;
             }
         }else if (occurringEvent.getEventType() == "DATESTARTEVENT")
         {
@@ -300,16 +276,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             mySceneCatalogue.getCurrentLocation().setRandomDateAction();
         }
-    }
-
-    private void setTimeAdvanceButtonInteractableTrue()
-    {
-        timeAdvanceButton.interactable = true;
-    }
-
-    private void setToggleInteriorButtonInteractable()
-    {
-        toggleInteriorSceneButton.interactable = true;
     }
 
     private void updateToggleInteriorButtonUI()
@@ -324,5 +290,12 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
             dateLocationButton.GetComponentInChildren<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/icon_exit");
         }
+    }
+
+    public void updateConversationUIAfterDateScheduled()
+    {
+        this.dialogueButtonPanel.SetActive(true);
+        this.dateLocationButtonPanel.SetActive(false);
+        dialogueOptionsPanel.SetActive(false);
     }
 }
