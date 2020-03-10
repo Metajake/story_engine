@@ -78,7 +78,7 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
     public void startGame()
     {
         myCommandBuilder.createAndEnqueueChangeDialogueSequence(myTipManager.introText);
-        myCommandBuilder.createAndEnqueueSummonCharacterSequence(allCharacters[new System.Random().Next(allCharacters.Count)]);
+        myCommandBuilder.createAndEnqueueSummonCharacterSequence(allCharacters[new System.Random().Next(allCharacters.Count)], "Man these solicitors are getting aggressive.");
         myCommandBuilder.build();
     }
 

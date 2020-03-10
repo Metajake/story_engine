@@ -39,9 +39,9 @@ public class CommandBuilder : MonoBehaviour {
 		}
 	}
 
-	internal void createAndEnqueueSummonCharacterSequence(Character characterToEnqueue)
+	internal void createAndEnqueueSummonCharacterSequence(Character characterToEnqueue, string stringToWrite)
 	{
-		commandList.Enqueue(new SummonCharacterCommand(characterToEnqueue));
+		commandList.Enqueue(new SummonCharacterCommand(characterToEnqueue, stringToWrite));
 	}
 
 	private ChangeDialogueCommand createChangeDialogueCommand(string dialogue)
