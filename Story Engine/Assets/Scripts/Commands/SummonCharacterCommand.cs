@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class SummonCharacterCommand : ICommand {
 
 	public Character characterToSummon;
+	public string textToWrite;
 
-	public SummonCharacterCommand(Character character)
+	public SummonCharacterCommand(Character character, string stringArg = "")
 	{
 		characterToSummon = character;
+		textToWrite = stringArg;
 	}
 
 	public void execute()
@@ -21,6 +23,8 @@ public class SummonCharacterCommand : ICommand {
 		characterToSummon.locations[timeOfDay].isActive = true;
 
 		GameObject.FindObjectOfType<AnimationMaestro>().fadeInCharacters(new List<Character>() {characterToSummon});
+
+		GameObject.FindObjectOfType<AnimationMaestro>().writeDescriptionText(textToWrite, GameObject.Find("TextPanel").GetComponentInChildren<Text>());
 	}
-   
+
 }

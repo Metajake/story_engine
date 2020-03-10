@@ -51,7 +51,7 @@ public class Timelord : MonoBehaviour {
 
     //TODO See if we can rewrite the command sequences so that we don't have to make conditional calls in advanceTimestep
 	private void advanceTimestep(){
-		myDialogueManager.selectedPartner = -1;
+		//myDialogueManager.selectedPartner = -1;
         timeStep++;
 
         if (checkIfScatterCharacters(timeStep) && checkIfCreep())

@@ -214,9 +214,6 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
     internal void startGame()
     {
         startScreenPanel.SetActive(false);
-        myCommandBuilder.createAndEnqueueChangeDialogueSequence(myTipManager.introText);
-        myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.allCharacters[new System.Random().Next(myDialogueManager.allCharacters.Count)]);
-        myCommandBuilder.build();
         dateLocationButton.GetComponentInChildren<Text>().text = "Exit " + mySceneCatalogue.getCurrentLocation().interiorName;
     }
 

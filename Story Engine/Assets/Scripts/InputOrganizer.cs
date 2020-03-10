@@ -77,6 +77,7 @@ public class InputOrganizer : MonoBehaviour {
     public void BTN_startGame()
     {
         myUIManager.startGame();
+        myDialogueManager.startGame();
     }
 
     public void BTN_advanceTime()

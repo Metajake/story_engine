@@ -75,6 +75,13 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
         }
     }
 
+    public void startGame()
+    {
+        myCommandBuilder.createAndEnqueueChangeDialogueSequence(myTipManager.introText);
+        myCommandBuilder.createAndEnqueueSummonCharacterSequence(allCharacters[new System.Random().Next(allCharacters.Count)]);
+        myCommandBuilder.build();
+    }
+
     public List<Character> getAllCurrentLocalPresentConversationPartners(){
 		List<Character> toReturn = new List<Character>();
         int currentTimeOfDay = myTimeLord.getCurrentModulusTimestep();
