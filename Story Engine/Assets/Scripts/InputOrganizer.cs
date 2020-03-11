@@ -16,7 +16,7 @@ public class InputOrganizer : MonoBehaviour {
     private EventQueue myEventQueue;
     private RelationshipCounselor myRelationshipCounselor;
     private VictoryCoach myVictoryCoach;
-
+    private TipManager myTipManager;
     private GameObject dateLocationButtonPanel;
     public GameObject dateLocationButtonPrefab;
     private Button timeAdvanceButton;
@@ -39,6 +39,7 @@ public class InputOrganizer : MonoBehaviour {
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
+        myTipManager = GameObject.FindObjectOfType<TipManager>();
 
         timeAdvanceButton = GameObject.Find("TimeButton").GetComponent<Button>();
         toggleInteriorSceneButton = GameObject.Find("DateLocationButton").GetComponent<Button>();
@@ -77,7 +78,7 @@ public class InputOrganizer : MonoBehaviour {
     public void BTN_startGame()
     {
         myUIManager.deactivateStartScreenPanel();
-        myDialogueManager.startGame();
+        myTipManager.startGame();
     }
 
     public void BTN_advanceTime()
