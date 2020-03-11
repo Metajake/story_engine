@@ -68,8 +68,8 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 
     //TODO This is very similar to Timelord.checkCharactersToFadeAndAdvanceTime(). Refactor?
     public void checkIfCharactersPresentAndToggleInteriorScene(){
-        Action toggleInteriorAndTriggerEvent = () => { 
-            isInInteriorScene = !isInInteriorScene;
+        Action toggleInteriorAndTriggerEvent = () => {
+            toggleInteriorScene();
             myEventQueue.queueEvent(new EventSceneChange());
         };
         if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
@@ -79,8 +79,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         }
         else
         {
-            toggleInteriorScene();
-            myEventQueue.queueEvent(new EventSceneChange());
+            toggleInteriorAndTriggerEvent();
         }
 
     }

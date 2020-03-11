@@ -76,8 +76,6 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
     public void startGame()
     {
         myCommandBuilder.createAndEnqueueChangeDialogueSequence(myTipManager.introText);
-        myCommandBuilder.createAndEnqueueSummonCharacterSequence(allCharacters[new System.Random().Next(allCharacters.Count)], "Man these solicitors are getting aggressive.");
-        myCommandBuilder.build();
     }
 
     public List<Character> getAllCurrentLocalPresentConversationPartners(){
@@ -96,14 +94,10 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
 	}
 
 	private bool isCharacterInTimeOfDay(Character character, int timeOfDayToCheck){
-		//return character.activeTimes[myTimeLord.getCurrentModulusTimestep()] && !myRelationshipCounselor.hasDateInFuture(character);
 		return character.locations[timeOfDayToCheck].isActive && !myRelationshipCounselor.hasDateInFuture(character);
 	}
 
 	private bool isCharacterPresentAtCurrentLocation(Character character, int timeOfDayToCheck){
-  //      if (character.currentSceneName.ToLower().Equals(mySceneCatalogue.getCurrentSceneName().ToLower()) && character.isInside.Equals(mySceneCatalogue.getIsInInteriorScene())){
-		//	return true;
-		//}
         if (character.locations[timeOfDayToCheck].locationName.ToLower().Equals(mySceneCatalogue.getCurrentSceneName().ToLower()) && character.locations[timeOfDayToCheck].isInside.Equals(mySceneCatalogue.getIsInInteriorScene())){
 			return true;
 		}
@@ -144,8 +138,8 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
         return bestMatch;
 	}
 
-	public DateableCharacter getCharacterForName(string name){
-		foreach (DateableCharacter chara in allDateableCharacters){
+	public Character getCharacterForName(string name){
+		foreach (Character chara in allCharacters){
 			if (chara.givenName.ToLower() == name.ToLower()){
 				return chara;
 			}

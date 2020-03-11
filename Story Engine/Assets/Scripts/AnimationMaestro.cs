@@ -68,7 +68,7 @@ public class AnimationMaestro : MonoBehaviour
         partnerLoveAmount.text = "";
     }
 
-    public void fadeInCharacters(List<Character> potentialConversationPartners)
+    public void fadeInCharacters(List<Character> potentialConversationPartners, float fadeDuration = 0.6f)
     {
         for (int i = 0; i < 3; i++)
         {
@@ -76,9 +76,16 @@ public class AnimationMaestro : MonoBehaviour
             if (i < potentialConversationPartners.Count)
             {
                 partnerPortrait.color = new Color(255, 255, 255, 0);
-                StartCoroutine(fadeImageTo(partnerPortrait, 1.0f, 0.6f));
+                StartCoroutine(fadeImageTo(partnerPortrait, 1.0f, fadeDuration));
             }
         }
+    }
+
+    public void fadeInCharacterImage(int imagePositionToFadeIn, float fadeDuration = 0.6f)
+    {
+        Image partnerPortrait = GameObject.Find("Character " + (imagePositionToFadeIn) + " Portrait").GetComponent<Image>();
+        partnerPortrait.color = new Color(255, 255, 255, 0);
+        StartCoroutine(fadeImageTo(partnerPortrait, 1.0f, fadeDuration));
     }
 
     public void fadeOutCharacters(List<Character> potentialConversationPartners)

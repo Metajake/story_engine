@@ -4,19 +4,27 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class VictoryCoach : MonoBehaviour {
+public class VictoryCoach : MonoBehaviour, IEventSubscriber {
 
     public Dictionary<string, Experience> remainingExperiences;
     private DifficultyLevel nextGoal;
     private bool isIrresponsible;
     private List<Experience> achievedExperiences;
     private CommandBuilder myCommandBuilder;
+    private SceneCatalogue mySceneCatalogue;
+    private EventQueue myEventQueue;
+    private DialogueManager myDialogueManager;
+    private Timelord myTimeLord;
 
     private void Awake()
     {
         remainingExperiences = new Dictionary<string, Experience>();
         achievedExperiences = new List<Experience>();
         myCommandBuilder = GameObject.FindObjectOfType<CommandBuilder>();
+        mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
+        myEventQueue = GameObject.FindObjectOfType<EventQueue>();
+        myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
+        myTimeLord = GameObject.FindObjectOfType<Timelord>();
     }
 
     // Use this for initialization
@@ -31,6 +39,7 @@ public class VictoryCoach : MonoBehaviour {
         nextGoal = DifficultyLevel.EASY;
 
         isIrresponsible = true;
+        myEventQueue.subscribe(this);
 	}
 	
 	// Update is called once per frame
@@ -118,5 +127,26 @@ public class VictoryCoach : MonoBehaviour {
         }
 
         return achievedExperienceInfo;
+    }
+
+    private bool tutorialComplete = false;
+    void IEventSubscriber.eventOccurred(IGameEvent occurringEvent)
+    {
+        if (
+            mySceneCatalogue.getCurrentSceneName() == "City"
+            && mySceneCatalogue.getIsInInteriorScene() == true
+            && myTimeLord.getCurrentModulusTimestep() == 0
+            && tutorialComplete == false
+        ){
+            myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("evan"), 1, "Welcome to the rat race.");
+            myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(){
+                "Just kidding. It's not that bad.",
+                "I'll tell you how to go about things.",
+                "Meet your new coworker, Kristie Yamaguchi."
+            });
+            myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("kristie"), 2, "Go ahead and introduce yourself.");
+            myCommandBuilder.build();
+            tutorialComplete = true;
+        }
     }
 }
