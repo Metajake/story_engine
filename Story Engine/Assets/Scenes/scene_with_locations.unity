@@ -6504,6 +6504,7 @@ MonoBehaviour:
   inLoveAmount: -1
   isPresent: 1
   returnTime: 0
+  relocationInterval: 21
   locations:
   - locationName: City
     isInside: 1
@@ -6538,6 +6539,7 @@ MonoBehaviour:
   inLoveAmount: 0
   isPresent: 1
   returnTime: 0
+  relocationInterval: 0
   locations:
   - locationName: City
     isInside: 1
@@ -6565,6 +6567,7 @@ MonoBehaviour:
   inLoveAmount: -1
   isPresent: 1
   returnTime: 0
+  relocationInterval: 21
   locations:
   - locationName: Sea Side
     isInside: 0
@@ -6599,6 +6602,7 @@ MonoBehaviour:
   inLoveAmount: -1
   isPresent: 1
   returnTime: 0
+  relocationInterval: 21
   locations:
   - locationName: 
     isInside: 0
@@ -6653,6 +6657,7 @@ MonoBehaviour:
   inLoveAmount: -1
   isPresent: 1
   returnTime: 0
+  relocationInterval: 21
   locations:
   - locationName: 
     isInside: 0
@@ -6687,6 +6692,7 @@ MonoBehaviour:
   inLoveAmount: -1
   isPresent: 1
   returnTime: 0
+  relocationInterval: 21
   locations:
   - locationName: 
     isInside: 0
@@ -6721,6 +6727,7 @@ MonoBehaviour:
   inLoveAmount: 0
   isPresent: 1
   returnTime: 0
+  relocationInterval: 21
   locations:
   - locationName: 
     isInside: 0
@@ -6755,6 +6762,7 @@ MonoBehaviour:
   inLoveAmount: 0
   isPresent: 1
   returnTime: 0
+  relocationInterval: 21
   locations:
   - locationName: 
     isInside: 0
@@ -6789,6 +6797,7 @@ MonoBehaviour:
   inLoveAmount: 0
   isPresent: 1
   returnTime: 0
+  relocationInterval: 21
   locations:
   - locationName: 
     isInside: 0
@@ -6823,6 +6832,7 @@ MonoBehaviour:
   inLoveAmount: 0
   isPresent: 1
   returnTime: 0
+  relocationInterval: 21
   locations:
   - locationName: 
     isInside: 0
@@ -6855,8 +6865,9 @@ MonoBehaviour:
   givenName: Chad
   surname: Lancaster
   inLoveAmount: 0
-  isPresent: 0
+  isPresent: 1
   returnTime: 0
+  relocationInterval: 3
   locations:
   - locationName: 
     isInside: 0

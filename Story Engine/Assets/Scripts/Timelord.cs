@@ -52,11 +52,14 @@ public class Timelord : MonoBehaviour {
 	private void advanceTimestep(){
         timeStep++;
 
+        myDialogueManager.checkCharacterRelocate();
+
         if ( checkIfCreep() ) {
             relocatePlayerEvent();
         }
-        if ( checkIfScatterCharacters(timeStep) ) {
-            scatterCharactersEvent();
+
+        if ( checkIfWeekEvent(timeStep) ) {
+            weekEvent();
         }
 
         myEventQueue.queueEvent(new EventTimeChange());
@@ -70,16 +73,15 @@ public class Timelord : MonoBehaviour {
         myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>() { "Go somewhere else. Stop creeping around one location." });
     }
 
-    private void scatterCharactersEvent()
+    private void weekEvent()
     {
-        myDialogueManager.scatterDateableCharacters();
         myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>() {
-                "It's been another whole week. Time flies by when you're really out here, on this grind.",
+                "It's been another whole week. Time flies by when you're on this grind.",
                 "I wonder where I'll meet people to talk to this week. It's a big city!"
         });
     }
 
-    private bool checkIfScatterCharacters(int timeStepToCheck)
+    private bool checkIfWeekEvent(int timeStepToCheck)
     {
         if (timeStep % 21 == 0)
         { //if it's a multiple of 21 (aka Every 7 Days)

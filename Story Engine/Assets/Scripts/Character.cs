@@ -18,8 +18,9 @@ public class Character : MonoBehaviour {
     public int inLoveAmount;
     public bool isPresent;
     public int returnTime;
+    public int relocationInterval;
     public List<CharacterLocation> locations;
-
+    
     public virtual bool checkIsPresent(){
         inLoveAmount = 0;
         return this.isPresent;

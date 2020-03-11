@@ -140,8 +140,8 @@ public class VictoryCoach : MonoBehaviour, IEventSubscriber {
         ){
             myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("evan"), 1, "Welcome to the rat race.");
             myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(){
-                "Just kidding. It's not that bad.",
-                "I'll tell you how to go about things.",
+                "Just kidding. It's not that bad. Here's how things work:",
+                "Some people that you meet have regular schedules. Other characters will move around the city more often.",
                 "Meet your new coworker, Kristie Yamaguchi."
             });
             myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("kristie"), 2, "Go ahead and introduce yourself.");

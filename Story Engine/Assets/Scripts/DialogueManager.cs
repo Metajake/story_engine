@@ -48,7 +48,7 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
 
         myEventQueue.subscribe(this);
         initializeAllCharacters();
-        this.scatterDateableCharacters("Kristie");
+        this.disburseCharacters(charactersToInclude: allCharacters, characterNamesToExclude: new List<string> { "kristie", "evan" });
     }
 
     void IEventSubscriber.eventOccurred(IGameEvent occurringEvent)
@@ -148,13 +148,13 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
 		return null;
 	}
 
-    public void scatterDateableCharacters(string characterToExcept = ""){
+    public void disburseCharacters(List<Character> charactersToInclude = default(List<Character>), List<string> characterNamesToExclude = default(List<string>)){
 		System.Random random = new System.Random();
         List<Location> knownLocations = mySceneCatalogue.getKnownLocations();
 
-        foreach (DateableCharacter chara in allDateableCharacters){
+        foreach (Character chara in charactersToInclude){
 
-            if ( characterToExcept.ToLower() == chara.givenName.ToLower() ) { continue; }
+            if ( characterNamesToExclude != null && characterNamesToExclude.Contains(chara.givenName.ToLower() )) { continue; }
 
             for ( int i = 0; i < 3; i++)
             {
@@ -182,6 +182,18 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
                 }
             }
         }
+    }
+
+    public void checkCharacterRelocate()
+    {
+        List<Character> charsToRelocate = new List<Character>() { };
+        foreach(Character ch in allCharacters){
+            if (ch.relocationInterval != 0 && myTimeLord.timeStep % ch.relocationInterval == 0)
+            {
+                charsToRelocate.Add(ch);
+            }
+        }
+        disburseCharacters(charactersToInclude: charsToRelocate);
     }
 
     public void endDialogue(bool isDialoguing)
