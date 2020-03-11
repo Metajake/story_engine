@@ -6466,6 +6466,7 @@ GameObject:
   - component: {fileID: 1360229243}
   - component: {fileID: 1360229244}
   - component: {fileID: 1360229245}
+  - component: {fileID: 1360229246}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -6839,6 +6840,33 @@ MonoBehaviour:
   locationPreferences: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   league: 0
   dateCount: 0
+--- !u!114 &1360229246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1360229233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c89a1443646f497ba0447bdfe3669b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 2800000, guid: da61377a9cd33da41af661532fc27352, type: 3}
+  givenName: Chad
+  surname: Lancaster
+  inLoveAmount: 0
+  isPresent: 0
+  returnTime: 0
+  locations:
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
 --- !u!1 &1388197263
 GameObject:
   m_ObjectHideFlags: 0

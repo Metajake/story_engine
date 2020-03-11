@@ -49,63 +49,34 @@ public class Timelord : MonoBehaviour {
         }
     }
 
-    //TODO See if we can rewrite the command sequences so that we don't have to make conditional calls in advanceTimestep
 	private void advanceTimestep(){
-		//myDialogueManager.selectedPartner = -1;
         timeStep++;
 
-        if (checkIfScatterCharacters(timeStep) && checkIfCreep())
-        {
-            scatterCharactersAndRelocatePlayerEvent();
-            myEventQueue.queueEvent(new EventTimeChange());
-        }
-        else if (checkIfScatterCharacters(timeStep))
-        {
-            scatterCharactersEvent();
-            myEventQueue.queueEvent(new EventTimeChange());
-        }
-        else if (checkIfCreep())
-        {
+        if ( checkIfCreep() ) {
             relocatePlayerEvent();
-            myEventQueue.queueEvent(new EventTimeChange());
         }
-        else
-        {
-            myEventQueue.queueEvent(new EventTimeChange());
+        if ( checkIfScatterCharacters(timeStep) ) {
+            scatterCharactersEvent();
         }
-        
+
+        myEventQueue.queueEvent(new EventTimeChange());
+        myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+        myCommandBuilder.build();
     }
 
     private void relocatePlayerEvent()
     {
         mySceneCatalogue.setRandomKnownScene();
-        myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
         myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>() { "Go somewhere else. Stop creeping around one location." });
-        myCommandBuilder.build();
     }
 
     private void scatterCharactersEvent()
     {
-        myDialogueManager.scatterCharacters();
-        myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+        myDialogueManager.scatterDateableCharacters();
         myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>() {
                 "It's been another whole week. Time flies by when you're really out here, on this grind.",
                 "I wonder where I'll meet people to talk to this week. It's a big city!"
         });
-        myCommandBuilder.build();
-    }
-
-    private void scatterCharactersAndRelocatePlayerEvent()
-    {
-        myDialogueManager.scatterCharacters();
-        mySceneCatalogue.setRandomKnownScene();
-        myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-        myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>() {
-                "Go somewhere else. Stop creeping around one location.",
-                "It's been another whole week. Time flies by when you're really out here, on this grind.",
-                "I wonder where I'll meet people to talk to this week. It's a big city!"
-            });
-        myCommandBuilder.build();
     }
 
     private bool checkIfScatterCharacters(int timeStepToCheck)
@@ -131,7 +102,7 @@ public class Timelord : MonoBehaviour {
             }
         }
 
-        if (creepAmount >= 7)
+        if (creepAmount >= 5)
         {
             creepAmount = 0;
             return true;

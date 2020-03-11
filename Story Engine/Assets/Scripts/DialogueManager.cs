@@ -48,7 +48,7 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
 
         myEventQueue.subscribe(this);
         initializeAllCharacters();
-        this.scatterCharacters("Kristie");
+        this.scatterDateableCharacters("Kristie");
     }
 
     void IEventSubscriber.eventOccurred(IGameEvent occurringEvent)
@@ -76,6 +76,7 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
     public void startGame()
     {
         myCommandBuilder.createAndEnqueueChangeDialogueSequence(myTipManager.introText);
+        myCommandBuilder.build();
     }
 
     public List<Character> getAllCurrentLocalPresentConversationPartners(){
@@ -147,7 +148,7 @@ public class DialogueManager : MonoBehaviour, IEventSubscriber {
 		return null;
 	}
 
-    public void scatterCharacters(string characterToExcept = ""){
+    public void scatterDateableCharacters(string characterToExcept = ""){
 		System.Random random = new System.Random();
         List<Location> knownLocations = mySceneCatalogue.getKnownLocations();
 
