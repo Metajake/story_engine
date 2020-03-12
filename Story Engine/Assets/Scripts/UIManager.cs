@@ -247,34 +247,32 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         if (occurringEvent.getEventType() == "TIMEEVENT")
         {
             myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-
-            if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
-            {
-                StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, () => { timeAdvanceButton.interactable = true; }));
-            }
-            else
-            {
-                timeAdvanceButton.interactable = true;
-            }
-        }else if (occurringEvent.getEventType() == "LOCATIONEVENT")
+            reactivateButtonFadingInIfCharactersPresent(timeAdvanceButton, 1.5f);
+        }
+        else if (occurringEvent.getEventType() == "LOCATIONEVENT")
         {
             myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-
-            if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
-            {
-                StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, () => { toggleInteriorSceneButton.interactable = true; }));
-            }
-            else
-            {
-                toggleInteriorSceneButton.interactable = true;
-            }
-        }else if (occurringEvent.getEventType() == "DATESTARTEVENT")
+            reactivateButtonFadingInIfCharactersPresent(toggleInteriorSceneButton, 0.6f);
+        }
+        else if (occurringEvent.getEventType() == "DATESTARTEVENT")
         {
             myAnimationMaestro.fadeInCharacters(new List<Character>() { myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep()) });
         }
         else if (occurringEvent.getEventType() == "DATEACTIONEVENT")
         {
             mySceneCatalogue.getCurrentLocation().setRandomDateAction();
+        }
+    }
+
+    private void reactivateButtonFadingInIfCharactersPresent(Button buttonToSetInteractable, float fadeDuration)
+    {
+        if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
+        {
+            StartCoroutine(myAnimationMaestro.delayGameCoroutine(fadeDuration, () => { buttonToSetInteractable.interactable = true; }));
+        }
+        else
+        {
+            buttonToSetInteractable.interactable = true;
         }
     }
 
