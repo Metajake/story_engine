@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,10 +11,9 @@ public class Timelord : MonoBehaviour {
 	public Text dayText;
     private DialogueManager myDialogueManager;
     private SceneCatalogue mySceneCatalogue;
-    private EventQueue myEventQueue;
     private CommandBuilder myCommandBuilder;
     private AnimationMaestro myAnimationMaestro;
-
+    private VictoryCoach myVictoryCoach;
     private int creepAmount;
     private Location pastLocation;
     private bool pastInteriorStatus;
@@ -23,9 +23,10 @@ public class Timelord : MonoBehaviour {
 		timeStep = 0;	
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
-        myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myCommandBuilder = GameObject.FindObjectOfType<CommandBuilder>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
+        myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
+
 
     }
 
@@ -54,6 +55,8 @@ public class Timelord : MonoBehaviour {
 
         myDialogueManager.checkCharacterRelocate();
 
+        myVictoryCoach.checkQuestsCompleteAndQueueLocationEvent(new EventTimeChange(), toBuild: false);
+
         if ( checkIfCreep() ) {
             relocatePlayerEvent();
         }
@@ -61,9 +64,10 @@ public class Timelord : MonoBehaviour {
         if ( checkIfWeekEvent(timeStep) ) {
             weekEvent();
         }
-
-        myEventQueue.queueEvent(new EventTimeChange());
+        
         myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+        
+        //build the stuff in the conditionals, above
         myCommandBuilder.build();
     }
 

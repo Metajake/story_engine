@@ -140,7 +140,7 @@ public class InputOrganizer : MonoBehaviour {
     public void BTN_toggleIntertiorScene()
     {
         toggleInteriorSceneButton.interactable = false;
-        mySceneCatalogue.delayToggleInteriorSceneIfCharactersPresent();
+        mySceneCatalogue.checkVictoryQuestCompleteAndDelayToggleInteriorSceneIfCharactersPresent();
     }
 
     public void BTN_leaveDate()

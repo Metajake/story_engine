@@ -14,6 +14,7 @@ public class VictoryCoach : MonoBehaviour {
     private SceneCatalogue mySceneCatalogue;
     private DialogueManager myDialogueManager;
     private Timelord myTimeLord;
+    private EventQueue myEventQueue;
 
     private void Awake()
     {
@@ -23,6 +24,8 @@ public class VictoryCoach : MonoBehaviour {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         myTimeLord = GameObject.FindObjectOfType<Timelord>();
+        myEventQueue = GameObject.FindObjectOfType<EventQueue>();
+
     }
 
     // Use this for initialization
@@ -130,11 +133,13 @@ public class VictoryCoach : MonoBehaviour {
 
     public bool checkTutorialConditionsMet()
     {
+        //DEBUG VERSION return mySceneCatalogue.getIsInInteriorScene() == true && mySceneCatalogue.getCurrentSceneName() == "City" && myTimeLord.getCurrentModulusTimestep() == 0;
         return this.tutorialComplete == false && mySceneCatalogue.getIsInInteriorScene() == true && mySceneCatalogue.getCurrentSceneName() == "City" && myTimeLord.getCurrentModulusTimestep() == 0;
     }
 
-    public void playTutorialCommandSequence()
+    public void playTutorialCommandSequence(bool toBuild)
     {
+        //TODO Why can't I move the below algorithm to a Command Sequence?
         int currentCharacterCount = myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count;
         for (int i = 0; i < currentCharacterCount; i++)
         {
@@ -153,7 +158,22 @@ public class VictoryCoach : MonoBehaviour {
             "Meet your new coworker, Kristie Kerner."
         });
         myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("kristie"), 3, "Go ahead and introduce yourself.");
-        myCommandBuilder.build();
+        if (toBuild)
+        {
+            myCommandBuilder.build();
+        }
         this.tutorialComplete = true;
+    }
+
+    public void checkQuestsCompleteAndQueueLocationEvent(IGameEvent eventToQueue, bool toBuild = true)
+    {
+        if (checkTutorialConditionsMet())
+        {
+            playTutorialCommandSequence(toBuild);
+        }
+        else
+        {
+            myEventQueue.queueEvent(eventToQueue);
+        }
     }
 }

@@ -8,9 +8,11 @@ public class SummonCharacterCommand : ICommand {
 	public Character characterToSummon;
 	public string textToWrite;
 	public int actorCount;
+	private AnimationMaestro myAnimationMaestro;
 
 	public SummonCharacterCommand(Character character, int actorCountToAssign, string stringArg)
 	{
+		myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
 		characterToSummon = character;
 		actorCount = actorCountToAssign; 
 		textToWrite = stringArg;
@@ -25,19 +27,21 @@ public class SummonCharacterCommand : ICommand {
 		characterToSummon.locations[timeOfDay].isInside = GameObject.FindObjectOfType<SceneCatalogue>().getIsInInteriorScene();
 		characterToSummon.locations[timeOfDay].isActive = true;
 
-		GameObject.FindObjectOfType<AnimationMaestro>().updatePotentialPartnersSprites(GameObject.FindObjectOfType<DialogueManager>().getAllCurrentLocalPresentConversationPartners());
+		List<Character> charList = GameObject.FindObjectOfType<DialogueManager>().getAllCurrentLocalPresentConversationPartners();
 		
-		if (actorCount == 2)
+		for (int i = 0; i < charList.Count; i++)
 		{
-		    GameObject.FindObjectOfType<AnimationMaestro>().setImageColor(GameObject.Find("Character 2 Portrait").GetComponent<Image>(), new Color(255,255,255,1));
-		}else if (actorCount == 3)
-		{
-		    GameObject.FindObjectOfType<AnimationMaestro>().setImageColor(GameObject.Find("Character 3 Portrait").GetComponent<Image>(), new Color(255,255,255,1));
+			if(charList[i].givenName == characterToSummon.givenName)
+			{
+				myAnimationMaestro.fadeInCharacterImage(i + 1, 0.75f);
+			}
+			else
+			{
+				myAnimationMaestro.setImageColor(GameObject.Find("Character " + (i+1) + " Portrait").GetComponent<Image>(), new Color(255, 255, 255, 1));
+			}
 		}
 
-		GameObject.FindObjectOfType<AnimationMaestro>().fadeInCharacters(new List<Character>() {characterToSummon}, 0.75f);
-
-		GameObject.FindObjectOfType<AnimationMaestro>().writeDescriptionText(textToWrite, GameObject.Find("TextPanel").GetComponentInChildren<Text>());
+		myAnimationMaestro.writeDescriptionText(textToWrite, GameObject.Find("TextPanel").GetComponentInChildren<Text>());
 	}
 
 }

@@ -247,7 +247,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         if (occurringEvent.getEventType() == "TIMEEVENT")
         {
             myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-            reactivateButtonFadingInIfCharactersPresent(timeAdvanceButton, 1.5f);
+            reactivateButtonFadingInIfCharactersPresent(timeAdvanceButton, 0.6f);
         }
         else if (occurringEvent.getEventType() == "LOCATIONEVENT")
         {
@@ -256,6 +256,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         }
         else if (occurringEvent.getEventType() == "SEQUENCEENDEVENT")
         {
+            reactivateButtonFadingInIfCharactersPresent(timeAdvanceButton, 0.0f);
             reactivateButtonFadingInIfCharactersPresent(toggleInteriorSceneButton, 0.0f);
         }
         else if (occurringEvent.getEventType() == "DATESTARTEVENT")
