@@ -13,6 +13,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     private AnimationMaestro myAnimationMaestro;
     private DialogueManager myDialogueManager;
     private ConversationTracker myConversationTracker;
+    private VictoryCoach myVictoryCoach;
     private List<IKnownLocationsChangedObserver> currentObservers;
 
     void Awake() {
@@ -25,6 +26,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         myConversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
+        myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 
         startingSceneNumber = 7;
         isInInteriorScene = true; // Start Player out in apartment
@@ -67,10 +69,11 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
     }
 
     //TODO This is very similar to Timelord.checkCharactersToFadeAndAdvanceTime(). Refactor?
-    public void checkIfCharactersPresentAndToggleInteriorScene(){
-        Action toggleInteriorAndTriggerEvent = () => {
+    public void delayToggleInteriorSceneIfCharactersPresent(){
+        Action toggleInteriorAndTriggerEvent = () =>
+        {
             toggleInteriorScene();
-            myEventQueue.queueEvent(new EventSceneChange());
+            checkQuestsCompleteAndQueueLocationEvent();
         };
         if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
         {
@@ -82,6 +85,18 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
             toggleInteriorAndTriggerEvent();
         }
 
+    }
+
+    private void checkQuestsCompleteAndQueueLocationEvent()
+    {
+        if (myVictoryCoach.checkTutorialConditionsMet())
+        {
+            myVictoryCoach.playTutorialCommandSequence();
+        }
+        else
+        {
+            myEventQueue.queueEvent(new EventSceneChange());
+        }
     }
 
     public void toggleInteriorScene()

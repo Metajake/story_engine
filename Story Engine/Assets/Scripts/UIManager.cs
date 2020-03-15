@@ -254,6 +254,10 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             myAnimationMaestro.fadeInCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
             reactivateButtonFadingInIfCharactersPresent(toggleInteriorSceneButton, 0.6f);
         }
+        else if (occurringEvent.getEventType() == "SEQUENCEENDEVENT")
+        {
+            reactivateButtonFadingInIfCharactersPresent(toggleInteriorSceneButton, 0.0f);
+        }
         else if (occurringEvent.getEventType() == "DATESTARTEVENT")
         {
             myAnimationMaestro.fadeInCharacters(new List<Character>() { myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep()) });

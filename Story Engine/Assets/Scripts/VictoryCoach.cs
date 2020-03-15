@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class VictoryCoach : MonoBehaviour, IEventSubscriber {
+public class VictoryCoach : MonoBehaviour {
 
     public Dictionary<string, Experience> remainingExperiences;
     private DifficultyLevel nextGoal;
@@ -12,7 +12,6 @@ public class VictoryCoach : MonoBehaviour, IEventSubscriber {
     private List<Experience> achievedExperiences;
     private CommandBuilder myCommandBuilder;
     private SceneCatalogue mySceneCatalogue;
-    private EventQueue myEventQueue;
     private DialogueManager myDialogueManager;
     private Timelord myTimeLord;
 
@@ -22,7 +21,6 @@ public class VictoryCoach : MonoBehaviour, IEventSubscriber {
         achievedExperiences = new List<Experience>();
         myCommandBuilder = GameObject.FindObjectOfType<CommandBuilder>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
-        myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         myTimeLord = GameObject.FindObjectOfType<Timelord>();
     }
@@ -39,7 +37,6 @@ public class VictoryCoach : MonoBehaviour, IEventSubscriber {
         nextGoal = DifficultyLevel.EASY;
 
         isIrresponsible = true;
-        myEventQueue.subscribe(this);
 	}
 	
 	// Update is called once per frame
@@ -130,23 +127,33 @@ public class VictoryCoach : MonoBehaviour, IEventSubscriber {
     }
 
     private bool tutorialComplete = false;
-    void IEventSubscriber.eventOccurred(IGameEvent occurringEvent)
+
+    public bool checkTutorialConditionsMet()
     {
-        if (
-            mySceneCatalogue.getCurrentSceneName() == "City"
-            && mySceneCatalogue.getIsInInteriorScene() == true
-            && myTimeLord.getCurrentModulusTimestep() == 0
-            && tutorialComplete == false
-        ){
-            myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("evan"), 1, "Welcome to the rat race.");
-            myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(){
+        return this.tutorialComplete == false && mySceneCatalogue.getIsInInteriorScene() == true && mySceneCatalogue.getCurrentSceneName() == "City" && myTimeLord.getCurrentModulusTimestep() == 0;
+    }
+
+    public void playTutorialCommandSequence()
+    {
+        int currentCharacterCount = myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count;
+        for (int i = 0; i < currentCharacterCount; i++)
+        {
+            Character charToRemove = myDialogueManager.getPartnerAt(i + 1);
+            charToRemove.returnTime = myTimeLord.getCurrentTimestep()+1;
+            charToRemove.isPresent = false;
+        }
+        myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("evan"), 1, "Welcome to the rat race.");
+        myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(){
                 "Just kidding. It's not that bad. Here's how things work:",
                 "Some people that you meet have regular schedules. Other characters will move around the city more often.",
-                "Meet your new coworker, Kristie Yamaguchi."
-            });
-            myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("kristie"), 2, "Go ahead and introduce yourself.");
-            myCommandBuilder.build();
-            tutorialComplete = true;
-        }
+        });
+        myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("chad"), 2, "This is Chad, the city bully. He will force you out of locations.");
+        myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(){
+            "Get strong enough to force him to leave.",
+            "Meet your new coworker, Kristie Kerner."
+        });
+        myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("kristie"), 3, "Go ahead and introduce yourself.");
+        myCommandBuilder.build();
+        this.tutorialComplete = true;
     }
 }

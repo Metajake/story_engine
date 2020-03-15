@@ -15,5 +15,9 @@ public class SequenceEndCommand : ICommand
     public void execute()
     {
         myGameState.currentGameState = toEndIn;
+        if (toEndIn == GameState.gameStates.PROWL)
+        {
+            GameObject.FindObjectOfType<EventQueue>().queueEvent(new EventSequenceEnd());
+        }
     }
 }

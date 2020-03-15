@@ -88,6 +88,11 @@ public class AnimationMaestro : MonoBehaviour
         StartCoroutine(fadeImageTo(partnerPortrait, 1.0f, fadeDuration));
     }
 
+    public void setImageColor(Image imageToSet, Color colorToSet)
+    {
+        imageToSet.color = colorToSet;
+    }
+
     public void fadeOutCharacters(List<Character> potentialConversationPartners)
     {
         for (int i = 0; i < 3; i++)
