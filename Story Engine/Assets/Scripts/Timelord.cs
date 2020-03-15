@@ -55,7 +55,7 @@ public class Timelord : MonoBehaviour {
 
         myDialogueManager.checkCharacterRelocate();
 
-        myVictoryCoach.checkQuestsCompleteAndQueueLocationEvent(new EventTimeChange(), toBuild: false);
+        myVictoryCoach.checkQuestsCompleteAndQueueEvent(new EventTimeChange(), toBuild: false);
 
         if ( checkIfCreep() ) {
             relocatePlayerEvent();

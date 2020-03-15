@@ -13,7 +13,6 @@ public class InputOrganizer : MonoBehaviour {
     private ConversationTracker myConversationTracker;
     private MapCartographer myMapCartographer;
     private AudioConductor myAudioConductor;
-    private EventQueue myEventQueue;
     private RelationshipCounselor myRelationshipCounselor;
     private VictoryCoach myVictoryCoach;
     private TipManager myTipManager;
@@ -36,7 +35,6 @@ public class InputOrganizer : MonoBehaviour {
         myConversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
         myMapCartographer = GameObject.FindObjectOfType<MapCartographer>();
         myAudioConductor = GameObject.FindObjectOfType<AudioConductor>();
-        myEventQueue = GameObject.FindObjectOfType<EventQueue>();
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
         myTipManager = GameObject.FindObjectOfType<TipManager>();
@@ -110,7 +108,7 @@ public class InputOrganizer : MonoBehaviour {
         myMapCartographer.changeScene(sceneNumber);
         BTN_toggleMap();
         myAudioConductor.loadAndPlay(myAudioConductor.subwayCar);
-        myEventQueue.queueEvent(new EventSceneChange());
+        myVictoryCoach.checkQuestsCompleteAndQueueEvent(new EventSceneChange());
     }
 
     public void BTN_toggleMap()

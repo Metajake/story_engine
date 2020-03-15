@@ -301,4 +301,9 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         this.dateLocationButtonPanel.SetActive(false);
         dialogueOptionsPanel.SetActive(false);
     }
+
+    public void setMainPanelActive()
+    {
+        mainPanel.gameObject.SetActive(true);
+    }
 }

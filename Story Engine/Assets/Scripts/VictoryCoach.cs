@@ -133,8 +133,7 @@ public class VictoryCoach : MonoBehaviour {
 
     public bool checkTutorialConditionsMet()
     {
-        //DEBUG VERSION return mySceneCatalogue.getIsInInteriorScene() == true && mySceneCatalogue.getCurrentSceneName() == "City" && myTimeLord.getCurrentModulusTimestep() == 0;
-        return this.tutorialComplete == false && mySceneCatalogue.getIsInInteriorScene() == true && mySceneCatalogue.getCurrentSceneName() == "City" && myTimeLord.getCurrentModulusTimestep() == 0;
+        return tutorialComplete == false && mySceneCatalogue.getIsInInteriorScene() == true && mySceneCatalogue.getCurrentSceneName() == "City" && myTimeLord.getCurrentModulusTimestep() == 0;
     }
 
     public void playTutorialCommandSequence(bool toBuild)
@@ -147,6 +146,8 @@ public class VictoryCoach : MonoBehaviour {
             charToRemove.returnTime = myTimeLord.getCurrentTimestep()+1;
             charToRemove.isPresent = false;
         }
+        GameObject.FindObjectOfType<UIManager>().setMainPanelActive();
+
         myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("evan"), 1, "Welcome to the rat race.");
         myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(){
                 "Just kidding. It's not that bad. Here's how things work:",
@@ -165,7 +166,7 @@ public class VictoryCoach : MonoBehaviour {
         this.tutorialComplete = true;
     }
 
-    public void checkQuestsCompleteAndQueueLocationEvent(IGameEvent eventToQueue, bool toBuild = true)
+    public void checkQuestsCompleteAndQueueEvent(IGameEvent eventToQueue, bool toBuild = true)
     {
         if (checkTutorialConditionsMet())
         {

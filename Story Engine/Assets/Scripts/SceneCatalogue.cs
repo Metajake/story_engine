@@ -214,7 +214,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         Action toggleInteriorAndTriggerEvent = () =>
         {
             toggleInteriorScene();
-            myVictoryCoach.checkQuestsCompleteAndQueueLocationEvent(new EventSceneChange());
+            myVictoryCoach.checkQuestsCompleteAndQueueEvent(new EventSceneChange());
         };
         if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
         {

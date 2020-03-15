@@ -29,6 +29,7 @@ public class SummonCharacterCommand : ICommand {
 
 		List<Character> charList = GameObject.FindObjectOfType<DialogueManager>().getAllCurrentLocalPresentConversationPartners();
 		
+		// For each character in present characters, if character is currently being summoned, fade in, otherwise snap in.
 		for (int i = 0; i < charList.Count; i++)
 		{
 			if(charList[i].givenName == characterToSummon.givenName)

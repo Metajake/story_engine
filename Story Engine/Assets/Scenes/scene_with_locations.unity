@@ -2953,26 +2953,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d090c26f3016e42bdbfc22d381ffad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introText:
-  - Sitting at home sure is safe and comfortable!........
-  - But something needs to change.
-  - It's time to get out there and meet someone.
-  - Developing a strong, intimate relationship over time will open a whole new side
-    of life and a whole new me.
-  - '...'
-  - The problem with that is, the more time I spend with someone, the greater the
-    chance there is of them falling in love with me.
-  - And as soon as that happens, I can't help but fall in love back!..
-  - Unfortunatley for me, relationships never seem to work out (for one reason or
-    another). Every time I fall in love, eventually I'm left crushed and heartbroken.
-    It's devestating!
-  - '...'
-  - But I have to get out there! I have to gain those life changing experiences that
-    only a true relationship can bring.
-  - And I have to do it without spending too much time with any one person. Until
-    I'm ready, I can't let anyone fall in love with me!
-  - '.......'
-  - I could start by making it to work on time... Let's go!
 --- !u!4 &676023470
 Transform:
   m_ObjectHideFlags: 0
@@ -6865,7 +6845,7 @@ MonoBehaviour:
   givenName: Chad
   surname: Lancaster
   inLoveAmount: 0
-  isPresent: 1
+  isPresent: 0
   returnTime: 0
   relocationInterval: 3
   locations:
