@@ -6447,6 +6447,7 @@ GameObject:
   - component: {fileID: 1360229244}
   - component: {fileID: 1360229245}
   - component: {fileID: 1360229246}
+  - component: {fileID: 1360229247}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -6578,7 +6579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: dc9867ba9efc244f89ec752c313b417e, type: 3}
   givenName: Becky
-  surname: Less
+  surname: Lesse
   inLoveAmount: -1
   isPresent: 1
   returnTime: 0
@@ -6702,8 +6703,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 5d3701bfdd1ba4e4daa57abf09dc1068, type: 3}
-  givenName: Olivia
-  surname: Bachman
+  givenName: Eleanor
+  surname: Isle
   inLoveAmount: 0
   isPresent: 1
   returnTime: 0
@@ -6737,8 +6738,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: ab0ff4522dd2e6f4487fc7aae20ae6c9, type: 3}
-  givenName: Jasmine
-  surname: Compton
+  givenName: Laura
+  surname: Chan
   inLoveAmount: 0
   isPresent: 1
   returnTime: 0
@@ -6773,7 +6774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 1576a28538d37d14394d02c9c00da9b8, type: 3}
   givenName: Eli
-  surname: Tan
+  surname: 
   inLoveAmount: 0
   isPresent: 1
   returnTime: 0
@@ -6807,8 +6808,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: d2a5332c658bf4997ab47077ddbcb3f8, type: 3}
-  givenName: Melissa
-  surname: Chan
+  givenName: Missy
+  surname: May
   inLoveAmount: 0
   isPresent: 1
   returnTime: 0
@@ -6848,6 +6849,34 @@ MonoBehaviour:
   isPresent: 0
   returnTime: 0
   relocationInterval: 3
+  locations:
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
+  - locationName: 
+    isInside: 0
+    isActive: 0
+--- !u!114 &1360229247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1360229233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c89a1443646f497ba0447bdfe3669b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 2800000, guid: 2c211eb1999339f45837f40840593ea4, type: 3}
+  givenName: Miss
+  surname: Love
+  inLoveAmount: 0
+  isPresent: 1
+  returnTime: 0
+  relocationInterval: 9
   locations:
   - locationName: 
     isInside: 0
