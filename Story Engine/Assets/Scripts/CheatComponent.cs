@@ -36,6 +36,9 @@ public class CheatComponent : MonoBehaviour {
             myConversationTracker.scheduleDate(randomDateLocation);
 
             myDialogueManager.selectedPartner = -1;
+        }else if (Input.GetKeyDown(KeyCode.G))
+        {
+            GameObject.FindObjectOfType<UIManager>().gameOver();
         }
     }
 }
