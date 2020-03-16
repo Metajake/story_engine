@@ -4065,7 +4065,7 @@ MonoBehaviour:
   neutralDateResultDescription: West Neut
   experienceDescription: West Exp
   isDateScene: 1
-  isKnown: 0
+  isKnown: 1
   descriptionInterior: The club is really bumping. The rythmic bass is hypnotizing,
     and it's hard not to move your body to the beat.
   descriptionExterior: This part of town is known for it's impurity. But everyone

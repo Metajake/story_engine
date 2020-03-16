@@ -234,8 +234,19 @@ public class ConversationTracker : MonoBehaviour {
     {
         int randomTimestepFromPresent = new System.Random().Next(0, 19);
         int randomDateTime = myTimelord.getCurrentTimestep() + randomTimestepFromPresent;
+        randomDateTime = setClubDatesNight(location, randomDateTime);
         myRelationshipCounselor.createDate(location, randomDateTime, this.currentConversation.speaker);
         endConversation("Sounds good. see you " + myTimelord.getTimeString(randomDateTime) + "!");
+    }
+
+    private int setClubDatesNight(Location location, int randomDateTime)
+    {
+        if (location.interiorName == "Club")
+        {
+            int randDateTimeModulus = randomDateTime % myTimelord.timeNames.Length;
+            randomDateTime += (2 - randDateTimeModulus);
+        }
+        return randomDateTime;
     }
 
     private void endConversation(string farewell = "")

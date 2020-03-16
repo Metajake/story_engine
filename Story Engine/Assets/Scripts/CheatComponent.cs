@@ -23,7 +23,7 @@ public class CheatComponent : MonoBehaviour {
     void Update () {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            myVictoryCoach.achieveNextExperience(false);
+            myVictoryCoach.achieveNextExperience(true);
         }else if (Input.GetKeyDown(KeyCode.D))
         {
             DateableCharacter randomDateableChar = myDialogueManager.allDateableCharacters[rn.Next(myDialogueManager.allDateableCharacters.Count)];
