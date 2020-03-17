@@ -96,20 +96,14 @@ public class VictoryCoach : MonoBehaviour {
 
         if (playCutscene)
         {
-            if(toReturn.experienceName == "protect" && mySceneCatalogue.getCurrentSceneName() == "West Side")
-            {
-                Debug.Log(toReturn.experienceName);
-                myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(toReturn.experienceCutSceneTexts));
-                myCommandBuilder.build(stateToEndIn: GameState.gameStates.DATEOUTRO);
-            }
-            else
-            {
-                myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(toReturn.experienceCutSceneTexts));
-                myCommandBuilder.build(stateToEndIn: GameState.gameStates.DATEOUTRO);
-            //myCommandBuilder.createAndEnqueueDateCutSceneSequence(new List<string>(toReturn.experienceCutSceneTexts), isEndOfGame() );
-            //myCommandBuilder.build(GameState.gameStates.CUTSCENE);
+            myCommandBuilder.createAndEnqueueDateCutSceneSequence(new List<string>(toReturn.experienceCutSceneTexts), isEndOfGame() );
+            myCommandBuilder.build(stateToBeginIn: GameState.gameStates.CUTSCENE, stateToEndIn: GameState.gameStates.DATEOUTRO);
+        }
 
-            }
+        if(toReturn.experienceName == "protect")
+        {
+            myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>() { "Hello" });
+            myCommandBuilder.build(stateToEndIn: GameState.gameStates.DATEOUTRO);
         }
     }
 

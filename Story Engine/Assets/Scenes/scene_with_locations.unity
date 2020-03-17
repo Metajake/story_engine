@@ -7910,9 +7910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   experienceName: protect
-  experienceCutSceneTexts:
-  - Some chad slaps your girlfriend's ass in the club? What do you do?
-  - You've experienced the need to protect.
+  experienceCutSceneTexts: []
 --- !u!114 &1564499113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7993,7 +7991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7735121f8d4852b4e9cb188f75de801c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experienceName: selfsacrifice
+  experienceName: humility
   experienceCutSceneTexts:
   - Sometimes life isn't about you.
   - She needed you, and you recognized that it was time to put yourself second; to

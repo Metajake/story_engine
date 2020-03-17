@@ -58,9 +58,9 @@ public class CommandBuilder : MonoBehaviour {
 		return command;
 	}
 
-	public void build(GameState.gameStates stateToBuildIn = GameState.gameStates.COMMANDSEQUENCE, GameState.gameStates stateToEndIn = GameState.gameStates.PROWL)
+	public void build(GameState.gameStates stateToBeginIn = GameState.gameStates.COMMANDSEQUENCE, GameState.gameStates stateToEndIn = GameState.gameStates.PROWL)
 	{
-		myGameState.currentGameState = stateToBuildIn;
+		myGameState.currentGameState = stateToBeginIn;
 		this.commandList.Enqueue(new SequenceEndCommand(stateToEndIn));
 		myCommandProcessor.setQueue(this.commandList);
 		myCommandProcessor.executeNextCommand();
