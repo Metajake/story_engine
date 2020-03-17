@@ -23,6 +23,7 @@ public class CheatComponent : MonoBehaviour {
     void Update () {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            GameObject.FindObjectOfType<RelationshipCounselor>().getCurrentDateFromScheduledDateList().experienceAchieved = true;
             myVictoryCoach.achieveNextExperience(true);
         }else if (Input.GetKeyDown(KeyCode.D))
         {
