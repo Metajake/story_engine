@@ -13,6 +13,7 @@ public class CharacterLocation
 public class Character : MonoBehaviour {
 
     public Texture2D image;
+    public Texture2D portrait;
     public string givenName;
     public string surname;
     public int inLoveAmount;

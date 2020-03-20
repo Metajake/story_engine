@@ -5901,8 +5901,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -534.3, y: 68.9}
-  m_SizeDelta: {x: 617.6, y: 606}
+  m_AnchoredPosition: {x: -486.5, y: 17.4}
+  m_SizeDelta: {x: 795.6, y: 857}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299021975
 MonoBehaviour:
@@ -5916,7 +5916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.703, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6480,6 +6480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 9a5c0d096ae7df747a3bc8b021054022, type: 3}
+  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
   givenName: Kristie
   surname: Kerner
   inLoveAmount: -1
@@ -6515,6 +6516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 163ea44eeaa7f114fa96133a92b676b3, type: 3}
+  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
   givenName: Evan
   surname: Clyde
   inLoveAmount: 0
@@ -6543,6 +6545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 5abae700844a5434f812a00693c2852c, type: 3}
+  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
   givenName: Sarah
   surname: Deal
   inLoveAmount: -1
@@ -6578,6 +6581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: dc9867ba9efc244f89ec752c313b417e, type: 3}
+  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
   givenName: Becky
   surname: Lesse
   inLoveAmount: -1
@@ -6633,6 +6637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 05b0db60a8cb744d189efa1be924e5bd, type: 3}
+  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
   givenName: Donna
   surname: Write
   inLoveAmount: -1
@@ -6668,6 +6673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 017ca9f4b971f4c4f86371bd3794ae69, type: 3}
+  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
   givenName: Jasmine
   surname: Picholine
   inLoveAmount: -1
@@ -6703,6 +6709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 5d3701bfdd1ba4e4daa57abf09dc1068, type: 3}
+  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
   givenName: Eleanor
   surname: Isle
   inLoveAmount: 0
@@ -6738,6 +6745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: ab0ff4522dd2e6f4487fc7aae20ae6c9, type: 3}
+  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
   givenName: Laura
   surname: Chan
   inLoveAmount: 0
@@ -6773,6 +6781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 1576a28538d37d14394d02c9c00da9b8, type: 3}
+  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
   givenName: Eli
   surname: 
   inLoveAmount: 0
@@ -6808,6 +6817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: d2a5332c658bf4997ab47077ddbcb3f8, type: 3}
+  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
   givenName: Missy
   surname: May
   inLoveAmount: 0
@@ -6843,6 +6853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: da61377a9cd33da41af661532fc27352, type: 3}
+  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
   givenName: Chad
   surname: Lancaster
   inLoveAmount: 0
@@ -6871,6 +6882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 2c211eb1999339f45837f40840593ea4, type: 3}
+  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
   givenName: Miss
   surname: Love
   inLoveAmount: 0

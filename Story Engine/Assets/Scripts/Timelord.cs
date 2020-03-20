@@ -13,6 +13,7 @@ public class Timelord : MonoBehaviour {
     private SceneCatalogue mySceneCatalogue;
     private CommandBuilder myCommandBuilder;
     private AnimationMaestro myAnimationMaestro;
+    private UIManager myUIManager;
     private VictoryCoach myVictoryCoach;
     private int creepAmount;
     private Location pastLocation;
@@ -25,6 +26,7 @@ public class Timelord : MonoBehaviour {
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myCommandBuilder = GameObject.FindObjectOfType<CommandBuilder>();
         myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
+        myUIManager = GameObject.FindObjectOfType<UIManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 
 
@@ -65,7 +67,7 @@ public class Timelord : MonoBehaviour {
             weekEvent();
         }
         
-        myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+        myUIManager.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
         
         //build the stuff in the conditionals, above
         myCommandBuilder.build();

@@ -110,7 +110,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             mainPanel.SetActive(true);
             characterPanel.gameObject.SetActive(true);
             sequenceButtonsPanel.SetActive(true);
-            myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+            updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
         }
         else if (currentState == GameState.gameStates.CUTSCENE)
         {
@@ -129,7 +129,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             if (mainPanel.activeSelf == true)
             {
                 myAnimationMaestro.writeDescriptionText(mySceneCatalogue.getLocationDescription(), textPanel);
-                myAnimationMaestro.updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
+                updatePotentialPartnersSprites(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
                 updateSelectedPartnerButtonUI();
                 updateToggleInteriorButtonUI();
             }
@@ -138,6 +138,8 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
         {
             dialoguePanel.SetActive(true);
             characterPanel.gameObject.SetActive(true);
+            Image speakerPortrait = GameObject.Find("SpeakerPortrait").GetComponent<Image>();
+            speakerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(myConversationTracker.currentConversation.speaker.portrait);
             askOnDateButton.SetActive(myConversationTracker.canAskOnDateEnabled());
         }
         else if (currentState == GameState.gameStates.DATEINTRO)
@@ -145,7 +147,7 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             mainPanel.SetActive(true);
             enableDateComponents();
             characterPanel.gameObject.SetActive(true);
-            myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() { myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep()) });
+            updatePotentialPartnersSprites(new List<Character>() { myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep()) });
             myAnimationMaestro.writeDescriptionText(mySceneCatalogue.getCurrentLocation().descriptionDate, textPanel);
         }
         else if (currentState == GameState.gameStates.DATE)
@@ -153,13 +155,41 @@ public class UIManager : MonoBehaviour, IEventSubscriber {
             mainPanel.SetActive(true);
             enableDateComponents();
             characterPanel.gameObject.SetActive(true);
-            myAnimationMaestro.updatePotentialPartnersSprites(new List<Character>() { myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep()) });
+            updatePotentialPartnersSprites(new List<Character>() { myRelationshipCounselor.getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimelord.getCurrentTimestep()) });
         }
         else if (currentState == GameState.gameStates.DATEOUTRO)
         {
             mainPanel.SetActive(true);
             enableDateComponents();
             myAnimationMaestro.writeDescriptionText("One good date can change your life.", textPanel);
+        }
+    }
+    public void updatePotentialPartnersSprites(List<Character> potentialConversationPartners)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            Image partnerPortrait = GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>();
+            Text partnerNameplate = GameObject.Find("Character " + (i + 1) + " NamePlate").GetComponent<Text>();
+            Text partnerLoveAmount = GameObject.Find("Character " + (i + 1) + " LoveAmount").GetComponent<Text>();
+
+            if (i < potentialConversationPartners.Count)
+            {
+                partnerPortrait.sprite = BackgroundSwapper.createSpriteFromTex2D(potentialConversationPartners[i].image);
+                partnerNameplate.text = potentialConversationPartners[i].givenName + " " + potentialConversationPartners[i].surname;
+                if (potentialConversationPartners[i] is DateableCharacter)
+                {
+                    partnerLoveAmount.text =
+                        "In Love Amount: " + potentialConversationPartners[i].inLoveAmount.ToString();
+                }
+                else
+                {
+                    partnerLoveAmount.text = "";
+                }
+            }
+            else
+            {
+                myAnimationMaestro.disablePartnerSelectionUI(partnerPortrait, partnerNameplate, partnerLoveAmount);
+            }
         }
     }
 
