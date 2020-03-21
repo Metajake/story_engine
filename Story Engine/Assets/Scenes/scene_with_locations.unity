@@ -5901,8 +5901,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -486.5, y: 17.4}
-  m_SizeDelta: {x: 795.6, y: 857}
+  m_AnchoredPosition: {x: -486.5, y: 0}
+  m_SizeDelta: {x: 800, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299021975
 MonoBehaviour:
@@ -6545,7 +6545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 5abae700844a5434f812a00693c2852c, type: 3}
-  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
+  portrait: {fileID: 2800000, guid: 21c3478b66c2a4c4e9589bc7d4bd43cb, type: 3}
   givenName: Sarah
   surname: Deal
   inLoveAmount: -1
@@ -6637,7 +6637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 05b0db60a8cb744d189efa1be924e5bd, type: 3}
-  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
+  portrait: {fileID: 2800000, guid: 21c3478b66c2a4c4e9589bc7d4bd43cb, type: 3}
   givenName: Donna
   surname: Write
   inLoveAmount: -1
@@ -6709,7 +6709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 5d3701bfdd1ba4e4daa57abf09dc1068, type: 3}
-  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
+  portrait: {fileID: 2800000, guid: 21c3478b66c2a4c4e9589bc7d4bd43cb, type: 3}
   givenName: Eleanor
   surname: Isle
   inLoveAmount: 0
@@ -6781,7 +6781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 2800000, guid: 1576a28538d37d14394d02c9c00da9b8, type: 3}
-  portrait: {fileID: 2800000, guid: 300cc2562af74cd46954a51d6f69922e, type: 3}
+  portrait: {fileID: 2800000, guid: 21c3478b66c2a4c4e9589bc7d4bd43cb, type: 3}
   givenName: Eli
   surname: 
   inLoveAmount: 0
