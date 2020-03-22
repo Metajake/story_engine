@@ -28,16 +28,19 @@ public class TipManager : MonoBehaviour {
         locationReveals.Add("Don't go to the %location%!");
 
         introText = new List<string>() {
-        "Sitting at home is comfortable!..",
-        "But something needs to change.",
-        "It's time to get out there and meet someone! ... Developing a strong, intimate relationship over time will open a whole new side of life and a whole new me.",
-        "...",
-        "The problem with that is, the more time I spend with someone, the greater the chance there is of them falling in love with me.\nAnd as soon as that happens, I can't help but fall in love back!..",
-        "Unfortunatley for me, relationships never seem to work out (for one reason or another). Every time I fall in love, eventually I'm left crushed and heartbroken. It's devestating!",
-        "...",
+        "Sitting at home is comfortable!",
+        "But something needs to change.....",
+        "...............",
+        "It's time to get out there and meet someone!.. Building a strong relationship with them over time will create a whole new side of me..",
+        "...Connecting with them will change the way I see everything.",
+        "...........",
+        "....",
+        "The problem with that is, the more time I spend with someone, the greater the chance there is of them falling in love with me.\nAnd as soon as that happens, I can't help but fall in love back!!",
+        "Unfortunatley for me, love never works out. Every time I fall in love, eventually it ends (for one reason or another), and I'm left heartbroken and devastated.",
+        "...........",
         "But I have to get out there. I have to gain those life changing experiences that only a relationship can bring.",
         "And I have to do it without spending too much time with any one person. Until I'm ready, I can't let anyone fall in love with me!",
-        "...",
+        "....",
         "I could start by making it to work on time. Let's go!"};
     }
 
