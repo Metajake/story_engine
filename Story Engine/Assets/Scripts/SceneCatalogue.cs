@@ -208,23 +208,4 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
         return dateScenes;
     }
 
-    //TODO This is very similar to Timelord.checkCharactersToFadeAndAdvanceTime(). Refactor?
-    public void checkVictoryQuestCompleteAndDelayToggleInteriorSceneIfCharactersPresent()
-    {
-        Action toggleInteriorAndTriggerEvent = () =>
-        {
-            toggleInteriorScene();
-            myVictoryCoach.checkQuestsCompleteAndQueueEvent(new EventSceneChange());
-        };
-        if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
-        {
-            myAnimationMaestro.fadeOutCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-            StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, toggleInteriorAndTriggerEvent));
-        }
-        else
-        {
-            toggleInteriorAndTriggerEvent();
-        }
-    }
-
 }
