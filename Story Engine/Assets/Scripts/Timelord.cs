@@ -38,21 +38,7 @@ public class Timelord : MonoBehaviour {
 		dayText.text = (currentTimeStep / timeNames.Length).ToString() + " " + getDayOfWeek(currentTimeStep / timeNames.Length);
     }
 
-    //TODO This is very similar to SceneCatalogue.ToggleInteriorScene(). Refactor?
-    public void checkCharactersToFadeAndAdvanceTime()
-    {
-        if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
-        {
-            myAnimationMaestro.fadeOutCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-            StartCoroutine(myAnimationMaestro.delayGameCoroutine(0.6f, this.advanceTimestep));
-        }
-        else
-        {
-            this.advanceTimestep();
-        }
-    }
-
-	private void advanceTimestep(){
+	public void advanceTimestep(){
         timeStep++;
 
         myDialogueManager.checkCharacterRelocate();

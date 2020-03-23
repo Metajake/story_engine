@@ -110,4 +110,18 @@ public class AnimationMaestro : MonoBehaviour
         writeDescriptionText("Bye, lame.", textPanel);
         dateActionButton.SetActive(false);
     }
+
+    //TODO This is very similar to Timelord.checkCharactersToFadeAndAdvanceTime(). Refactor?
+    public void delayActionIfCharactersPresent(Action toExecute)
+    {
+        if (GameObject.FindObjectOfType<DialogueManager>().getAllCurrentLocalPresentConversationPartners().Count > 0)
+        {
+            fadeOutCharacters(GameObject.FindObjectOfType<DialogueManager>().getAllCurrentLocalPresentConversationPartners());
+            StartCoroutine(delayGameCoroutine(0.6f, toExecute));
+        }
+        else
+        {
+            toExecute();
+        }
+    }
 }

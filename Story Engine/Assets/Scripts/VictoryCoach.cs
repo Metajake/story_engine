@@ -135,21 +135,6 @@ public class VictoryCoach : MonoBehaviour {
         return achievedExperienceInfo;
     }
 
-
-    //TODO This is very similar to Timelord.checkCharactersToFadeAndAdvanceTime(). Refactor?
-    public void checkVictoryQuestCompleteAndDelayActionIfCharactersPresent(Action toExecute)
-    {
-        if (myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count > 0)
-        {
-            GameObject.FindObjectOfType<AnimationMaestro>().fadeOutCharacters(myDialogueManager.getAllCurrentLocalPresentConversationPartners());
-            StartCoroutine(GameObject.FindObjectOfType<AnimationMaestro>().delayGameCoroutine(0.6f, toExecute));
-        }
-        else
-        {
-            toExecute();
-        }
-    }
-
     private bool tutorialComplete = false;
     public bool checkTutorialConditionsMet()
     {

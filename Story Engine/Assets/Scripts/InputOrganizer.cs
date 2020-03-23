@@ -79,10 +79,21 @@ public class InputOrganizer : MonoBehaviour {
         myTipManager.startGame();
     }
 
+    public void BTN_toggleIntertiorScene()
+    {
+        toggleInteriorSceneButton.interactable = false;
+        Action toggleInteriorAndTriggerEvent = () =>
+        {
+            mySceneCatalogue.toggleInteriorScene();
+            myVictoryCoach.checkQuestsCompleteAndQueueEvent(new EventSceneChange());
+        };
+        GameObject.FindObjectOfType<AnimationMaestro>().delayActionIfCharactersPresent(toggleInteriorAndTriggerEvent);
+    }
+
     public void BTN_advanceTime()
     {
         timeAdvanceButton.interactable = false;
-        myTimeLord.checkCharactersToFadeAndAdvanceTime();
+        GameObject.FindObjectOfType<AnimationMaestro>().delayActionIfCharactersPresent(myTimeLord.advanceTimestep);
     }
 
     public void BTN_toggleDialogueWindow(bool isDialoguing)
@@ -133,17 +144,6 @@ public class InputOrganizer : MonoBehaviour {
         #else
             Application.Quit();
         #endif
-    }
-
-    public void BTN_toggleIntertiorScene()
-    {
-        toggleInteriorSceneButton.interactable = false;
-        Action toggleInteriorAndTriggerEvent = () =>
-        {
-            mySceneCatalogue.toggleInteriorScene();
-            myVictoryCoach.checkQuestsCompleteAndQueueEvent(new EventSceneChange());
-        };
-        myVictoryCoach.checkVictoryQuestCompleteAndDelayActionIfCharactersPresent(toggleInteriorAndTriggerEvent);
     }
 
     public void BTN_leaveDate()
