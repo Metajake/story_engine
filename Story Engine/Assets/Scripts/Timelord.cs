@@ -12,7 +12,6 @@ public class Timelord : MonoBehaviour {
     private DialogueManager myDialogueManager;
     private SceneCatalogue mySceneCatalogue;
     private CommandBuilder myCommandBuilder;
-    private AnimationMaestro myAnimationMaestro;
     private UIManager myUIManager;
     private VictoryCoach myVictoryCoach;
     private int creepAmount;
@@ -25,10 +24,8 @@ public class Timelord : MonoBehaviour {
         myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         mySceneCatalogue = GameObject.FindObjectOfType<SceneCatalogue>();
         myCommandBuilder = GameObject.FindObjectOfType<CommandBuilder>();
-        myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
         myUIManager = GameObject.FindObjectOfType<UIManager>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
-
 
     }
 

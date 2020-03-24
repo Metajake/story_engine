@@ -16,6 +16,7 @@ public class InputOrganizer : MonoBehaviour {
     private RelationshipCounselor myRelationshipCounselor;
     private VictoryCoach myVictoryCoach;
     private TipManager myTipManager;
+    private AnimationMaestro myAnimationMaestro;
     private GameObject dateLocationButtonPanel;
     public GameObject dateLocationButtonPrefab;
     private Button timeAdvanceButton;
@@ -38,6 +39,7 @@ public class InputOrganizer : MonoBehaviour {
         myRelationshipCounselor = GameObject.FindObjectOfType<RelationshipCounselor>();
         myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
         myTipManager = GameObject.FindObjectOfType<TipManager>();
+        myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
 
         timeAdvanceButton = GameObject.Find("TimeButton").GetComponent<Button>();
         toggleInteriorSceneButton = GameObject.Find("DateLocationButton").GetComponent<Button>();
@@ -87,13 +89,21 @@ public class InputOrganizer : MonoBehaviour {
             mySceneCatalogue.toggleInteriorScene();
             myVictoryCoach.checkQuestsCompleteAndQueueEvent(new EventSceneChange());
         };
-        GameObject.FindObjectOfType<AnimationMaestro>().delayActionIfCharactersPresent(toggleInteriorAndTriggerEvent);
+        myAnimationMaestro.delayActionIfCharactersPresent(toggleInteriorAndTriggerEvent);
     }
 
     public void BTN_advanceTime()
     {
         timeAdvanceButton.interactable = false;
-        GameObject.FindObjectOfType<AnimationMaestro>().delayActionIfCharactersPresent(myTimeLord.advanceTimestep);
+        myAnimationMaestro.delayActionIfCharactersPresent(myTimeLord.advanceTimestep);
+    }
+
+    public void BTN_onLocationClick(int sceneNumber)
+    {
+        myMapCartographer.changeScene(sceneNumber);
+        BTN_toggleMap();
+        myAudioConductor.loadAndPlay(myAudioConductor.subwayCar);
+        myVictoryCoach.checkQuestsCompleteAndQueueEvent(new EventSceneChange());
     }
 
     public void BTN_toggleDialogueWindow(bool isDialoguing)
@@ -112,14 +122,6 @@ public class InputOrganizer : MonoBehaviour {
     {
         myConversationTracker.scheduleDate(dateLocation);
         myUIManager.updateConversationUIAfterDateScheduled();
-    }
-
-    public void BTN_onLocationClick(int sceneNumber)
-    {
-        myMapCartographer.changeScene(sceneNumber);
-        BTN_toggleMap();
-        myAudioConductor.loadAndPlay(myAudioConductor.subwayCar);
-        myVictoryCoach.checkQuestsCompleteAndQueueEvent(new EventSceneChange());
     }
 
     public void BTN_toggleMap()

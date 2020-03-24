@@ -10,10 +10,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 	private int startingSceneNumber;
 	private bool isInInteriorScene;
     private EventQueue myEventQueue;
-    private AnimationMaestro myAnimationMaestro;
-    private DialogueManager myDialogueManager;
     private ConversationTracker myConversationTracker;
-    private VictoryCoach myVictoryCoach;
     private List<IKnownLocationsChangedObserver> currentObservers;
 
     void Awake() {
@@ -23,10 +20,7 @@ public class SceneCatalogue : MonoBehaviour, IKnownLocationsChangedObservable {
 
     void Start () {
         myEventQueue = GameObject.FindObjectOfType<EventQueue>();
-        myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
-        myDialogueManager = GameObject.FindObjectOfType<DialogueManager>();
         myConversationTracker = GameObject.FindObjectOfType<ConversationTracker>();
-        myVictoryCoach = GameObject.FindObjectOfType<VictoryCoach>();
 
         startingSceneNumber = 7;
         isInInteriorScene = true; // Start Player out in apartment
