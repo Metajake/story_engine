@@ -93,27 +93,14 @@ public class VictoryCoach : MonoBehaviour {
             remainingExperiences.Remove(toRemoveAndReturn.experienceName);
             toReturn = toRemoveAndReturn;
         }
+
         achievedExperiences.Add(toReturn);
 
-        //if (playCutscene)
-        //{
-        //    myCommandBuilder.createAndEnqueueDateCutSceneSequence(new List<string>(toReturn.experienceCutSceneTexts), isEndOfGame() );
-        //    myCommandBuilder.build(stateToBeginIn: GameState.gameStates.CUTSCENE, stateToEndIn: GameState.gameStates.DATEOUTRO);
-        //}
-
+        Character datePartner = GameObject.FindObjectOfType<RelationshipCounselor>().getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimeLord.getCurrentTimestep());
         if(toReturn.experienceName == "protect")
         {
-            int currentCharacterCount = myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count;
-            for (int i = 0; i < currentCharacterCount; i++)
-            {
-                Character charToRemove = myDialogueManager.getPartnerAt(i + 1);
-                charToRemove.returnTime = myTimeLord.getCurrentTimestep() + 1;
-                charToRemove.isPresent = false;
-            }
 
-            Character datePartner = GameObject.FindObjectOfType<RelationshipCounselor>().getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimeLord.getCurrentTimestep());
-
-            myCommandBuilder.createAndEnqueueSummonDateCutSceneCharacterSequence(myDialogueManager.getCharacterForName(datePartner.givenName), "God, I'm having so much fun!", 0.0f);
+            myCommandBuilder.createAndEnqueueAddCharToDateCutSceneCharListSequence(myDialogueManager.getCharacterForName(datePartner.givenName), "God, I'm having so much fun!");
             myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(){
                 "Things are going pretty good!",
                 "I wonder if I should make my move?...",
@@ -127,6 +114,7 @@ public class VictoryCoach : MonoBehaviour {
         }
         else
         {
+            myCommandBuilder.createAndEnqueueAddCharToDateCutSceneCharListSequence(myDialogueManager.getCharacterForName(datePartner.givenName), "God, I'm having so much fun!");
             myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(toReturn.experienceCutSceneTexts), isEndOfGame());
             myCommandBuilder.build(stateToBeginIn: GameState.gameStates.DATECUTSCENE, stateToEndIn: GameState.gameStates.DATEOUTRO);
         }

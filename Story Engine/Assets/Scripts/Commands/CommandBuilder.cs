@@ -47,6 +47,11 @@ public class CommandBuilder : MonoBehaviour {
 		commandList.Enqueue(new SummonDateCutSceneCharacterCommand(characterToEnqueue, stringToWrite, fadeDurationToWrite));
 	}
 
+	internal void createAndEnqueueAddCharToDateCutSceneCharListSequence(Character characterToEnqueue, string stringToWrite = "")
+	{
+		commandList.Enqueue(new AddCharacterToDateCutSceneCharListCommand(characterToEnqueue, stringToWrite));
+	}
+
 	private ChangeDialogueCommand createChangeDialogueCommand(string dialogue)
 	{
 		ChangeDialogueCommand command = this.gameObject.AddComponent<ChangeDialogueCommand>();
