@@ -10,7 +10,7 @@ public class SummonCharacterCommand : ICommand {
 	public float fadeDuration;
 	private AnimationMaestro myAnimationMaestro;
 
-	public SummonCharacterCommand(Character character, string stringArg, float durationToFade = 0.6f)
+	public SummonCharacterCommand(Character character, string stringArg, float durationToFade)
 	{
 		myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
 		characterToSummon = character;
@@ -28,7 +28,7 @@ public class SummonCharacterCommand : ICommand {
 		characterToSummon.locations[timeOfDay].isActive = true;
 
 		List<Character> charList = GameObject.FindObjectOfType<DialogueManager>().getAllCurrentLocalPresentConversationPartners();
-		Debug.Log("Summon char execute charlist count: "+charList.Count);
+
 		// For each character in present characters, if character is currently being summoned, fade in, otherwise snap in.
 		for (int i = 0; i < charList.Count; i++)
 		{

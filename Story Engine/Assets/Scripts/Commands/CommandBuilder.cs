@@ -32,9 +32,14 @@ public class CommandBuilder : MonoBehaviour {
 		}
 	}
 
-	internal void createAndEnqueueSummonCharacterSequence(Character characterToEnqueue, string stringToWrite = "", float fadeDurationToWrite = 0.75f)
+	internal void createAndEnqueueSummonCharacterSequence(Character characterToEnqueue, string stringToWrite="", float fadeDurationToWrite=0.75f)
 	{
 		commandList.Enqueue(new SummonCharacterCommand(characterToEnqueue, stringToWrite, fadeDurationToWrite));
+	}
+
+	internal void createAndEnqueueRemoveCharacterSequence(string charNameToRemove, string stringToWrite="", float fadeDurationToWrite=0.75f)
+	{
+		commandList.Enqueue(new RemoveCharacterCommand(charNameToRemove, stringToWrite, fadeDurationToWrite));
 	}
 
 	internal void createAndEnqueueSummonDateCutSceneCharacterSequence(Character characterToEnqueue, string stringToWrite = "", float fadeDurationToWrite = 0.75f)

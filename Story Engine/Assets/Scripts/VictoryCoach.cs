@@ -184,6 +184,7 @@ public class VictoryCoach : MonoBehaviour {
                 "Some people that you meet have regular schedules. Other characters will move around the city more often.",
         });
         myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("chad"), "This is Chad, the city bully. He will force you out of locations.");
+        myCommandBuilder.createAndEnqueueRemoveCharacterSequence("chad", "See ya!");
         myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(){
             "Get strong enough to force him to leave.",
             "Meet your new coworker, Kristie Kerner."

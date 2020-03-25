@@ -56,6 +56,13 @@ public class AnimationMaestro : MonoBehaviour
         partnerPortrait.color = new Color(255, 255, 255, 0);
         StartCoroutine(fadeImageTo(partnerPortrait, 1.0f, fadeDuration));
     }
+    
+    public void fadeOutCharacterImage(int imagePositionToFadeIn, float fadeDuration = 0.6f)
+    {
+        Image partnerPortrait = GameObject.Find("Character " + (imagePositionToFadeIn) + " Portrait").GetComponent<Image>();
+        partnerPortrait.color = new Color(255, 255, 255, 1);
+        StartCoroutine(fadeImageTo(partnerPortrait, 0.0f, fadeDuration));
+    }
 
     public void setImageColor(Image imageToSet, Color colorToSet)
     {

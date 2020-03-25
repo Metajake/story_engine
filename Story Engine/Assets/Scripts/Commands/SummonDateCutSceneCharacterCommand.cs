@@ -29,7 +29,7 @@ public class SummonDateCutSceneCharacterCommand : ICommand {
 		characterToSummon.locations[timeOfDay].isActive = true;
 
 		List<Character> charList = GameObject.FindObjectOfType<CommandBuilder>().dateCutSceneCharList;
-		Debug.Log("Summon char execute charlist count: "+charList.Count);
+
 		// For each character in present characters, if character is currently being summoned, fade in, otherwise snap in.
 		for (int i = 0; i < charList.Count; i++)
 		{
