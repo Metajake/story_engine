@@ -75,7 +75,7 @@ public class AnimationMaestro : MonoBehaviour
         }
     }
 
-    IEnumerator fadeImageTo(Image characterImage, float aValue, float aTime)
+    public IEnumerator fadeImageTo(Image characterImage, float aValue, float aTime)
     {
         float alpha = characterImage.color.a;
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)

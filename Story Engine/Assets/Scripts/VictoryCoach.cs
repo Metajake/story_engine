@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VictoryCoach : MonoBehaviour {
 
@@ -94,16 +95,40 @@ public class VictoryCoach : MonoBehaviour {
         }
         achievedExperiences.Add(toReturn);
 
-        if (playCutscene)
-        {
-            myCommandBuilder.createAndEnqueueDateCutSceneSequence(new List<string>(toReturn.experienceCutSceneTexts), isEndOfGame() );
-            myCommandBuilder.build(stateToBeginIn: GameState.gameStates.CUTSCENE, stateToEndIn: GameState.gameStates.DATEOUTRO);
-        }
+        //if (playCutscene)
+        //{
+        //    myCommandBuilder.createAndEnqueueDateCutSceneSequence(new List<string>(toReturn.experienceCutSceneTexts), isEndOfGame() );
+        //    myCommandBuilder.build(stateToBeginIn: GameState.gameStates.CUTSCENE, stateToEndIn: GameState.gameStates.DATEOUTRO);
+        //}
 
         if(toReturn.experienceName == "protect")
         {
-            myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>() { "Hello" });
-            myCommandBuilder.build(stateToEndIn: GameState.gameStates.DATEOUTRO);
+            int currentCharacterCount = myDialogueManager.getAllCurrentLocalPresentConversationPartners().Count;
+            for (int i = 0; i < currentCharacterCount; i++)
+            {
+                Character charToRemove = myDialogueManager.getPartnerAt(i + 1);
+                charToRemove.returnTime = myTimeLord.getCurrentTimestep() + 1;
+                charToRemove.isPresent = false;
+            }
+
+            Character datePartner = GameObject.FindObjectOfType<RelationshipCounselor>().getDatePartner(mySceneCatalogue.getCurrentLocation(), myTimeLord.getCurrentTimestep());
+
+            myCommandBuilder.createAndEnqueueSummonDateCutSceneCharacterSequence(myDialogueManager.getCharacterForName(datePartner.givenName), "God, I'm having so much fun!", 0.0f);
+            myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(){
+                "Things are going pretty good!",
+                "I wonder if I should make my move?...",
+                "............."
+            });
+            myCommandBuilder.createAndEnqueueSummonDateCutSceneCharacterSequence(myDialogueManager.getCharacterForName("chad"), "Hey buddy! What's going on here? I see you all are up to some fun!");
+            myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(){
+                    "I respect you though, dog. And for that I'm gonna let you enjoy this one. Smell ya later...",
+            }, isEndOfGame());
+            myCommandBuilder.build(stateToBeginIn: GameState.gameStates.DATECUTSCENE, stateToEndIn: GameState.gameStates.DATEOUTRO);
+        }
+        else
+        {
+            myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(toReturn.experienceCutSceneTexts), isEndOfGame());
+            myCommandBuilder.build(stateToBeginIn: GameState.gameStates.DATECUTSCENE, stateToEndIn: GameState.gameStates.DATEOUTRO);
         }
     }
 
@@ -153,17 +178,17 @@ public class VictoryCoach : MonoBehaviour {
         }
         GameObject.FindObjectOfType<UIManager>().setMainPanelActive();
 
-        myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("evan"), 1, "Welcome to the rat race.");
+        myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("evan"), "Welcome to the rat race.");
         myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(){
                 "Just kidding. It's not that bad. Here's how things work:",
                 "Some people that you meet have regular schedules. Other characters will move around the city more often.",
         });
-        myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("chad"), 2, "This is Chad, the city bully. He will force you out of locations.");
+        myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("chad"), "This is Chad, the city bully. He will force you out of locations.");
         myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(){
             "Get strong enough to force him to leave.",
             "Meet your new coworker, Kristie Kerner."
         });
-        myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("kristie"), 3, "Go ahead and introduce yourself.");
+        myCommandBuilder.createAndEnqueueSummonCharacterSequence(myDialogueManager.getCharacterForName("kristie"), "Go ahead and introduce yourself.");
         if (toBuild)
         {
             myCommandBuilder.build();

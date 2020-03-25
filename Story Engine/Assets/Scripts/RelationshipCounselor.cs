@@ -229,16 +229,17 @@ public class RelationshipCounselor : MonoBehaviour {
         if (roll <= leavePercentageForLocation){
             getCurrentDateFromScheduledDateList().isAbandoned = true;
             myAnimationMaestro.abandonDateDescription();
+            myEventQueue.queueEvent(new EventDateAction());
         }
         else if (roll <= leavePercentageForLocation + actionLikelihoodMatrix["neutral"][she.locationPreferences[mySceneCatalogue.getCurrentSceneNumber()]]){
             myAnimationMaestro.showNeutralDescriptionText();
             Debug.Log("Contextual pre-programmed neutral location description (which we will eventually do).");
+            myEventQueue.queueEvent(new EventDateAction());
         }else{
             she.experienceCount++;
             getCurrentDateFromScheduledDateList().experienceAchieved = true;
             myVictoryCoach.achieveNextExperience(true);
         }
-        myEventQueue.queueEvent(new EventDateAction());
 	}
 
 }

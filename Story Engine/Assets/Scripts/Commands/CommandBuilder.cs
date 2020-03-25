@@ -6,6 +6,7 @@ public class CommandBuilder : MonoBehaviour {
 	Queue<ICommand> commandList;
 	private GameState myGameState;
 	private CommandProcessor myCommandProcessor;
+	public List<Character> dateCutSceneCharList;
 
 	void Awake()
 	{
@@ -18,19 +19,11 @@ public class CommandBuilder : MonoBehaviour {
 		myCommandProcessor = GameObject.FindObjectOfType<CommandProcessor>();
 	}
 
-	public void createAndEnqueueChangeDialogueSequence(List<string> dialogues)
+	public void createAndEnqueueChangeDialogueSequence(List<string> dialogues, bool isEndGameCutscene = false)
 	{
 		foreach (string dialogue in dialogues)
 		{
 			commandList.Enqueue(createChangeDialogueCommand(dialogue));
-		}
-	}
-
-	internal void createAndEnqueueDateCutSceneSequence(List<string> sceneCuts, bool isEndGameCutscene)
-	{
-		foreach (string cut in sceneCuts)
-		{
-			commandList.Enqueue(createCutSceneCommand(cut));
 		}
 
 		if (isEndGameCutscene)
@@ -39,22 +32,20 @@ public class CommandBuilder : MonoBehaviour {
 		}
 	}
 
-	internal void createAndEnqueueSummonCharacterSequence(Character characterToEnqueue, int actorCountToEnqueue, string stringToWrite = "")
+	internal void createAndEnqueueSummonCharacterSequence(Character characterToEnqueue, string stringToWrite = "", float fadeDurationToWrite = 0.75f)
 	{
-		commandList.Enqueue(new SummonCharacterCommand(characterToEnqueue, actorCountToEnqueue, stringToWrite));
+		commandList.Enqueue(new SummonCharacterCommand(characterToEnqueue, stringToWrite, fadeDurationToWrite));
+	}
+
+	internal void createAndEnqueueSummonDateCutSceneCharacterSequence(Character characterToEnqueue, string stringToWrite = "", float fadeDurationToWrite = 0.75f)
+	{
+		commandList.Enqueue(new SummonDateCutSceneCharacterCommand(characterToEnqueue, stringToWrite, fadeDurationToWrite));
 	}
 
 	private ChangeDialogueCommand createChangeDialogueCommand(string dialogue)
 	{
 		ChangeDialogueCommand command = this.gameObject.AddComponent<ChangeDialogueCommand>();
 		command.textToWrite = dialogue;
-		return command;
-	}
-
-	private ChangeCutSceneCommand createCutSceneCommand(string cut)
-	{
-		ChangeCutSceneCommand command = this.gameObject.AddComponent<ChangeCutSceneCommand>();
-		command.textToWrite = cut;
 		return command;
 	}
 

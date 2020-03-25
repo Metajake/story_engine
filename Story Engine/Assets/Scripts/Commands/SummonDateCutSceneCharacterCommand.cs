@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SummonCharacterCommand : ICommand {
+public class SummonDateCutSceneCharacterCommand : ICommand {
 
 	public Character characterToSummon;
 	public string textToWrite;
 	public float fadeDuration;
 	private AnimationMaestro myAnimationMaestro;
 
-	public SummonCharacterCommand(Character character, string stringArg, float durationToFade = 0.6f)
+	public SummonDateCutSceneCharacterCommand(Character character, string stringArg, float durationToFade = 0.6f)
 	{
 		myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
 		characterToSummon = character;
@@ -20,6 +20,7 @@ public class SummonCharacterCommand : ICommand {
 
 	public void execute()
 	{
+		GameObject.FindObjectOfType<CommandBuilder>().dateCutSceneCharList.Add(characterToSummon);
 
 		int timeOfDay = GameObject.FindObjectOfType<Timelord>().getCurrentModulusTimestep();
 		characterToSummon.isPresent = true;
@@ -27,7 +28,7 @@ public class SummonCharacterCommand : ICommand {
 		characterToSummon.locations[timeOfDay].isInside = GameObject.FindObjectOfType<SceneCatalogue>().getIsInInteriorScene();
 		characterToSummon.locations[timeOfDay].isActive = true;
 
-		List<Character> charList = GameObject.FindObjectOfType<DialogueManager>().getAllCurrentLocalPresentConversationPartners();
+		List<Character> charList = GameObject.FindObjectOfType<CommandBuilder>().dateCutSceneCharList;
 		Debug.Log("Summon char execute charlist count: "+charList.Count);
 		// For each character in present characters, if character is currently being summoned, fade in, otherwise snap in.
 		for (int i = 0; i < charList.Count; i++)
