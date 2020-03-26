@@ -15,7 +15,7 @@ public class SequenceEndCommand : ICommand
         this.toEndIn = toEndIn;
     }
 
-    public void execute()
+    public void execute(bool toFastForward)
     {
         myCommandBuilder.dateCutSceneCharList = new List<Character>() { };
 

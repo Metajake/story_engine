@@ -23,7 +23,7 @@ public class RemoveCharacterCommand : ICommand {
 		fadeDuration = durationToFade;
 	}
 
-	public void execute()
+	public void execute(bool toFastForward)
 	{
 		Action setCharacterPresentFalse = () =>
 		{
@@ -37,8 +37,17 @@ public class RemoveCharacterCommand : ICommand {
 		{
 			if (charList[i].givenName.ToLower() == characterToRemove.ToLower())
 			{
-				myAnimationMaestro.fadeOutCharacterImage(i + 1, fadeDuration);
-				myAnimationMaestro.StartCoroutine(myAnimationMaestro.delayGameCoroutine(fadeDuration, setCharacterPresentFalse));
+				if (!toFastForward)
+				{
+					myAnimationMaestro.fadeOutCharacterImage(i + 1, fadeDuration);
+					myAnimationMaestro.StartCoroutine(myAnimationMaestro.delayGameCoroutine(fadeDuration, setCharacterPresentFalse));
+				}
+				else
+				{
+					myAnimationMaestro.setImageColor(GameObject.Find("Character " + (i + 1) + " Portrait").GetComponent<Image>(), new Color(255, 255, 255, 0));
+					myDialogueManager.getCharacterForName(characterToRemove).isPresent = false;
+					myDialogueManager.getCharacterForName(characterToRemove).returnTime = myTimeLord.getCurrentTimestep() + 1;
+				}
 			}
 		}
 		myAnimationMaestro.writeDescriptionText(textToWrite, GameObject.Find("TextPanel").GetComponentInChildren<Text>());

@@ -46,10 +46,15 @@ public class CommandBuilder : MonoBehaviour {
 	{
 		commandList.Enqueue(new SummonDateCutSceneCharacterCommand(characterToEnqueue, stringToWrite, fadeDurationToWrite));
 	}
-
-	internal void createAndEnqueueAddCharToDateCutSceneCharListSequence(Character characterToEnqueue, string stringToWrite = "")
+	
+	internal void createAndEnqueueRemoveDateCutSceneCharacterSequence(string characterToEnqueue, string stringToWrite = "", float fadeDurationToWrite = 0.75f)
 	{
-		commandList.Enqueue(new AddCharacterToDateCutSceneCharListCommand(characterToEnqueue, stringToWrite));
+		commandList.Enqueue(new RemoveDateCutSceneCharacterCommand(characterToEnqueue, stringToWrite, fadeDurationToWrite));
+	}
+
+	internal void createAndEnqueueKeepCharInDateCutSceneSequence(Character characterToEnqueue, string stringToWrite = "")
+	{
+		commandList.Enqueue(new KeepCharacterInDateCutSceneCommand(characterToEnqueue, stringToWrite));
 	}
 
 	private ChangeDialogueCommand createChangeDialogueCommand(string dialogue)

@@ -9,7 +9,7 @@ public class GameClearCommand : ICommand
         
     }
 
-    public void execute()
+    public void execute(bool toFastForward)
     {
         SceneManager.LoadScene("splash_game_clear");
     }

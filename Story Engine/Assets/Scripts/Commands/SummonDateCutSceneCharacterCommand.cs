@@ -18,24 +18,19 @@ public class SummonDateCutSceneCharacterCommand : ICommand {
 		fadeDuration = durationToFade;
 	}
 
-	public void execute()
+	public void execute(bool toFastForward)
 	{
 		GameObject.FindObjectOfType<CommandBuilder>().dateCutSceneCharList.Add(characterToSummon);
-
-		int timeOfDay = GameObject.FindObjectOfType<Timelord>().getCurrentModulusTimestep();
-		characterToSummon.isPresent = true;
-		characterToSummon.locations[timeOfDay].locationName = GameObject.FindObjectOfType<SceneCatalogue>().getCurrentSceneName();
-		characterToSummon.locations[timeOfDay].isInside = GameObject.FindObjectOfType<SceneCatalogue>().getIsInInteriorScene();
-		characterToSummon.locations[timeOfDay].isActive = true;
 
 		List<Character> charList = GameObject.FindObjectOfType<CommandBuilder>().dateCutSceneCharList;
 
 		// For each character in present characters, if character is currently being summoned, fade in, otherwise snap in.
+		//TODO: Maybe get rid of this for DateCutScene because charList doesn't rearrange like dialogueManager.getAllLocalCurrentEtc...
 		for (int i = 0; i < charList.Count; i++)
 		{
 			if(charList[i].givenName == characterToSummon.givenName)
 			{
-				myAnimationMaestro.fadeInCharacterImage(i + 1, fadeDuration);
+				myAnimationMaestro.fadeInCharacterImage(i + 1, toFastForward ? 0.0f : fadeDuration);
 			}
 			else
 			{

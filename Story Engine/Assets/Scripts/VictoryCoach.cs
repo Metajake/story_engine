@@ -100,7 +100,7 @@ public class VictoryCoach : MonoBehaviour {
         if(toReturn.experienceName == "protect")
         {
 
-            myCommandBuilder.createAndEnqueueAddCharToDateCutSceneCharListSequence(myDialogueManager.getCharacterForName(datePartner.givenName), "God, I'm having so much fun!");
+            myCommandBuilder.createAndEnqueueKeepCharInDateCutSceneSequence(myDialogueManager.getCharacterForName(datePartner.givenName), "God, I'm having so much fun!");
             myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(){
                 "Things are going pretty good!",
                 "I wonder if I should make my move?...",
@@ -114,7 +114,11 @@ public class VictoryCoach : MonoBehaviour {
         }
         else
         {
-            myCommandBuilder.createAndEnqueueAddCharToDateCutSceneCharListSequence(myDialogueManager.getCharacterForName(datePartner.givenName), "God, I'm having so much fun!");
+            myCommandBuilder.createAndEnqueueKeepCharInDateCutSceneSequence(myDialogueManager.getCharacterForName(datePartner.givenName), "God, I'm having so much fun!");
+            myCommandBuilder.createAndEnqueueSummonDateCutSceneCharacterSequence(myDialogueManager.getCharacterForName("chad"), "Hey buddy! What's going on here? I see you all are up to some fun!");
+            myCommandBuilder.createAndEnqueueSummonDateCutSceneCharacterSequence(myDialogueManager.getCharacterForName("evan"), "Hi!");
+            myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>() {"GET OUTTA HERE!"});
+            myCommandBuilder.createAndEnqueueRemoveDateCutSceneCharacterSequence("chad", "Whoa!!");
             myCommandBuilder.createAndEnqueueChangeDialogueSequence(new List<string>(toReturn.experienceCutSceneTexts), isEndOfGame());
             myCommandBuilder.build(stateToBeginIn: GameState.gameStates.DATECUTSCENE, stateToEndIn: GameState.gameStates.DATEOUTRO);
         }

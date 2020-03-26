@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class AbstractCommand : MonoBehaviour, ICommand {
 
-	public abstract void execute();
+	public abstract void execute(bool toFastForwad);
     
 }

@@ -8,8 +8,9 @@ public class SummonCharacterCommand : ICommand {
 	public Character characterToSummon;
 	public string textToWrite;
 	public float fadeDuration;
+	public bool toFastForward;
 	private AnimationMaestro myAnimationMaestro;
-
+	
 	public SummonCharacterCommand(Character character, string stringArg, float durationToFade)
 	{
 		myAnimationMaestro = GameObject.FindObjectOfType<AnimationMaestro>();
@@ -18,9 +19,8 @@ public class SummonCharacterCommand : ICommand {
 		fadeDuration = durationToFade;
 	}
 
-	public void execute()
+	public void execute(bool toFastForward)
 	{
-
 		int timeOfDay = GameObject.FindObjectOfType<Timelord>().getCurrentModulusTimestep();
 		characterToSummon.isPresent = true;
 		characterToSummon.locations[timeOfDay].locationName = GameObject.FindObjectOfType<SceneCatalogue>().getCurrentSceneName();
@@ -34,7 +34,7 @@ public class SummonCharacterCommand : ICommand {
 		{
 			if(charList[i].givenName == characterToSummon.givenName)
 			{
-				myAnimationMaestro.fadeInCharacterImage(i + 1, fadeDuration);
+				myAnimationMaestro.fadeInCharacterImage(i + 1, toFastForward ? 0.0f : fadeDuration);
 			}
 			else
 			{

@@ -3,11 +3,21 @@ using UnityEngine;
 
 public class CommandProcessor : MonoBehaviour, ICommandProcessor {
 	Queue<ICommand> commandList;
-    
-	public void executeNextCommand(){
+
+	public void goToSequenceEnd()
+	{
+		Debug.Log(this.commandList.Count);
+		int stepsRematining = this.commandList.Count;
+		for(int i = 0; i < stepsRematining - 1; i++)
+		{
+			this.executeNextCommand(toFastForward: true);
+		}
+	}
+
+	public void executeNextCommand(bool toFastForward = false){
         if (commandList.Count > 0)
         {
-            commandList.Dequeue().execute();
+            commandList.Dequeue().execute(toFastForward);
         }
 		
 	}
